@@ -120,15 +120,6 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Рукоблуд</a>
-                    <a href="https://laracasts.com">Скотина</a>
-                    <a href="https://laravel-news.com">Очко</a>
-                    <a href="https://nova.laravel.com">Блядун</a>
-                    <a href="https://forge.laravel.com">Вагина</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
             </div>
         </div>
     </body>
