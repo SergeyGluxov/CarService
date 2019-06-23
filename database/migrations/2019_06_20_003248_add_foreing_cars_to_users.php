@@ -14,7 +14,7 @@ class AddForeingCarsToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('cars_id')->unsigned()->default(1);
+            $table->integer('cars_id')->unsigned()->nullable();
             $table->foreign('cars_id')->references('id')->on('cars');
         });
     }
@@ -27,7 +27,7 @@ class AddForeingCarsToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropForeign(['cars_id']);
         });
     }
 }

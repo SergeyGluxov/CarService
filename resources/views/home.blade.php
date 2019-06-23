@@ -4,14 +4,13 @@
 @section('content')
 
     <div class="container">
-    @if($cars->count() != null)
+    @if($cars!=null)
         <!--Название автомобиля-->
             <div class="row">
                 <div class="col-md-6">
-                    @foreach($cars as $car)
-                        <h2>{{$car->brend}} {{$car->model}}</h2>
-                        <img src="/uploads/cars_image/{{$car->image}}" class="img-fluid">
-                    @endforeach
+                    <h2>{{$cars->brand}} {{$cars->model}}</h2>
+                    <h2>{{$cars->count}}</h2>
+                    <img src="/uploads/cars_image/{{$cars->image}}" class="img-fluid">
                 </div>
                 <div class="col-md-6">
                     <!--Основные характеристики-->
@@ -19,7 +18,7 @@
                 </div>
             </div>
         @endif
-        @if(count($cars)==0)
+        @if($cars==0)
             <h1>Нет авто</h1>
             <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#basicModal">
                 {{ __('Добавить авто') }}
@@ -56,7 +55,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Гос. номер:</label>
-                            <input type="text" class="form-control" id="gos_number" name="gos_number" placeholder="А000АА">
+                            <input type="text" class="form-control" id="gos_number" name="gos_number"
+                                   placeholder="А000АА">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>

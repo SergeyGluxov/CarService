@@ -29,6 +29,11 @@ class CreateCarsTable extends Migration
      */
     public function down()
     {
+        //Сначало удалить саму связь(т.е внешний ключ)
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['cars_id']);
+        });
+        //Потом удалить таблицу
         Schema::dropIfExists('cars');
     }
 }

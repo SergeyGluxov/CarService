@@ -22,4 +22,9 @@ class HomeController extends Controller
         $allcars = Car::all();
         return view('home', compact('cars', 'allcars'));
     }
+    public  function s(Request $request)
+    {
+        $mark = $request->input('mark');
+        echo $mark;
+    }
 }
