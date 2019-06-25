@@ -33,6 +33,8 @@
         <div class="row">
             <div class="content col-md-2">
                 Отслеживай<br>состояние<br>своего</br>автомобиля
+
+                <button type="submit" class="btn btn-primary" style="background-color: #1b1e21">Пробовать</button>
             </div>
 
             <div class="flex-center position-ref ">
@@ -49,6 +51,7 @@
             </div>
         </div>
     </div>
+
 </div>
 </body>
 </html>
