@@ -1,0 +1,22 @@
+html, body{
+    color: white;
+}
+#icon_edit{
+    opacity: 0.5;
+}
+#icon_edit:hover
+{
+    opacity: 1;
+}
+.header_card{
+    background-color: #2A313C; margin-left: 20px;
+}
+.body_card{
+    background-color: #2A313C	;
+}
+.border_card{
+    border-top-color:#2A313C;
+    border-left-color: #2A313C;
+    border-right-color: #2A313C;
+    background-color: #1b4b72;
+}

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model
 {
-    protected  $fillable = ['name'];
+    protected  $fillable = ['brand'];
     public  function  users()
     {
         return $this->hasMany(User::class);

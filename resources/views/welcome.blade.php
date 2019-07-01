@@ -33,10 +33,10 @@
         <div class="row">
             <div class="content col-md-2">
                 Отслеживай<br>состояние<br>своего</br>автомобиля
-
-                <button type="submit" class="btn btn-primary" style="background-color: #1b1e21">Пробовать</button>
+                <form method="GET" action="{{route('register')}}">
+                    <button type="submit" class="btn btn-primary" style="background-color: #1b1e21">Пробовать</button>
+                </form>
             </div>
-
             <div class="flex-center position-ref ">
                 @if (Route::has('login'))
                     <div class="top-right links">
@@ -51,7 +51,6 @@
             </div>
         </div>
     </div>
-
 </div>
 </body>
 </html>
