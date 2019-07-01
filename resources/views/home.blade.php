@@ -15,13 +15,22 @@
                     <i id="icon_edit" class="fas fa-edit fa-2x" data-toggle="modal" data-target="#basicModal"
                        style="float: right; margin-top: 5px"></i>
                     <div style="margin-top: 50px;">
-                        <!--Основные характеристики-->
-                        <h2>Документ автомобиля:</h2>
-                        <h4>Регистрационный знак: H703ET 142</h4>
-                        <h4>Идентификационный номер (VIN): A222DDDX2093XX</h4>
-                        <h4>Марка, модель: Toyota Mark II</h4>
-                        <h4>Тип кузова: Седан</h4>
-                        <h4>Категория ТС: B</h4>
+                        <div class="card" style="background-color: #2A313C">
+                            <div class="card-header">
+                                <h3>Паспорт автомобиля:</h3>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" style="width: 50%;background-color: #1b4b72;">
+                                    Регистрационный знак:
+                                </li>
+                                <li class="list-group-item" style="width: 50%;background-color: #1b4b72;">
+                                    Идентификационный номер:
+                                </li>
+                                <li class="list-group-item" style="width: 50%;background-color: #1b4b72;">
+                                    Тип кузова:
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
