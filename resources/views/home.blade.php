@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container" style="background-color: #2A313C">
     @if($cars!=null)
         <!--Название автомобиля-->
@@ -19,15 +20,18 @@
                             <div class="card-header">
                                 <h3>Паспорт автомобиля:</h3>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item" style="width: 50%;background-color: #1b4b72;">
-                                    Регистрационный знак:
+                            <ul class="list-group">
+                                <li class="list-group-item" style="background: linear-gradient(90deg, #2A313C 50%, white 50%);">
+                                    <span>Гос. номер:</span>
+                                    <span class="float-right" style="color: black;">Н703ЕТ 142</span>
                                 </li>
-                                <li class="list-group-item" style="width: 50%;background-color: #1b4b72;">
-                                    Идентификационный номер:
+                                <li class="list-group-item" style="background: linear-gradient(90deg, #2A313C 50%, white 50%);">
+                                    VIN:
+                                    <span class="float-right" style="color: black;">Р9932УТ9921УО</span>
                                 </li>
-                                <li class="list-group-item" style="width: 50%;background-color: #1b4b72;">
+                                <li class="list-group-item" style="background: linear-gradient(90deg, #2A313C 50%, white 50%);">
                                     Тип кузова:
+                                    <span class="float-right" style="color: black;">Седан</span>
                                 </li>
                             </ul>
                         </div>

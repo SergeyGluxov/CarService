@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/style_home.css" afterDir="false" />
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Наполнил страницу home">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CarController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,9 +19,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+            <state relative-caret-position="159">
+              <caret line="18" column="74" selection-start-line="18" selection-start-column="68" selection-end-line="18" selection-end-column="74" />
               <folding>
+                <element signature="e#651#688#0#HTML" expanded="true" />
+                <element signature="e#719#744#0#HTML" expanded="true" />
+                <element signature="e#793#829#0#HTML" expanded="true" />
+                <element signature="e#1086#1119#0#HTML" expanded="true" />
+                <element signature="e#1278#1299#0#HTML" expanded="true" />
+                <element signature="e#1416#1483#0#HTML" expanded="true" />
+                <element signature="e#1550#1571#0#HTML" expanded="true" />
+                <element signature="e#1620#1687#0#HTML" expanded="true" />
+                <element signature="e#1864#1885#0#HTML" expanded="true" />
                 <element signature="e#1257#1282#0#HTML" expanded="true" />
                 <element signature="e#1837#1860#0#HTML" expanded="true" />
                 <element signature="e#2458#2493#0#HTML" expanded="true" />
@@ -41,17 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/style_home.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+            <state relative-caret-position="340">
+              <caret line="20" column="29" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -283,16 +277,16 @@
     <property name="settings.editor.selected.configurable" value="reference.settings.php.debug.xdebug.proxy" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\CarService\public\fonts" />
+      <recent name="C:\OSPanel\domains\CarService\app\Http\Controllers" />
+      <recent name="C:\OSPanel\domains\CarService\app\Http\Controllers\Car" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\OSPanel\domains\CarService\public\other" />
       <recent name="C:\OSPanel\domains\CarService\app\Http\Controllers" />
       <recent name="C:\OSPanel\domains\CarService\public\uploads\cars_image" />
       <recent name="C:\OSPanel\domains\CarService\resources\views" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\OSPanel\domains\CarService\public\fonts" />
-      <recent name="C:\OSPanel\domains\CarService\app\Http\Controllers" />
-      <recent name="C:\OSPanel\domains\CarService\app\Http\Controllers\Car" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -400,7 +394,7 @@
       <workItem from="1561922574481" duration="1734000" />
       <workItem from="1561939262857" duration="1888000" />
       <workItem from="1561969394338" duration="3930000" />
-      <workItem from="1561983643714" duration="2766000" />
+      <workItem from="1561983643714" duration="10218000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -416,7 +410,21 @@
       <option name="project" value="LOCAL" />
       <updated>1561330973961</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Наполнил страницу home">
+      <created>1561987251657</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1561987251657</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Наполнил страницу home">
+      <created>1561989333264</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1561989333264</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -440,7 +448,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154420000" />
+    <option name="totallyTimeSpent" value="161872000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -455,7 +463,7 @@
     <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18490154" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18490154" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -468,7 +476,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49671772" weight="0.32932165" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.6301969" visible="true" weight="0.3369803" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.6301969" visible="true" weight="0.3369803" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.36980307" side_tool="true" weight="0.3369803" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -545,7 +553,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Добавлена авторизация" />
     <MESSAGE value="Вся херня, которую делал тут)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Вся херня, которую делал тут)" />
+    <MESSAGE value="Наполнил страницу home" />
+    <option name="LAST_COMMIT_MESSAGE" value="Наполнил страницу home" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -819,11 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4042" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -881,20 +885,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style_home.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/sectional.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -902,11 +892,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style_home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="29" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+        <state relative-caret-position="159">
+          <caret line="18" column="74" selection-start-line="18" selection-start-column="68" selection-end-line="18" selection-end-column="74" />
           <folding>
+            <element signature="e#651#688#0#HTML" expanded="true" />
+            <element signature="e#719#744#0#HTML" expanded="true" />
+            <element signature="e#793#829#0#HTML" expanded="true" />
+            <element signature="e#1086#1119#0#HTML" expanded="true" />
+            <element signature="e#1278#1299#0#HTML" expanded="true" />
+            <element signature="e#1416#1483#0#HTML" expanded="true" />
+            <element signature="e#1550#1571#0#HTML" expanded="true" />
+            <element signature="e#1620#1687#0#HTML" expanded="true" />
+            <element signature="e#1864#1885#0#HTML" expanded="true" />
             <element signature="e#1257#1282#0#HTML" expanded="true" />
             <element signature="e#1837#1860#0#HTML" expanded="true" />
             <element signature="e#2458#2493#0#HTML" expanded="true" />
