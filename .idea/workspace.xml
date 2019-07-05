@@ -273,26 +273,6 @@
     </option>
   </component>
   <component name="RunManager" selected="PHP Web Page.localhost">
-    <configuration default="true" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$" port="8000">
-      <method v="2" />
-    </configuration>
-    <configuration name="HomeController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <method v="2" />
-    </configuration>
-    <configuration name="web.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/routes/web.php">
-      <method v="2" />
-    </configuration>
-    <configuration name="Unnamed" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" nameIsGenerated="true" filter_connections="FILTER" server_name="localhost" session_id="PHPSTORM">
-      <method v="2">
-        <option name="RunConfigurationTask" enabled="true" run_configuration_name="localhost" run_configuration_type="PhpWebAppRunConfigurationType" />
-      </method>
-    </configuration>
-    <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="localhost">
-      <method v="2" />
-    </configuration>
-    <configuration name="localhost" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="localhost">
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="PHP Remote Debug.Unnamed" />
       <item itemvalue="PHP Script.HomeController.php" />
