@@ -1,0 +1,109 @@
+
+html, body {
+    background-color: #FFD28D;
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    margin: 0;
+    overflow-x: hidden;
+}
+body{
+    width: 100vw;
+}
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+.content {
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 68px;
+    line-height: 63px;
+    text-align: left;
+    text-transform: uppercase;
+    margin-left: 121px;
+    margin-top: 226px;
+    color: #000000;
+    font-family: Roboto;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+.background {
+    position: fixed;
+    top: -200px;
+    right: 0px;
+    width: 60%;
+    height: 150%;
+    background-color: #FFEAC1;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    box-shadow: 0 0 100px #1b1e21;
+}
+
+@media screen and (max-width: 575px) {
+    .background {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        width: 100%;
+        height: 50%;
+        border-top-left-radius: 0%;
+        border-bottom-left-radius:0%;
+        border-bottom-left-radius: 50% 30%;
+        border-bottom-right-radius: 50% 30%;
+    }
+    .content{
+        font-size: 24px;
+        line-height: 20px;
+    }
+}
+@media screen and (max-width: 1452px) {
+    .background {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        width: 100%;
+        height: 50%;
+        border-top-left-radius: 0%;
+        border-bottom-left-radius:0%;
+        border-bottom-left-radius: 50% 30%;
+        border-bottom-right-radius: 50% 30%;
+    }
+    .content{
+        font-size: 24px;
+        line-height: 20px;
+    }
+}

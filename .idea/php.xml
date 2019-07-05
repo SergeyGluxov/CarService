@@ -91,8 +91,19 @@
       <path value="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter" />
       <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color" />
       <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
+<<<<<<< HEAD
     </include_path>
   </component>
+=======
+      <path value="" />
+    </include_path>
+  </component>
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="localhost" id="c86900ea-661e-41fb-97da-cb2ef1dbcaf1" name="localhost" port="8000" />
+    </servers>
+  </component>
+>>>>>>> feature/adminLTE
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
   <component name="PhpUnit">
     <phpunit_settings>
