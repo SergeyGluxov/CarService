@@ -96,6 +96,7 @@
   </component>
 =======
       <path value="" />
+      <path value="$PROJECT_DIR$/vendor/jeroennoten/laravel-adminlte" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">
