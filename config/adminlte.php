@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'red',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'НАСТРОЙКИ',
         [
             'text' => 'Blog',
             'url'  => 'admin/blog',
@@ -119,16 +119,22 @@ return [
             'url'         => 'admin/users_settings',
             'icon'        => 'user',
         ],
-        'ACCOUNT SETTINGS',
+
+        'ЗАПИСИ',
         [
-            'text' => 'Profile',
+            'text' => 'Осмотр',
             'url'  => 'admin/settings',
-            'icon' => 'user',
+            'icon' => 'search',
         ],
         [
-            'text' => 'Change Password',
+            'text' => 'Ремонт',
             'url'  => 'admin/settings',
-            'icon' => 'lock',
+            'icon' => ' fa-wrench',
+        ],
+        [
+            'text' => 'Автомойка',
+            'url'  => 'admin/settings',
+            'icon' => 'car',
         ],
         [
             'text'    => 'Multilevel',
