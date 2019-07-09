@@ -13,3 +13,4 @@ Route::get('/admin', function ()
 {
   return view('admin');
 });
+Route::get('admin/users_settings','AdminController@getUsers');

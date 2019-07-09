@@ -16,6 +16,6 @@ class AdminController extends Controller
     {
         $users = User::all();
         //dd($users);
-        return view('settings_users', compact('users'));
+        return view('admin_layouts/users_settings', compact('users'));
     }
 }
