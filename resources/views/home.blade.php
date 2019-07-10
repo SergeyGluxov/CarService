@@ -2,7 +2,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @if (session('status'))
+        <div class="alert alert-danger">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="container" style="background-color: #2A313C">
     @if($cars!=null)
         <!--Название автомобиля-->

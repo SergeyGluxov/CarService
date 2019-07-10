@@ -12,5 +12,5 @@ Route::post('/home', 'CarController@addCar')->name('addCar');
 Route::get('/admin', function ()
 {
   return view('admin');
-});
+})->middleware('auth')->middleware('role:admin');
 Route::get('admin/users_settings','AdminController@getUsers');
