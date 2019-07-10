@@ -19,4 +19,8 @@ class CarController extends Controller
         $users->update();
         return redirect('home');
     }
+    public function checkup()
+    {
+        return view('checkup');
+    }
 }
