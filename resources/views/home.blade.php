@@ -1,13 +1,12 @@
 <!-- Страница после успешной авторизации -->
 @extends('layouts.app')
-
 @section('content')
     @if (session('status'))
         <div class="alert alert-danger">
             {{ session('status') }}
         </div>
     @endif
-    <div class="container" style="background-color: #2A313C">
+    <div class="container" style="background-color: #2A313C; color: white">
     @if($cars!=null)
         <!--Название автомобиля-->
             <div class="row">
