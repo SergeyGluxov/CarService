@@ -1,19 +1,28 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
+    <div class="col-md-4">
+        <div class="card">
+            <!-- Шапка (header) карточки -->
+            <div class="card-header">
+                Паспорт авто
             </div>
-        </div>
+            <table  class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Эл. почта</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>ыф</td>
+                    <td>ыф</td>
+                </tr>
+                </tbody>
+            </table>
+        </div><!-- Конец карточки -->
     </div>
 </template>
 
 <script>
-    alert("ыфв");
+
 </script>

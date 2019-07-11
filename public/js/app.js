@@ -49198,8 +49198,15 @@ module.exports = Component.exports
 //
 //
 //
-
-alert("ыфв");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 45 */
@@ -49216,18 +49223,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n            Паспорт авто\n        ")
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table table-bordered table-hover" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", [_vm._v("Имя")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Эл. почта")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v("ыф")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("ыф")])
             ])
           ])
         ])
