@@ -49205,8 +49205,6 @@ module.exports = Component.exports
 //
 //
 //
-//
-//
 
 /***/ }),
 /* 45 */
@@ -49223,27 +49221,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _vm._v("\n            Паспорт авто\n        ")
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _vm._v("\n        Паспорт авто\n    ")
+      ]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table table-bordered table-hover" }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("Наименование")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Эл. почта")])
+          ])
         ]),
         _vm._v(" "),
-        _c("table", { staticClass: "table table-bordered table-hover" }, [
-          _c("thead", [
-            _c("tr", [
-              _c("th", [_vm._v("Имя")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Эл. почта")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("ыф")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("ыф")])
-            ])
+        _c("tbody", [
+          _c("tr", [
+            _c("td", [_vm._v("Гос. номер")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Н703ЕТ")])
           ])
         ])
       ])

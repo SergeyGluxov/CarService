@@ -1,5 +1,4 @@
 <template>
-    <div class="col-md-4">
         <div class="card">
             <!-- Шапка (header) карточки -->
             <div class="card-header">
@@ -8,19 +7,18 @@
             <table  class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th>Имя</th>
+                    <th>Наименование</th>
                     <th>Эл. почта</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>ыф</td>
-                    <td>ыф</td>
+                    <td>Гос. номер</td>
+                    <td>Н703ЕТ</td>
                 </tr>
                 </tbody>
             </table>
         </div><!-- Конец карточки -->
-    </div>
 </template>
 
 <script>

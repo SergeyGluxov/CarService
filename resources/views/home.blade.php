@@ -19,25 +19,7 @@
                     <i id="icon_edit" class="fas fa-edit fa-2x" data-toggle="modal" data-target="#basicModal"
                        style="float: right; margin-top: 5px"></i>
                     <div style="margin-top: 50px;">
-                        <div class="card" style="background-color: #2A313C">
-                            <div class="card-header">
-                                <h3>Паспорт автомобиля:</h3>
-                            </div>
-                            <ul class="list-group">
-                                <li class="list-group-item" style="background: linear-gradient(90deg, #2A313C 50%, white 50%);">
-                                    <span>Гос. номер:</span>
-                                    <span class="float-right" style="color: black;">Н703ЕТ 142</span>
-                                </li>
-                                <li class="list-group-item" style="background: linear-gradient(90deg, #2A313C 50%, white 50%);">
-                                    VIN:
-                                    <span class="float-right" style="color: black;">Р9932УТ9921УО</span>
-                                </li>
-                                <li class="list-group-item" style="background: linear-gradient(90deg, #2A313C 50%, white 50%);">
-                                    Тип кузова:
-                                    <span class="float-right" style="color: black;">Седан</span>
-                                </li>
-                            </ul>
-                        </div>
+                        <passport-component></passport-component>
                     </div>
                 </div>
             </div>
