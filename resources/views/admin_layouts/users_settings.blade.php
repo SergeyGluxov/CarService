@@ -22,6 +22,14 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <?php
+                            if(isset($_GET["send"]))
+                            {
+                                $name=$_GET["date"];
+                                echo $name;
+                            }
+
+                            ?>
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{$user->name}}</td>
