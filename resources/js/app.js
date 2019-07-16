@@ -19,6 +19,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('passport-component', require('./components/PassportComponent.vue'));
 Vue.component('form-checkup-component', require('./components/FormCheckupComponent.vue'));
 Vue.component('datapicker-component', require('./components/DataPickerComponent.vue'));
+Vue.component('maps-component', require('./components/GoogleMapsComponent.vue'));
+Vue.component('yandex-map-component', require('./components/YandexMapComponent.vue'));
 
 const app = new Vue({
     el: '#app'
