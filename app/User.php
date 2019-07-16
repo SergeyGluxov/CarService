@@ -32,6 +32,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Car');
     }
+    public function appointments()
+    {
+        return $this->hasMany('App\Appointment');
+    }
     public function roles()
     {
         return $this->belongsToMany('App\Role', 'users_roles', 'user_id', 'role_id');

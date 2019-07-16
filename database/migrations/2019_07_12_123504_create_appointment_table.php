@@ -13,7 +13,7 @@ class CreateAppointmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointment', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
@@ -30,6 +30,6 @@ class CreateAppointmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointment');
+        Schema::dropIfExists('appointments');
     }
 }

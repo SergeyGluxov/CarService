@@ -123,7 +123,7 @@ return [
         'ЗАПИСИ',
         [
             'text' => 'Осмотр',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/checkup_settings',
             'icon' => 'search',
         ],
         [
