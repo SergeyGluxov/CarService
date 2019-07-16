@@ -15,3 +15,4 @@ Route::get('/admin', function () {return view('admin');})
     ->middleware('role:admin')
     ->name('admin');
 Route::get('admin/users_settings','AdminController@getUsers');
+Route::get('admin/checkup_settings','AdminController@getCheckup');
