@@ -3,7 +3,7 @@
         <div id="map" style="width: 600px; height: 400px"></div>
     </div>
 </template>
-<script type="text/javascript">
+<script>
     // Функция ymaps.ready() будет вызвана, когда
     // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
     ymaps.ready(init);

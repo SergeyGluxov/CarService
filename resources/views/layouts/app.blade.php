@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/d683b26bcb.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnrj2SojDOqdfbUgUuPorziB9_FRBEKQ8&callback=initMap"
             async defer></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ>&lang=ru_RU" type="text/javascript">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=7ec5ce65-830d-4bef-b000-2dd32e7cffa9&lang=ru_RU" type="text/javascript">
     </script>
 
     <!-- Fonts -->

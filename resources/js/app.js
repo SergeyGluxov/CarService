@@ -21,6 +21,8 @@ Vue.component('form-checkup-component', require('./components/FormCheckupCompone
 Vue.component('datapicker-component', require('./components/DataPickerComponent.vue'));
 Vue.component('maps-component', require('./components/GoogleMapsComponent.vue'));
 Vue.component('yandex-map-component', require('./components/YandexMapComponent.vue'));
+Vue.component('admin-table-component', require('./components/AdminTableComponent.vue'));
+Vue.component('users-table-component', require('./components/UsersTableComponent.vue'));
 
 const app = new Vue({
     el: '#app'

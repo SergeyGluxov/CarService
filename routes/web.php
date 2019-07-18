@@ -14,5 +14,7 @@ Route::get('/admin', function () {return view('admin');})
     ->middleware('auth')
     ->middleware('role:admin')
     ->name('admin');
-Route::get('admin/users_settings','AdminController@getUsers');
 Route::get('admin/checkup_settings','AdminController@getCheckup');
+Route::get('admin/users_settings','AdminController@getUsers');
+Route::get('admin/ajax-users_settings','AdminController@getJson');
+Route::get('admin/example',function (){return view('example');});
