@@ -24,6 +24,11 @@ Vue.component('yandex-map-component', require('./components/YandexMapComponent.v
 Vue.component('admin-table-component', require('./components/AdminTableComponent.vue'));
 Vue.component('users-table-component', require('./components/UsersTableComponent.vue'));
 
+/**Компоненты работы с PASSPORT**/
+Vue.component('passport-clients', require('./components/passport/Clients.vue'));
+Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
+Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
+
 const app = new Vue({
     el: '#app'
 });

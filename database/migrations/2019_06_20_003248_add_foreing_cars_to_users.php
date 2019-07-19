@@ -15,7 +15,7 @@ class AddForeingCarsToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('cars_id')->unsigned()->nullable();
-            $table->foreign('cars_id')->references('id')->on('cars');
+            $table->foreign('cars_id')->references('id')->on('cars')->onDelete('cascade');
         });
     }
 

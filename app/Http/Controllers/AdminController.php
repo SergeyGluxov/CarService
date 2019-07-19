@@ -29,10 +29,14 @@ class AdminController extends Controller
             ->get(['users.name', 'appointments.description', 'appointments.created_at']);
         return view('admin_layouts/checkup_settings', compact('appoint'));
     }
-
+    //Возвражает объект JSON для работы js-script
     public function getJson()
     {
         $users = User::all();
         return json_encode($users);
+    }
+    public  function index()
+    {
+      return App\Http\Resources\UsersResourse::collection();
     }
 }
