@@ -27,4 +27,11 @@ class AdminController extends Controller
             ->get(['users.name', 'appointments.description', 'appointments.created_at']);
         return view('admin_layouts/checkup_settings', compact('appoint'));
     }
+    public function getRepair()
+    {
+        $appoint = Appointment::with('users')
+            ->join('users', 'users.id', '=','appointments.user_id')
+            ->get(['users.name', 'appointments.description', 'appointments.created_at']);
+        return view('admin_layouts/repair_settings', compact('appoint'));
+    }
 }

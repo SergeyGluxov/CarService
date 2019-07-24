@@ -66,6 +66,9 @@
                                     <a class="dropdown-item" href="{{ route('checkup') }}">
                                         {{ __('Запись на осмотр') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('repair') }}">
+                                        {{ __('Запись на ремонт') }}
+                                    </a>
 
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

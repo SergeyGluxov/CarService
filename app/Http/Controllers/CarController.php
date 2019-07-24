@@ -23,4 +23,8 @@ class CarController extends Controller
     {
         return view('checkup');
     }
+    public function repair()
+    {
+        return view('repair');
+    }
 }
