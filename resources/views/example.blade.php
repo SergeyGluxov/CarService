@@ -19,6 +19,9 @@
 <div id="app">
     <main class="py-4">
         <example-component></example-component>
+        <passport-personal-access-tokens></passport-personal-access-tokens>
+        <passport-authorized-clients></passport-authorized-clients>
+        <passport-clients></passport-clients>
     </main>
 </div>
 </body>

@@ -62,6 +62,7 @@
         },
 
         /**
+        /**da
          * Prepare the component (Vue 1.x).
          */
         ready() {

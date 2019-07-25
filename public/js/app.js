@@ -51833,6 +51833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     /**
+    /**da
      * Prepare the component (Vue 1.x).
      */
     ready: function ready() {
@@ -52514,7 +52515,7 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass: "modal fade",
+        staticClass: "modal",
         attrs: { id: "modal-create-token", tabindex: "-1", role: "dialog" }
       },
       [
@@ -52666,7 +52667,7 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass: "modal fade",
+        staticClass: "modal",
         attrs: { id: "modal-access-token", tabindex: "-1", role: "dialog" }
       },
       [
