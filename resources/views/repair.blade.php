@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-    <passport-component></passport-component>
+    <repair-component></repair-component>
 @endsection

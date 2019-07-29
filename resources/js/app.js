@@ -15,7 +15,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('repair-component', require('./components/repairComponent.vue'));
 Vue.component('passport-component', require('./components/PassportComponent.vue'));
 Vue.component('form-checkup-component', require('./components/FormCheckupComponent.vue'));
 Vue.component('datapicker-component', require('./components/DataPickerComponent.vue'));

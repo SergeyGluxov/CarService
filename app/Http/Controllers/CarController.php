@@ -23,8 +23,23 @@ class CarController extends Controller
     {
         return view('checkup');
     }
-    public function repair()
+    public function repair(Request $request)
     {
         return view('repair');
+
+        $part = htmltitles($_POST['part']);
+        $DataPicker = htmltitles($_POST['DataPicker']);
+        if ($request->isMethod('post')) {
+
+            // валидация формы
+            $request->validate([
+                'custom-select'   => 'required',
+                'DatePicker' => 'nullable|date',
+            ]);
+
+        }
+        dd($request->all());
+
     }
+
 }
