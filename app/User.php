@@ -31,6 +31,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Car');
     }
+    public function token()
+    {
+        return $this->hasOne(Token::class);
+    }
     public function appointments()
     {
         return $this->hasMany('App\Appointment');
@@ -52,8 +56,6 @@ class User extends Authenticatable
     public function hasRole($check)
     {
         return in_array($check, array_pluck($this->roles->toArray(), 'name'));
-        // начиная с версии 5.1 метода array_fetch не существует
-        //return in_array($check, array_fetch($this->roles->toArray(), 'name'));
     }
     /**
      * Получение идентификатора роли

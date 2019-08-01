@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -16,3 +15,10 @@ Route::get('/admin', function () {return view('admin');})->middleware('auth')->m
 Route::get('admin/checkup_settings','AdminController@getCheckup');
 Route::get('admin/users_settings','AdminController@getUsers');
 Route::get('admin/oauth_clients',function (){return view('admin_layouts/oauth_clients');});
+
+
+Route::get('/redirect', 'Api\AuthController@redirect');
+Route::get('/callback', 'Api\AuthController@callback');
+
+Route::get('/user','HomeController@s');
+Route::get('/users','HomeController@s');
