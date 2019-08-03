@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Car;
+use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,23 +24,14 @@ class CarController extends Controller
     {
         return view('checkup');
     }
-    public function repair(Request $request)
+    public function repair()
     {
         return view('repair');
-
-        $part = htmltitles($_POST['part']);
-        $DataPicker = htmltitles($_POST['DataPicker']);
-        if ($request->isMethod('post')) {
-
-            // валидация формы
-            $request->validate([
-                'custom-select'   => 'required',
-                'DatePicker' => 'nullable|date',
-            ]);
-
-        }
+    }
+    public function upd(Request $request)
+    {
+        $this->validate($request, ['node'=>'required']);
         dd($request->all());
-
     }
 
 }
