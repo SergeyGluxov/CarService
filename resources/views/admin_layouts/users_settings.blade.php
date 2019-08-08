@@ -4,7 +4,6 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey>&lang=sru_RU" type="text/javascript">
     </script>
-
     <script src="{{ asset('js/app.js') }}"  type="text/javascript" defer>
 
     </script>

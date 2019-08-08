@@ -1,3 +1,4 @@
+//Тут есть пример как использовать api в запросе денных через axios
 <template>
     <div class="container">
         <button class = "btn btn-primary" @click="update">Обновить</button>
@@ -18,15 +19,15 @@
                                 <th>Последнее изменение</th>
                                 <!--TODO: Отображать не ID, а название-->
                                 <th>Автомобиль</th>
-                                <th>Действия</th>
+                                <th>Действие</th>
                             </tr>
                             </thead>
                             <tbody v-for="col in users">
                             <tr>
                                 <td>{{col.name}}</td>
                                 <td>{{col.email}}</td>
-                                <td>{{col.created_at}}</td>
-                                <td>{{col.updated_at}}</td>
+                                <td>{{col.created_at.date}}</td>
+                                <td>{{col.updated_at.date}}</td>
                                 <td>{{col.cars_id}}</td>
                             </tr>
                             </tbody>
@@ -53,8 +54,9 @@
         },
         methods: {
             update: function () {
-                axios.get('/admin/ajax-users_settings').then((response)=>{
-                    this.users=response.data
+                axios.get('/api/users').then((response)=>{
+                    this.users=response.data.data;
+                    console.log(response.data.data);
                 });
             }
         }

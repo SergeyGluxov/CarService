@@ -25,21 +25,21 @@ class HomeController extends Controller
         return view('home', compact('cars', 'allcars'));
     }
 
-    public function s(Request $request)
-    {
-        $client = new Client();
-        if ($request->user()->token) {
-            $response = $client->get('http://carservice.com/api/user', [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $request->user()->token->access_token
-                ]
-            ]);
-            return json_decode($response->getBody(), true);
-        }
-        else
-            return response()->json([
-                'errors' => 'Unauthorised'
-            ], 401);
-    }
+//    public function s(Request $request)
+//    {
+//        $client = new Client();
+//        if ($request->user()->token) {
+//            $response = $client->get('http://carservice.com/api/user', [
+//                'headers' => [
+//                    'Accept' => 'application/json',
+//                    'Authorization' => 'Bearer ' . $request->user()->token->access_token
+//                ]
+//            ]);
+//            return json_decode($response->getBody(), true);
+//        }
+//        else
+//            return response()->json([
+//                'errors' => 'Unauthorised'
+//            ], 401);
+//    }
 }

@@ -20,5 +20,5 @@ Route::get('admin/oauth_clients',function (){return view('admin_layouts/oauth_cl
 Route::get('/redirect', 'Api\AuthController@redirect');
 Route::get('/callback', 'Api\AuthController@callback');
 
-Route::get('/user','HomeController@s');
-Route::get('/users','HomeController@s');
+//Route::get('/user','HomeController@s');
+//Route::get('/users','HomeController@s');
