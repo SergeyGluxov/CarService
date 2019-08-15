@@ -9,27 +9,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
     public function cars()
     {
-        return $this->belongsTo('App\Car');
+        return $this->belongsTo(Car::class);
     }
     public function token()
     {
@@ -37,7 +28,7 @@ class User extends Authenticatable
     }
     public function appointments()
     {
-        return $this->hasMany('App\Appointment');
+        return $this->hasMany(Appointment::class);
     }
     public function roles()
     {
@@ -56,19 +47,5 @@ class User extends Authenticatable
     public function hasRole($check)
     {
         return in_array($check, array_pluck($this->roles->toArray(), 'name'));
-    }
-    /**
-     * Получение идентификатора роли
-     *
-     * @return int
-     */
-    private function getIdInArray($array, $term)
-    {
-        foreach ($array as $key => $value) {
-            if ($value == $term) {
-                return $key + 1;
-            }
-        }
-        return false;
     }
 }

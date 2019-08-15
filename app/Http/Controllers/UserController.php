@@ -10,6 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
+        UserResource::withoutWrapping();
         return UserResource::collection(User::all());
     }
 
@@ -25,6 +26,7 @@ class UserController extends Controller
 
     public function show($id)
     {
+        UserResource::withoutWrapping();
         return new UserResource(User::find($id));
     }
 

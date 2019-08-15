@@ -17,23 +17,16 @@ class AdminController extends Controller
     //Получить всех пользователей
     public function getUsers()
     {
-        $users = User::all();
-        return view('admin_layouts/users_settings', compact('users'));
+        return view('admin_layouts/users_settings');
     }
 
     public function getCheckup()
     {
-        //Пример составления join's запросов
+        /*//Пример составления join's запросов
         $appoint = Appointment::with('users')
             ->join('users', 'users.id', '=', 'appointments.user_id')
-            ->get(['users.name', 'appointments.description', 'appointments.created_at']);
-        return view('admin_layouts/checkup_settings', compact('appoint'));
-    }
-    //Возвражает объект JSON для работы js-script
-    public function getJson()
-    {
-        $users = User::all();
-        return json_encode($users);
+            ->get(['users.name', 'appointments.description', 'appointments.created_at']);*/
+        return view('admin_layouts/checkup_settings');
     }
     public  function index()
     {

@@ -9,22 +9,25 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+/**Общие компоненты**/
+Vue.component('yandex-map-component', require('./components/other/YandexMapComponent.vue'));
+Vue.component('maps-component', require('./components/other/GoogleMapsComponent.vue'));
+Vue.component('paginate-component', require('./components/other/PaginateComponent.vue'));
+Vue.component('datapicker-component', require('./components/other/DataPickerComponent.vue'));
+Vue.component('example-component', require('./components/other/ExampleComponent.vue'));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('passport-component', require('./components/PassportComponent.vue'));
-Vue.component('form-checkup-component', require('./components/FormCheckupComponent.vue'));
-Vue.component('datapicker-component', require('./components/DataPickerComponent.vue'));
-Vue.component('maps-component', require('./components/GoogleMapsComponent.vue'));
-Vue.component('yandex-map-component', require('./components/YandexMapComponent.vue'));
-Vue.component('admin-table-component', require('./components/AdminTableComponent.vue'));
-Vue.component('users-table-component', require('./components/UsersTableComponent.vue'));
+/**Компоненты для home**/
+Vue.component('passport-component', require('./components/home/PassportComponent.vue'));
 
-/**Компоненты работы с PASSPORT**/
+/**Компоненты для home/service/checkup**/
+Vue.component('form-checkup-component', require('./components/service/FormCheckupComponent.vue'));
+
+
+/**Компоненты для /admin**/
+Vue.component('admin-table-component', require('./components/admin/AdminTableComponent.vue'));
+Vue.component('users-table-component', require('./components/admin/UsersTableComponent.vue'));
+
+/**Компоненты работы с /admin/oauth_settings**/
 Vue.component('passport-clients', require('./components/passport/Clients.vue'));
 Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
 Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));

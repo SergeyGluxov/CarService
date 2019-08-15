@@ -55,8 +55,8 @@
         methods: {
             update: function () {
                 axios.get('/api/users').then((response)=>{
-                    this.users=response.data.data;
-                    console.log(response.data.data);
+                    this.users=response.data;
+                    console.log(response.data);
                 });
             }
         }

@@ -12,7 +12,7 @@
 @section('content')
     <section class="content">
         <div id="app">
-            <admin-table-component v-bind:admin_table="{{json_encode($appoint)}}"/>
+            <admin-table-component/>
         </div>
     </section>
 @endsection

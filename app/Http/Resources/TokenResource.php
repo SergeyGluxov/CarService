@@ -15,7 +15,7 @@ class TokenResource extends JsonResource
     public function toArray($request)
     {
         return [
-            $this->access_token,
+            'token'=>$this->access_token
         ];
     }
 }

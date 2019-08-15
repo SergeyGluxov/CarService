@@ -42,6 +42,8 @@ class AuthController extends Controller
         $request->user()->token()->create([
             'access_token' => $response->access_token,
         ]);
+
+/*      session()->put('token', json_decode((string) $response->getBody(), true));*/
         return redirect('/home');
     }
 }

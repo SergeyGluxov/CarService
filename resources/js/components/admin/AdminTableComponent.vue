@@ -1,12 +1,12 @@
 <template>
     <div class="container">
+        <paginate-component></paginate-component>
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Таблица записей на осмотр</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
@@ -18,36 +18,46 @@
                                 <!--TODO: Отображать не ID, а название-->
                             </tr>
                             </thead>
-                            <tbody v-for="col in admin_table">
+                            <tbody v-for="col in appoint">
                             <tr>
-                                <td>{{col.name}}</td>
+                                <td>{{col.user.name}}</td>
+                                <td>{{col.type_service}}</td>
                                 <td>{{col.description}}</td>
-                                <td>{{col.created_at}}</td>
+                                <td>{{col.created_at.date}}</td>
+<!--                            <td><button @click="appoint_view(col.id)"></button></td>-->
+                                <!--<td>{{col.user.token.token}}</td>-->
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
             </div>
-            <!-- /.col -->
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: [
-            'admin_table'
-        ],
+        data:function(){
+            return{
+                appoint:[]
+            }
+        },
         mounted() {
             this.update();
         },
         methods: {
             update: function () {
-                console.log(this.admin_table);
-            }
+                axios.get('/api/appointment').then((response)=>{
+                    this.appoint=response.data;
+                    console.log(response.data);
+                });
+            },
+            // appoint_view:function (id) {
+            //     axios.get('/api/appointment/'+id).then((response)=>{
+            //         console.log(response.data);
+            //     });
+            // }
         }
     }
 </script>
