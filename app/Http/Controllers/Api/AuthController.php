@@ -13,11 +13,10 @@ class AuthController extends Controller
     public function redirect()
     {
         $query = http_build_query([
-            'grant_type' => 'password',
             'client_id' => '18',
             'redirect_uri' => 'http://carservice.com/callback',
-            'response_type' => 'code',
-            'scope' => '*',
+            'response_type' => 'token',
+            'scope' => '',
         ]);
 
         return redirect('http://carservice.com/oauth/authorize?' . $query);
@@ -26,7 +25,6 @@ class AuthController extends Controller
     public function callback(Request $request)
     {
         $client = new Client();
-
         $response = $client->post('http://carservice.com/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
@@ -37,13 +35,13 @@ class AuthController extends Controller
                 'scope' => '*',
             ],
         ]);
-        $response=json_decode($response->getBody());
+        $response = json_decode($response->getBody());
         $request->user()->token()->delete();
         $request->user()->token()->create([
             'access_token' => $response->access_token,
         ]);
 
-/*      session()->put('token', json_decode((string) $response->getBody(), true));*/
+        /*      session()->put('token', json_decode((string) $response->getBody(), true));*/
         return redirect('/home');
     }
 }

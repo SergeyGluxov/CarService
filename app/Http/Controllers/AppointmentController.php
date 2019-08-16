@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Http\Requests\Api\AppointmentRequest;
 use App\Repositories\AppointmentRepository;
 use App\Http\Resources\AppointmentResource;
 use Illuminate\Http\Request;
@@ -29,7 +30,11 @@ class AppointmentController extends Controller
         //
     }
 
-    public function store(Request $request)
+    /**
+     * @param AppointmentRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function store(AppointmentRequest $request)
     {
         $appoint = new Appointment();
         $appoint->user_id       = auth('api')->user()->getAuthIdentifier(); //Добавить id пользователя, который добавляет
