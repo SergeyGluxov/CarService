@@ -59,32 +59,27 @@
                 /** Просто пример как данные отображаются в списках,
                  * здесь будут просто пустые массивы для хранения полученных данных
                  * axios запросами**/
+                errorValidation: {},
                 selected: {},
                 part_checkup: [
-                    {category: 'Подвеска'},
-                    {category: 'Кузов'},
-                    {category: 'Топливная система'},
+                    {index:'1', category: 'Подвеска'},
+                    {index:'2', category: 'Кузов'},
+                    {index:'3', category: 'Топливная система'},
                 ],
                 sto_checkup: [
-                    {title: 'СТО на Мичурина'},
-                    {title: 'СТО "Квадрат"'},
-                    {title: 'СТО "Шараш-Монтаж"'},
+                    {index:'1', title: 'СТО на Мичурина'},
+                    {index:'2', title: 'СТО "Квадрат"'},
+                    {index:'3', title: 'СТО "Шараш-Монтаж"'},
                 ]
             }
         },
         mounted() {
-            // this.get_part();
         },
         methods: {
             /**TODO: Получить список доступных для осмотр частей**/
             /**TODO: Получить список доступных автосервисов**/
             /**TODO: Получить список доступных дат для записи**/
-            // get_part: function () {
-            //     axios.get('/api/appointment').then((response)=>{
-            //         this.part_checkup=response.data;
-            //         console.log(response.data);
-            //     });
-            // },
+
             /**Метод отправки записи на осмотр**/
             store: function () {
                 //Объект formData
@@ -92,10 +87,18 @@
                 formData.append('type_service', 'Осмотр');
                 formData.append('description', this.selected);
                 //Отправка самого запроса
-                axios.post('/api/appointment', formData);
-                console.log(formData);
+                axios.post('/api/appointment', formData)
+                    .then(response => {
+                        console.log('Запрос успешен!')
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            alert('Введите корректные данные!')
+                        }
+                    });
             },
             onChange(e) {
+                alert(e.target.index)
                 this.selected = e.target.value;
             }
         }

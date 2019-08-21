@@ -19,7 +19,7 @@
                     <i id="icon_edit" class="fas fa-edit fa-2x" data-toggle="modal" data-target="#basicModal"
                        style="float: right; margin-top: 5px"></i>
                     <div style="margin-top: 50px;">
-                        <passport-component></passport-component>
+                        <passport-car-component></passport-car-component>
                     </div>
                 </div>
             </div>

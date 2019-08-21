@@ -17,6 +17,15 @@ Route::get('admin/oauth_clients',function (){return view('admin_layouts/oauth_cl
 Route::get('/redirect', 'Api\AuthController@redirect');
 Route::get('/callback', 'Api\AuthController@callback');
 
+
+
+Route::group(['namespace' => 'Api'], function () {
+    Route::group(['namespace' => 'Auth'], function () {
+        Route::post('logins', 'LoginController');
+    });
+});
+Route::get('/user/login', function (){return view('login');});
+
 //Route::get('/user','HomeController@s');
 //Route::get('/users','HomeController@s');
 //Route::get('/users_aa', function () {

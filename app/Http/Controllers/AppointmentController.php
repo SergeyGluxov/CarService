@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Appointment;
 use App\Http\Requests\Api\AppointmentRequest;
 use App\Repositories\AppointmentRepository;
-use App\Http\Resources\AppointmentResource;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -17,12 +16,9 @@ class AppointmentController extends Controller
         $this->appointments=$appointments;
     }
 
-    /**
-     * CRUD-контроллер для управления записями на осмотр/ремонт
-     **/
-    public function index(Request $request)
+    public function index()
     {
-        return $this->appointments->all($request->user());
+        return $this->appointments->all();
     }
 
     public function create()
@@ -30,24 +26,14 @@ class AppointmentController extends Controller
         //
     }
 
-    /**
-     * @param AppointmentRequest $request
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     */
     public function store(AppointmentRequest $request)
     {
-        $appoint = new Appointment();
-        $appoint->user_id       = auth('api')->user()->getAuthIdentifier(); //Добавить id пользователя, который добавляет
-        $appoint->type_service  = $request->get('type_service');
-        $appoint->description   = $request->get('description');
-        $appoint->save();
-        return response('Запись успешно добалена', 200);
+        return $this->appointments->store($request);
     }
 
     public function show($id)
     {
-        AppointmentResource::withoutWrapping();
-        return new AppointmentResource(Appointment::find($id));
+        return $this->appointments->find($id);
     }
 
     public function edit($id)

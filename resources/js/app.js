@@ -8,7 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+/**Auth компоненты**/
+Vue.component('login-component', require('./components/auth/LoginComponent.vue'));
 /**Общие компоненты**/
 Vue.component('yandex-map-component', require('./components/other/YandexMapComponent.vue'));
 Vue.component('maps-component', require('./components/other/GoogleMapsComponent.vue'));
@@ -17,7 +18,8 @@ Vue.component('datapicker-component', require('./components/other/DataPickerComp
 Vue.component('example-component', require('./components/other/ExampleComponent.vue'));
 
 /**Компоненты для home**/
-Vue.component('passport-component', require('./components/home/PassportComponent.vue'));
+Vue.component('passport-car-component', require('./components/home/PassportCarComponent.vue'));
+Vue.component('character-car-component', require('./components/home/CharacteristicCarComponent'));
 
 /**Компоненты для home/service/checkup**/
 Vue.component('form-checkup-component', require('./components/service/FormCheckupComponent.vue'));

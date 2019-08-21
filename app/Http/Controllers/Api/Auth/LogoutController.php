@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\Auth;
 
 namespace App\Http\Controllers\Api\Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LogoutController extends Controller
 {
@@ -16,10 +18,11 @@ class LogoutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $request->user()->token()->revoke();
-
+        $request->user()->token()->delete();
         return response()->json([
-            'message' => 'You are successfully logged out',
+            'user'=>$request->user(),
+            'token'=>$request->user()->token,
+            'message' => 'Вы покинули сайт',
         ]);
     }
 }

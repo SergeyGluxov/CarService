@@ -24,3 +24,8 @@
 <script>
 
 </script>
+<style>
+    body{
+        color: black;
+    }
+</style>

@@ -24,8 +24,8 @@ class AppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required', 'int', 'max:255'],
             'type_service' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
         ];
     }
 }

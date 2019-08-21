@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()
+    protected $user;
+    public function __construct(UserRepository $user)
     {
-        UserResource::withoutWrapping();
-        return UserResource::collection(User::all());
+        $this->user=$user;
+    }
+
+    public function index(Request $request)
+    {
+        dd($request->user()->token);
+        return $this->user->all();
     }
 
     public function create()
@@ -26,8 +34,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        UserResource::withoutWrapping();
-        return new UserResource(User::find($id));
+        return $this->user->find($id);
     }
 
     public function edit($id)
