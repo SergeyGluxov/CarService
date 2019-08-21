@@ -14,18 +14,18 @@ class AuthController extends Controller
     {
         $query = http_build_query([
             'client_id' => '18',
-            'redirect_uri' => 'http://carservice.com/callback',
+            'redirect_uri' => 'http://localhost:8000/home',
             'response_type' => 'token',
             'scope' => '',
         ]);
 
-        return redirect('http://carservice.com/oauth/authorize?' . $query);
+        return redirect('/oauth/authorize?' . $query);
     }
 
     public function callback(Request $request)
     {
         $client = new Client();
-        $response = $client->post('http://carservice.com/oauth/token', [
+        $response = $client->post('/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'client_id' => '18',

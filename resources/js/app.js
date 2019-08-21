@@ -10,6 +10,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 /**Auth компоненты**/
 Vue.component('login-component', require('./components/auth/LoginComponent.vue'));
+Vue.component('register-component', require('./components/auth/RegisterComponent.vue'));
 /**Общие компоненты**/
 Vue.component('yandex-map-component', require('./components/other/YandexMapComponent.vue'));
 Vue.component('maps-component', require('./components/other/GoogleMapsComponent.vue'));

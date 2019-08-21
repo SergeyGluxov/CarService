@@ -10,15 +10,15 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email">
+                                <input id="email" v-model="form_email" type="email" class="form-control" name="email">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <label for="password"  class="col-md-4 col-form-label text-md-right">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
+                                <input id="password" v-model="form_password" type="password" class="form-control" name="password">
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-4">
                                 <button @click="login" class="btn btn-primary btn-lg btn-block" type="submit">
-                                    Записаться
+                                    Войти
                                 </button>
                             </div>
                         </div>
@@ -48,16 +48,19 @@
 <script>
     export default {
         data: function () {
-            return {}
+            return {
+                form_email:'',
+                form_password:''
+            }
         },
         mounted() {
         },
         methods: {
             login: function () {
                 const formData = new FormData();
-                formData.append('email', 'gluxov123@mail.ru');
-                formData.append('password', '123123');
-                axios.post('/logins', formData)
+                formData.append('email', this.form_email);
+                formData.append('password', this.form_password);
+                axios.post('/auth/login', formData)
                     .then(response => {
                         window.location="/home"
                     });

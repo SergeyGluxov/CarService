@@ -21,10 +21,10 @@ Route::get('/callback', 'Api\AuthController@callback');
 
 Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Auth'], function () {
-        Route::post('logins', 'LoginController');
+        Route::post('auth/login', 'LoginController');
+        Route::post('auth/register', 'RegisterController');
     });
 });
-Route::get('/user/login', function (){return view('login');});
 
 //Route::get('/user','HomeController@s');
 //Route::get('/users','HomeController@s');
