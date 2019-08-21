@@ -30,7 +30,7 @@ class AdminController extends Controller
     public function getRepair()
     {
         $appoint = Appointment::with('users')
-            ->join('users', 'users.id', '=','appointments.user_id')
+            ->join('users', 'users.id', '=','appointments.users_id')
             ->get(['users.name', 'appointments.description', 'appointments.created_at']);
         return view('admin_layouts/repair_settings', compact('appoint'));
     }

@@ -1,5 +1,5 @@
 <template>
-<form>
+<form id="form" action="/home/service/repair" method="post">
     <div class="container">
         <div class="row">
             <div class="col-md-6 order-md-1">
@@ -7,8 +7,8 @@
                 <form class="needs-validation" novalidate="">
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="part">Ремонтируемый узел</label>
-                            <select class="custom-select" id="part" name="node" required="">
+                            <label for="node">Ремонтируемый узел</label>
+                            <select class="custom-select" id="node" name="node" required="">
                                 <option value="">Выбрать...</option>
                                 <option>Двигатель</option>
                                 <option>Трансмиссия</option>
@@ -38,33 +38,49 @@
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Записаться</button>
+                    <button class="btn btn-primary btn-lg btn-block" @click="submit" type="submit" name ="submit">Записаться</button>
                 </form>
             </div>
             <div class="col-md-6 order-md-2 mb-4">
                 <yandex-map-component></yandex-map-component>
             </div>
         </div>
+
     </div>
     </form>
 </template>
 
 
+
 <script>
     export default {
-        name: "repairComponent.vue"
-    }
-    $(document).ready(function () {
-        $('#repairComponent').on('submit', function (e) {
-            e.preventDefault();
+        data:function(){
+            return{
+                appoints:[]
+        }
+    },mounted() { this.update();
+        },
+        methods:{
+            update:function () {
+                axios.get('home/service/repair').then((response)=>{
+this.appoints=response.data.data;
+console.log(response.data.data);
+                });
 
-            $.ajax({
-                type: 'POST',
-                url: '/repair',
-                data: $('#repairComponent').serialize(),
-            });
-        });
-    });
+            },
+
+            submit: function() {
+                const form = document.getElementById('form');
+                const formData = new FormData(form);
+                axios.post('home/service/repair', formData)
+                    .then((response) => {
+
+                    }, (response) => {
+                    });
+            }
+        }
+    }
+
 </script>
 
 <style scoped>

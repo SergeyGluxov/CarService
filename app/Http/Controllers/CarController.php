@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Car;
+use App\repair;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,14 +25,13 @@ class CarController extends Controller
     {
         return view('checkup');
     }
-    public function repair()
+
+
+    public function repair(Request $request)
     {
+
         return view('repair');
     }
-    public function upd(Request $request)
-    {
-        $this->validate($request, ['node'=>'required']);
-        dd($request->all());
-    }
+
 
 }

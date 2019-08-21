@@ -11,7 +11,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'CarController@addCar')->name('addCar');
 Route::get('home/service/checkup','CarController@checkup')->name('checkup');
 Route::get('home/service/repair','CarController@repair')->name('repair');
-Route::POST('home/service/repair','CarController@upd');
+Route::post('home/service/repair','AppointmentController@store');
 Route::get('/admin', function () {return view('admin');})
     ->middleware('auth')
     ->middleware('role:admin')

@@ -34,7 +34,7 @@
             <div class="content col-md-2">
                 Отслеживай<br>состояние<br>своего</br>автомобиля
                 <form method="GET" action="{{route('register')}}">
-                    <button type="submit" class="btn btn-primary" style="background-color: #1b1e21">Пробовать</button>
+                    <button type="submit" class="btn btn-primary" style="background-color: #1b1e21">Попробовать</button>
                 </form>
             </div>
             <div class="flex-center position-ref ">

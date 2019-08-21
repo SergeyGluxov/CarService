@@ -128,7 +128,7 @@ return [
         ],
         [
             'text' => 'Ремонт',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/repair_settings',
             'icon' => ' fa-wrench',
         ],
         [
