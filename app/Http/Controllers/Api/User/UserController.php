@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\User;
 
-use App\Http\Resources\UserResource;
-use App\Repositories\UserRepository;
-use App\User;
+
+use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     protected $user;
-    public function __construct(UserRepository $user)
+    public function __construct(UserService $user)
     {
         $this->user=$user;
     }
 
     public function index(Request $request)
     {
-        dd($request->user()->token);
+        dd($this);
         return $this->user->all();
     }
 

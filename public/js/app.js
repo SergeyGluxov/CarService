@@ -49446,8 +49446,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form_password: ''
         };
     },
-    mounted: function mounted() {},
-
     methods: {
         login: function login() {
             var formData = new FormData();

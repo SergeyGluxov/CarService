@@ -9,11 +9,13 @@ use App\User;
 
 class UserRepository
 {
-    /**
-     * Получить все записи на осмотр заданного пользователя.
-     * @param User $user
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     public function all()
     {
         UserResource::withoutWrapping();

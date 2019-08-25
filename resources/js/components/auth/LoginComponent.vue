@@ -53,8 +53,6 @@
                 form_password:''
             }
         },
-        mounted() {
-        },
         methods: {
             login: function () {
                 const formData = new FormData();

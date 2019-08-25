@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Appointment;
 
-use App\Appointment;
-use App\Http\Requests\Api\AppointmentRequest;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StoreAppointmentRequest;
 use App\Repositories\AppointmentRepository;
 use Illuminate\Http\Request;
 
@@ -15,27 +16,26 @@ class AppointmentController extends Controller
     {
         $this->appointments=$appointments;
     }
-
+    //Показать все записи на осмотр
     public function index()
     {
         return $this->appointments->all();
+    }
+    //Сохранить запись на осмотр
+    public function store(StoreAppointmentRequest $request)
+    {
+        return $this->appointments->store($request);
+    }
+    //Показать подробности записи
+    public function show($id)
+    {
+        return $this->appointments->find($id);
     }
 
     public function create()
     {
         //
     }
-
-    public function store(AppointmentRequest $request)
-    {
-        return $this->appointments->store($request);
-    }
-
-    public function show($id)
-    {
-        return $this->appointments->find($id);
-    }
-
     public function edit($id)
     {
         //

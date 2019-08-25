@@ -1,11 +1,18 @@
 <?php
 
-Route::resource('/users', 'UserController')->middleware('auth:api');
-Route::resource('/appointment', 'AppointmentController')->middleware('auth:api');
 Route::group(['namespace' => 'Api'], function () {
+   //Авторизация(с токенами)
     Route::group(['namespace' => 'Auth'], function () {
-        Route::post('register', 'RegisterController');
-        Route::post('login', 'LoginController');
-        Route::post('logout', 'LogoutController')->middleware('auth:api');
+        Route::post('logout', 'LogoutController');
+    });
+    //Пользователь
+    Route::group(['namespace' => 'User'], function () {
+        Route::resource('/users', 'UserController');
+        Route::get('/users/paginate', 'PaginateController');
+    });
+    //Записи
+    Route::group(['namespace' => 'Appointment'], function () {
+        Route::resource('/appointment', 'AppointmentController');
     });
 });
+
