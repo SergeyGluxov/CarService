@@ -1,70 +1,65 @@
 <template>
-        <div id="map" style="width: 100%; height: 400px"></div>
+    <div id="map" style="width: 100%; height: 400px"></div>
 </template>
 <script>
-    // if (window.innerWidth >= 768){
-    //
-    // }
-    ymaps.ready(init);
-    var myMap;
-    function init() {
-            myMap = new ymaps.Map("map", {
-                center: [55.354727, 86.088374],
-                zoom: 10
-            }, {
-                searchControlProvider: 'yandex#search'
-            });
-            objectManager = new ymaps.ObjectManager({
-                // Чтобы метки начали кластеризоваться, выставляем опцию.
-                clusterize: true,
-                // ObjectManager принимает те же опции, что и кластеризатор.
-                gridSize: 32,
-                clusterDisableClickZoom: true
-            });
+    export default {
+        data: function () {
+            return {
+                sto: []
+            }
+        },
+        mounted() {
+            ymaps.ready(this.init);
+        },
+        methods: {
+            //клик по меткам
+            onObjectEvent: function (e) {
+                var objectId = e.get('objectId');
+                //Получить объект по индексу
+                console.log(this.sto[objectId-1].name);
+            },
+            init: function () {
+                var myMap = new ymaps.Map("map", {
+                    center: [55.354727, 86.088374],
+                    zoom: 11
+                }, {
+                    searchControlProvider: 'yandex#search'
+                });
+                var objectManager = new ymaps.ObjectManager({
+                    clusterize: false,
+                    gridSize: 32,
+                    clusterDisableClickZoom: true
+                });
+                objectManager.objects.options.set('preset', 'islands#blueAutoIcon');
+                objectManager.clusters.options.set('preset', 'islands#blueAutoIcon');
+                myMap.geoObjects.add(objectManager);
 
-            // Чтобы задать опции одиночным объектам и кластерам,
-            // обратимся к дочерним коллекциям ObjectManager.
-            objectManager.objects.options.set('preset', 'islands#redSportIcon');
-            objectManager.clusters.options.set('preset', 'islands#redSportIcon');
-            myMap.geoObjects.add(objectManager);
-
-            /*Запрос меток по адресу*/
-            $.ajax({
-                // url: "data.json" запрос api адресов сервисов
-            }).done(function () {
-                objectManager.add({
-                        "type": "FeatureCollection",
-                        "features": [
-                            {
+                /*Запрос меток по адресу*/
+                axios.get('/sto').then((response) => {
+                    this.sto = response.data;
+                    for (var item = 0; item < this.sto.length; item++) {
+                        objectManager.add({
+                            "type": "FeatureCollection",
+                            "features": [{
                                 "type": "Feature",
-                                "id": 0,
-                                "geometry": {"type": "Point", "coordinates": [55.354727, 86.088374]},
+                                //задаем id объекта, как id записи
+                                "id": this.sto[item].id,
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [this.sto[item].coordinate_x, this.sto[item].coordinate_y]
+                                },
                                 "properties": {
-                                    "balloonContentHeader": "<font size=3><b><a target='_blank' href='https://yandex.ru'>Здесь может быть ваша ссылка</a></b></font>",
-                                    "balloonContentBody": "<p>Ваше имя: <input name='login'></p><p><em>Телефон в формате 2xxx-xxx:</em>  <input></p><p><input type='submit' value='Отправить'></p>",
-                                    "balloonContentFooter": "<font size=1>Информация предоставлена: </font> <strong>этим балуном</strong>",
-                                    "clusterCaption": "<strong><s>Еще</s> одна</strong> метка",
-                                    "hintContent": "<strong>Текст  <s>подсказки</s></strong>"
+                                    "balloonContentHeader": `<h4>СТО "${this.sto[item].name}"</h4>`,
+                                    "balloonContentBody": `Адрес: ${this.sto[item].address}<br>Телефон: ${this.sto[item].address}<br><br><button class="center btn btn-primary">Выбрать дату и время</button>`,
                                 }
                             }]
+                        });
                     }
-                );
-            });
+                });
+                objectManager.events.add("click",this.onObjectEvent);
+            },
+        }
     }
-    //
-    // window.onresize = function() {
-    //     if (window.innerWidth >= 768) {
-    //         if (!myMap){
-    //             document.getElementById('bt_map').style.display='none';
-    //             init();
-    //         }
-    //     }
-    //     if (window.innerWidth <= 1024) {
-    //         if (myMap){
-    //             document.getElementById('bt_map').style.display='block';
-    //             myMap.destroy();
-    //             myMap=null;
-    //         }
-    //     }
-    // };
+
+
 </script>

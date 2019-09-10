@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        <custom-tab-component></custom-tab-component>
         <div class="row">
             <div class="col-md-6">
                 <h4 class="mb-3">Запись на диагностику авто</h4>

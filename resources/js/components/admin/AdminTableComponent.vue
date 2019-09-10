@@ -24,8 +24,6 @@
                                 <td>{{col.type_service}}</td>
                                 <td>{{col.description}}</td>
                                 <td>{{col.created_at.date}}</td>
-<!--                            <td><button @click="appoint_view(col.id)"></button></td>-->
-                                <!--<td>{{col.user.token.token}}</td>-->
                             </tr>
                             </tbody>
                         </table>
@@ -53,11 +51,6 @@
                     console.log(response.data);
                 });
             },
-            // appoint_view:function (id) {
-            //     axios.get('/api/appointment/'+id).then((response)=>{
-            //         console.log(response.data);
-            //     });
-            // }
         }
     }
 </script>

@@ -49974,75 +49974,75 @@ module.exports = Component.exports
 
 /***/ }),
 /* 49 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
 
-// if (window.innerWidth >= 768){
-//
-// }
-ymaps.ready(init);
-var myMap;
-function init() {
-    myMap = new ymaps.Map("map", {
-        center: [55.354727, 86.088374],
-        zoom: 10
-    }, {
-        searchControlProvider: 'yandex#search'
-    });
-    objectManager = new ymaps.ObjectManager({
-        // Чтобы метки начали кластеризоваться, выставляем опцию.
-        clusterize: true,
-        // ObjectManager принимает те же опции, что и кластеризатор.
-        gridSize: 32,
-        clusterDisableClickZoom: true
-    });
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            sto: []
+        };
+    },
+    mounted: function mounted() {
+        ymaps.ready(this.init);
+    },
 
-    // Чтобы задать опции одиночным объектам и кластерам,
-    // обратимся к дочерним коллекциям ObjectManager.
-    objectManager.objects.options.set('preset', 'islands#redSportIcon');
-    objectManager.clusters.options.set('preset', 'islands#redSportIcon');
-    myMap.geoObjects.add(objectManager);
+    methods: {
+        //клик по меткам
+        onObjectEvent: function onObjectEvent(e) {
+            var objectId = e.get('objectId');
+            //Получить объект по индексу
+            console.log(this.sto[objectId - 1].name);
+        },
+        init: function init() {
+            var _this = this;
 
-    /*Запрос меток по адресу*/
-    $.ajax({
-        // url: "data.json" запрос api адресов сервисов
-    }).done(function () {
-        objectManager.add({
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "id": 0,
-                "geometry": { "type": "Point", "coordinates": [55.354727, 86.088374] },
-                "properties": {
-                    "balloonContentHeader": "<font size=3><b><a target='_blank' href='https://yandex.ru'>Здесь может быть ваша ссылка</a></b></font>",
-                    "balloonContentBody": "<p>Ваше имя: <input name='login'></p><p><em>Телефон в формате 2xxx-xxx:</em>  <input></p><p><input type='submit' value='Отправить'></p>",
-                    "balloonContentFooter": "<font size=1>Информация предоставлена: </font> <strong>этим балуном</strong>",
-                    "clusterCaption": "<strong><s>Еще</s> одна</strong> метка",
-                    "hintContent": "<strong>Текст  <s>подсказки</s></strong>"
+            var myMap = new ymaps.Map("map", {
+                center: [55.354727, 86.088374],
+                zoom: 11
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
+            var objectManager = new ymaps.ObjectManager({
+                clusterize: false,
+                gridSize: 32,
+                clusterDisableClickZoom: true
+            });
+            objectManager.objects.options.set('preset', 'islands#blueAutoIcon');
+            objectManager.clusters.options.set('preset', 'islands#blueAutoIcon');
+            myMap.geoObjects.add(objectManager);
+
+            /*Запрос меток по адресу*/
+            axios.get('/sto').then(function (response) {
+                _this.sto = response.data;
+                for (var item = 0; item < _this.sto.length; item++) {
+                    objectManager.add({
+                        "type": "FeatureCollection",
+                        "features": [{
+                            "type": "Feature",
+                            //задаем id объекта, как id записи
+                            "id": _this.sto[item].id,
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [_this.sto[item].coordinate_x, _this.sto[item].coordinate_y]
+                            },
+                            "properties": {
+                                "balloonContentHeader": '<h4>\u0421\u0422\u041E "' + _this.sto[item].name + '"</h4>',
+                                "balloonContentBody": '\u0410\u0434\u0440\u0435\u0441: ' + _this.sto[item].address + '<br>\u0422\u0435\u043B\u0435\u0444\u043E\u043D: ' + _this.sto[item].address + '<br><br><button class="center btn btn-primary">\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0434\u0430\u0442\u0443 \u0438 \u0432\u0440\u0435\u043C\u044F</button>'
+                            }
+                        }]
+                    });
                 }
-            }]
-        });
-    });
-}
-//
-// window.onresize = function() {
-//     if (window.innerWidth >= 768) {
-//         if (!myMap){
-//             document.getElementById('bt_map').style.display='none';
-//             init();
-//         }
-//     }
-//     if (window.innerWidth <= 1024) {
-//         if (myMap){
-//             document.getElementById('bt_map').style.display='block';
-//             myMap.destroy();
-//             myMap=null;
-//         }
-//     }
-// };
+            });
+            objectManager.events.add("click", this.onObjectEvent);
+        }
+    }
+});
 
 /***/ }),
 /* 50 */
@@ -50249,6 +50249,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(108)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(58)
@@ -50257,7 +50261,7 @@ var __vue_template__ = __webpack_require__(60)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -51125,7 +51129,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51176,113 +51179,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("custom-tab-component"),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("h4", { staticClass: "mb-3" }, [
-            _vm._v("Запись на диагностику авто")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-12 mb-3" }, [
-              _c("label", { attrs: { for: "part" } }, [
-                _vm._v("Что диагностируем?")
-              ]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  staticClass: "custom-select",
-                  attrs: { name: "part", id: "part", required: "" },
-                  on: {
-                    "!change": function($event) {
-                      return _vm.onChange($event)
-                    }
-                  }
-                },
-                [
-                  _c(
-                    "option",
-                    { attrs: { value: "", disabled: "", selected: "" } },
-                    [_vm._v("Выбрать...")]
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.part_checkup, function(part) {
-                    return _c("option", [
-                      _vm._v(
-                        _vm._s(part.category) + "\n                        "
-                      )
-                    ])
-                  })
-                ],
-                2
-              )
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("h4", { staticClass: "mb-3" }, [
+          _vm._v("Запись на диагностику авто")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12 mb-3" }, [
+            _c("label", { attrs: { for: "part" } }, [
+              _vm._v("Что диагностируем?")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-12 mb-3" }, [
-              _c("label", { attrs: { for: "part" } }, [
-                _vm._v("Выберите СТО:")
+            _c(
+              "select",
+              {
+                staticClass: "custom-select",
+                attrs: { name: "part", id: "part", required: "" },
+                on: {
+                  "!change": function($event) {
+                    return _vm.onChange($event)
+                  }
+                }
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { value: "", disabled: "", selected: "" } },
+                  [_vm._v("Выбрать...")]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.part_checkup, function(part) {
+                  return _c("option", [
+                    _vm._v(_vm._s(part.category) + "\n                        ")
+                  ])
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12 mb-3" }, [
+            _c("label", { attrs: { for: "part" } }, [_vm._v("Выберите СТО:")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-10 mb-3" }, [
+                _c(
+                  "select",
+                  {
+                    staticClass: "custom-select",
+                    attrs: { id: "STO", required: "" }
+                  },
+                  [
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", selected: "" } },
+                      [_vm._v("Выбрать...")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.sto_checkup, function(part) {
+                      return _c("option", [_vm._v(_vm._s(part.title))])
+                    })
+                  ],
+                  2
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-10 mb-3" }, [
-                  _c(
-                    "select",
-                    {
-                      staticClass: "custom-select",
-                      attrs: { id: "STO", required: "" }
-                    },
-                    [
-                      _c(
-                        "option",
-                        { attrs: { value: "", disabled: "", selected: "" } },
-                        [_vm._v("Выбрать...")]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.sto_checkup, function(part) {
-                        return _c("option", [_vm._v(_vm._s(part.title))])
-                      })
-                    ],
-                    2
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(0)
-              ])
+              _vm._m(0)
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "mb-3" }, [
-            _c("label", [_vm._v("Выберите дату и время:")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "row" }, [_c("datapicker-component")], 1)
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "mb-4" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-lg btn-block",
-                attrs: { type: "submit" },
-                on: { click: _vm.store }
-              },
-              [_vm._v("Записаться")]
-            )
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [_c("yandex-map-component")], 1)
-      ])
-    ],
-    1
-  )
+        _c("div", { staticClass: "mb-3" }, [
+          _c("label", [_vm._v("Выберите дату и время:")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [_c("datapicker-component")], 1)
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mb-4" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-lg btn-block",
+              attrs: { type: "submit" },
+              on: { click: _vm.store }
+            },
+            [_vm._v("Записаться")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [_c("yandex-map-component")], 1)
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -51399,8 +51391,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51421,11 +51411,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
             });
         }
-        // appoint_view:function (id) {
-        //     axios.get('/api/appointment/'+id).then((response)=>{
-        //         console.log(response.data);
-        //     });
-        // }
     }
 });
 
@@ -53872,6 +53857,49 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(109);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("27854356", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3580d0ec\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PaginateComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3580d0ec\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PaginateComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
