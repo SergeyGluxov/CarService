@@ -6,13 +6,12 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="container" style="background-color: #2A313C; color: white">
+    <div class="container" style="background-color: #2A313C">
     @if($cars!=null)
         <!--Название автомобиля-->
-            <div class="row">
+            <div class="row" style="color: white">
                 <div class="col-md-6">
-
-                    <span style="font-size: 24pt">{{$cars->brand}} {{$cars->model}}</span>
+                    <span style="font-size: 24pt">{{$cars->brand}} {{$cars->model}}</span></br>
                     <img src="/uploads/cars_image/{{$cars->image}}" class="img-fluid">
                 </div>
                 <div class="col-md-6">
@@ -25,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="margin-top: 30px">
-                    <h2 style="margin-left: 10px">Основные характеристики состояний автомобиля</h2>
+                    <h2 style="margin-left: 10px; color: white">Основные характеристики состояний автомобиля</h2>
                     <div class="accordion" id="accordionExample">
                         <div class="card border_card">
                             <div class="card-header header_card" id="headingTwo">
