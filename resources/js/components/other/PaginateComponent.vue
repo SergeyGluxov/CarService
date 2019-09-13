@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <p>Current page: {{ currentPage }}</p>
+    <div class="container">
         <v-pagination v-model="currentPage"
                       :page-count="totalPages"
                       :classes="bootstrapPaginationClasses"

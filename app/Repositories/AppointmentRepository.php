@@ -18,6 +18,11 @@ class AppointmentRepository
         AppointmentResource::withoutWrapping();
         return AppointmentResource::collection(Appointment::all());
     }
+    public function paginate()
+    {
+        $appoint = Appointment::paginate(3);
+        return $appoint;
+    }
     public function find($id)
     {
         AppointmentResource::withoutWrapping();

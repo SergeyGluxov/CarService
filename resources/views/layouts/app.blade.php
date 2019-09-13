@@ -24,6 +24,9 @@
 </head>
 <body style="background-color: #222831">
     <div id="app">
+        <div class="panel-body table-responsive">
+
+        </div>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

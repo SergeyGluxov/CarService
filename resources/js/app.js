@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -8,6 +7,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+
 /**Auth компоненты**/
 Vue.component('login-component', require('./components/auth/LoginComponent.vue'));
 Vue.component('register-component', require('./components/auth/RegisterComponent.vue'));
@@ -34,6 +35,7 @@ Vue.component('users-table-component', require('./components/admin/UsersTableCom
 Vue.component('passport-clients', require('./components/passport/Clients.vue'));
 Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
 Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
+
 
 const app = new Vue({
     el: '#app'

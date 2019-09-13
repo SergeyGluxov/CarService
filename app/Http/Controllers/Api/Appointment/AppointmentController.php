@@ -19,7 +19,11 @@ class AppointmentController extends Controller
     //Показать все записи на осмотр
     public function index()
     {
-        return $this->appointments->all();
+        return $this->appointments->paginate();
+    }
+    public function paginate()
+    {
+        return $this->appointments->paginate();
     }
     //Сохранить запись на осмотр
     public function store(StoreAppointmentRequest $request)
