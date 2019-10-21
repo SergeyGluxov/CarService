@@ -16,18 +16,51 @@
                 <tr>
                     <td>{{col.type_service}}</td>
                     <td>{{col.description}}</td>
+                    <td>{{col.description}}</td>
+                    <td>{{col.description}}</td>
                     <td>{{col.created_at.date}}</td>
                 </tr>
                 </tbody>
             </table>
 
         </div>
-        <v-pagination v-model="appoint.current_page"
+      <!--  <v-pagination v-model="appoint.current_page"
                       :page-count="appoint.last_page"
                       :classes="bootstrapPaginationClasses"
                       :labels="paginationAnchorTexts"
                       @input="update(appoint.current_page)">
-        </v-pagination>
+        </v-pagination>-->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Создание новой задачи</div>
+
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="title" class="col-md-4 col-form-label text-md-right">Название задачи</label>
+
+                        <div class="col-md-6">
+                            <input id="title" type="text" class="form-control" name="title">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="body" class="col-md-4 col-form-label text-md-right">Описание задачи</label>
+
+                        <div class="col-md-6">
+                            <textarea id="body" type="area" class="form-control" name="body"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-0">
+                        <div class="col-md-5 offset-md-4">
+                            <button @click="login" class="btn btn-primary btn-lg btn-block" type="submit">
+                                Создать
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

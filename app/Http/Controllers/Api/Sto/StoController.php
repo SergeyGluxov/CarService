@@ -1,25 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
-
+namespace App\Http\Controllers\Api\Sto;
 
 use App\Http\Controllers\Controller;
-use App\Services\UserService;
-use App\User;
+use App\Http\Resources\StoResource;
+use App\Sto;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class StoController extends Controller
 {
-    protected $user;
-    public function __construct(UserService $user)
+    public function index()
     {
-        $this->user=$user;
-    }
-
-    public function index(Request $request)
-    {
-        return User::all();
-        //return $this->user->all();
+        StoResource::withoutWrapping();
+        return StoResource::collection(Sto::all());
     }
 
     public function create()
@@ -34,7 +27,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        return $this->user->find($id);
+        //
     }
 
     public function edit($id)

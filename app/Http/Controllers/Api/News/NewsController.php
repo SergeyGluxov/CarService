@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
-
+namespace App\Http\Controllers\Api\News;
 
 use App\Http\Controllers\Controller;
-use App\Services\UserService;
-use App\User;
+use App\Http\Resources\NewsResource;
+use App\News;
+use App\Sto;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class NewsController extends Controller
 {
-    protected $user;
-    public function __construct(UserService $user)
-    {
-        $this->user=$user;
-    }
 
-    public function index(Request $request)
+    public function index()
     {
-        return User::all();
-        //return $this->user->all();
+        NewsResource::withoutWrapping();
+        return NewsResource::collection(News::all());
     }
 
     public function create()
@@ -34,7 +29,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        return $this->user->find($id);
+        //
     }
 
     public function edit($id)

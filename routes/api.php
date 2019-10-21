@@ -1,7 +1,6 @@
 <?php
 
 Route::group(['namespace' => 'Api'], function () {
-   //Авторизация(с токенами)
     Route::group(['namespace' => 'Auth'], function () {
         Route::post('logout', 'LogoutController');
     });
@@ -14,5 +13,11 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Appointment'], function () {
         Route::resource('/appointment', 'AppointmentController');
     });
+
+    //Информация о СТО
+    Route::group(['namespace' => 'Sto'], function () {
+        Route::resource('/sto', 'StoController');
+    });
+
 });
 
