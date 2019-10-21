@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Все маршруты в api.php возможно использовать только при предъявлении токена доступа(access_token)
+**/
 Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Auth'], function () {
         Route::post('logout', 'LogoutController');
