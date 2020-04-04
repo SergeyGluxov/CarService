@@ -1,0 +1,80 @@
+//Тут есть пример как использовать api в запросе денных через axios
+<template>
+    <div class="container">
+        <h2>Удаление сотрудника</h2>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <br />
+                <label class="control-label col-xs-3">Выберите сотрудника:</label>
+                <div class="col-xs-6">
+                    <select class="form-control">
+                        <option value="" disabled selected>Выбрать...</option>
+                        <option v-for="user in users">{{user.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <br />
+                <label class="control-label col-xs-3">Номер договора:</label>
+                <div class="col-xs-6">
+                    <select class="form-control">
+                        <option value="" disabled selected>Выбрать...</option>
+                        <option v-for="user in users">{{user.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <input type="submit" class="btn btn-primary btn-danger" value="Удалить сотрудника">
+                </div>
+            </div>
+        </form>
+    </div>
+</template>
+
+<script>
+    export default {
+        data: function () {
+            return {
+                schedules: [],
+                users: [],
+                roles: []
+            }
+        },
+        mounted() {
+            this.update();
+        },
+        methods: {
+            update: function () {
+                axios.get('/api/users').then((response) => {
+                    this.users = response.data;
+                    console.log(response.data);
+                });
+                axios.get('/api/roles').then((response) => {
+                    this.roles = response.data;
+                    console.log(response.data);
+                });
+            },
+            store: function () {
+                //Объект formData
+                const formData = new FormData();
+                formData.append('user_id', 1);
+                formData.append('appointment_id', 1);
+                //Отправка самого запроса
+                axios.post('/api/schedules', formData)
+                    .then(response => {
+                        console.log('Запрос успешен!')
+                        this.update();
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            alert('Введите корректные данные!')
+                        }
+                    });
+            }
+        }
+    }
+</script>

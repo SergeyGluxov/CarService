@@ -30,7 +30,7 @@
                       :labels="paginationAnchorTexts"
                       @input="update(appoint.current_page)">
         </v-pagination>-->
-        <div class="col-md-12">
+       <!-- <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Создание новой задачи</div>
 
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </template>
 

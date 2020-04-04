@@ -11,8 +11,7 @@
 @section('content')
     <section class="content">
         <div id="app">
-            <h3>Пользователи системы</h3>
-            <users-table-component/>
+            <schedules-table-component/>
         </div>
     </section>
 @endsection

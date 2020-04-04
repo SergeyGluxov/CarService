@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'CarService Admin',
 
     'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>CarService [ADMIN]</b>',
 
-    'logo_mini' => '<b>A</b>LT',
+    'logo_mini' => '<b>A</b>DM',
 
     /*
     |--------------------------------------------------------------------------
@@ -111,100 +111,99 @@ return [
         'НАСТРОЙКИ',
         [
             'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'url' => 'admin/blog',
+            'can' => 'manage-blog',
         ],
         [
-            'text'        => 'Пользователи',
-            'url'         => 'admin/users_settings',
-            'icon'        => 'user',
+            'text' => 'Пользователи',
+            'url' => 'admin/users_settings',
+            'icon' => 'user',
         ],
         [
-            'text'    => 'Настройка OAuth',
-            'icon'    => 'pencil',
+            'text' => 'Настройка OAuth',
+            'icon' => 'pencil',
             'submenu' => [
                 [
                     'text' => 'Клиенты',
-                    'url'  => 'admin/oauth_clients',
+                    'url' => 'admin/oauth_clients',
                 ],
                 [
                     'text' => 'Level One',
-                    'url'  => '#',
+                    'url' => '#',
                 ],
                 [
                     'text' => 'Level One',
-                    'url'  => '#',
+                    'url' => '#',
                 ],
             ],
         ],
 
         'ЗАПИСИ',
         [
-            'text' => 'Осмотр',
-            'url'  => 'admin/checkup_settings',
+            'text' => 'Записи пользователей',
+            'url' => 'admin/checkup_settings',
             'icon' => 'search',
         ],
+        'ПОИСК',
         [
-            'text' => 'Ремонт',
-            'url'  => 'admin/settings',
-            'icon' => ' fa-wrench',
+            'text' => 'Найти свободных мастеров',
+            'url' => 'admin/search_master',
+            'icon' => 'search',
         ],
+        'РАСПИСАНИЕ РАБОТ',
         [
-            'text' => 'Автомойка',
-            'url'  => 'admin/settings',
+            'text' => 'Расписание работ',
+            'url' => 'admin/schedules',
             'icon' => 'car',
         ],
+        'КОНТИНГЕНТ',
         [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
+            'text' => 'Контингент',
+            'icon' => 'share',
             'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
+                    'text' => 'Сотрудники',
+                    'url' => '#',
                     'submenu' => [
                         [
-                            'text' => 'Level Two',
-                            'url'  => '#',
+                            'text' => 'Добавление сотрудника',
+                            'url' => 'admin/add_employee',
+                            'icon_color' => 'green'
                         ],
                         [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
+                            'text' => 'Удаление сотрудника',
+                            'url' => 'admin/remove_employee',
+                            'icon_color' => 'red'
+                        ]
                     ],
                 ],
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text' => 'Должности',
+                    'url' => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Редактирование должностей',
+                            'url' => 'admin/add_role',
+                            'icon_color' => 'green'
+                        ]
+                    ]
                 ],
             ],
         ],
-        'LABELS',
+
+       /* 'LABELS',
         [
-            'text'       => 'Important',
+            'text' => 'Important',
             'icon_color' => 'red',
         ],
         [
-            'text'       => 'Warning',
+            'text' => 'Warning',
             'icon_color' => 'yellow',
         ],
         [
-            'text'       => 'Information',
+            'text' => 'Information',
             'icon_color' => 'aqua',
-        ],
+        ],*/
     ],
 
     /*
@@ -240,7 +239,7 @@ return [
 
     'plugins' => [
         'datatables' => true,
-        'select2'    => true,
-        'chartjs'    => true,
+        'select2' => true,
+        'chartjs' => true,
     ],
 ];

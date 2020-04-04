@@ -20,6 +20,36 @@ class AdminController extends Controller
         return view('admin_layouts/users_settings');
     }
 
+    public function getSchedules()
+    {
+        return view('admin_layouts/schedules');
+    }
+
+    public function stroreEmployee()
+    {
+        return view('admin_layouts/add_employee');
+    }
+
+    public function removeEmployee()
+    {
+        return view('admin_layouts/remove_employee');
+    }
+
+    public function addRole()
+    {
+        return view('admin_layouts/add_role');
+    }
+
+    public function removeRole()
+    {
+        return view('admin_layouts/remove_role');
+    }
+
+    public function searchMaster()
+    {
+        return view('admin_layouts/search_master');
+    }
+
     public function getCheckup()
     {
         /*//Пример составления join's запросов

@@ -30,6 +30,12 @@ Vue.component('form-checkup-component', require('./components/service/FormChecku
 /**Компоненты для /admin**/
 Vue.component('admin-table-component', require('./components/admin/AdminTableComponent.vue'));
 Vue.component('users-table-component', require('./components/admin/UsersTableComponent.vue'));
+Vue.component('schedules-table-component', require('./components/admin/SchedulesTableComponent.vue'));
+Vue.component('form-employee-component', require('./components/admin/FormEmployeeComponent.vue'));
+Vue.component('delete-employee-component', require('./components/admin/DeleteEmployeeComponent.vue'));
+Vue.component('form-role-component', require('./components/admin/FormRoleComponent.vue'));
+Vue.component('delete-role-component', require('./components/admin/DeleteRoleComponent.vue'));
+Vue.component('search-master-component', require('./components/admin/SearchMasterComponent.vue'));
 
 /**Компоненты работы с /admin/oauth_settings**/
 Vue.component('passport-clients', require('./components/passport/Clients.vue'));

@@ -16,6 +16,16 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/appointment', 'AppointmentController');
     });
 
+    //График
+    Route::group(['namespace' => 'Schedules'], function () {
+        Route::resource('/schedules', 'SchedulesController');
+    });
+
+    //График
+    Route::group(['namespace' => 'Roles'], function () {
+        Route::resource('/roles', 'RolesController');
+    });
+
     //Информация о СТО
     Route::group(['namespace' => 'Sto'], function () {
         Route::resource('/sto', 'StoController');
