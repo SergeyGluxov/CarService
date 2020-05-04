@@ -18,6 +18,7 @@ class CreateCarsTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('image')->default('default.png');
+            $table->string('state_number');
             $table->timestamps();
         });
     }

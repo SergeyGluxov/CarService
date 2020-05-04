@@ -102,7 +102,7 @@
                 //Объект formData
                 const formData = new FormData();
                 formData.append('user_id', 1);
-                formData.append('appointment_id', 1);
+                formData.append(' appointment_id', 1);
                 //Отправка самого запроса
                 axios.post('/api/schedules', formData)
                     .then(response => {

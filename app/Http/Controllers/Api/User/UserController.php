@@ -18,8 +18,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        return User::all();
-        //return $this->user->all();
+        return $this->user->all();
     }
 
     public function create()
@@ -29,7 +28,8 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        //
+        return $this->user->store($request);
+
     }
 
     public function show($id)
@@ -49,6 +49,6 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        //
+        return $this->user->destroy($id);
     }
 }

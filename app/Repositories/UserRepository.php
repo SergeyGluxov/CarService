@@ -2,10 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Appointment;
-use App\Http\Resources\AppointmentResource;
 use App\Http\Resources\UserResource;
 use App\User;
+use Illuminate\Http\Request;
 
 class UserRepository
 {
@@ -21,9 +20,27 @@ class UserRepository
         UserResource::withoutWrapping();
         return UserResource::collection(User::all());
     }
+
     public function find($id)
     {
         UserResource::withoutWrapping();
-        return new UserResource(User::find($id));
+        return new UserResource(User::where('id', $id)->firstOrFail());
+    }
+
+    public function store(Request $request)
+    {
+        $userStore = new User();
+        $userStore->name = $request->get('name');
+        $userStore->email = $request->get('email');
+        $userStore->password = $request->get('password');
+        $userStore->save();
+        return response('Пользователь успешно добавлен!', 200);
+    }
+
+    public function destroy($id)
+    {
+        $userDestroy = User::findOrFail($id);
+        if ($userDestroy->delete())
+            return response('Пользователь удален!', 200);
     }
 }

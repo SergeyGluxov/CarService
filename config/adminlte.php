@@ -108,15 +108,15 @@ return [
     */
 
     'menu' => [
-        'НАСТРОЙКИ',
+        'ПОЛЬЗОВАТЕЛИ',
         [
             'text' => 'Blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'Пользователи',
-            'url' => 'admin/users_settings',
+            'text' => 'Список пользователей',
+            'url' => 'admin/users/',
             'icon' => 'user',
         ],
         [
@@ -138,11 +138,28 @@ return [
             ],
         ],
 
-        'ЗАПИСИ',
+        'ЗАЯВКИ',
         [
-            'text' => 'Записи пользователей',
+            'text' => 'Список заявок',
             'url' => 'admin/checkup_settings',
             'icon' => 'search',
+        ],
+        [
+            'text' => 'Управление заявками',
+            'url' => 'admin/users_settings',
+            'icon' => 'user',
+            'submenu' => [
+                [
+                    'text' => 'Добавить',
+                    'url' => 'admin/add_employee',
+                    'icon_color' => 'green'
+                ],
+                [
+                    'text' => 'Удалить',
+                    'url' => 'admin/remove_employee',
+                    'icon_color' => 'red'
+                ]
+            ],
         ],
         'ПОИСК',
         [
@@ -190,20 +207,47 @@ return [
                 ],
             ],
         ],
-
-       /* 'LABELS',
+        'Услуги',
         [
-            'text' => 'Important',
-            'icon_color' => 'red',
+            'text' => 'Список услуг',
+            'url' => 'admin/services/',
+            'icon' => 'search',
         ],
         [
-            'text' => 'Warning',
-            'icon_color' => 'yellow',
+            'text' => 'Управление услугами',
+            'url' => 'admin/service_settings',
+            'icon' => 'search',
+            'submenu' => [
+                [
+                    'text' => 'Добавление услуг',
+                    'url' => 'admin/add_employee',
+                    'icon_color' => 'green'
+                ],
+                [
+                    'text' => 'Редактирование услуг',
+                    'url' => 'admin/add_employee',
+                    'icon_color' => 'yellow'
+                ],
+                [
+                    'text' => 'Удаление услуг',
+                    'url' => 'admin/remove_employee',
+                    'icon_color' => 'red'
+                ]
+            ],
         ],
-        [
-            'text' => 'Information',
-            'icon_color' => 'aqua',
-        ],*/
+        /* 'LABELS',
+         [
+             'text' => 'Important',
+             'icon_color' => 'red',
+         ],
+         [
+             'text' => 'Warning',
+             'icon_color' => 'yellow',
+         ],
+         [
+             'text' => 'Information',
+             'icon_color' => 'aqua',
+         ],*/
     ],
 
     /*

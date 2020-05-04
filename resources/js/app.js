@@ -28,8 +28,15 @@ Vue.component('form-checkup-component', require('./components/service/FormChecku
 
 
 /**Компоненты для /admin**/
+//-----------------------------------------ПОЛЬЗОВАТЕЛИ-----------------------------------------------------------------
+
+Vue.component('users-table-component', require('./components/admin/users/AllUserComponent.vue'));
+
+//-----------------------------------------УСЛУГИ-----------------------------------------------------------------------
+Vue.component('services-table-component', require('./components/admin/services/AllServicesComponent.vue'));
+
+//-----------------------------------------ПОЛЬЗОВАТЕЛИ-----------------------------------------------------------------
 Vue.component('admin-table-component', require('./components/admin/AdminTableComponent.vue'));
-Vue.component('users-table-component', require('./components/admin/UsersTableComponent.vue'));
 Vue.component('schedules-table-component', require('./components/admin/SchedulesTableComponent.vue'));
 Vue.component('form-employee-component', require('./components/admin/FormEmployeeComponent.vue'));
 Vue.component('delete-employee-component', require('./components/admin/DeleteEmployeeComponent.vue'));

@@ -3,11 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Login</div>
+                    <div class="card-header">Вход</div>
 
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-mail</label>
 
                             <div class="col-md-6">
                                 <input id="email" v-model="form_email" type="email" class="form-control" name="email">
@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password"  class="col-md-4 col-form-label text-md-right">Password</label>
+                            <label for="password"  class="col-md-4 col-form-label text-md-right">Пароль</label>
 
                             <div class="col-md-6">
                                 <input id="password" v-model="form_password" type="password" class="form-control" name="password">

@@ -15,7 +15,7 @@ class SchedulesController extends Controller
         $this->schedulesService=$schedulesService;
     }
 
-    public function index(Request $request)
+    public function index()
     {
         return $this->schedulesService->all();
     }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App;
 use App\Appointment;
 use App\User;
@@ -14,16 +15,37 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    //Получить всех пользователей
+    //----------------------------------ПОЛЬЗОВАТЕЛИ--------------------------------------------------------------------
+
     public function getUsers()
     {
-        return view('admin_layouts/users_settings');
+        return view('admin_layouts/users/all');
     }
+
+    public function createUser()
+    {
+        return view('admin_layouts/users/create');
+    }
+
+    public function deleteUser()
+    {
+        return view('admin_layouts/users/delete');
+    }
+
+    //----------------------------------РАСПИСАНИЕ РАБОТ----------------------------------------------------------------
 
     public function getSchedules()
     {
         return view('admin_layouts/schedules');
     }
+
+    //----------------------------------РАСПИСАНИЕ РАБОТ----------------------------------------------------------------
+    public function getServices()
+    {
+        return view('admin_layouts/services/all');
+    }
+
+    //----------------------------------РАСПИСАНИЕ РАБОТ----------------------------------------------------------------
 
     public function stroreEmployee()
     {
@@ -52,14 +74,11 @@ class AdminController extends Controller
 
     public function getCheckup()
     {
-        /*//Пример составления join's запросов
-        $appoint = Appointment::with('users')
-            ->join('users', 'users.id', '=', 'appointments.user_id')
-            ->get(['users.name', 'appointments.description', 'appointments.created_at']);*/
         return view('admin_layouts/checkup_settings');
     }
-    public  function index()
+
+    public function index()
     {
-      return App\Http\Resources\UsersResourse::collection();
+        return App\Http\Resources\UsersResourse::collection();
     }
 }

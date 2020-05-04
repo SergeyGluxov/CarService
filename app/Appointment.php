@@ -10,8 +10,12 @@ class Appointment extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function users()
+
+    public function service()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Service::class);
     }
 }
+
+
+

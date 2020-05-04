@@ -11,18 +11,29 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'CarController@addCar')->name('addCar');
 Route::get('home/service/checkup', 'CarController@checkup')->name('checkup');
 
+//---------------------------------АДМИНКА------------------------------------------------------------------------------
 Route::get('/admin', function () {
     return view('admin');
 })->middleware('auth')->middleware('role:admin')->name('admin');
+
+//Пользователи системы
+Route::get('admin/users/', 'AdminController@getUsers');
+Route::get('admin/users/create', 'AdminController@createUser');
+Route::get('admin/users/delete', 'AdminController@deleteUser');
+
+//Услуги
+Route::get('admin/services/', 'AdminController@getServices');
+
 //Записи на осмотр
 Route::get('admin/checkup_settings', 'AdminController@getCheckup');
-//Пользователи системы
-Route::get('admin/users_settings', 'AdminController@getUsers');
+
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');
+
 //Назначить сотрудника
 Route::get('admin/add_employee', 'AdminController@stroreEmployee');
 Route::get('admin/remove_employee', 'AdminController@removeEmployee');
+
 //Должности
 Route::get('admin/add_role', 'AdminController@addRole');
 Route::get('admin/remove_role', 'AdminController@removeRole');
@@ -30,7 +41,9 @@ Route::get('admin/remove_role', 'AdminController@removeRole');
 //Поиск мастеров
 Route::get('admin/search_master', 'AdminController@searchMaster');
 
-Route::get('admin/oauth_clients', function () {return view('admin_layouts/oauth_clients');});
+Route::get('admin/oauth_clients', function () {
+    return view('admin_layouts/oauth_clients');
+});
 //------------------------------------------------------------------------
 //Публичные API-маршруты(здесь маршруты достуны без авторизации токеном)
 //**Неймспейсы показывают рассположение контроллеров

@@ -1,7 +1,7 @@
 <?php
 /**
  * Все маршруты в api.php возможно использовать только при предъявлении токена доступа(access_token)
-**/
+ **/
 Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Auth'], function () {
         Route::post('logout', 'LogoutController');
@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/schedules', 'SchedulesController');
     });
 
-    //График
+    //Должности
     Route::group(['namespace' => 'Roles'], function () {
         Route::resource('/roles', 'RolesController');
     });
@@ -31,5 +31,10 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/sto', 'StoController');
     });
 
+    //Услуги
+    Route::group(['namespace' => 'Services'], function () {
+        Route::resource('/services', 'ServiceController');
+        Route::post('/services/findByType', 'ServiceController@findByType');
+    });
 });
 
