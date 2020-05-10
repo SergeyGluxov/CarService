@@ -19,6 +19,11 @@ class UserService
         return $this->userRepository->all();
     }
 
+    public function getWorkers()
+    {
+        return $this->userRepository->getWorkers();
+    }
+
     public function find($id)
     {
         return $this->userRepository->find($id);

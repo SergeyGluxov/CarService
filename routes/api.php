@@ -9,16 +9,19 @@ Route::group(['namespace' => 'Api'], function () {
     //Пользователь
     Route::group(['namespace' => 'User'], function () {
         Route::resource('/users', 'UserController');
+        Route::get('/workers', 'UserController@getWorkers');
         Route::get('/users/paginate', 'PaginateController');
     });
     //Записи
     Route::group(['namespace' => 'Appointment'], function () {
         Route::resource('/appointment', 'AppointmentController');
+        Route::post('/admin/appointment/', 'AppointmentController@storeAdmin');
+        Route::post('/admin/appointment/status', 'AppointmentController@changeStatusAdmin');
     });
 
     //График
     Route::group(['namespace' => 'Schedules'], function () {
-        Route::resource('/schedules', 'SchedulesController');
+        Route::resource('/admin/schedules', 'SchedulesController');
     });
 
     //Должности

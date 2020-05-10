@@ -14,19 +14,25 @@
                             <thead>
                             <tr>
                                 <th>Имя</th>
+                                <th>Телефон</th>
                                 <th>Эл. почта</th>
                                 <th>Дата регистрации</th>
                                 <!--TODO: Отображать не ID, а название-->
                                 <th>Автомобиль</th>
+                                <th>Гос. номер</th>
                                 <th>Действие</th>
                             </tr>
                             </thead>
                             <tbody v-for="col in users">
                             <tr>
                                 <td>{{col.name}}</td>
+                                <td>{{col.phone}}</td>
                                 <td>{{col.email}}</td>
                                 <td>{{col.created_at.date}}</td>
-                                <td>{{col.cars_id}}</td>
+                                <td v-for="car in col.cars">{{car.brand+" "+car.model}}</td>
+                                <td v-for="car in col.cars">{{car.state_number}}</td>
+                                <td v-if="col.cars.length===0">Нет</td>
+                                <td v-if="col.cars.length===0">Нет</td>
                                 <td>
                                     <button v-on:click="deleteUser(col.id)">-</button>
                                 </td>

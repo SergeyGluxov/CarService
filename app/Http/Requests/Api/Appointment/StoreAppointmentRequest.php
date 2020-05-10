@@ -15,7 +15,6 @@ class StoreAppointmentRequest extends FormRequest
     {
         return [
             'type_service' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
         ];
     }
 }

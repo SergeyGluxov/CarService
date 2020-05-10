@@ -4,7 +4,8 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey>&lang=sru_RU" type="text/javascript">
     </script>
-
+    <script type="text/javascript" src="moment.min.js"></script>
+    <script type="text/javascript" src="moment.ru.min.js"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript" defer>
 
     </script>

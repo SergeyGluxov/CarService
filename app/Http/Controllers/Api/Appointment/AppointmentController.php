@@ -29,6 +29,18 @@ class AppointmentController extends Controller
         return $this->appointments->store($request);
     }
 
+    //Сохранить запись новую клиента
+    public function storeAdmin(StoreAppointmentRequest $request)
+    {
+        return $this->appointments->storeAdmin($request);
+    }
+
+    //Изменить статус заявки
+    public function changeStatusAdmin(Request $request)
+    {
+        return $this->appointments->changeStatusAdmin($request);
+    }
+
     //Показать подробности клиента
     public function show($id)
     {

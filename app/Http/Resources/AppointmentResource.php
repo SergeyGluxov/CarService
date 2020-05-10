@@ -10,11 +10,13 @@ class AppointmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'status' => $this->status,
             'type_service' => $this->type_service,
             'description' => $this->description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'user' => new UserResource($this->user('name')->firstOrFail()),
+            'service' => new ServicesResource($this->service('name')->firstOrFail()),
         ];
     }
 }

@@ -21,6 +21,17 @@ class UserRepository
         return UserResource::collection(User::all());
     }
 
+    public function getWorkers()
+    {
+        $workers = User::whereHas(
+            'roles', function ($q) {
+            $q->where('name', '!=', null);
+        }
+        )->get();
+        UserResource::withoutWrapping();
+        return UserResource::collection($workers);
+    }
+
     public function find($id)
     {
         UserResource::withoutWrapping();

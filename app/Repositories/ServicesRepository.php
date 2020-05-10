@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Http\Resources\ServicesResource;
+use App\Http\Resources\UserResource;
 use App\Service;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,9 @@ class ServicesRepository
 
     public function findByType(Request $request)
     {
-        $services = Service::where('type', $request->get('type'))->firstOrFail();
+        $services = Service::where('type', $request->get('type'))->get();
         ServicesResource::withoutWrapping();
-        return new ServicesResource($services);
+        return ServicesResource::collection($services);
     }
 
     public function store(Request $request)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -9,15 +10,15 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'token' => new TokenResource($this->token),
-            'role' => $request->user()->role(),
             'id' => $this->id,
             'name' => $this->name,
+            'phone' => $this->phone,
             'email' => $this->email,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'updated_at' => $this->updated_at,
-            'tok' => $request->user()->token,
+            'role' => User::where('id', $this->id)->firstOrFail()->roles()->where('user_id', $this->id)->get(),
+            'cars' => $request->user()->cars()->where('id', $this->cars_id)->get(),
         ];
     }
 }

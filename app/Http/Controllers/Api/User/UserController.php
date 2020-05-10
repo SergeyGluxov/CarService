@@ -21,6 +21,11 @@ class UserController extends Controller
         return $this->user->all();
     }
 
+    public function getWorkers()
+    {
+        return $this->user->getWorkers();
+    }
+
     public function create()
     {
         //

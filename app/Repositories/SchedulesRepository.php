@@ -20,16 +20,19 @@ class SchedulesRepository
         SchedulesResource::withoutWrapping();
         return SchedulesResource::collection(Schedules::all());
     }
-    public function store(Request $request){
+
+    public function store(Request $request)
+    {
         $schedules = new Schedules();
-        $schedules->user_id       = $request->get('user_id');
+        $schedules->user_id = $request->get('user_id');
         $schedules->appointment_id = $request->get('appointment_id');
         $schedules->save();
         return response('Запись успешно добалена в рассписание', 200);
     }
+
     public function find($id)
     {
         SchedulesResource::withoutWrapping();
-        return new SchedulesResource(Schedules::find($id));
+        return new SchedulesResource(Schedules::where('id', $id)->firstOrFail());
     }
 }
