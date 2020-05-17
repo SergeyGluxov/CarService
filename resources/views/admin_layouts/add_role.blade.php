@@ -11,12 +11,8 @@
 @section('content')
     <section class="content">
         <div id="app">
-            <h1>Добавление должности</h1>
-            <br/>
             <form-role-component></form-role-component>
             <br/>
-            <h1>Удаление должности</h1>
-            <delete-role-component></delete-role-component>
         </div>
     </section>
 @endsection

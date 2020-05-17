@@ -38,11 +38,10 @@ class UserRepository
         //TODO: Выборка по полям
         $workers = DB::table('users')
             ->select('users.*')
-            ->join('schedules', 'schedules.user_id', '=', 'users.id')
-            ->where('schedules.created_at', '!=',$request->get('search_date'))
+            ->join('schedules', 'schedules.user_id', '<>', 'users.id')
+            ->where('schedules.created_at', '<', $request->get('search_date'))
             ->join('users_roles', 'users_roles.user_id', '=', 'users.id')
-            ->get()
-            ->unique('users.id');
+            ->get()->unique('id');
 
         /*  $workers = User::whereHas(
               'roles', function ($q) {

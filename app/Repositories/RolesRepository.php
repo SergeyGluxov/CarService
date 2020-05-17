@@ -46,6 +46,14 @@ class RolesRepository
         return new RolesResource(Role::find($id));
     }
 
+    public function deleteRole($request)
+    {
+        $id = $request->get('id');
+        $appointmentDestroy = Role::findOrFail($id);
+        if ($appointmentDestroy->delete())
+            return response('Должность удалена!', 200);
+    }
+
     public function destroy($id)
     {
         DB::table('users_roles')->where('user_id', '=', $id)->delete();

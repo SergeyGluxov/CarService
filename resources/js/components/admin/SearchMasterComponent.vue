@@ -19,14 +19,12 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-md-4">
 
+                <div type="button" class="btn btn-primary" @click="clickSearch">
+                    <i class="fas fa-search fa-1x"></i>
                 </div>
             </div>
         </form>
-        <div type="button" class="btn btn-primary" @click="clickSearch">
-            <i class="fas fa-search fa-1x"></i>
-        </div>
     </div>
 </template>
 

@@ -75061,6 +75061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -75213,7 +75214,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(col.user.name))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.user.role[0].name))]),
+                      col.user.role[0] != null
+                        ? _c("td", [_vm._v(_vm._s(col.user.role[0].name))])
+                        : _c("td", [_vm._v("не найдено")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(col.appointment.status))]),
                       _vm._v(" "),
@@ -76146,11 +76149,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             schedules: [],
+            showModal: false,
+            createNameRole: '',
             users: [],
             roles: []
         };
@@ -76177,16 +76241,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //Объект formData
             var formData = new FormData();
-            formData.append('user_id', 1);
-            formData.append('appointment_id', 1);
+            formData.append('name', this.createNameRole);
             //Отправка самого запроса
-            axios.post('/api/schedules', formData).then(function (response) {
+            axios.post('/api/roles', formData).then(function (response) {
                 console.log('Запрос успешен!');
                 _this2.update();
             }).catch(function (error) {
                 if (error.response.status == 422) {
                     alert('Введите корректные данные!');
                 }
+            });
+            this.showModal = false;
+        },
+        deleteRole: function deleteRole(id) {
+            var _this3 = this;
+
+            var formData = new FormData();
+            formData.append('id', id);
+            axios.post('/api/roles/delete', formData).then(function (response) {
+                _this3.roles = response.data;
+                _this3.update();
+                console.log(response.data);
             });
         }
     }
@@ -76200,41 +76275,206 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v("Перечень должностей")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { id: "show-modal", type: "button" },
+          on: {
+            click: function($event) {
+              _vm.showModal = true
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-plus",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-header" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "table",
+          {
+            staticClass: "table table-bordered table-hover",
+            attrs: { id: "example2" }
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.roles, function(col) {
+              return _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(col.id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(col.name))]),
+                  _vm._v(" "),
+                  _c("td"),
+                  _vm._v(" "),
+                  _c("td"),
+                  _vm._v(" "),
+                  _c("td"),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteRole(col.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fas fa-times ",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.showModal
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "modal fade-in", staticStyle: { display: "block" } },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            _vm.showModal = false
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "modal-title" }, [
+                      _vm._v("Новая должность")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("form", { staticClass: "form-inline" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "control-label col-xs-3",
+                            attrs: { for: "createNameRole" }
+                          },
+                          [
+                            _vm._v(
+                              "Наименование\n                                    должности:"
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-xs-5" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.createNameRole,
+                                expression: "createNameRole"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "createNameRole",
+                              placeholder: "уборщик"
+                            },
+                            domProps: { value: _vm.createNameRole },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.createNameRole = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-xs-3" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              attrs: { type: "button" },
+                              on: { click: _vm.store }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        Добавить роль\n                                    "
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("form", { staticClass: "form-horizontal" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            { staticClass: "control-label col-xs-3", attrs: { for: "role" } },
-            [_vm._v("Наименование должности:")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-xs-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "role", placeholder: "" }
-            })
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Внутренний номер")]),
         _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("div", { staticClass: "col-xs-offset-3 col-xs-9" }, [
-            _c("input", {
-              staticClass: "btn btn-primary",
-              attrs: { type: "submit", value: "Добавить должность" }
-            })
-          ])
-        ])
+        _c("th", [_vm._v("Наименование")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-xs-offset-6 col-xs-9" })
     ])
   }
 ]
@@ -76527,8 +76767,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -76673,19 +76911,17 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" })
+        _c(
+          "div",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "button" },
+            on: { click: _vm.clickSearch }
+          },
+          [_c("i", { staticClass: "fas fa-search fa-1x" })]
+        )
       ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "btn btn-primary",
-        attrs: { type: "button" },
-        on: { click: _vm.clickSearch }
-      },
-      [_c("i", { staticClass: "fas fa-search fa-1x" })]
-    )
+    ])
   ])
 }
 var staticRenderFns = []

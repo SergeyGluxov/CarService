@@ -38,6 +38,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Roles'], function () {
         Route::resource('/roles', 'RolesController');
         Route::post('/roles/setUser', 'RolesController@storeUserRole');
+        Route::post('/roles/delete', 'RolesController@deleteRole');
     });
 
     //Информация о СТО

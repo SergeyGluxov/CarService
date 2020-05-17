@@ -25,7 +25,8 @@
                             <tr>
                                 <td><a @click="showAlert(col.id)">Заявка #{{col.appointment.id}}</a></td>
                                 <td>{{col.user.name}}</td>
-                                <td>{{col.user.role[0].name}}</td>
+                                <td v-if="(col.user.role[0]!=null)">{{col.user.role[0].name}}</td>
+                                <td v-else>не найдено</td>
                                 <td>{{col.appointment.status}}</td>
                                 <td>{{convertDat(col.created_at.date)}}</td>
                                 <td>{{getFinishTime(index)}}</td>

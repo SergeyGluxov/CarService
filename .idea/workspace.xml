@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="17.05.2020">
-      <change afterPath="$PROJECT_DIR$/app/UsersRoles.php" afterDir="false" />
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Roles/RolesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Roles/RolesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/RolesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/RolesRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/UserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/RolesService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/RolesService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/employee/EmployeeTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/employee/EmployeeTableComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/auth/RegisterComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/auth/RegisterComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/FormRoleComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/FormRoleComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/SchedulesTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/SchedulesTableComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/SearchMasterComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/SearchMasterComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin_layouts/add_role.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin_layouts/add_role.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
@@ -198,6 +199,7 @@
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Perforce" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3.4\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -411,7 +413,7 @@
       <workItem from="1589178869648" duration="4729000" />
       <workItem from="1589186614456" duration="4503000" />
       <workItem from="1589599450465" duration="16597000" />
-      <workItem from="1589682674253" duration="15121000" />
+      <workItem from="1589682674253" duration="19074000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -616,7 +618,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589698935035</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="added set user role">
+      <created>1589702829174</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1589702829174</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -659,7 +668,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Вся херня, которую делал тут)" />
     <MESSAGE value="Наполнил страницу home" />
     <MESSAGE value="Добавил adminLTE" />
     <MESSAGE value="Страница настройки пользователей" />
@@ -684,7 +692,8 @@
     <MESSAGE value="05.05.2020" />
     <MESSAGE value="10.05.2020" />
     <MESSAGE value="17.05.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="17.05.2020" />
+    <MESSAGE value="added set user role" />
+    <option name="LAST_COMMIT_MESSAGE" value="added set user role" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588566847467">
@@ -703,14 +712,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588568618063" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589695729227">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589709705361">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589695729227" />
-    <state x="581" y="114" key="CommitChangelistDialog2" timestamp="1589698940246">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589709705361" />
+    <state x="581" y="114" key="CommitChangelistDialog2" timestamp="1589708119235">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="581" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589698940246" />
+    <state x="581" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589708119235" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1589181502682">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -799,18 +808,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588573330636" />
-    <state x="655" y="252" width="607" height="536" key="find.popup" timestamp="1589701890340">
+    <state x="655" y="252" width="607" height="536" key="find.popup" timestamp="1589707944057">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="655" y="252" width="607" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589701890340" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1589685967944">
+    <state x="655" y="252" width="607" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589707944057" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1589709844349">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589685967944" />
-    <state x="150" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1589702639648">
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589709844349" />
+    <state x="150" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1589709742396">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="150" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589702639648" />
+    <state x="150" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589709742396" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

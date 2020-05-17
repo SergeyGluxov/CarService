@@ -50,6 +50,11 @@ class RolesController extends Controller
         //
     }
 
+    public function deleteRole(Request $request)
+    {
+        return $this->rolesService->deleteRole($request);
+    }
+
     public function destroy($id)
     {
         return $this->rolesService->destroy($id);

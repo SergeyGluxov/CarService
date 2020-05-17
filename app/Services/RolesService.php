@@ -29,6 +29,11 @@ class RolesService
         return $this->rolesRepository->storeUserRole($request);
     }
 
+    public function deleteRole(Request $request)
+    {
+        return $this->rolesRepository->deleteRole($request);
+    }
+
     public function destroy($id)
     {
         return $this->rolesRepository->destroy($id);
