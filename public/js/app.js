@@ -69764,6 +69764,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -69771,7 +69781,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form_name: '',
             form_email: '',
             form_password: '',
-            form_confirm_password: ''
+            form_confirm_password: '',
+            phone: ''
         };
     },
     mounted: function mounted() {},
@@ -69783,6 +69794,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('email', this.form_email);
             formData.append('password', this.form_password);
             formData.append('password_confirmation', this.form_confirm_password);
+            formData.append('phone', this.phone);
             axios.post('/auth/register', formData).then(function (response) {
                 window.location = "/home";
             });
@@ -69880,6 +69892,41 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-md-4 col-form-label text-md-right",
+                  attrs: { for: "phone" }
+                },
+                [_vm._v("Введите номер телефона:")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.phone,
+                      expression: "phone"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "phone", type: "text", name: "phone" },
+                  domProps: { value: _vm.phone },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.phone = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-md-4 col-form-label text-md-right",
                   attrs: { for: "password" }
                 },
                 [_vm._v("Пароль")]
@@ -69917,7 +69964,7 @@ var render = function() {
                   staticClass: "col-md-4 col-form-label text-md-right",
                   attrs: { for: "password-confirm" }
                 },
-                [_vm._v("Повторите пароль:")]
+                [_vm._v("Повторите\n                            пароль:")]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
@@ -69960,7 +70007,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                                    Зарегистрироваться\n                                "
+                      "\n                                Зарегистрироваться\n                            "
                     )
                   ]
                 )
@@ -72712,6 +72759,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -72719,7 +72795,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             employee: [],
-            showModal: false
+            users: [],
+            roles: [],
+            showModalNewEmployee: false,
+            selectedUserEmail: '',
+            selectedRole: ''
         };
     },
     mounted: function mounted() {
@@ -72732,6 +72812,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         update: function update() {
             this.getWorkers();
+            this.getAllUserEmail();
+            this.getRole();
         },
         getWorkers: function getWorkers() {
             var _this = this;
@@ -72741,15 +72823,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
             });
         },
-        deleteEmployee: function deleteEmployee(id) {
+        getAllUserEmail: function getAllUserEmail() {
             var _this2 = this;
 
+            axios.get('/api/users').then(function (response) {
+                _this2.users = response.data;
+                console.log(response.data);
+            });
+        },
+        getRole: function getRole() {
+            var _this3 = this;
+
+            axios.get('/api/roles').then(function (response) {
+                _this3.roles = response.data;
+                console.log(response.data);
+            });
+        },
+        deleteEmployee: function deleteEmployee(id) {
+            var _this4 = this;
+
             axios.delete('/api/roles/' + id).then(function (response) {
-                _this2.update();
+                _this4.update();
+            });
+        },
+        storeUserRole: function storeUserRole() {
+            var _this5 = this;
+
+            var formData = new FormData();
+            formData.append('user_id', this.selectedUserEmail);
+            formData.append('role_id', this.selectedRole);
+            axios.post('/api/roles/setUser', formData).then(function (response) {
+                _this5.update();
             });
         },
         convertDat: function convertDat(date) {
             return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).format('DD.MM.YYYY');
+        },
+        onChangeUserEmail: function onChangeUserEmail(e) {
+            this.selectedUserEmail = e.target.value;
+        },
+        onChangeRole: function onChangeRole(e) {
+            this.selectedRole = e.target.value;
         }
     }
 });
@@ -72775,11 +72889,16 @@ var render = function() {
               attrs: { id: "show-modal", type: "button" },
               on: {
                 click: function($event) {
-                  _vm.showModal = true
+                  _vm.showModalNewEmployee = true
                 }
               }
             },
-            [_vm._v("Добавить\n                ")]
+            [
+              _c("i", {
+                staticClass: "fa fa-plus",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "card-header" }),
@@ -72817,7 +72936,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("уволить")]
+                          [
+                            _vm._v(
+                              "\n                                    уволить\n                                "
+                            )
+                          ]
                         )
                       ])
                     ])
@@ -72830,52 +72953,182 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm.showModal
-        ? _c(
-            "div",
-            [
-              _c("transition", { attrs: { name: "modal" } }, [
-                _c("div", { staticClass: "modal-mask" }, [
-                  _c("div", { staticClass: "modal-wrapper" }, [
-                    _c("div", { staticClass: "modal-dialog" }, [
-                      _c("div", { staticClass: "modal-content" }, [
-                        _c("div", { staticClass: "modal-header" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "close",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.showModal = false
-                                }
-                              }
-                            },
-                            [
-                              _c("span", { attrs: { "aria-hidden": "true" } }, [
-                                _vm._v("×")
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("h4", { staticClass: "modal-title" }, [
-                            _vm._v("Modal title")
+      _vm.showModalNewEmployee
+        ? _c("div", [
+            _c(
+              "div",
+              {
+                staticClass: "modal fade-in",
+                staticStyle: { display: "block", "padding-right": "17px" }
+              },
+              [
+                _c("div", { staticClass: "modal-dialog" }, [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              _vm.showModalNewEmployee = false
+                            }
+                          }
+                        },
+                        [
+                          _c("span", { attrs: { "aria-hidden": "true" } }, [
+                            _vm._v("×")
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "modal-body" }, [
-                          _vm._v(
-                            "\n                                    modal body\n                                "
-                          )
-                        ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("h4", { staticClass: "modal-title" }, [
+                        _vm._v("Новый сотрудник")
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c(
+                        "form",
+                        {
+                          staticClass: "form-horizontal",
+                          attrs: { id: "newChedule" }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { staticClass: "control-label col-xs-3" },
+                              [_vm._v("Выберите e-mail пользователя:")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-xs-6" }, [
+                              _c(
+                                "select",
+                                {
+                                  staticClass: "form-control",
+                                  on: {
+                                    "!change": function($event) {
+                                      return _vm.onChangeUserEmail($event)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    {
+                                      attrs: {
+                                        value: "",
+                                        disabled: "",
+                                        selected: ""
+                                      }
+                                    },
+                                    [_vm._v("Выбрать...")]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.users, function(user) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: user.id,
+                                        domProps: { value: user.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(user.email) +
+                                            "\n                                            "
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { staticClass: "control-label col-xs-3" },
+                              [_vm._v("Выберите должность:")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-xs-6" }, [
+                              _c(
+                                "select",
+                                {
+                                  staticClass: "form-control",
+                                  on: {
+                                    "!change": function($event) {
+                                      return _vm.onChangeRole($event)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    {
+                                      attrs: {
+                                        value: "",
+                                        disabled: "",
+                                        selected: ""
+                                      }
+                                    },
+                                    [_vm._v("Выбрать...")]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.roles, function(role) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: role.id,
+                                        domProps: { value: role.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(role.name) +
+                                            "\n                                            "
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-xs-offset-3 col-xs-9" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "submit" },
+                                    on: { click: _vm.storeUserRole }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                            Добавить сотрудника\n                                        "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ]
+                      )
                     ])
                   ])
                 ])
-              ])
-            ],
-            1
-          )
+              ]
+            )
+          ])
         : _vm._e()
     ])
   ])

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Http\Resources\RolesResource;
 use App\Role;
+use App\UsersRoles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,6 +31,15 @@ class RolesRepository
         return response('Роль добавлена', 200);
     }
 
+    public function storeUserRole(Request $request)
+    {
+        $roleuser = new UsersRoles();
+        $roleuser->user_id = $request->get('user_id');
+        $roleuser->role_id = $request->get('role_id');
+        $roleuser->save();
+        return response('Создан новый сотрудник!', 200);
+    }
+
     public function find($id)
     {
         RolesResource::withoutWrapping();
@@ -39,6 +49,6 @@ class RolesRepository
     public function destroy($id)
     {
         DB::table('users_roles')->where('user_id', '=', $id)->delete();
-        return response('Пользователь удален!', 200);
+        return response('Сотрудник уволен!', 200);
     }
 }

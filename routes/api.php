@@ -25,7 +25,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/appointment', 'AppointmentController');
         Route::post('/admin/appointment/', 'AppointmentController@storeAdmin');
         Route::post('/admin/appointment/status', 'AppointmentController@changeStatusAdmin');
-        Route::get('/admin/appointment/getFreeTime', 'AppointmentController@getFreeTime');
+        Route::post('/admin/appointment/getFreeTime', 'AppointmentController@getFreeTime');
         Route::get('/admin/appointment/exportExcel', 'AppointmentController@excel');
     });
 
@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Api'], function () {
     //Должности
     Route::group(['namespace' => 'Roles'], function () {
         Route::resource('/roles', 'RolesController');
+        Route::post('/roles/setUser', 'RolesController@storeUserRole');
     });
 
     //Информация о СТО

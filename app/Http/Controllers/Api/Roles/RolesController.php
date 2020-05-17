@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 class RolesController extends Controller
 {
     protected $rolesService;
+
     public function __construct(RolesService $rolesService)
     {
-        $this->rolesService=$rolesService;
+        $this->rolesService = $rolesService;
     }
 
     public function index(Request $request)
@@ -27,6 +28,11 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         return $this->rolesService->store($request);
+    }
+
+    public function storeUserRole(Request $request)
+    {
+        return $this->rolesService->storeUserRole($request);
     }
 
     public function show($id)
