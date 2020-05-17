@@ -19,9 +19,6 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
 
     public function cars()
     {

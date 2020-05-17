@@ -46,6 +46,6 @@ class RolesController extends Controller
 
     public function destroy($id)
     {
-        //
+        return $this->rolesService->destroy($id);
     }
 }

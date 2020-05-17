@@ -20,6 +20,8 @@ Route::get('/admin', function () {
 Route::get('admin/users/', 'AdminController@getUsers');
 Route::get('admin/users/create', 'AdminController@createUser');
 Route::get('admin/users/delete', 'AdminController@deleteUser');
+//Сотрудники
+Route::get('admin/employee', 'AdminController@getEmployee');
 
 //Услуги
 Route::get('admin/services/', 'AdminController@getServices');
@@ -29,6 +31,16 @@ Route::get('admin/checkup_settings', 'AdminController@getCheckup');
 
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');
+
+//---------------------Экспорт и импорт-------------------------------------------------
+//Завявки
+Route::get('admin/users/export', 'AdminController@getExportUser');
+Route::post('admin/users/import', 'AdminController@importUsers');
+
+//Пользователи
+Route::get('admin/appointment/export', 'AdminController@getExport');
+Route::post('admin/appointment/import', 'AdminController@importAppointments');
+//--------------------------------------------------------------------------------------
 
 //Назначить сотрудника
 Route::get('admin/add_employee', 'AdminController@stroreEmployee');

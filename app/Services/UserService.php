@@ -24,6 +24,11 @@ class UserService
         return $this->userRepository->getWorkers();
     }
 
+    public function getWorkersFree(Request $request)
+    {
+        return $this->userRepository->getWorkersFree($request);
+    }
+
     public function find($id)
     {
         return $this->userRepository->find($id);

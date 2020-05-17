@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+export const bus = new Vue()
 
 /**Auth компоненты**/
 Vue.component('login-component', require('./components/auth/LoginComponent.vue'));
@@ -31,6 +31,7 @@ Vue.component('form-checkup-component', require('./components/service/FormChecku
 //-----------------------------------------ПОЛЬЗОВАТЕЛИ-----------------------------------------------------------------
 
 Vue.component('users-table-component', require('./components/admin/users/AllUserComponent.vue'));
+Vue.component('employee-table-component', require('./components/admin/employee/EmployeeTableComponent.vue'));
 
 //-----------------------------------------УСЛУГИ-----------------------------------------------------------------------
 Vue.component('services-table-component', require('./components/admin/services/AllServicesComponent.vue'));
@@ -43,6 +44,7 @@ Vue.component('delete-employee-component', require('./components/admin/DeleteEmp
 Vue.component('form-role-component', require('./components/admin/FormRoleComponent.vue'));
 Vue.component('delete-role-component', require('./components/admin/DeleteRoleComponent.vue'));
 Vue.component('search-master-component', require('./components/admin/SearchMasterComponent.vue'));
+Vue.component('free-workers-component', require('./components/admin/FreeWorkersComponent.vue'));
 
 /**Компоненты работы с /admin/oauth_settings**/
 Vue.component('passport-clients', require('./components/passport/Clients.vue'));

@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Appointment;
+use App\Exports\AppointmentsExport;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -75,6 +79,42 @@ class AdminController extends Controller
     public function getCheckup()
     {
         return view('admin_layouts/checkup_settings');
+    }
+
+    public function getEmployee()
+    {
+        return view('admin_layouts/employee/all');
+    }
+
+    //---------------------------Экспорт----------------------------------------------
+
+    public function getExportUser()
+    {
+        return Excel::download(new UsersExport, 'Пользователи.xlsx');
+    }
+
+    public function getExport()
+    {
+        return Excel::download(new AppointmentsExport, 'Заявки.xlsx');
+    }
+
+    //---------------------------Импорт----------------------------------------------
+    public function importUsers(Request $request)
+    {
+        $path1 = $request->file('excelUploadUsers')->store('/');
+        $file = storage_path('app') . '/' . $path1;
+
+        Excel::import(new UsersImport, $file);
+        return back();
+    }
+
+    public function importAppointments(Request $request)
+    {
+        $path1 = $request->file('excelUpload')->store('/');
+        $file = storage_path('app') . '/' . $path1;
+
+        Excel::import(new App\Imports\AppointmentsImport, $file);
+        return back();
     }
 
     public function index()

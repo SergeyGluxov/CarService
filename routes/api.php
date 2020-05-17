@@ -10,13 +10,23 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'User'], function () {
         Route::resource('/users', 'UserController');
         Route::get('/workers', 'UserController@getWorkers');
+        Route::post('/workersFree', 'UserController@getWorkersFree');
         Route::get('/users/paginate', 'PaginateController');
     });
+
+    //Автомобили
+    Route::group(['namespace' => 'Car'], function () {
+        Route::resource('/cars', 'CarsController');
+        Route::post('/cars/findByModel', 'CarsController@findByMark');
+    });
+
     //Записи
     Route::group(['namespace' => 'Appointment'], function () {
         Route::resource('/appointment', 'AppointmentController');
         Route::post('/admin/appointment/', 'AppointmentController@storeAdmin');
         Route::post('/admin/appointment/status', 'AppointmentController@changeStatusAdmin');
+        Route::get('/admin/appointment/getFreeTime', 'AppointmentController@getFreeTime');
+        Route::get('/admin/appointment/exportExcel', 'AppointmentController@excel');
     });
 
     //График

@@ -20,4 +20,8 @@ class RolesService
     {
         return $this->rolesRepository->store($request);
     }
+    public function destroy($id)
+    {
+        return $this->rolesRepository->destroy($id);
+    }
 }

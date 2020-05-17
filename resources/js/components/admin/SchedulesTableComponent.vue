@@ -16,24 +16,23 @@
                                 <th>Исполнитель</th>
                                 <th>Должность</th>
                                 <th>Статус</th>
+                                <th>Дата назначения</th>
+                                <th>Дата окончания работ</th>
                                 <th>Изменить статус</th>
-                                <th>Последнее изменение</th>
-                                <!--TODO: Отображать не ID, а название-->
-                                <th>Автомобиль</th>
-                                <th>Действие</th>
                             </tr>
                             </thead>
-                            <tbody v-for="col in schedules">
+                            <tbody v-for="(col,index) in schedules">
                             <tr>
                                 <td><a @click="showAlert(col.id)">Заявка #{{col.appointment.id}}</a></td>
                                 <td>{{col.user.name}}</td>
                                 <td>{{col.user.role[0].name}}</td>
                                 <td>{{col.appointment.status}}</td>
+                                <td>{{convertDat(col.created_at.date)}}</td>
+                                <td>{{getFinishTime(index)}}</td>
                                 <td>
-                                    <button v-on:click="changeStatus(col.appointment.id)">-</button>
+                                    <div type="button" class="btn btn-warning" v-on:click="changeStatus(col.appointment.id)">
+                                        <i class="fas fa-angle-up "  aria-hidden="true"></i></div>
                                 </td>
-                                <td>{{col.updated_at.date}}</td>
-                                <td>{{col.cars_id}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -64,11 +63,11 @@
                                     </tr>
                                     <tr>
                                         <td>Автомобиль</td>
-                                        <td>{{schedule.appointment.user.cars[0].brand+" "+schedule.appointment.user.cars[0].model}}</td>
+                                        <td>{{schedule.appointment.user.cars.brand+" "+schedule.appointment.user.cars.model}}</td>
                                     </tr>
                                     <tr>
                                         <td>Гос. номер</td>
-                                        <td>{{schedule.appointment.user.cars[0].state_number}}</td>
+                                        <td>{{schedule.appointment.user.cars.state_number}}</td>
                                     </tr>
                                     <tr>
                                         <td>Исполнитель</td>
@@ -94,7 +93,8 @@
                                         <td>Описание работы</td>
                                         <td>{{schedule.appointment.description}}</td>
                                     </tr>
-                                    </tbody></table>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -105,6 +105,8 @@
 </template>
 
 <script>
+    import moment from "moment";
+
     export default {
         data: function () {
             return {
@@ -126,8 +128,8 @@
         methods: {
 
             update: function () {
-                this.getSchedules();
                 this.getWorkers();
+                this.getSchedules();
             },
 
             //--------------------Получить все назначения----------------------------------
@@ -170,6 +172,10 @@
                     this.update();
                 });
             },
+            getFinishTime: function (index) {
+                return moment(this.schedules[index].created_at.date)
+                    .add(this.schedules[index].appointment.service.duration, "minutes").format('YYYY-MM-DD HH:ss')
+            },
             //--------------------Получить всех сотрудников----------------------------------
             getWorkers: function () {
                 axios.get('/api/workers').then((response) => {
@@ -194,7 +200,10 @@
             showAlert(id) {
                 this.showModalShedules = true;
                 this.getSchedule(id);
-            }
+            },
+            convertDat: function (date) {
+                return moment(date).format('YYYY-MM-DD HH:ss')
+            },
         }
     }
 </script>

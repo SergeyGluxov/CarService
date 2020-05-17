@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Car;
 use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,7 +19,7 @@ class UserResource extends JsonResource
             'updated_at' => $this->updated_at,
             'updated_at' => $this->updated_at,
             'role' => User::where('id', $this->id)->firstOrFail()->roles()->where('user_id', $this->id)->get(),
-            'cars' => $request->user()->cars()->where('id', $this->cars_id)->get(),
+            'cars' => Car::where('id', $this->cars_id)->firstOrFail()
         ];
     }
 }

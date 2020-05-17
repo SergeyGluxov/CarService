@@ -41,6 +41,12 @@ class AppointmentController extends Controller
         return $this->appointments->changeStatusAdmin($request);
     }
 
+    //Изменить статус заявки
+    public function getFreeTime(Request $request)
+    {
+        return $this->appointments->getFreeTime($request);
+    }
+
     //Показать подробности клиента
     public function show($id)
     {
@@ -51,6 +57,12 @@ class AppointmentController extends Controller
     public function destroy($id)
     {
         return $this->appointments->destroy($id);
+    }
+
+    //Экспорт в excel
+    public function excel()
+    {
+        return $this->appointments->excel();
     }
 
     public function create()

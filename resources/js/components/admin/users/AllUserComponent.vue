@@ -3,8 +3,20 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+                <h2>Все пользователи</h2>
                 <div class="card">
-                    <button id="show-modal" @click="showModal = true">Show Modal</button>
+
+                    <form class="form-inline" method="GET" action="/admin/users/export">
+                        <button id="show-modal" type="button" class="btn btn-success" @click="showModal = true"><i
+                            class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <button id="show-modal-import" type="button" class="btn btn-info"
+                                @click="showModalImport = true">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                        </button>
+                        <button type="submit" class="btn btn-info"><i class="fa fa-download" aria-hidden="true"></i>
+                        </button>
+                    </form>
 
                     <div class="card-header">
                     </div>
@@ -20,7 +32,7 @@
                                 <!--TODO: Отображать не ID, а название-->
                                 <th>Автомобиль</th>
                                 <th>Гос. номер</th>
-                                <th>Действие</th>
+                                <th>Удаление</th>
                             </tr>
                             </thead>
                             <tbody v-for="col in users">
@@ -28,13 +40,12 @@
                                 <td>{{col.name}}</td>
                                 <td>{{col.phone}}</td>
                                 <td>{{col.email}}</td>
-                                <td>{{col.created_at.date}}</td>
-                                <td v-for="car in col.cars">{{car.brand+" "+car.model}}</td>
-                                <td v-for="car in col.cars">{{car.state_number}}</td>
-                                <td v-if="col.cars.length===0">Нет</td>
-                                <td v-if="col.cars.length===0">Нет</td>
+                                <td>{{convertDat(col.created_at.date)}}</td>
+                                <td>{{col.cars.brand+" "+col.cars.model}}</td>
+                                <td>{{col.cars.state_number}}</td>
                                 <td>
-                                    <button v-on:click="deleteUser(col.id)">-</button>
+                                    <div type="button" class="btn btn-danger" v-on:click="deleteUser(col.id)">
+                                        <i class="fas fa-times " aria-hidden="true"></i></div>
                                 </td>
                             </tr>
                             </tbody>
@@ -46,36 +57,138 @@
             </div>
 
             <div v-if="showModal">
-                <transition name="modal">
-                    <div class="modal-mask">
-                        <div class="modal-wrapper">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" @click="showModal=false">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <h4 class="modal-title">Modal title</h4>
+                <div class="modal fade-in" style="display: block;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" @click="showModal=false">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">Новая пользователь</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="createName">Введите имя:</label>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" v-model="createName"
+                                                   id="createName"
+                                                   placeholder="Иванов Иван Иванович"/>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        modal body
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="createName">Введите номер
+                                            телефона:</label>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" v-model="createPhone"
+                                                   id="createPhone"
+                                                   placeholder="+79505728020"/>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="createEmail">Введите
+                                            эл.почту:</label>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" v-model="createEmail"
+                                                   id="createEmail"
+                                                   placeholder="ivanov.ii@gmail.com"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="createPassword">Введите
+                                            пароль:</label>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" v-model="createPassword"
+                                                   id="createPassword"
+                                                   placeholder="*****"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="createMarkCar">Марка и модель
+                                            авто:</label>
+                                        <div class="col-xs-4">
+                                            <input type="text" class="form-control" v-model="createMarkCar"
+                                                   id="createMarkCar"
+                                                   placeholder="Nissan"/>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="text" class="form-control" v-model="createModelCar"
+                                                   id="createModelCar"
+                                                   placeholder="Patrol"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="createGosNumberCar">Введите гос.
+                                            номер:</label>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" v-model="createGosNumberCar"
+                                                   id="createGosNumberCar"
+                                                   placeholder="X001A142"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-6 col-xs-9">
+                                            <button type="button" @click="store" class="btn btn-success">Создать
+                                                пользователя
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </transition>
+                </div>
+            </div>
+        </div>
+        <div v-if="showModalImport">
+            <div class="modal fade-in" style="display: block; padding-right: 17px;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" @click="showModalImport=false">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Импорт пользователей из Excel</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" method="POST" enctype="multipart/form-data"
+                                  action="/admin/users/import">
+                                <input type="file" id="excelUploadUsers" name="excelUploadUsers">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Импорт из файла</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import moment from "moment";
+
     export default {
         data: function () {
             return {
                 users: [],
-                showModal: false
+                showModal: false,
+                //UserData
+                createName: '',
+                createEmail: '',
+                createPassword: '',
+                createPhone: '',
+                createCarsId: '',
+
+                //CarsData
+                createMarkCar: '',
+                createModelCar: '',
+                createGosNumberCar: '',
+                car: 1,
+
+                showModalImport: false,
             }
         },
         mounted() {
@@ -97,6 +210,49 @@
                     this.update();
                     console.log(response.data);
                 });
+            },
+            store: function () {
+                this.storeCar();
+
+            },
+
+            storeCar: function () {
+                const formData = new FormData();
+                formData.append('brand', this.createMarkCar);
+                formData.append('model', this.createModelCar);
+                formData.append('state_number', this.createGosNumberCar);
+                formData.append('type_car_id', '1');
+                axios.post('/api/cars', formData).then((response) => {
+                    const modelData = new FormData();
+                    modelData.append('model', this.createModelCar);
+                    axios.post('/api/cars/findByModel', modelData).then((response) => {
+                        const formData = new FormData();
+                        formData.append('name', this.createName);
+                        formData.append('email', this.createEmail);
+                        formData.append('phone', this.createPhone);
+                        formData.append('password', this.createPassword);
+                        formData.append('password_confirmation', this.createPassword);
+                        formData.append('cars_id', response.data.id);
+                        axios.post('/api/users', formData).then((response) => {
+                            this.update();
+                            console.log(response.data);
+                        });
+                    });
+
+
+                });
+            },
+
+            findIdCar: function () {
+                axios.get('/api/cars/' + 1).then((response) => {
+                    this.car = response.data.id;
+                    console.log(response.data.id);
+                });
+                return this.car;
+            },
+
+            convertDat: function (date) {
+                return moment(date).format('DD.MM.YYYY')
             }
         }
     }

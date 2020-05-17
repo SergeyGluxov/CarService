@@ -2,8 +2,17 @@
     <div class="container">
         <div class="row">
             <h2>Заявки пользователей</h2>
-            <button id="show-modal" type="button" class="btn btn-success" @click="showModal = true">Создать заявку
-            </button>
+
+            <form class="form-inline" method="GET" action="/admin/appointment/export">
+                <button id="show-modal" type="button" class="btn btn-success" @click="showModal = true"><i
+                    class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+                <button id="show-modal-import" type="button" class="btn btn-info" @click="showModalImport = true">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                </button>
+                <button type="submit" class="btn btn-info"><i class="fa fa-download" aria-hidden="true"></i></button>
+            </form>
+
             <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -13,9 +22,6 @@
                     <th>Тип услуги</th>
                     <th>Наименование услуги</th>
                     <th>Описание</th>
-                    <!--
-                                        <th>Изменить статус</th>
-                    -->
                     <th>Удаление</th>
                     <!--TODO: Отображать не ID, а название-->
                 </tr>
@@ -24,7 +30,7 @@
                 <tr v-if="col.status ==='Новая'" style="background: rgba(0,166,90,0.49)"
                     v-on:click="getModalSchedule(col.id)">
                     <td>{{col.status}}</td>
-                    <td>{{col.created_at.date}}</td>
+                    <td>{{convertDat(col.created_at.date)}}</td>
                     <td>{{col.user.name}}</td>
                     <td>{{col.type_service}}</td>
                     <td>{{col.service.title}}</td>
@@ -33,12 +39,13 @@
                            <button v-on:click="changeStatus(col.id)">-</button>
                        </td>-->
                     <td>
-                        <button v-on:click="removeAppoint(col.id)">-</button>
+                        <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
+                            <i class="fas fa-times " aria-hidden="true"></i></div>
                     </td>
                 </tr>
                 <tr v-if="col.status ==='В работе'" style="background: rgba(166,161,0,0.53)">
                     <td>{{col.status}}</td>
-                    <td>{{col.created_at.date}}</td>
+                    <td>{{convertDat(col.created_at.date)}}</td>
                     <td>{{col.user.name}}</td>
                     <td>{{col.type_service}}</td>
                     <td>{{col.service.title}}</td>
@@ -47,12 +54,13 @@
                     </td>-->
                     <td>{{col.description}}</td>
                     <td>
-                        <button v-on:click="removeAppoint(col.id)">-</button>
+                        <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
+                            <i class="fas fa-times " aria-hidden="true"></i></div>
                     </td>
                 </tr>
                 <tr v-if="col.status ==='Выполнена'" style="background: rgba(166,14,0,0.6)">
                     <td>{{col.status}}</td>
-                    <td>{{col.created_at.date}}</td>
+                    <td>{{convertDat(col.created_at.date)}}</td>
                     <td>{{col.user.name}}</td>
                     <td>{{col.type_service}}</td>
                     <td>{{col.service.title}}</td>
@@ -61,7 +69,8 @@
                          <button v-on:click="changeStatus(col.id)">-</button>
                      </td>-->
                     <td>
-                        <button v-on:click="removeAppoint(col.id)">-</button>
+                        <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
+                            <i class="fas fa-times " aria-hidden="true"></i></div>
                     </td>
                 </tr>
                 </tbody>
@@ -130,18 +139,18 @@
                                 <div class="form-group">
                                     <label class="control-label col-xs-3" for="date">Дата и время:</label>
                                     <div class="col-xs-4">
-                                        <select id="date" class="form-control">
+                                        <select id="date" class="form-control" @change.capture="onChangeDay($event)">
                                             <option value="" disabled selected>Выбрать дату...</option>
-                                            <option v-for="dat in freeDate" :value="dat"
-                                                    :key="dat">{{dat}}
+                                            <option v-for="dat in freeDate" :value="dat.day"
+                                                    :key="dat.day">{{dat.printValue}}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="col-xs-4">
-                                        <select id="time" class="form-control">
+                                        <select id="time" class="form-control" @change.capture="onChangeTime($event)">
                                             <option value="" disabled selected>Выбрать время...</option>
-                                            <option v-for="dat in freeDate" :value="dat"
-                                                    :key="dat">{{dat}}
+                                            <option v-for="time in freeTime" :value="time.time"
+                                                    :key="time.time">{{time.time}}
                                             </option>
                                         </select>
                                     </div>
@@ -200,12 +209,35 @@
                 </div>
             </div>
         </div>
+        <div v-if="showModalImport">
+            <div class="modal fade-in" style="display: block; padding-right: 17px;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" @click="showModalImport=false">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Новое назначение</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" method="POST" enctype="multipart/form-data"
+                                  action="/admin/appointment/import">
+                                <input type="file" id="excelUpload" name="excelUpload">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Импорт из файла</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import vPagination from 'vue-plain-pagination'
     import moment from 'moment'
+    import 'moment/locale/ru'
 
     export default {
         components: {vPagination},
@@ -218,14 +250,18 @@
                 selectedUser: '',
                 selectedService: '',
                 selectedWorker: '',
+                selectedDay: '',
+                selectedTime: '',
                 type_service: [
                     {index: '1', category: 'Осмотр'},
                     {index: '2', category: 'Ремонт'},
                     {index: '3', category: 'Топливная система'},
                 ],
                 services: [],
+                freeTime: [],
                 showModal: false,
                 showModalShedules: false,
+                showModalImport: false,
                 currentPage: 1,
                 bootstrapPaginationClasses: {
                     ul: 'pagination',
@@ -293,11 +329,17 @@
 
             //----------------------Сохранить заявку----------------------------------
             store: function () {
+                let formDate = moment(this.selectedDay).format('YYYY-MM-DD');
+                console.log(this.selectedTime);
+                let dd = formDate + " " + this.selectedTime;
+                let formTime = moment(new Date(dd)).format('YYYY-MM-DD HH:mm:ss');
+                console.log(formTime);
                 const formData = new FormData();
                 formData.append('user_id', this.selectedUser);
                 formData.append('service_id', this.selectedService);
                 formData.append('type_service', this.selectedType);
                 formData.append('description', this.discriptionInput);
+                formData.append('created_at', formTime);
                 axios.post('/api/admin/appointment', formData).then((response) => {
                     this.appoint = response.data;
                     console.log(response.data);
@@ -340,7 +382,7 @@
                 });
             },
 
-            //Создание нового назначения
+            //------------------Создание нового назначения----------------------------------
             storeSchedule: function () {
                 this.changeStatus(this.currentSelectAppointments);
                 const dataNewChedule = new FormData();
@@ -369,11 +411,44 @@
             onChangeWorkers(e) {
                 this.selectedWorker = e.target.value;
             },
+            onChangeDay(e) {
+                this.selectedDay = e.target.value;
+                console.log(this.selectedDay);
+                this.getFreeTime(this.selectedDay);
+            },
+            onChangeTime(e) {
+                this.selectedTime = e.target.value;
+            },
+
+            //------------------Работа с датами----------------------------------
+
             getFreeDate: function () {
-                for (let i = 0; i <= 7; i++){
-                    this.freeDate.push(moment().add(i,'days').format('LL'));
+                for (let i = 0; i <= 7; i++) {
+                    let dayData = {
+                        //Y-m-d H:i:s
+                        day: moment().add(i, 'days').locale('ru').format('YYYY-MM-DD HH:mm:ss'),
+                        printValue: moment().add(i, 'days').format('LL')
+                    };
+                    this.freeDate.push(dayData);
                 }
                 console.log(this.freeDate);
+            },
+
+            getFreeTime: function (reqDate) {
+                const formData = new FormData();
+                formData.append('request_date', reqDate);
+                axios.post('/api/admin/appointment/getFreeTime', formData).then((response) => {
+                    this.freeTime = response.data;
+                });
+                console.log(this.freeTime);
+            },
+
+            exportExcel: function () {
+                axios.get('/admin/appointment/export');
+            },
+
+            convertDat: function (date) {
+                return moment(date).format('YYYY-MM-DD HH:ss')
             }
         }
     }

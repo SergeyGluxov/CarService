@@ -140,26 +140,9 @@ return [
 
         'ЗАЯВКИ',
         [
-            'text' => 'Список заявок',
+            'text' => 'Заявки',
             'url' => 'admin/checkup_settings',
             'icon' => 'search',
-        ],
-        [
-            'text' => 'Управление заявками',
-            'url' => 'admin/users_settings',
-            'icon' => 'user',
-            'submenu' => [
-                [
-                    'text' => 'Добавить',
-                    'url' => 'admin/add_employee',
-                    'icon_color' => 'green'
-                ],
-                [
-                    'text' => 'Удалить',
-                    'url' => 'admin/remove_employee',
-                    'icon_color' => 'red'
-                ]
-            ],
         ],
         'ПОИСК',
         [
@@ -171,6 +154,12 @@ return [
         [
             'text' => 'Расписание работ',
             'url' => 'admin/schedules',
+            'icon' => 'car',
+        ],
+        'СОТРУДНИКИ',
+        [
+            'text' => 'Сотрудники',
+            'url' => 'admin/employee',
             'icon' => 'car',
         ],
         'КОНТИНГЕНТ',

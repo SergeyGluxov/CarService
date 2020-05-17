@@ -4,16 +4,14 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey>&lang=sru_RU" type="text/javascript">
     </script>
-
-    <script src="{{ asset('js/app.js') }}" type="text/javascript" defer>
+    <script src="{{ asset('js/app.js') }}"  type="text/javascript" defer>
 
     </script>
 @endsection
 @section('content')
-    <div id="app">
-        <div class="container">
-            <search-master-component></search-master-component>
-            <free-workers-component></free-workers-component>
+    <section class="content">
+        <div id="app">
+            <employee-table-component/>
         </div>
-    </div>
+    </section>
 @endsection
