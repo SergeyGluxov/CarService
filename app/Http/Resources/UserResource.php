@@ -18,8 +18,7 @@ class UserResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'updated_at' => $this->updated_at,
-            'role' => User::where('id', $this->id)->firstOrFail()->roles()->where('user_id', $this->id)->get(),
-            'cars' => Car::where('id', $this->cars_id)->firstOrFail()
+            'role' => User::where('id', $this->id)->firstOrFail()->roles()->where('user_id', $this->id)->get()
         ];
     }
 }

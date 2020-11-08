@@ -41,8 +41,6 @@
                                 <td>{{col.phone}}</td>
                                 <td>{{col.email}}</td>
                                 <td>{{convertDat(col.created_at.date)}}</td>
-                                <td>{{col.cars.brand+" "+col.cars.model}}</td>
-                                <td>{{col.cars.state_number}}</td>
                                 <td>
                                     <div type="button" class="btn btn-danger" v-on:click="deleteUser(col.id)">
                                         <i class="fas fa-times " aria-hidden="true"></i></div>
@@ -180,13 +178,9 @@
                 createEmail: '',
                 createPassword: '',
                 createPhone: '',
-                createCarsId: '',
-
-                //CarsData
                 createMarkCar: '',
                 createModelCar: '',
                 createGosNumberCar: '',
-                car: 1,
 
                 showModalImport: false,
             }
@@ -211,46 +205,6 @@
                     console.log(response.data);
                 });
             },
-            store: function () {
-                this.storeCar();
-
-            },
-
-            storeCar: function () {
-                const formData = new FormData();
-                formData.append('brand', this.createMarkCar);
-                formData.append('model', this.createModelCar);
-                formData.append('state_number', this.createGosNumberCar);
-                formData.append('type_car_id', '1');
-                axios.post('/api/cars', formData).then((response) => {
-                    const modelData = new FormData();
-                    modelData.append('model', this.createModelCar);
-                    axios.post('/api/cars/findByModel', modelData).then((response) => {
-                        const formData = new FormData();
-                        formData.append('name', this.createName);
-                        formData.append('email', this.createEmail);
-                        formData.append('phone', this.createPhone);
-                        formData.append('password', this.createPassword);
-                        formData.append('password_confirmation', this.createPassword);
-                        formData.append('cars_id', response.data.id);
-                        axios.post('/api/users', formData).then((response) => {
-                            this.update();
-                            console.log(response.data);
-                        });
-                    });
-
-
-                });
-            },
-
-            findIdCar: function () {
-                axios.get('/api/cars/' + 1).then((response) => {
-                    this.car = response.data.id;
-                    console.log(response.data.id);
-                });
-                return this.car;
-            },
-
             convertDat: function (date) {
                 return moment(date).format('DD.MM.YYYY')
             }

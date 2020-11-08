@@ -63,10 +63,6 @@
                                         <td>{{schedule.appointment.user.name}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Автомобиль</td>
-                                        <td>{{schedule.appointment.user.cars.brand+" "+schedule.appointment.user.cars.model}}</td>
-                                    </tr>
-                                    <tr>
                                         <td>Гос. номер</td>
                                         <td>{{schedule.appointment.user.cars.state_number}}</td>
                                     </tr>

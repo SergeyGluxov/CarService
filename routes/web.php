@@ -73,3 +73,7 @@ Route::get('/redirect', 'Api\AuthController@redirect');
 Route::get('/callback', 'Api\AuthController@callback');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -22,8 +22,7 @@ class UsersImport implements ToModel
         $user->remember_token = $row[5];
         $user->created_at = $row[6];
         $user->updated_at = $row[7];
-        $user->cars_id = $row[8];
-        $user->phone = $row[9];
+        $user->phone = $row[8];
         $user->save();
     }
 }
