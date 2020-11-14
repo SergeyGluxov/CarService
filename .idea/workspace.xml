@@ -28,44 +28,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="add">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/proj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proj.iml" afterDir="false" />
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Продолжаем заниматься хуйней))">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Lessons/Sections/SectionController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/SectionResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/SectionRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Section.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/SectionService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Car/CarsController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CarController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CarsResource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Imports/UsersImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/UsersImport.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_08_190434_create_cars_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_20_003248_add_foreing_cars_to_users.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_12_123504_create_appointment_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_03_152621_create_sto_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_03_020119_create_services_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_03_021311_create_type_car_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_03_022605_create_schedules_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_04_160214_add_typeservice_to_service.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_05_053926_add_status_appointment.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_05_085916_add_phone_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_05_085916_add_phone_users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/SchedulesTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/SchedulesTableComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/users/AllUserComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/users/AllUserComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +237,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Resources" />
     <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../../../Program Files/nodejs/node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Perforce" />
@@ -275,19 +245,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app" />
-      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Controllers\Api\Car" />
-      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Resources" />
-      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\js\components\admin\employee" />
-      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\views\admin_layouts\employee" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Controllers\Api\Services" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\views\admin_layouts\users" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\js\components\admin\users" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\js\components\admin" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Controllers\Api\Schedules" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\business\app\Http\Resources" />
+      <recent name="C:\OpenServer\domains\business\app\Repositories" />
+      <recent name="C:\OpenServer\domains\business\app\Services" />
+      <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lessons\Sections" />
+      <recent name="C:\OpenServer\domains\business\app" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -501,7 +471,8 @@
       <workItem from="1604850614275" duration="957000" />
       <workItem from="1604851675156" duration="82000" />
       <workItem from="1604851805853" duration="93000" />
-      <workItem from="1604852995689" duration="1076000" />
+      <workItem from="1604852995689" duration="2507000" />
+      <workItem from="1605344551996" duration="472000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -713,7 +684,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589702829174</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Продолжаем заниматься хуйней))">
+      <created>1604854291289</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1604854291289</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView">
@@ -755,7 +733,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Наполнил страницу home" />
     <MESSAGE value="Добавил adminLTE" />
     <MESSAGE value="Страница настройки пользователей" />
     <MESSAGE value="Добавил пункты в меню админки" />
@@ -780,7 +757,8 @@
     <MESSAGE value="10.05.2020" />
     <MESSAGE value="17.05.2020" />
     <MESSAGE value="added set user role" />
-    <option name="LAST_COMMIT_MESSAGE" value="added set user role" />
+    <MESSAGE value="Продолжаем заниматься хуйней))" />
+    <option name="LAST_COMMIT_MESSAGE" value="Продолжаем заниматься хуйней))" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599921500630">
@@ -791,6 +769,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1220" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599921351098" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604854297300">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604854297300" />
     <state x="676" y="161" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1599921626473">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -803,10 +785,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="252" width="607" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604853837622" />
-    <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1604853912266">
+    <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1604855441540">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604853912266" />
+    <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604855441540" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

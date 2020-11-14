@@ -45,5 +45,13 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/services', 'ServiceController');
         Route::post('/services/findByType', 'ServiceController@findByType');
     });
+
+
+    //Обучение
+    Route::group(['namespace' => 'Lessons'], function () {
+        Route::group(['namespace' => 'Sections'], function () {
+            Route::resource('/lessons/sections', 'SectionController');
+        });
+    });
 });
 
