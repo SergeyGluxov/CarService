@@ -48,9 +48,12 @@ Route::group(['namespace' => 'Api'], function () {
 
 
     //Обучение
-    Route::group(['namespace' => 'Lessons'], function () {
+    Route::group(['namespace' => 'Lean'], function () {
         Route::group(['namespace' => 'Sections'], function () {
-            Route::resource('/lessons/sections', 'SectionController');
+            Route::resource('/lean/sections', 'SectionController');
+        });
+        Route::group(['namespace' => 'Lessons'], function () {
+            Route::resource('/lean/lessons', 'LessonController');
         });
     });
 });

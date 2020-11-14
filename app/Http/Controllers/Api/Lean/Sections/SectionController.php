@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Api\Lessons\Sections;
+namespace App\Http\Controllers\Api\Lean\Sections;
 
 
 use App\Http\Controllers\Controller;
