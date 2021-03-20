@@ -13,12 +13,10 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'phone' => $this->phone,
             'email' => $this->email,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'updated_at' => $this->updated_at,
-            'role' => User::where('id', $this->id)->firstOrFail()->roles()->where('user_id', $this->id)->get()
         ];
     }
 }

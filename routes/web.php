@@ -68,6 +68,17 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/news', 'NewsController');
     });
 });
+
+//todo: Сделать нормальное API
+Route::group(['namespace' => 'Api'], function () {
+    Route::group(['namespace' => 'Channels'], function () {
+        Route::resource('/channels', 'ChannelController');
+    });
+    Route::group(['namespace' => 'Sources'], function () {
+        Route::resource('/sources', 'SourceController');
+    });
+});
+
 //Эти маршруты для авторизации стороних приложений через carservice
 Route::get('/redirect', 'Api\AuthController@redirect');
 Route::get('/callback', 'Api\AuthController@callback');

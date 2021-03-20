@@ -8,4 +8,6 @@
 
 @section('content')
     <p>You are logged in!</p>
+    <form-checkup-component></form-checkup-component>
+
 @stop

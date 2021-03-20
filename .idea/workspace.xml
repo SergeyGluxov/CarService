@@ -25,21 +25,40 @@
         <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:develop" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлены секции для уроков">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Lean/Lessons/LessonController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/LessonResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Lesson.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/LessonRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/LessonService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_08_165643_create_section_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_14_161422_create_lesson_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Sources/SourceController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ChannelResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/SourcesResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/SourceRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/ChannelService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/SourcesService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Source.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/proj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proj.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Lessons/Sections/SectionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Lean/Sections/SectionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_26_205138_create_tokens_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_26_205138_create_tokens_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Lesson.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Channel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/LessonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/LessonRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_21_104520_create_news_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_sources_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_05_085916_add_phone_users.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_08_165643_create_section_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_071825_create_channel_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_14_161422_create_lesson_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -225,6 +244,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
     </include_path>
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="127.0.0.1" port="9123" />
@@ -241,27 +261,27 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Resources" />
-    <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../../../Program Files/nodejs/node" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Api/Sources" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Perforce" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3.4\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\OpenServer\domains\business\app\Http\Resources" />
-      <recent name="C:\OpenServer\domains\business\app" />
-      <recent name="C:\OpenServer\domains\business\app\Repositories" />
-      <recent name="C:\OpenServer\domains\business\app\Services" />
-      <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean\Lessons" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean" />
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Controllers\Api\Services" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\views\admin_layouts\users" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\js\components\admin\users" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\Sources" />
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
+      <recent name="C:\OpenServer\domains\CarService\app\Repositories" />
+      <recent name="C:\OpenServer\domains\CarService\app\Services" />
+      <recent name="C:\OpenServer\domains\CarService\app" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -310,7 +330,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="StructuralSearchPlugin">
     <searchConfiguration name="user defined" created="1561939404451" text="web&#10;" recursive="true" caseInsensitive="true" type="PHP" scope_type="PROJECT" scope_descriptor="" history="1">
       <constraint name="__context__" within="" contains="" />
@@ -477,6 +497,8 @@
       <workItem from="1604851805853" duration="93000" />
       <workItem from="1604852995689" duration="2507000" />
       <workItem from="1605344551996" duration="2703000" />
+      <workItem from="1616050882007" duration="7983000" />
+      <workItem from="1616142241353" duration="8761000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -715,14 +737,26 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -772,34 +806,34 @@
     <option name="LAST_COMMIT_MESSAGE" value="Добавлены секции для уроков" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599921500630">
+    <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616054480820">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599921500630" />
-    <state x="1220" y="275" key="FileChooserDialogImpl" timestamp="1599921351098">
+    <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616054480820" />
+    <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616054727991">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1220" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599921351098" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605370282445">
+    <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616054727991" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1616152544786">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605370282445" />
-    <state x="676" y="161" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1599921626473">
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152544786" />
+    <state x="799" y="217" key="VCS.ChangeListViewerDialog" timestamp="1616152542368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="676" y="161" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599921626473" />
-    <state x="183" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1604851806416">
+    <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152542368" />
+    <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1616050961570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="183" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604851806416" />
-    <state x="656" y="252" width="607" height="564" key="find.popup" timestamp="1605372404747">
+    <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616050961570" />
+    <state x="194" y="126" width="585" height="795" key="find.popup" timestamp="1616166513696">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="252" width="607" height="564" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605372404747" />
-    <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1605372231970">
+    <state x="194" y="126" width="585" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616166513696" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616154300968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605372231970" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616154300968" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
