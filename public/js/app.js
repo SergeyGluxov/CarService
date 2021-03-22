@@ -73555,9 +73555,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             channel: {},
             channels: [],
+            categories: [],
             users: [],
             discriptionInput: '',
-            selectedType: '',
+            selectedCategory: '',
             selectedLang: '',
             titleChannel: '',
             titleModal: '',
@@ -73595,6 +73596,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         update: function update() {
             this.getAllTvChannels();
+            this.getCategories();
         },
 
         //----------------------Управление телеканалами-------------------------------------------------------------
@@ -73614,6 +73616,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var formData = new FormData();
             formData.append('title', this.titleChannel);
             formData.append('lang', this.selectedLang);
+            formData.append('category_id', this.selectedCategory);
             formData.append('logo', this.logoChannel);
             axios.post('/channels', formData).then(function (response) {
                 _this2.appoint = response.data;
@@ -73626,14 +73629,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         updateChannel: function updateChannel() {
             var _this3 = this;
 
-            var formData = new FormData();
-            formData.append('title', this.titleChannel);
-            formData.append('lang', this.selectedLang);
-            formData.append('logo', this.logoChannel);
             axios.put('/channels/' + this.channel.id, {
                 title: this.titleChannel,
                 lang: this.selectedLang,
-                logo: this.logoChannel
+                logo: this.logoChannel,
+                category_id: this.selectedCategory
             }).then(function (response) {
                 console.log(response.data);
                 _this3.showModal = false;
@@ -73666,6 +73666,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //----------------------------------------------------------------------------------------------------------
 
+        //------------------------------------Категории-------------------------------------------------------------
+        getCategories: function getCategories() {
+            var _this6 = this;
+
+            axios.get('/categories').then(function (response) {
+                _this6.categories = response.data;
+                console.log(response.data);
+            });
+        },
 
         //------------------Модальное окно----------------------------------
         closeOrOpenModal: function closeOrOpenModal() {
@@ -73683,7 +73692,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //----------------------------------События-----------------------------------------------------------------
         onChangeType: function onChangeType(e) {
-            this.selectedType = e.target.value;
+            this.selectedCategory = e.target.value;
         },
         onChangeLang: function onChangeLang(e) {
             this.selectedLang = e.target.value;
@@ -73826,7 +73835,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Category")]
+                  [_vm._v(_vm._s(col.category.title))]
                 ),
                 _vm._v(" "),
                 _c(
@@ -73989,16 +73998,16 @@ var render = function() {
                                 [_vm._v("Выбрать...")]
                               ),
                               _vm._v(" "),
-                              _vm._l(_vm.categoryChannel, function(type) {
+                              _vm._l(_vm.categories, function(category) {
                                 return _c(
                                   "option",
                                   {
-                                    key: type.category,
-                                    domProps: { value: type.category }
+                                    key: category.title,
+                                    domProps: { value: category.id }
                                   },
                                   [
                                     _vm._v(
-                                      _vm._s(type.category) +
+                                      _vm._s(category.title) +
                                         "\n                                        "
                                     )
                                   ]

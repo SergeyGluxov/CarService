@@ -10,4 +10,9 @@ class Channel extends Model
     {
         return $this->hasMany(Source::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

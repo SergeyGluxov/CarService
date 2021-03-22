@@ -33,6 +33,7 @@ class ChannelRepository
         $channelItem->title = $request->get('title');
         $channelItem->logo = $request->get('logo');
         $channelItem->lang = $request->get('lang');
+        $channelItem->category_id = $request->get('category_id');
         $channelItem->save();
         return response('Телеканал успешно добавлен', 200);
     }
@@ -43,6 +44,7 @@ class ChannelRepository
         $channelUpdate->title = $request->get('title');
         $channelUpdate->logo = $request->get('logo');
         $channelUpdate->lang = $request->get('lang');
+        $channelUpdate->category_id = $request->get('category_id');
         $channelUpdate->save();
         return response('Телеканал обновлен', 200);
     }

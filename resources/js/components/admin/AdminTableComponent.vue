@@ -29,7 +29,7 @@
                 <tr>
                     <td @click="clickChangeChannels(col.id)">{{col.id}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.title}}</td>
-                    <td @click="clickChangeChannels(col.id)">Category</td>
+                    <td @click="clickChangeChannels(col.id)">{{col.category.title}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.lang}}</td>
                     <td><a v-bind:href="'{col.logo}'" target="_blank">Ссылка на лого</a></td>
                     <td @click="clickChangeChannels(col.id)"><a>Список источников</a></td>
@@ -66,8 +66,8 @@
                                     <div class="col-xs-9">
                                         <select @change.capture="onChangeType($event)" class="form-control">
                                             <option value="" disabled selected>Выбрать...</option>
-                                            <option v-for="type in categoryChannel" :value="type.category"
-                                                    :key="type.category">{{type.category}}
+                                            <option v-for="category in categories" :value="category.id"
+                                                    :key="category.title">{{category.title}}
                                             </option>
                                         </select>
                                     </div>
@@ -126,9 +126,10 @@
             return {
                 channel: {},
                 channels: [],
+                categories: [],
                 users: [],
                 discriptionInput: '',
-                selectedType: '',
+                selectedCategory: '',
                 selectedLang: '',
                 titleChannel: '',
                 titleModal: '',
@@ -175,6 +176,7 @@
         methods: {
             update: function () {
                 this.getAllTvChannels();
+                this.getCategories();
             },
 
             //----------------------Управление телеканалами-------------------------------------------------------------
@@ -190,6 +192,7 @@
                 const formData = new FormData();
                 formData.append('title', this.titleChannel);
                 formData.append('lang', this.selectedLang);
+                formData.append('category_id', this.selectedCategory);
                 formData.append('logo', this.logoChannel);
                 axios.post('/channels', formData).then((response) => {
                     this.appoint = response.data;
@@ -200,15 +203,12 @@
             },
 
             updateChannel: function () {
-                const formData = new FormData();
-                formData.append('title', this.titleChannel);
-                formData.append('lang', this.selectedLang);
-                formData.append('logo', this.logoChannel);
                 axios.put('/channels/' + this.channel.id,
                     {
                         title:this.titleChannel,
                         lang:this.selectedLang,
-                        logo:this.logoChannel
+                        logo:this.logoChannel,
+                        category_id:this.selectedCategory
                     }).then((response) => {
                     console.log(response.data);
                     this.showModal = false;
@@ -236,6 +236,13 @@
 
             //----------------------------------------------------------------------------------------------------------
 
+            //------------------------------------Категории-------------------------------------------------------------
+            getCategories: function () {
+                axios.get('/categories').then((response) => {
+                    this.categories = response.data;
+                    console.log(response.data);
+                });
+            },
 
             //------------------Модальное окно----------------------------------
             closeOrOpenModal: function () {
@@ -254,7 +261,7 @@
 
             //----------------------------------События-----------------------------------------------------------------
             onChangeType(e) {
-                this.selectedType = e.target.value;
+                this.selectedCategory = e.target.value;
             },
 
 

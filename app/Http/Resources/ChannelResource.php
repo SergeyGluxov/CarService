@@ -11,6 +11,7 @@ class ChannelResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'category' => new CategoryResource($this->category('category_id')->firstOrFail()),
             'title' => $this->title,
             'logo' => $this->logo,
             'lang' => $this->lang,
