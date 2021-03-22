@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'CarService Admin',
+    'title' => 'VagonTV Admin',
 
     'title_prefix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>CarService [ADMIN]</b>',
+    'logo' => '<b>VagonTV [ADMIN]</b>',
 
     'logo_mini' => '<b>A</b>DM',
 
@@ -97,6 +97,14 @@ return [
 
 
     'menu' => [
+
+        'ТЕЛЕКАНАЛЫ',
+        [
+            'text' => 'Телеканалы',
+            'url' => 'admin/checkup_settings',
+            'icon' => 'search',
+        ],
+
         'ПОЛЬЗОВАТЕЛИ',
         [
             'text' => 'Blog',
@@ -116,23 +124,18 @@ return [
                     'text' => 'Клиенты',
                     'url' => 'admin/oauth_clients',
                 ],
-                [
+           /*     [
                     'text' => 'Level One',
                     'url' => '#',
                 ],
                 [
                     'text' => 'Level One',
                     'url' => '#',
-                ],
+                ],*/
             ],
         ],
 
-        'ЗАЯВКИ',
-        [
-            'text' => 'Заявки',
-            'url' => 'admin/checkup_settings',
-            'icon' => 'search',
-        ],
+        /*
         'ПОИСК',
         [
             'text' => 'Найти свободных мастеров',
@@ -162,7 +165,7 @@ return [
             'text' => 'Список услуг',
             'url' => 'admin/services/',
             'icon' => 'search',
-        ]
+        ]*/
     ],
 
 

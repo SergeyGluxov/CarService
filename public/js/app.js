@@ -49527,7 +49527,7 @@ if (token) {
      * // Use the `sourceURL` option to specify a custom sourceURL for the template.
      * var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
      * compiled(data);
-     * // => Find the source of "greeting.jst" under the Source tab or Resources panel of the web inspector.
+     * // => Find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector.
      *
      * // Use the `variable` option to ensure a with-statement isn't used in the compiled template.
      * var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
@@ -71640,22 +71640,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -71669,13 +71653,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             createEmail: '',
             createPassword: '',
             createPhone: '',
-            createCarsId: '',
-
-            //CarsData
             createMarkCar: '',
             createModelCar: '',
             createGosNumberCar: '',
-            car: 1,
 
             showModalImport: false
         };
@@ -71705,47 +71685,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
             });
         },
-        store: function store() {
-            this.storeCar();
-        },
-
-        storeCar: function storeCar() {
-            var _this3 = this;
-
-            var formData = new FormData();
-            formData.append('brand', this.createMarkCar);
-            formData.append('model', this.createModelCar);
-            formData.append('state_number', this.createGosNumberCar);
-            formData.append('type_car_id', '1');
-            axios.post('/api/cars', formData).then(function (response) {
-                var modelData = new FormData();
-                modelData.append('model', _this3.createModelCar);
-                axios.post('/api/cars/findByModel', modelData).then(function (response) {
-                    var formData = new FormData();
-                    formData.append('name', _this3.createName);
-                    formData.append('email', _this3.createEmail);
-                    formData.append('phone', _this3.createPhone);
-                    formData.append('password', _this3.createPassword);
-                    formData.append('password_confirmation', _this3.createPassword);
-                    formData.append('cars_id', response.data.id);
-                    axios.post('/api/users', formData).then(function (response) {
-                        _this3.update();
-                        console.log(response.data);
-                    });
-                });
-            });
-        },
-
-        findIdCar: function findIdCar() {
-            var _this4 = this;
-
-            axios.get('/api/cars/' + 1).then(function (response) {
-                _this4.car = response.data.id;
-                console.log(response.data.id);
-            });
-            return this.car;
-        },
-
         convertDat: function convertDat(date) {
             return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).format('DD.MM.YYYY');
         }
@@ -72052,55 +71991,6 @@ var render = function() {
         _c("h2", [_vm._v("Все пользователи")]),
         _vm._v(" "),
         _c("div", { staticClass: "card" }, [
-          _c(
-            "form",
-            {
-              staticClass: "form-inline",
-              attrs: { method: "GET", action: "/admin/users/export" }
-            },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success",
-                  attrs: { id: "show-modal", type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.showModal = true
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-plus",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-info",
-                  attrs: { id: "show-modal-import", type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.showModalImport = true
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-upload",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(0)
-            ]
-          ),
-          _vm._v(" "),
           _c("div", { staticClass: "card-header" }),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
@@ -72111,7 +72001,7 @@ var render = function() {
                 attrs: { id: "example2" }
               },
               [
-                _vm._m(1),
+                _vm._m(0),
                 _vm._v(" "),
                 _vm._l(_vm.users, function(col) {
                   return _c("tbody", [
@@ -72125,12 +72015,6 @@ var render = function() {
                       _c("td", [
                         _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
                       ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(col.cars.brand + " " + col.cars.model))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.cars.state_number))]),
                       _vm._v(" "),
                       _c("td", [
                         _c(
@@ -72547,7 +72431,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(1)
                 ])
               ])
             ]
@@ -72561,21 +72445,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-info", attrs: { type: "submit" } },
-      [
-        _c("i", {
-          staticClass: "fa fa-download",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Имя")]),
@@ -72585,10 +72454,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Эл. почта")]),
         _vm._v(" "),
         _c("th", [_vm._v("Дата регистрации")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Автомобиль")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Гос. номер")]),
         _vm._v(" "),
         _c("th", [_vm._v("Удаление")])
       ])
@@ -73545,7 +73410,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.table {\n    border-collapse: collapse;\n    border-spacing: 0;\n    cursor: pointer;\n    width: 100%;\n}\n.table th, .table td {\n    border: 1px solid #888;\n    padding: 10px;\n    text-align: center;\n    vertical-align: middle;\n    position: relative;\n}\n.table tr:hover td {\n    background: #6d6b52;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.table {\n    border-collapse: collapse;\n    border-spacing: 0;\n    cursor: pointer;\n    width: 100%;\n}\n.table th, .table td {\n    border: 1px solid #888;\n    padding: 10px;\n    text-align: center;\n    vertical-align: middle;\n    position: relative;\n}\n\n\n", ""]);
 
 // exports
 
@@ -73562,78 +73427,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_locale_ru__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_locale_ru___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment_locale_ru__);
-var _methods;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -73811,16 +73604,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     components: { vPagination: __WEBPACK_IMPORTED_MODULE_0_vue_plain_pagination___default.a },
     data: function data() {
         return {
-            appoint: [],
+            channels: [],
             users: [],
             discriptionInput: '',
             selectedType: '',
+            selectedLang: '',
+            titleChannel: '',
             selectedUser: '',
             selectedService: '',
             selectedWorker: '',
             selectedDay: '',
             selectedTime: '',
-            type_service: [{ index: '1', category: 'Осмотр' }, { index: '2', category: 'Ремонт' }, { index: '3', category: 'Топливная система' }],
+            //todo Сделать загрузку категорий из API
+            categoryChannel: [{ index: '1', category: 'Фильмы' }, { index: '2', category: 'Развлекательные' }, { index: '3', category: 'Новости' }, { index: '3', category: 'Спорт' }],
+            langChannels: [{ index: '1', lang: 'RU' }, { index: '2', lang: 'KZ' }, { index: '3', lang: 'UA' }, { index: '3', lang: 'AZ' }],
             services: [],
             freeTime: [],
             showModal: false,
@@ -73850,19 +73647,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.update();
     },
 
-    methods: (_methods = {
+    methods: {
         //--------------------Получить все заявки----------------------------------
         update: function update() {
             this.getAppointments();
-            this.getUsers();
-            this.getFreeDate();
         },
 
         getAppointments: function getAppointments() {
             var _this = this;
 
-            axios.get('/api/appointment').then(function (response) {
-                _this.appoint = response.data;
+            axios.get('/channels').then(function (response) {
+                _this.channels = response.data;
                 console.log(response.data);
             });
         },
@@ -73876,119 +73671,150 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this2.users = response.data;
                 console.log(response.data);
             });
+        },
+        //--------------------Получить всех пользователей--------------------------
+
+
+        //--------------------Удалить заявку---------------------------------------
+        removeAppoint: function removeAppoint(id) {
+            var _this3 = this;
+
+            axios.delete('/channels/' + id).then(function (response) {
+                _this3.update();
+                console.log(response.data);
+            });
+        },
+
+        //----------------------Сохранить заявку----------------------------------
+
+        store: function store() {
+            var _this4 = this;
+
+            var formData = new FormData();
+            formData.append('title', this.titleChannel);
+            formData.append('lang', this.selectedLang);
+            formData.append('logo', this.logo);
+            axios.post('/channels', formData).then(function (response) {
+                _this4.appoint = response.data;
+                console.log(response.data);
+                _this4.update();
+            });
+        },
+
+        //------------------Изменить статус заявки----------------------------------
+        changeStatus: function changeStatus(id) {
+            var _this5 = this;
+
+            var formData = new FormData();
+            formData.append('id', id);
+            axios.post('/api/admin/appointment/status', formData).then(function (response) {
+                _this5.update();
+            });
+        },
+
+        //Зассетить данные в селектор услуг
+        updateSelectService: function updateSelectService(type) {
+            var _this6 = this;
+
+            var formData = new FormData();
+            formData.append('type', type);
+            axios.post('/api/services/findByType', formData).then(function (response) {
+                console.log(response);
+                console.log(response.data);
+                _this6.services = response.data;
+            });
+        },
+
+        //------------------Создание нового назначения----------------------------------
+        //Заполнить информацию в модальное окно
+        getModalSchedule: function getModalSchedule(id) {
+            this.currentSelectAppointments = '';
+            this.currentSelectAppointments = id;
+            this.showModalShedules = true;
+            this.getWorkers();
+        },
+
+
+        getWorkers: function getWorkers() {
+            var _this7 = this;
+
+            axios.get('/api/workers').then(function (response) {
+                _this7.workers = response.data;
+                console.log(response.data);
+            });
+        },
+
+        //------------------Создание нового назначения----------------------------------
+        storeSchedule: function storeSchedule() {
+            this.changeStatus(this.currentSelectAppointments);
+            var dataNewChedule = new FormData();
+            dataNewChedule.append('user_id', this.selectedWorker);
+            dataNewChedule.append('appointment_id', this.currentSelectAppointments);
+            axios.post('/api/admin/schedules', dataNewChedule).then(function (response) {
+                console.log(response.data);
+            }).catch(function (error) {
+                alert(error.response.status);
+            });
+        },
+
+        onChangeType: function onChangeType(e) {
+            this.selectedType = e.target.value;
+        },
+        onChangeLang: function onChangeLang(e) {
+            this.selectedLang = e.target.value;
+        },
+        onChangeUser: function onChangeUser(e) {
+            this.selectedUser = e.target.value;
+        },
+        onChangeServices: function onChangeServices(e) {
+            this.selectedService = e.target.value;
+        },
+        onChangeWorkers: function onChangeWorkers(e) {
+            this.selectedWorker = e.target.value;
+        },
+        onChangeDay: function onChangeDay(e) {
+            this.selectedDay = e.target.value;
+            console.log(this.selectedDay);
+            this.getFreeTime(this.selectedDay);
+        },
+        onChangeTime: function onChangeTime(e) {
+            this.selectedTime = e.target.value;
+        },
+
+
+        //------------------Работа с датами----------------------------------
+
+        getFreeDate: function getFreeDate() {
+            for (var i = 0; i <= 7; i++) {
+                var dayData = {
+                    //Y-m-d H:i:s
+                    day: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').locale('ru').format('YYYY-MM-DD HH:mm:ss'),
+                    printValue: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').format('LL')
+                };
+                this.freeDate.push(dayData);
+            }
+            console.log(this.freeDate);
+        },
+
+        getFreeTime: function getFreeTime(reqDate) {
+            var _this8 = this;
+
+            var formData = new FormData();
+            formData.append('request_date', reqDate);
+            axios.post('/api/admin/appointment/getFreeTime', formData).then(function (response) {
+                _this8.freeTime = response.data;
+            });
+            console.log(this.freeTime);
+        },
+
+        exportExcel: function exportExcel() {
+            axios.get('/admin/appointment/export');
+        },
+
+        convertDat: function convertDat(date) {
+            return __WEBPACK_IMPORTED_MODULE_1_moment___default()(date).format('YYYY-MM-DD HH:ss');
         }
-    }, _defineProperty(_methods, 'getAppointments', function getAppointments() {
-        var _this3 = this;
-
-        axios.get('/api/appointment').then(function (response) {
-            _this3.appoint = response.data;
-            console.log(response.data);
-        });
-    }), _defineProperty(_methods, 'removeAppoint', function removeAppoint(id) {
-        var _this4 = this;
-
-        axios.delete('/api/appointment/' + id).then(function (response) {
-            _this4.users = response.data;
-            _this4.update();
-            console.log(response.data);
-        });
-    }), _defineProperty(_methods, 'store', function store() {
-        var _this5 = this;
-
-        var formDate = __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.selectedDay).format('YYYY-MM-DD');
-        console.log(this.selectedTime);
-        var dd = formDate + " " + this.selectedTime;
-        var formTime = __WEBPACK_IMPORTED_MODULE_1_moment___default()(new Date(dd)).format('YYYY-MM-DD HH:mm:ss');
-        console.log(formTime);
-        var formData = new FormData();
-        formData.append('user_id', this.selectedUser);
-        formData.append('service_id', this.selectedService);
-        formData.append('type_service', this.selectedType);
-        formData.append('description', this.discriptionInput);
-        formData.append('created_at', formTime);
-        axios.post('/api/admin/appointment', formData).then(function (response) {
-            _this5.appoint = response.data;
-            console.log(response.data);
-        });
-    }), _defineProperty(_methods, 'changeStatus', function changeStatus(id) {
-        var _this6 = this;
-
-        var formData = new FormData();
-        formData.append('id', id);
-        axios.post('/api/admin/appointment/status', formData).then(function (response) {
-            _this6.update();
-        });
-    }), _defineProperty(_methods, 'updateSelectService', function updateSelectService(type) {
-        var _this7 = this;
-
-        var formData = new FormData();
-        formData.append('type', type);
-        axios.post('/api/services/findByType', formData).then(function (response) {
-            console.log(response);
-            console.log(response.data);
-            _this7.services = response.data;
-        });
-    }), _defineProperty(_methods, 'getModalSchedule', function getModalSchedule(id) {
-        this.currentSelectAppointments = '';
-        this.currentSelectAppointments = id;
-        this.showModalShedules = true;
-        this.getWorkers();
-    }), _defineProperty(_methods, 'getWorkers', function getWorkers() {
-        var _this8 = this;
-
-        axios.get('/api/workers').then(function (response) {
-            _this8.workers = response.data;
-            console.log(response.data);
-        });
-    }), _defineProperty(_methods, 'storeSchedule', function storeSchedule() {
-        this.changeStatus(this.currentSelectAppointments);
-        var dataNewChedule = new FormData();
-        dataNewChedule.append('user_id', this.selectedWorker);
-        dataNewChedule.append('appointment_id', this.currentSelectAppointments);
-        axios.post('/api/admin/schedules', dataNewChedule).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            alert(error.response.status);
-        });
-    }), _defineProperty(_methods, 'onChangeType', function onChangeType(e) {
-        this.selectedType = e.target.value;
-        this.updateSelectService(e.target.value);
-    }), _defineProperty(_methods, 'onChangeUser', function onChangeUser(e) {
-        this.selectedUser = e.target.value;
-    }), _defineProperty(_methods, 'onChangeServices', function onChangeServices(e) {
-        this.selectedService = e.target.value;
-    }), _defineProperty(_methods, 'onChangeWorkers', function onChangeWorkers(e) {
-        this.selectedWorker = e.target.value;
-    }), _defineProperty(_methods, 'onChangeDay', function onChangeDay(e) {
-        this.selectedDay = e.target.value;
-        console.log(this.selectedDay);
-        this.getFreeTime(this.selectedDay);
-    }), _defineProperty(_methods, 'onChangeTime', function onChangeTime(e) {
-        this.selectedTime = e.target.value;
-    }), _defineProperty(_methods, 'getFreeDate', function getFreeDate() {
-        for (var i = 0; i <= 7; i++) {
-            var dayData = {
-                //Y-m-d H:i:s
-                day: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').locale('ru').format('YYYY-MM-DD HH:mm:ss'),
-                printValue: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').format('LL')
-            };
-            this.freeDate.push(dayData);
-        }
-        console.log(this.freeDate);
-    }), _defineProperty(_methods, 'getFreeTime', function getFreeTime(reqDate) {
-        var _this9 = this;
-
-        var formData = new FormData();
-        formData.append('request_date', reqDate);
-        axios.post('/api/admin/appointment/getFreeTime', formData).then(function (response) {
-            _this9.freeTime = response.data;
-        });
-        console.log(this.freeTime);
-    }), _defineProperty(_methods, 'exportExcel', function exportExcel() {
-        axios.get('/admin/appointment/export');
-    }), _defineProperty(_methods, 'convertDat', function convertDat(date) {
-        return __WEBPACK_IMPORTED_MODULE_1_moment___default()(date).format('YYYY-MM-DD HH:ss');
-    }), _methods)
+    }
 });
 
 /***/ }),
@@ -74001,7 +73827,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _c("h2", [_vm._v("Заявки пользователей")]),
+      _c("h2", [_vm._v("Управление телеканалами")]),
       _vm._v(" "),
       _c(
         "form",
@@ -74061,143 +73887,42 @@ var render = function() {
         [
           _vm._m(1),
           _vm._v(" "),
-          _vm._l(_vm.appoint, function(col) {
+          _vm._l(_vm.channels, function(col) {
             return _c("tbody", [
-              col.status === "Новая"
-                ? _c(
-                    "tr",
+              _c("tr", [
+                _c("td", [_vm._v(_vm._s(col.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(col.title))]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Category")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(col.lang))]),
+                _vm._v(" "),
+                _vm._m(2, true),
+                _vm._v(" "),
+                _c("td"),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "div",
                     {
-                      staticStyle: { background: "rgba(0,166,90,0.49)" },
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
                       on: {
                         click: function($event) {
-                          return _vm.getModalSchedule(col.id)
+                          return _vm.removeAppoint(col.id)
                         }
                       }
                     },
                     [
-                      _c("td", [_vm._v(_vm._s(col.status))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.user.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.type_service))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.service.title))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.description))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.removeAppoint(col.id)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fas fa-times ",
-                              attrs: { "aria-hidden": "true" }
-                            })
-                          ]
-                        )
-                      ])
+                      _c("i", {
+                        staticClass: "fas fa-times ",
+                        attrs: { "aria-hidden": "true" }
+                      })
                     ]
                   )
-                : _vm._e(),
-              _vm._v(" "),
-              col.status === "В работе"
-                ? _c(
-                    "tr",
-                    { staticStyle: { background: "rgba(166,161,0,0.53)" } },
-                    [
-                      _c("td", [_vm._v(_vm._s(col.status))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.user.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.type_service))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.service.title))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.description))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.removeAppoint(col.id)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fas fa-times ",
-                              attrs: { "aria-hidden": "true" }
-                            })
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              col.status === "Выполнена"
-                ? _c(
-                    "tr",
-                    { staticStyle: { background: "rgba(166,14,0,0.6)" } },
-                    [
-                      _c("td", [_vm._v(_vm._s(col.status))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.user.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.type_service))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.service.title))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.description))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.removeAppoint(col.id)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fas fa-times ",
-                              attrs: { "aria-hidden": "true" }
-                            })
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                : _vm._e()
+                ])
+              ])
             ])
           })
         ],
@@ -74233,7 +73958,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("h4", { staticClass: "modal-title" }, [
-                      _vm._v("Новая заявка")
+                      _vm._v("Добавление телеканала")
                     ])
                   ]),
                   _vm._v(" "),
@@ -74241,59 +73966,41 @@ var render = function() {
                     _c("form", { staticClass: "form-horizontal" }, [
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", { staticClass: "control-label col-xs-3" }, [
-                          _vm._v("Выберите пользователя:")
+                          _vm._v("Название:")
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-xs-6" }, [
-                          _c(
-                            "select",
-                            {
-                              staticClass: "form-control",
-                              on: {
-                                "!change": function($event) {
-                                  return _vm.onChangeUser($event)
-                                }
+                        _c("div", { staticClass: "col-xs-9" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.titleChannel,
+                                expression: "titleChannel"
                               }
-                            },
-                            [
-                              _c(
-                                "option",
-                                {
-                                  attrs: {
-                                    value: "",
-                                    disabled: "",
-                                    selected: ""
-                                  }
-                                },
-                                [_vm._v("Выбрать...")]
-                              ),
-                              _vm._v(" "),
-                              _vm._l(_vm.users, function(user) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: user.id,
-                                    domProps: { value: user.id }
-                                  },
-                                  [
-                                    _vm._v(
-                                      _vm._s(user.name) +
-                                        "\n                                        "
-                                    )
-                                  ]
-                                )
-                              })
                             ],
-                            2
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(2)
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "title",
+                              placeholder: "СТС/ТНТ/Россия 1"
+                            },
+                            domProps: { value: _vm.titleChannel },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.titleChannel = $event.target.value
+                              }
+                            }
+                          })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", { staticClass: "control-label col-xs-3" }, [
-                          _vm._v("Выберите тип заявки:")
+                          _vm._v("Категория:")
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-xs-9" }, [
@@ -74320,7 +74027,7 @@ var render = function() {
                                 [_vm._v("Выбрать...")]
                               ),
                               _vm._v(" "),
-                              _vm._l(_vm.type_service, function(type) {
+                              _vm._l(_vm.categoryChannel, function(type) {
                                 return _c(
                                   "option",
                                   {
@@ -74343,41 +74050,17 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", { staticClass: "control-label col-xs-3" }, [
-                          _vm._v(
-                            "Выберите\n                                    услугу:"
-                          )
+                          _vm._v("Язык:")
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-xs-9" }, [
                           _c(
                             "select",
                             {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.selectedService,
-                                  expression: "selectedService"
-                                }
-                              ],
                               staticClass: "form-control",
                               on: {
                                 "!change": function($event) {
-                                  return _vm.onChangeServices($event)
-                                },
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.selectedService = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
+                                  return _vm.onChangeLang($event)
                                 }
                               }
                             },
@@ -74394,16 +74077,16 @@ var render = function() {
                                 [_vm._v("Выбрать...")]
                               ),
                               _vm._v(" "),
-                              _vm._l(_vm.services, function(service) {
+                              _vm._l(_vm.langChannels, function(type) {
                                 return _c(
                                   "option",
                                   {
-                                    key: service.id,
-                                    domProps: { value: service.id }
+                                    key: type.lang,
+                                    domProps: { value: type.lang }
                                   },
                                   [
                                     _vm._v(
-                                      _vm._s(service.title) +
+                                      _vm._s(type.lang) +
                                         "\n                                        "
                                     )
                                   ]
@@ -74415,145 +74098,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "control-label col-xs-3",
-                            attrs: { for: "discription" }
-                          },
-                          [_vm._v("Описание:")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-xs-9" }, [
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.discriptionInput,
-                                expression: "discriptionInput"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              rows: "3",
-                              id: "discription",
-                              placeholder: "Введите описание"
-                            },
-                            domProps: { value: _vm.discriptionInput },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.discriptionInput = $event.target.value
-                              }
-                            }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "control-label col-xs-3",
-                            attrs: { for: "date" }
-                          },
-                          [_vm._v("Дата и время:")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-xs-4" }, [
-                          _c(
-                            "select",
-                            {
-                              staticClass: "form-control",
-                              attrs: { id: "date" },
-                              on: {
-                                "!change": function($event) {
-                                  return _vm.onChangeDay($event)
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "option",
-                                {
-                                  attrs: {
-                                    value: "",
-                                    disabled: "",
-                                    selected: ""
-                                  }
-                                },
-                                [_vm._v("Выбрать дату...")]
-                              ),
-                              _vm._v(" "),
-                              _vm._l(_vm.freeDate, function(dat) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: dat.day,
-                                    domProps: { value: dat.day }
-                                  },
-                                  [
-                                    _vm._v(
-                                      _vm._s(dat.printValue) +
-                                        "\n                                        "
-                                    )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-xs-4" }, [
-                          _c(
-                            "select",
-                            {
-                              staticClass: "form-control",
-                              attrs: { id: "time" },
-                              on: {
-                                "!change": function($event) {
-                                  return _vm.onChangeTime($event)
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "option",
-                                {
-                                  attrs: {
-                                    value: "",
-                                    disabled: "",
-                                    selected: ""
-                                  }
-                                },
-                                [_vm._v("Выбрать время...")]
-                              ),
-                              _vm._v(" "),
-                              _vm._l(_vm.freeTime, function(time) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: time.time,
-                                    domProps: { value: time.time }
-                                  },
-                                  [
-                                    _vm._v(
-                                      _vm._s(time.time) +
-                                        "\n                                        "
-                                    )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          )
-                        ])
-                      ]),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
                         _c("div", { staticClass: "col-xs-offset-6 col-xs-9" }, [
@@ -74566,7 +74111,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "Создать\n                                        заявку\n                                    "
+                                "\n                                        Добавить телеканал\n                                    "
                               )
                             ]
                           )
@@ -74675,7 +74220,7 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _vm._m(3)
+                          _vm._m(4)
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
@@ -74744,7 +74289,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _vm._m(5)
                 ])
               ])
             ]
@@ -74775,19 +74320,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Статус")]),
+        _c("th", [_vm._v("ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Дата")]),
+        _c("th", [_vm._v("Наименование")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Имя пользователя")]),
+        _c("th", [_vm._v("Категория")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Тип услуги")]),
+        _c("th", [_vm._v("Язык")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Наименование услуги")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Описание")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Удаление")])
+        _c("th", [_vm._v("Список источников")])
       ])
     ])
   },
@@ -74795,12 +74336,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-3" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primery", attrs: { type: "submit" } },
-        [_vm._v("Создать нового\n                                    ")]
-      )
+    return _c("td", [_c("a", [_vm._v("Список источников")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "control-label col-xs-3" }, [_vm._v("Лого:")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xs-9" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "logo",
+            placeholder: "http://logo.ru/logo.png"
+          }
+        })
+      ])
     ])
   },
   function() {
@@ -74955,10 +74509,6 @@ exports.push([module.i, "\na {\n    cursor: pointer;\n}\n", ""]);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-//
-//
-//
-//
 //
 //
 //
@@ -75301,20 +74851,6 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(_vm._s(_vm.schedule.appointment.user.name))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [_vm._v("Автомобиль")]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.schedule.appointment.user.cars.brand +
-                                    " " +
-                                    _vm.schedule.appointment.user.cars.model
-                                )
-                              )
                             ])
                           ]),
                           _vm._v(" "),

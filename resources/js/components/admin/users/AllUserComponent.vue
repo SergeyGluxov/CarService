@@ -6,17 +6,6 @@
                 <h2>Все пользователи</h2>
                 <div class="card">
 
-                    <form class="form-inline" method="GET" action="/admin/users/export">
-                        <button id="show-modal" type="button" class="btn btn-success" @click="showModal = true"><i
-                            class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <button id="show-modal-import" type="button" class="btn btn-info"
-                                @click="showModalImport = true">
-                            <i class="fa fa-upload" aria-hidden="true"></i>
-                        </button>
-                        <button type="submit" class="btn btn-info"><i class="fa fa-download" aria-hidden="true"></i>
-                        </button>
-                    </form>
 
                     <div class="card-header">
                     </div>
@@ -29,9 +18,6 @@
                                 <th>Телефон</th>
                                 <th>Эл. почта</th>
                                 <th>Дата регистрации</th>
-                                <!--TODO: Отображать не ID, а название-->
-                                <th>Автомобиль</th>
-                                <th>Гос. номер</th>
                                 <th>Удаление</th>
                             </tr>
                             </thead>

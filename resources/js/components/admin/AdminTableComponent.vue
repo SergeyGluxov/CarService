@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <h2>Заявки пользователей</h2>
+            <h2>Управление телеканалами</h2>
 
             <form class="form-inline" method="GET" action="/admin/appointment/export">
                 <button id="show-modal" type="button" class="btn btn-success" @click="showModal = true"><i
@@ -16,58 +16,22 @@
             <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th>Статус</th>
-                    <th>Дата</th>
-                    <th>Имя пользователя</th>
-                    <th>Тип услуги</th>
-                    <th>Наименование услуги</th>
-                    <th>Описание</th>
-                    <th>Удаление</th>
+                    <th>ID</th>
+                    <th>Наименование</th>
+                    <th>Категория</th>
+                    <th>Язык</th>
+                    <th>Список источников</th>
                     <!--TODO: Отображать не ID, а название-->
                 </tr>
                 </thead>
-                <tbody v-for="col in appoint">
-                <tr v-if="col.status ==='Новая'" style="background: rgba(0,166,90,0.49)"
-                    v-on:click="getModalSchedule(col.id)">
-                    <td>{{col.status}}</td>
-                    <td>{{convertDat(col.created_at.date)}}</td>
-                    <td>{{col.user.name}}</td>
-                    <td>{{col.type_service}}</td>
-                    <td>{{col.service.title}}</td>
-                    <td>{{col.description}}</td>
-                    <!--   <td>
-                           <button v-on:click="changeStatus(col.id)">-</button>
-                       </td>-->
-                    <td>
-                        <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
-                            <i class="fas fa-times " aria-hidden="true"></i></div>
-                    </td>
-                </tr>
-                <tr v-if="col.status ==='В работе'" style="background: rgba(166,161,0,0.53)">
-                    <td>{{col.status}}</td>
-                    <td>{{convertDat(col.created_at.date)}}</td>
-                    <td>{{col.user.name}}</td>
-                    <td>{{col.type_service}}</td>
-                    <td>{{col.service.title}}</td>
-                    <!--<td>
-                        <button v-on:click="changeStatus(col.id)">-</button>
-                    </td>-->
-                    <td>{{col.description}}</td>
-                    <td>
-                        <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
-                            <i class="fas fa-times " aria-hidden="true"></i></div>
-                    </td>
-                </tr>
-                <tr v-if="col.status ==='Выполнена'" style="background: rgba(166,14,0,0.6)">
-                    <td>{{col.status}}</td>
-                    <td>{{convertDat(col.created_at.date)}}</td>
-                    <td>{{col.user.name}}</td>
-                    <td>{{col.type_service}}</td>
-                    <td>{{col.service.title}}</td>
-                    <td>{{col.description}}</td>
-                    <!-- <td>
-                         <button v-on:click="changeStatus(col.id)">-</button>
-                     </td>-->
+                <tbody v-for="col in channels">
+                <tr>
+                    <td>{{col.id}}</td>
+                    <td>{{col.title}}</td>
+                    <td>Category</td>
+                    <td>{{col.lang}}</td>
+                    <td><a>Список источников</a></td>
+                    <td></td>
                     <td>
                         <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
                             <i class="fas fa-times " aria-hidden="true"></i></div>
@@ -85,80 +49,48 @@
                             <button type="button" class="close" @click="showModal=false">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title">Новая заявка</h4>
+                            <h4 class="modal-title">Добавление телеканала</h4>
                         </div>
                         <div class="modal-body">
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3">Выберите пользователя:</label>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" @change.capture="onChangeUser($event)">
-                                            <option value="" disabled selected>Выбрать...</option>
-                                            <option v-for="user in users" :value="user.id"
-                                                    :key="user.id">{{user.name}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <button type="submit" class="btn btn-primery">Создать нового
-                                        </button>
+                                    <label class="control-label col-xs-3">Название:</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="title" v-model="titleChannel" placeholder="СТС/ТНТ/Россия 1">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3">Выберите тип заявки:</label>
+                                    <label class="control-label col-xs-3">Категория:</label>
                                     <div class="col-xs-9">
                                         <select @change.capture="onChangeType($event)" class="form-control">
                                             <option value="" disabled selected>Выбрать...</option>
-                                            <option v-for="type in type_service" :value="type.category"
+                                            <option v-for="type in categoryChannel" :value="type.category"
                                                     :key="type.category">{{type.category}}
                                             </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3">Выберите
-                                        услугу:</label>
+                                    <label class="control-label col-xs-3">Язык:</label>
                                     <div class="col-xs-9">
-                                        <select @change.capture="onChangeServices($event)" class="form-control"
-                                                v-model="selectedService">
+                                        <select @change.capture="onChangeLang($event)" class="form-control">
                                             <option value="" disabled selected>Выбрать...</option>
-                                            <option v-for="service in services" :value="service.id"
-                                                    :key="service.id">{{service.title}}
+                                            <option v-for="type in langChannels" :value="type.lang"
+                                                    :key="type.lang">{{type.lang}}
                                             </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3" for="discription">Описание:</label>
+                                    <label class="control-label col-xs-3">Лого:</label>
                                     <div class="col-xs-9">
-                                                <textarea rows="3" class="form-control" v-model="discriptionInput"
-                                                          id="discription"
-                                                          placeholder="Введите описание"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-xs-3" for="date">Дата и время:</label>
-                                    <div class="col-xs-4">
-                                        <select id="date" class="form-control" @change.capture="onChangeDay($event)">
-                                            <option value="" disabled selected>Выбрать дату...</option>
-                                            <option v-for="dat in freeDate" :value="dat.day"
-                                                    :key="dat.day">{{dat.printValue}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <select id="time" class="form-control" @change.capture="onChangeTime($event)">
-                                            <option value="" disabled selected>Выбрать время...</option>
-                                            <option v-for="time in freeTime" :value="time.time"
-                                                    :key="time.time">{{time.time}}
-                                            </option>
-                                        </select>
+                                        <input type="text" class="form-control" id="logo" placeholder="http://logo.ru/logo.png">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-xs-offset-6 col-xs-9">
-                                        <button type="submit" @click="store" class="btn btn-success">Создать
-                                            заявку
+                                        <button type="submit" @click="store" class="btn btn-success">
+                                            Добавить телеканал
                                         </button>
                                     </div>
                                 </div>
@@ -243,19 +175,29 @@
         components: {vPagination},
         data: function () {
             return {
-                appoint: [],
+                channels: [],
                 users: [],
                 discriptionInput: '',
                 selectedType: '',
+                selectedLang: '',
+                titleChannel: '',
                 selectedUser: '',
                 selectedService: '',
                 selectedWorker: '',
                 selectedDay: '',
                 selectedTime: '',
-                type_service: [
-                    {index: '1', category: 'Осмотр'},
-                    {index: '2', category: 'Ремонт'},
-                    {index: '3', category: 'Топливная система'},
+                //todo Сделать загрузку категорий из API
+                categoryChannel: [
+                    {index: '1', category: 'Фильмы'},
+                    {index: '2', category: 'Развлекательные'},
+                    {index: '3', category: 'Новости'},
+                    {index: '3', category: 'Спорт'},
+                ],
+                langChannels: [
+                    {index: '1', lang: 'RU'},
+                    {index: '2', lang: 'KZ'},
+                    {index: '3', lang: 'UA'},
+                    {index: '3', lang: 'AZ'},
                 ],
                 services: [],
                 freeTime: [],
@@ -289,13 +231,11 @@
             //--------------------Получить все заявки----------------------------------
             update: function () {
                 this.getAppointments();
-                this.getUsers();
-                this.getFreeDate();
             },
 
             getAppointments: function () {
-                axios.get('/api/appointment').then((response) => {
-                    this.appoint = response.data;
+                axios.get('/channels').then((response) => {
+                    this.channels = response.data;
                     console.log(response.data);
                 });
             },
@@ -310,39 +250,26 @@
             },
             //--------------------Получить всех пользователей--------------------------
 
-            //--------------------Получить все заявки----------------------------------
-            getAppointments: function () {
-                axios.get('/api/appointment').then((response) => {
-                    this.appoint = response.data;
-                    console.log(response.data);
-                });
-            },
 
             //--------------------Удалить заявку---------------------------------------
             removeAppoint: function (id) {
-                axios.delete('/api/appointment/' + id).then((response) => {
-                    this.users = response.data;
+                axios.delete('/channels/' + id).then((response) => {
                     this.update();
                     console.log(response.data);
                 });
             },
 
             //----------------------Сохранить заявку----------------------------------
+
             store: function () {
-                let formDate = moment(this.selectedDay).format('YYYY-MM-DD');
-                console.log(this.selectedTime);
-                let dd = formDate + " " + this.selectedTime;
-                let formTime = moment(new Date(dd)).format('YYYY-MM-DD HH:mm:ss');
-                console.log(formTime);
                 const formData = new FormData();
-                formData.append('user_id', this.selectedUser);
-                formData.append('service_id', this.selectedService);
-                formData.append('type_service', this.selectedType);
-                formData.append('description', this.discriptionInput);
-                formData.append('created_at', formTime);
-                axios.post('/api/admin/appointment', formData).then((response) => {
+                formData.append('title', this.titleChannel);
+                formData.append('lang', this.selectedLang);
+                formData.append('logo', this.logo);
+                axios.post('/channels', formData).then((response) => {
                     this.appoint = response.data;
                     console.log(response.data);
+                    this.update();
                 });
             },
 
@@ -397,8 +324,11 @@
 
             onChangeType(e) {
                 this.selectedType = e.target.value;
-                this.updateSelectService(e.target.value);
+            },
 
+
+            onChangeLang(e) {
+                this.selectedLang = e.target.value;
             },
 
             onChangeUser(e) {
@@ -467,10 +397,6 @@
         text-align: center;
         vertical-align: middle;
         position: relative;
-    }
-
-    .table tr:hover td {
-        background: #6d6b52;
     }
 
 
