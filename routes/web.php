@@ -25,7 +25,7 @@ Route::get('admin/employee', 'AdminController@getEmployee');
 Route::get('admin/services/', 'AdminController@getServices');
 
 //Записи на осмотр
-Route::get('admin/checkup_settings', 'AdminController@getCheckup');
+Route::get('admin/channels', 'AdminController@getCheckup');
 
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');

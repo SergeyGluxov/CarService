@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin/channels',
 
     'logout_url' => 'logout',
 
@@ -101,7 +101,7 @@ return [
         'ТЕЛЕКАНАЛЫ',
         [
             'text' => 'Телеканалы',
-            'url' => 'admin/checkup_settings',
+            'url' => 'admin/channels',
             'icon' => 'search',
         ],
 

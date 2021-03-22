@@ -78,7 +78,7 @@ class AdminController extends Controller
 
     public function getCheckup()
     {
-        return view('admin_layouts/checkup_settings');
+        return view('admin_layouts/channels');
     }
 
     public function getEmployee()

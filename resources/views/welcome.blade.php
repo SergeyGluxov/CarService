@@ -31,10 +31,10 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="content col-md-2">
-                Отслеживай<br>состояние<br>своего</br>автомобиля
+            <div class="content col-md-5">
+                VAGON TV<br>каналы<br>в хреновом</br>качестве
                 <form method="GET" action="{{route('register')}}">
-                    <button type="submit" class="btn btn-primary" style="background-color: #1b1e21">Пробовать</button>
+                    <button type="submit" class="btn btn-primary" style="background-color: #1b1e21">Зайти в админку</button>
                 </form>
             </div>
             <div class="flex-center position-ref ">
