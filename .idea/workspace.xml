@@ -34,17 +34,18 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлена возможность обновление телеканала">
-      <change afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Categories/CategoryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/CategoryRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_072348_create_categories_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_072440_add_fields_channels.php" afterDir="false" />
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлены категории телеканалов">
+      <change afterPath="$PROJECT_DIR$/app/ChannelsSource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ChannelsSources/ChannelSourceController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/ChannelSourceRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_082107_create_channels_sources_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Channel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ChannelResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ChannelResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SourcesResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SourcesResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SourceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SourceRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Source.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Source.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_sources_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_sources_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_072440_add_fields_channels.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_072440_add_fields_channels.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -230,10 +231,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\OpenServer\domains\CarService\app\Repositories" />
+      <recent name="C:\OpenServer\domains\CarService\app" />
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\ChannelsSources" />
       <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\Categories" />
       <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
-      <recent name="C:\OpenServer\domains\CarService\app" />
-      <recent name="C:\OpenServer\domains\CarService" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean" />
@@ -458,7 +459,7 @@
       <workItem from="1605344551996" duration="2703000" />
       <workItem from="1616050882007" duration="7983000" />
       <workItem from="1616142241353" duration="8761000" />
-      <workItem from="1616382078985" duration="16585000" />
+      <workItem from="1616382078985" duration="22981000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -698,7 +699,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616397148056</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Добавлены категории телеканалов">
+      <created>1616401119755</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1616401119755</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -752,7 +760,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Защита роутов админки" />
     <MESSAGE value="работа с компонентом vue" />
     <MESSAGE value="Изменил PassportComponent" />
     <MESSAGE value="Добавил таблицу записи на осмотр" />
@@ -777,17 +784,18 @@
     <MESSAGE value="Добавлены секции для уроков" />
     <MESSAGE value="Добавлена возможность добавлять каналы" />
     <MESSAGE value="Добавлена возможность обновление телеканала" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлена возможность обновление телеканала" />
+    <MESSAGE value="Добавлены категории телеканалов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены категории телеканалов" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616054480820">
+    <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616405313097">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616054480820" />
-    <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616054727991">
+    <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616405313097" />
+    <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616404737393">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616054727991" />
+    <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616404737393" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1616152544786">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -848,26 +856,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152542368" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616397173006">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616401123971">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616397173006" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616401123971" />
     <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1616050961570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616050961570" />
-    <state x="194" y="126" width="585" height="795" key="find.popup" timestamp="1616399725884">
+    <state x="194" y="126" width="585" height="795" key="find.popup" timestamp="1616405208935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="194" y="126" width="585" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616399725884" />
+    <state x="194" y="126" width="585" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616405208935" />
     <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1616386240447">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616386240447" />
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616400685430">
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616405935018">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616400685430" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616405935018" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

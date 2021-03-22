@@ -78,6 +78,10 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Categories'], function () {
         Route::resource('/categories', 'CategoryController');
     });
+
+    Route::group(['namespace' => 'ChannelsSources'], function () {
+        Route::resource('/channels/source', 'ChannelSourceController');
+    });
 });
 
 //Эти маршруты для авторизации стороних приложений через carservice

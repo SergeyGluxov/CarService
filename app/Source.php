@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Source extends Model
 {
+
     public function channels()
     {
-        return $this->belongsTo(Channel::class);
+        return $this->belongsToMany('App\Channel', 'channels_sources', 'channel_id', 'source_id');
     }
 
 }

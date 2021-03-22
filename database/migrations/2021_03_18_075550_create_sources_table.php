@@ -10,8 +10,6 @@ class CreateSourcesTable extends Migration
     {
         Schema::create('sources', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('channel_id')->unsigned()->index();
-            $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
             $table->string('url');
             $table->timestamps();
         });

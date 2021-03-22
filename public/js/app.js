@@ -73544,6 +73544,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -73556,12 +73610,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             channel: {},
             channels: [],
             categories: [],
+            playlists: [],
             users: [],
             discriptionInput: '',
             selectedCategory: '',
             selectedLang: '',
             titleChannel: '',
             titleModal: '',
+            playlistUrl: '',
+            modal_title_playlist: '',
+            currentChannelForPlaylist: '',
             buttonModal: '',
             logoChannel: '',
             selectedUser: '',
@@ -73573,6 +73631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             categoryChannel: [{ index: '1', category: 'Фильмы' }, { index: '2', category: 'Развлекательные' }, { index: '3', category: 'Новости' }, { index: '3', category: 'Спорт' }],
             langChannels: [{ index: '1', lang: 'RU' }, { index: '2', lang: 'KZ' }, { index: '3', lang: 'UA' }, { index: '3', lang: 'AZ' }],
             showModal: false,
+            showModalPlaylist: false,
             currentPage: 1,
             bootstrapPaginationClasses: {
                 ul: 'pagination',
@@ -73666,12 +73725,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //----------------------------------------------------------------------------------------------------------
 
-        //------------------------------------Категории-------------------------------------------------------------
-        getCategories: function getCategories() {
+
+        //------------------------------------Плейлисты-------------------------------------------------------------
+        clickEditPlaylist: function clickEditPlaylist(id) {
             var _this6 = this;
 
+            this.showModalPlaylist = true;
+            axios.get('/channels/' + id).then(function (response) {
+                _this6.playlists = response.data.playlists;
+                _this6.currentChannelForPlaylist = id;
+                _this6.modal_title_playlist = 'Редактирование плейлиста телеканала ' + response.data.title;
+                console.log(response.data);
+            });
+        },
+
+        //Добавить плейлист к телеканалу
+        addNewPlaylistChannel: function addNewPlaylistChannel() {
+            var _this7 = this;
+
+            var formData = new FormData();
+            formData.append('url', this.playlistUrl);
+            formData.append('channel_id', this.currentChannelForPlaylist);
+            axios.post('/channels/source', formData).then(function (response) {
+                _this7.clickEditPlaylist(_this7.currentChannelForPlaylist);
+                _this7.playlistUrl = "";
+            });
+        },
+
+        //Добавить плейлист к телеканалу
+        deletePlaylistChannel: function deletePlaylistChannel($id) {
+            var _this8 = this;
+
+            axios.delete('/channels/source/' + $id).then(function (response) {
+                _this8.clickEditPlaylist(_this8.currentChannelForPlaylist);
+                _this8.playlistUrl = "";
+            });
+        },
+
+        //------------------------------------Категории-------------------------------------------------------------
+        getCategories: function getCategories() {
+            var _this9 = this;
+
             axios.get('/categories').then(function (response) {
-                _this6.categories = response.data;
+                _this9.categories = response.data;
                 console.log(response.data);
             });
         },
@@ -73759,12 +73855,7 @@ var render = function() {
                 }
               }
             },
-            [
-              _c("i", {
-                staticClass: "fa fa-plus",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
+            [_c("i", { staticClass: "fa fa-plus" }, [_vm._v(" Добавить")])]
           ),
           _vm._v(" "),
           _c(
@@ -73851,9 +73942,17 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("td", [
-                  _c("a", { attrs: { href: "{col.logo}", target: "_blank" } }, [
-                    _vm._v("Ссылка на лого")
-                  ])
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: col.logo,
+                        target: "_blank",
+                        value: col.logo
+                      }
+                    },
+                    [_vm._v("Ссылка")]
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
@@ -73861,7 +73960,7 @@ var render = function() {
                   {
                     on: {
                       click: function($event) {
-                        return _vm.clickChangeChannels(col.id)
+                        return _vm.clickEditPlaylist(col.id)
                       }
                     }
                   },
@@ -74163,6 +74262,150 @@ var render = function() {
             ]
           )
         ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showModalPlaylist
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "modal fade-in", staticStyle: { display: "block" } },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            _vm.showModalPlaylist = false
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "h4",
+                      {
+                        staticClass: "modal-title",
+                        domProps: {
+                          textContent: _vm._s(_vm.modal_title_playlist)
+                        }
+                      },
+                      [_vm._v("Редактирование плейлистов")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "table",
+                      { staticClass: "table table-bordered table-hover" },
+                      [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _vm._l(_vm.playlists, function(col) {
+                          return _c("tbody", [
+                            _c("tr", [
+                              _c("td", [_vm._v(_vm._s(col.url))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "btn btn-danger",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deletePlaylistChannel(col.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-times ",
+                                      attrs: { "aria-hidden": "true" }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ])
+                          ])
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("form", { staticClass: "form-horizontal" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "control-label col-xs-3" }, [
+                          _vm._v("Новый плейлист:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-xs-9" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.playlistUrl,
+                                expression: "playlistUrl"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "url_playlist",
+                              placeholder:
+                                "http://a3569458063-s26881.cdn.ngenix.net/hls/russia_hd/playlist_4.m3u8"
+                            },
+                            domProps: { value: _vm.playlistUrl },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.playlistUrl = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-xs-offset-3 col-xs-12" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: { click: _vm.addNewPlaylistChannel }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Добавить источник\n                                    "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
       : _vm._e()
   ])
 }
@@ -74199,6 +74442,18 @@ var staticRenderFns = [
         _c("th", [_vm._v("Лого")]),
         _vm._v(" "),
         _c("th", [_vm._v("Список источников")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("URL")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Действие")])
       ])
     ])
   }

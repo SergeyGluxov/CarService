@@ -9,7 +9,7 @@ class AddFieldsChannels extends Migration
     public function up()
     {
         Schema::table('channels', function (Blueprint $table) {
-            $table->integer('category_id')->default(1)->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }

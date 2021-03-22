@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Repositories;
-
+use App\ChannelsSource;
 use App\Http\Resources\SourcesResource;
 use App\Source;
 use Illuminate\Http\Request;
 
-class SourceRepository
+class ChannelSourceRepository
 {
     protected $source;
 
-    public function __construct(Source $source)
+    public function __construct(ChannelsSource $source)
     {
         $this->source = $source;
     }
@@ -18,32 +18,30 @@ class SourceRepository
     public function all()
     {
         SourcesResource::withoutWrapping();
-        return SourcesResource::collection(Source::all());
+        return SourcesResource::collection(ChannelsSource::all());
     }
 
-    public function getLast()
-    {
-        return Source::all()->count();
-    }
 
     public function find($id)
     {
         SourcesResource::withoutWrapping();
-        return new SourcesResource(Source::find($id));
+        return new SourcesResource(ChannelsSource::find($id));
     }
 
-    public function store(Request $request)
+
+
+    public function store(Request $request,$sourceId)
     {
-        $sourcesItem = new Source();
-        $sourcesItem->url = $request->get('url');
+        $sourcesItem = new ChannelsSource();
+        $sourcesItem->source_id = $sourceId;
+        $sourcesItem->channel_id = $request->get('channel_id');
         $sourcesItem->save();
         return response('Новый плейлист добавлен', 200);
     }
 
-
     public function destroy($id)
     {
-        $sourcesItem = Source::findOrFail($id);
+        $sourcesItem = ChannelsSource::findOrFail($id);
         if ($sourcesItem->delete())
             return response('Плейлист успешно удален!', 200);
     }

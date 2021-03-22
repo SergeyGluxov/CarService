@@ -5,7 +5,7 @@
 
             <form class="form-inline" method="GET" action="/admin/appointment/export">
                 <button id="show-modal" type="button" class="btn btn-success" v-on:click="openModalNewChannel()"><i
-                    class="fa fa-plus" aria-hidden="true"></i>
+                    class="fa fa-plus"> Добавить</i>
                 </button>
                 <button id="show-modal-import" type="button" class="btn btn-info" @click="showModalImport = true">
                     <i class="fa fa-upload" aria-hidden="true"></i>
@@ -31,8 +31,8 @@
                     <td @click="clickChangeChannels(col.id)">{{col.title}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.category.title}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.lang}}</td>
-                    <td><a v-bind:href="'{col.logo}'" target="_blank">Ссылка на лого</a></td>
-                    <td @click="clickChangeChannels(col.id)"><a>Список источников</a></td>
+                    <td><a v-bind:href="col.logo"  target="_blank" :value="col.logo">Ссылка</a></td>
+                    <td @click="clickEditPlaylist(col.id)"><a>Список источников</a></td>
                     <td>
                         <div type="button" class="btn btn-danger" v-on:click="removeChannels(col.id)">
                             <i class="fas fa-times " aria-hidden="true"></i></div>
@@ -112,6 +112,60 @@
                 </div>
             </div>
         </div>
+
+        <div v-if="showModalPlaylist">
+            <div class="modal fade-in" style="display: block;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" @click="showModalPlaylist = false">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" v-text="modal_title_playlist">Редактирование плейлистов</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>URL</th>
+                                    <th>Действие</th>
+                                </tr>
+                                </thead>
+                                <tbody v-for="col in playlists">
+                                <tr>
+                                    <td>{{col.url}}</td>
+                                    <td>
+                                        <div type="button" class="btn btn-danger"
+                                             v-on:click="deletePlaylistChannel(col.id)">
+                                            <i class="fas fa-times " aria-hidden="true"></i></div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-3">Новый плейлист:</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="url_playlist" v-model="playlistUrl"
+                                               placeholder="http://a3569458063-s26881.cdn.ngenix.net/hls/russia_hd/playlist_4.m3u8">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-offset-3 col-xs-12">
+                                        <button type="button" @click="addNewPlaylistChannel"
+                                                class="btn btn-success">
+                                            Добавить источник
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -127,12 +181,16 @@
                 channel: {},
                 channels: [],
                 categories: [],
+                playlists: [],
                 users: [],
                 discriptionInput: '',
                 selectedCategory: '',
                 selectedLang: '',
                 titleChannel: '',
                 titleModal: '',
+                playlistUrl: '',
+                modal_title_playlist: '',
+                currentChannelForPlaylist: '',
                 buttonModal: '',
                 logoChannel: '',
                 selectedUser: '',
@@ -154,6 +212,7 @@
                     {index: '3', lang: 'AZ'},
                 ],
                 showModal: false,
+                showModalPlaylist: false,
                 currentPage: 1,
                 bootstrapPaginationClasses: {
                     ul: 'pagination',
@@ -205,10 +264,10 @@
             updateChannel: function () {
                 axios.put('/channels/' + this.channel.id,
                     {
-                        title:this.titleChannel,
-                        lang:this.selectedLang,
-                        logo:this.logoChannel,
-                        category_id:this.selectedCategory
+                        title: this.titleChannel,
+                        lang: this.selectedLang,
+                        logo: this.logoChannel,
+                        category_id: this.selectedCategory
                     }).then((response) => {
                     console.log(response.data);
                     this.showModal = false;
@@ -235,6 +294,38 @@
             },
 
             //----------------------------------------------------------------------------------------------------------
+
+
+            //------------------------------------Плейлисты-------------------------------------------------------------
+            clickEditPlaylist: function (id) {
+                this.showModalPlaylist = true;
+                axios.get('/channels/' + id).then((response) => {
+                    this.playlists = response.data.playlists;
+                    this.currentChannelForPlaylist = id;
+                    this.modal_title_playlist = 'Редактирование плейлиста телеканала ' + response.data.title;
+                    console.log(response.data);
+                });
+            },
+
+            //Добавить плейлист к телеканалу
+            addNewPlaylistChannel: function () {
+                const formData = new FormData();
+                formData.append('url', this.playlistUrl);
+                formData.append('channel_id', this.currentChannelForPlaylist);
+                axios.post('/channels/source', formData).then((response) => {
+                    this.clickEditPlaylist(this.currentChannelForPlaylist);
+                    this.playlistUrl = "";
+                });
+            },
+
+            //Добавить плейлист к телеканалу
+            deletePlaylistChannel: function ($id) {
+                axios.delete('/channels/source/' + $id).then((response) => {
+                    this.clickEditPlaylist(this.currentChannelForPlaylist);
+                    this.playlistUrl = "";
+                });
+            },
+
 
             //------------------------------------Категории-------------------------------------------------------------
             getCategories: function () {

@@ -8,7 +8,7 @@ class Channel extends Model
 {
     public function sources()
     {
-        return $this->hasMany(Source::class);
+        return $this->belongsToMany('App\Source', 'channels_sources', 'channel_id', 'source_id');
     }
 
     public function category()
