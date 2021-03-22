@@ -37,6 +37,16 @@ class ChannelRepository
         return response('Телеканал успешно добавлен', 200);
     }
 
+    public function update(Request $request, $id)
+    {
+        $channelUpdate = Channel::find($id);
+        $channelUpdate->title = $request->get('title');
+        $channelUpdate->logo = $request->get('logo');
+        $channelUpdate->lang = $request->get('lang');
+        $channelUpdate->save();
+        return response('Телеканал обновлен', 200);
+    }
+
     public function destroy($id)
     {
         $channelDestroy = Channel::findOrFail($id);

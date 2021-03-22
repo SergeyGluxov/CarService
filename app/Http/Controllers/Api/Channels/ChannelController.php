@@ -22,10 +22,20 @@ class ChannelController extends Controller
         return $this->channelRepository->all();
     }
 
+    public function show($id)
+    {
+        return $this->channelRepository->find($id);
+    }
+
     //Сохранить запись новую клиента
     public function store(Request $request)
     {
         return $this->channelRepository->store($request);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return $this->channelRepository->update($request, $id);
     }
 
     //Удаление запись

@@ -29,6 +29,11 @@ class ChannelService
         return $this->channelRepository->store($request);
     }
 
+    public function update(Request $request)
+    {
+        return $this->channelRepository->update($request);
+    }
+
     public function destroy($id)
     {
         return $this->channelRepository->destroy($id);

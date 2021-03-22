@@ -73544,57 +73544,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -73604,12 +73553,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { vPagination: __WEBPACK_IMPORTED_MODULE_0_vue_plain_pagination___default.a },
     data: function data() {
         return {
+            channel: {},
             channels: [],
             users: [],
             discriptionInput: '',
             selectedType: '',
             selectedLang: '',
             titleChannel: '',
+            titleModal: '',
+            buttonModal: '',
+            logoChannel: '',
             selectedUser: '',
             selectedService: '',
             selectedWorker: '',
@@ -73618,11 +73571,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //todo Сделать загрузку категорий из API
             categoryChannel: [{ index: '1', category: 'Фильмы' }, { index: '2', category: 'Развлекательные' }, { index: '3', category: 'Новости' }, { index: '3', category: 'Спорт' }],
             langChannels: [{ index: '1', lang: 'RU' }, { index: '2', lang: 'KZ' }, { index: '3', lang: 'UA' }, { index: '3', lang: 'AZ' }],
-            services: [],
-            freeTime: [],
             showModal: false,
-            showModalShedules: false,
-            showModalImport: false,
             currentPage: 1,
             bootstrapPaginationClasses: {
                 ul: 'pagination',
@@ -73636,11 +73585,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 prev: 'Назад',
                 next: 'Вперед',
                 last: 'Конец'
-            },
-            //Создание нового назначения
-            currentSelectAppointments: 1,
-            workers: [],
-            freeDate: []
+            }
         };
     },
     mounted: function mounted() {
@@ -73648,12 +73593,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        //--------------------Получить все заявки----------------------------------
         update: function update() {
-            this.getAppointments();
+            this.getAllTvChannels();
         },
 
-        getAppointments: function getAppointments() {
+        //----------------------Управление телеканалами-------------------------------------------------------------
+
+        getAllTvChannels: function getAllTvChannels() {
             var _this = this;
 
             axios.get('/channels').then(function (response) {
@@ -73662,101 +73608,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
 
-        //--------------------Получить всех пользователей--------------------------
-
-        getUsers: function getUsers() {
+        createChannel: function createChannel() {
             var _this2 = this;
-
-            axios.get('/api/users').then(function (response) {
-                _this2.users = response.data;
-                console.log(response.data);
-            });
-        },
-        //--------------------Получить всех пользователей--------------------------
-
-
-        //--------------------Удалить заявку---------------------------------------
-        removeAppoint: function removeAppoint(id) {
-            var _this3 = this;
-
-            axios.delete('/channels/' + id).then(function (response) {
-                _this3.update();
-                console.log(response.data);
-            });
-        },
-
-        //----------------------Сохранить заявку----------------------------------
-
-        store: function store() {
-            var _this4 = this;
 
             var formData = new FormData();
             formData.append('title', this.titleChannel);
             formData.append('lang', this.selectedLang);
-            formData.append('logo', this.logo);
+            formData.append('logo', this.logoChannel);
             axios.post('/channels', formData).then(function (response) {
-                _this4.appoint = response.data;
+                _this2.appoint = response.data;
                 console.log(response.data);
-                _this4.update();
+                _this2.showModal = false;
+                _this2.update();
             });
         },
 
-        //------------------Изменить статус заявки----------------------------------
-        changeStatus: function changeStatus(id) {
+        updateChannel: function updateChannel() {
+            var _this3 = this;
+
+            var formData = new FormData();
+            formData.append('title', this.titleChannel);
+            formData.append('lang', this.selectedLang);
+            formData.append('logo', this.logoChannel);
+            axios.put('/channels/' + this.channel.id, {
+                title: this.titleChannel,
+                lang: this.selectedLang,
+                logo: this.logoChannel
+            }).then(function (response) {
+                console.log(response.data);
+                _this3.showModal = false;
+                _this3.update();
+            });
+        },
+
+        removeChannels: function removeChannels(id) {
+            var _this4 = this;
+
+            axios.delete('/channels/' + id).then(function (response) {
+                _this4.update();
+                console.log(response.data);
+            });
+        },
+
+        clickChangeChannels: function clickChangeChannels(id) {
             var _this5 = this;
 
-            var formData = new FormData();
-            formData.append('id', id);
-            axios.post('/api/admin/appointment/status', formData).then(function (response) {
-                _this5.update();
+            this.showModal = true;
+            this.titleModal = "Редактирование канала";
+            this.buttonModal = "Изменить";
+            axios.get('/channels/' + id).then(function (response) {
+                _this5.channel = response.data;
+                _this5.titleChannel = response.data.title;
+                _this5.logoChannel = response.data.logo;
             });
         },
 
-        //Зассетить данные в селектор услуг
-        updateSelectService: function updateSelectService(type) {
-            var _this6 = this;
 
-            var formData = new FormData();
-            formData.append('type', type);
-            axios.post('/api/services/findByType', formData).then(function (response) {
-                console.log(response);
-                console.log(response.data);
-                _this6.services = response.data;
-            });
+        //----------------------------------------------------------------------------------------------------------
+
+
+        //------------------Модальное окно----------------------------------
+        closeOrOpenModal: function closeOrOpenModal() {
+            this.showModal = false;
         },
 
-        //------------------Создание нового назначения----------------------------------
-        //Заполнить информацию в модальное окно
-        getModalSchedule: function getModalSchedule(id) {
-            this.currentSelectAppointments = '';
-            this.currentSelectAppointments = id;
-            this.showModalShedules = true;
-            this.getWorkers();
+        //Форма добавление телеканала
+        openModalNewChannel: function openModalNewChannel() {
+            this.titleModal = "Добавление нового канала";
+            this.buttonModal = "Добавить";
+            this.showModal = true;
+            this.titleChannel = "";
+            this.logoChannel = "";
         },
 
-
-        getWorkers: function getWorkers() {
-            var _this7 = this;
-
-            axios.get('/api/workers').then(function (response) {
-                _this7.workers = response.data;
-                console.log(response.data);
-            });
-        },
-
-        //------------------Создание нового назначения----------------------------------
-        storeSchedule: function storeSchedule() {
-            this.changeStatus(this.currentSelectAppointments);
-            var dataNewChedule = new FormData();
-            dataNewChedule.append('user_id', this.selectedWorker);
-            dataNewChedule.append('appointment_id', this.currentSelectAppointments);
-            axios.post('/api/admin/schedules', dataNewChedule).then(function (response) {
-                console.log(response.data);
-            }).catch(function (error) {
-                alert(error.response.status);
-            });
-        },
-
+        //----------------------------------События-----------------------------------------------------------------
         onChangeType: function onChangeType(e) {
             this.selectedType = e.target.value;
         },
@@ -73782,31 +73707,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
 
-        //------------------Работа с датами----------------------------------
+        //--------------------------------------Другое--------------------------------------------------------------
 
-        getFreeDate: function getFreeDate() {
-            for (var i = 0; i <= 7; i++) {
-                var dayData = {
-                    //Y-m-d H:i:s
-                    day: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').locale('ru').format('YYYY-MM-DD HH:mm:ss'),
-                    printValue: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').format('LL')
-                };
-                this.freeDate.push(dayData);
-            }
-            console.log(this.freeDate);
-        },
-
-        getFreeTime: function getFreeTime(reqDate) {
-            var _this8 = this;
-
-            var formData = new FormData();
-            formData.append('request_date', reqDate);
-            axios.post('/api/admin/appointment/getFreeTime', formData).then(function (response) {
-                _this8.freeTime = response.data;
-            });
-            console.log(this.freeTime);
-        },
-
+        //Экспорт в данных в эксель
         exportExcel: function exportExcel() {
             axios.get('/admin/appointment/export');
         },
@@ -73843,7 +73746,7 @@ var render = function() {
               attrs: { id: "show-modal", type: "button" },
               on: {
                 click: function($event) {
-                  _vm.showModal = true
+                  return _vm.openModalNewChannel()
                 }
               }
             },
@@ -73890,17 +73793,71 @@ var render = function() {
           _vm._l(_vm.channels, function(col) {
             return _c("tbody", [
               _c("tr", [
-                _c("td", [_vm._v(_vm._s(col.id))]),
+                _c(
+                  "td",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.clickChangeChannels(col.id)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(col.id))]
+                ),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(col.title))]),
+                _c(
+                  "td",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.clickChangeChannels(col.id)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(col.title))]
+                ),
                 _vm._v(" "),
-                _c("td", [_vm._v("Category")]),
+                _c(
+                  "td",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.clickChangeChannels(col.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Category")]
+                ),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(col.lang))]),
+                _c(
+                  "td",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.clickChangeChannels(col.id)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(col.lang))]
+                ),
                 _vm._v(" "),
-                _vm._m(2, true),
+                _c("td", [
+                  _c("a", { attrs: { href: "{col.logo}", target: "_blank" } }, [
+                    _vm._v("Ссылка на лого")
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("td"),
+                _c(
+                  "td",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.clickChangeChannels(col.id)
+                      }
+                    }
+                  },
+                  [_c("a", [_vm._v("Список источников")])]
+                ),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -73910,7 +73867,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
-                          return _vm.removeAppoint(col.id)
+                          return _vm.removeChannels(col.id)
                         }
                       }
                     },
@@ -73957,9 +73914,14 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c("h4", { staticClass: "modal-title" }, [
-                      _vm._v("Добавление телеканала")
-                    ])
+                    _c(
+                      "h4",
+                      {
+                        staticClass: "modal-title",
+                        domProps: { textContent: _vm._s(_vm.titleModal) }
+                      },
+                      [_vm._v("Добавление телеканала")]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
@@ -74098,198 +74060,95 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(3),
-                      _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-xs-offset-6 col-xs-9" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              attrs: { type: "submit" },
-                              on: { click: _vm.store }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                        Добавить телеканал\n                                    "
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.showModalShedules
-      ? _c("div", [
-          _c(
-            "div",
-            {
-              staticClass: "modal fade-in",
-              staticStyle: { display: "block", "padding-right": "17px" }
-            },
-            [
-              _c("div", { staticClass: "modal-dialog" }, [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "modal-header" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "close",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.showModalShedules = false
-                          }
-                        }
-                      },
-                      [
-                        _c("span", { attrs: { "aria-hidden": "true" } }, [
-                          _vm._v("×")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "modal-title" }, [
-                      _vm._v("Новое назначение")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c(
-                      "form",
-                      {
-                        staticClass: "form-horizontal",
-                        attrs: { id: "newChedule" }
-                      },
-                      [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            { staticClass: "control-label col-xs-3" },
-                            [_vm._v("Выберите исполнителя:")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-xs-6" }, [
-                            _c(
-                              "select",
-                              {
-                                staticClass: "form-control",
-                                on: {
-                                  "!change": function($event) {
-                                    return _vm.onChangeWorkers($event)
-                                  }
-                                }
-                              },
-                              [
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: {
-                                      value: "",
-                                      disabled: "",
-                                      selected: ""
-                                    }
-                                  },
-                                  [_vm._v("Выбрать...")]
-                                ),
-                                _vm._v(" "),
-                                _vm._l(_vm.workers, function(worker) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: worker.id,
-                                      domProps: { value: worker.id }
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(worker.name) +
-                                          "\n                                        "
-                                      )
-                                    ]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _vm._m(4)
+                        _c("label", { staticClass: "control-label col-xs-3" }, [
+                          _vm._v("Лого:")
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-xs-offset-3 col-xs-9" },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-success",
-                                  attrs: { type: "submit" },
-                                  on: { click: _vm.storeSchedule }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                        Создать\n                                        заявку\n                                    "
-                                  )
-                                ]
-                              )
-                            ]
-                          )
+                        _c("div", { staticClass: "col-xs-9" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.logoChannel,
+                                expression: "logoChannel"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "logo",
+                              placeholder: "http://logo.ru/logo.png"
+                            },
+                            domProps: { value: _vm.logoChannel },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.logoChannel = $event.target.value
+                              }
+                            }
+                          })
                         ])
-                      ]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.showModalImport
-      ? _c("div", [
-          _c(
-            "div",
-            {
-              staticClass: "modal fade-in",
-              staticStyle: { display: "block", "padding-right": "17px" }
-            },
-            [
-              _c("div", { staticClass: "modal-dialog" }, [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "modal-header" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "close",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.showModalImport = false
-                          }
-                        }
-                      },
-                      [
-                        _c("span", { attrs: { "aria-hidden": "true" } }, [
-                          _vm._v("×")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "modal-title" }, [
-                      _vm._v("Новое назначение")
+                      ]),
+                      _vm._v(" "),
+                      _vm.titleModal === "Добавление нового канала"
+                        ? _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-xs-offset-6 col-xs-9" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "button" },
+                                    domProps: {
+                                      textContent: _vm._s(_vm.buttonModal)
+                                    },
+                                    on: { click: _vm.createChannel }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Добавить телеканал\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.titleModal === "Редактирование канала"
+                        ? _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-xs-offset-6 col-xs-9" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "button" },
+                                    domProps: {
+                                      textContent: _vm._s(_vm.buttonModal)
+                                    },
+                                    on: { click: _vm.updateChannel }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Изменить телеканал\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e()
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(5)
+                  ])
                 ])
               ])
             ]
@@ -74328,76 +74187,10 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Язык")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Лого")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Список источников")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("a", [_vm._v("Список источников")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label col-xs-3" }, [_vm._v("Лого:")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xs-9" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "logo",
-            placeholder: "http://logo.ru/logo.png"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-3" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primery", attrs: { type: "submit" } },
-        [_vm._v("Создать нового\n                                    ")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c(
-        "form",
-        {
-          staticClass: "form",
-          attrs: {
-            method: "POST",
-            enctype: "multipart/form-data",
-            action: "/admin/appointment/import"
-          }
-        },
-        [
-          _c("input", {
-            attrs: { type: "file", id: "excelUpload", name: "excelUpload" }
-          }),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v("Импорт из файла")]
-          )
-        ]
-      )
     ])
   }
 ]

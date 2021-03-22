@@ -34,18 +34,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлены секции для уроков">
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлена возможность добавлять каналы">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/ChannelService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ChannelService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/users/AllUserComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/users/AllUserComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/employee/EmployeeTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/employee/EmployeeTableComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
@@ -457,7 +453,7 @@
       <workItem from="1605344551996" duration="2703000" />
       <workItem from="1616050882007" duration="7983000" />
       <workItem from="1616142241353" duration="8761000" />
-      <workItem from="1616382078985" duration="2971000" />
+      <workItem from="1616382078985" duration="12629000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -683,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605370280238</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Добавлена возможность добавлять каналы">
+      <created>1616385282460</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1616385282460</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -737,7 +740,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Страница настройки пользователей" />
     <MESSAGE value="Добавил пункты в меню админки" />
     <MESSAGE value="Защита роутов админки" />
     <MESSAGE value="работа с компонентом vue" />
@@ -762,7 +764,8 @@
     <MESSAGE value="added set user role" />
     <MESSAGE value="Продолжаем заниматься хуйней))" />
     <MESSAGE value="Добавлены секции для уроков" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены секции для уроков" />
+    <MESSAGE value="Добавлена возможность добавлять каналы" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена возможность добавлять каналы" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616054480820">
@@ -777,22 +780,54 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152544786" />
-    <state width="1877" height="475" key="GridCell.Tab.0.bottom" timestamp="1616382368546">
+    <state width="1877" height="237" key="GridCell.Tab.0.bottom" timestamp="1616393988160">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="475" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616382368546" />
-    <state width="1877" height="475" key="GridCell.Tab.0.center" timestamp="1616382368545">
+    <state width="1877" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.0.center" timestamp="1616393988160">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="475" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616382368545" />
-    <state width="1877" height="475" key="GridCell.Tab.0.left" timestamp="1616382368545">
+    <state width="1877" height="237" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.0.left" timestamp="1616393988160">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="475" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616382368545" />
-    <state width="1877" height="475" key="GridCell.Tab.0.right" timestamp="1616382368545">
+    <state width="1877" height="237" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.0.right" timestamp="1616393988160">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="475" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616382368545" />
+    <state width="1877" height="237" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.1.bottom" timestamp="1616393988160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="237" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.1.center" timestamp="1616393988160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="237" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.1.left" timestamp="1616393988160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="237" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.1.right" timestamp="1616393988160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="237" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.2.bottom" timestamp="1616393988160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="237" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.2.center" timestamp="1616393988160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="237" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.2.left" timestamp="1616393988160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="237" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
+    <state width="1877" height="237" key="GridCell.Tab.2.right" timestamp="1616393988160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="237" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616393988160" />
     <state x="922" y="168" key="SettingsEditor" timestamp="1616382481599">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -801,22 +836,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152542368" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616385297661">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616385297661" />
     <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1616050961570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616050961570" />
-    <state x="194" y="126" width="585" height="795" key="find.popup" timestamp="1616384857508">
+    <state x="194" y="126" width="585" height="795" key="find.popup" timestamp="1616394079460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="194" y="126" width="585" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616384857508" />
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1616384560973">
+    <state x="194" y="126" width="585" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616394079460" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1616386240447">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616384560973" />
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616384986384">
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616386240447" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616394075080">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616384986384" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616394075080" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

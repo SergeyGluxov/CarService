@@ -4,7 +4,7 @@
             <h2>Управление телеканалами</h2>
 
             <form class="form-inline" method="GET" action="/admin/appointment/export">
-                <button id="show-modal" type="button" class="btn btn-success" @click="showModal = true"><i
+                <button id="show-modal" type="button" class="btn btn-success" v-on:click="openModalNewChannel()"><i
                     class="fa fa-plus" aria-hidden="true"></i>
                 </button>
                 <button id="show-modal-import" type="button" class="btn btn-info" @click="showModalImport = true">
@@ -20,20 +20,21 @@
                     <th>Наименование</th>
                     <th>Категория</th>
                     <th>Язык</th>
+                    <th>Лого</th>
                     <th>Список источников</th>
                     <!--TODO: Отображать не ID, а название-->
                 </tr>
                 </thead>
                 <tbody v-for="col in channels">
                 <tr>
-                    <td>{{col.id}}</td>
-                    <td>{{col.title}}</td>
-                    <td>Category</td>
-                    <td>{{col.lang}}</td>
-                    <td><a>Список источников</a></td>
-                    <td></td>
+                    <td @click="clickChangeChannels(col.id)">{{col.id}}</td>
+                    <td @click="clickChangeChannels(col.id)">{{col.title}}</td>
+                    <td @click="clickChangeChannels(col.id)">Category</td>
+                    <td @click="clickChangeChannels(col.id)">{{col.lang}}</td>
+                    <td><a v-bind:href="'{col.logo}'" target="_blank">Ссылка на лого</a></td>
+                    <td @click="clickChangeChannels(col.id)"><a>Список источников</a></td>
                     <td>
-                        <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
+                        <div type="button" class="btn btn-danger" v-on:click="removeChannels(col.id)">
                             <i class="fas fa-times " aria-hidden="true"></i></div>
                     </td>
                 </tr>
@@ -46,17 +47,18 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" @click="showModal=false">
+                            <button type="button" class="close" @click="showModal = false">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title">Добавление телеканала</h4>
+                            <h4 class="modal-title" v-text="titleModal">Добавление телеканала</h4>
                         </div>
                         <div class="modal-body">
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <label class="control-label col-xs-3">Название:</label>
                                     <div class="col-xs-9">
-                                        <input type="text" class="form-control" id="title" v-model="titleChannel" placeholder="СТС/ТНТ/Россия 1">
+                                        <input type="text" class="form-control" id="title" v-model="titleChannel"
+                                               placeholder="СТС/ТНТ/Россия 1">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -84,79 +86,26 @@
                                 <div class="form-group">
                                     <label class="control-label col-xs-3">Лого:</label>
                                     <div class="col-xs-9">
-                                        <input type="text" class="form-control" id="logo" placeholder="http://logo.ru/logo.png">
+                                        <input type="text" class="form-control" id="logo" v-model="logoChannel"
+                                               placeholder="http://logo.ru/logo.png">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" v-if="titleModal==='Добавление нового канала'">
                                     <div class="col-xs-offset-6 col-xs-9">
-                                        <button type="submit" @click="store" class="btn btn-success">
+                                        <button type="button" @click="createChannel" v-text="buttonModal"
+                                                class="btn btn-success">
                                             Добавить телеканал
                                         </button>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div v-if="showModalShedules">
-            <div class="modal fade-in" style="display: block; padding-right: 17px;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" @click="showModalShedules=false">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">Новое назначение</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" id="newChedule">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-3">Выберите исполнителя:</label>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" @change.capture="onChangeWorkers($event)">
-                                            <option value="" disabled selected>Выбрать...</option>
-                                            <option v-for="worker in workers" :value="worker.id"
-                                                    :key="worker.id">{{worker.name}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <button type="submit" class="btn btn-primery">Создать нового
+                                <div class="form-group" v-if="titleModal==='Редактирование канала'">
+                                    <div class="col-xs-offset-6 col-xs-9">
+                                        <button type="button" @click="updateChannel" v-text="buttonModal"
+                                                class="btn btn-success">
+                                            Изменить телеканал
                                         </button>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-xs-offset-3 col-xs-9">
-                                        <button type="submit" @click="storeSchedule" class="btn btn-success">
-                                            Создать
-                                            заявку
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div v-if="showModalImport">
-            <div class="modal fade-in" style="display: block; padding-right: 17px;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" @click="showModalImport=false">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">Новое назначение</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form" method="POST" enctype="multipart/form-data"
-                                  action="/admin/appointment/import">
-                                <input type="file" id="excelUpload" name="excelUpload">
-                                <br>
-                                <button type="submit" class="btn btn-primary">Импорт из файла</button>
                             </form>
                         </div>
                     </div>
@@ -175,12 +124,16 @@
         components: {vPagination},
         data: function () {
             return {
+                channel: {},
                 channels: [],
                 users: [],
                 discriptionInput: '',
                 selectedType: '',
                 selectedLang: '',
                 titleChannel: '',
+                titleModal: '',
+                buttonModal: '',
+                logoChannel: '',
                 selectedUser: '',
                 selectedService: '',
                 selectedWorker: '',
@@ -199,11 +152,7 @@
                     {index: '3', lang: 'UA'},
                     {index: '3', lang: 'AZ'},
                 ],
-                services: [],
-                freeTime: [],
                 showModal: false,
-                showModalShedules: false,
-                showModalImport: false,
                 currentPage: 1,
                 bootstrapPaginationClasses: {
                     ul: 'pagination',
@@ -218,110 +167,92 @@
                     next: 'Вперед',
                     last: 'Конец'
                 },
-                //Создание нового назначения
-                currentSelectAppointments: 1,
-                workers: [],
-                freeDate: []
             }
         },
         mounted() {
             this.update();
         },
         methods: {
-            //--------------------Получить все заявки----------------------------------
             update: function () {
-                this.getAppointments();
+                this.getAllTvChannels();
             },
 
-            getAppointments: function () {
+            //----------------------Управление телеканалами-------------------------------------------------------------
+
+            getAllTvChannels: function () {
                 axios.get('/channels').then((response) => {
                     this.channels = response.data;
                     console.log(response.data);
                 });
             },
 
-            //--------------------Получить всех пользователей--------------------------
-
-            getUsers: function () {
-                axios.get('/api/users').then((response) => {
-                    this.users = response.data;
+            createChannel: function () {
+                const formData = new FormData();
+                formData.append('title', this.titleChannel);
+                formData.append('lang', this.selectedLang);
+                formData.append('logo', this.logoChannel);
+                axios.post('/channels', formData).then((response) => {
+                    this.appoint = response.data;
                     console.log(response.data);
+                    this.showModal = false;
+                    this.update();
                 });
             },
-            //--------------------Получить всех пользователей--------------------------
 
+            updateChannel: function () {
+                const formData = new FormData();
+                formData.append('title', this.titleChannel);
+                formData.append('lang', this.selectedLang);
+                formData.append('logo', this.logoChannel);
+                axios.put('/channels/' + this.channel.id,
+                    {
+                        title:this.titleChannel,
+                        lang:this.selectedLang,
+                        logo:this.logoChannel
+                    }).then((response) => {
+                    console.log(response.data);
+                    this.showModal = false;
+                    this.update();
+                });
+            },
 
-            //--------------------Удалить заявку---------------------------------------
-            removeAppoint: function (id) {
+            removeChannels: function (id) {
                 axios.delete('/channels/' + id).then((response) => {
                     this.update();
                     console.log(response.data);
                 });
             },
 
-            //----------------------Сохранить заявку----------------------------------
-
-            store: function () {
-                const formData = new FormData();
-                formData.append('title', this.titleChannel);
-                formData.append('lang', this.selectedLang);
-                formData.append('logo', this.logo);
-                axios.post('/channels', formData).then((response) => {
-                    this.appoint = response.data;
-                    console.log(response.data);
-                    this.update();
+            clickChangeChannels(id) {
+                this.showModal = true;
+                this.titleModal = "Редактирование канала"
+                this.buttonModal = "Изменить"
+                axios.get('/channels/' + id).then((response) => {
+                    this.channel = response.data;
+                    this.titleChannel = response.data.title;
+                    this.logoChannel = response.data.logo;
                 });
             },
 
-            //------------------Изменить статус заявки----------------------------------
-            changeStatus: function (id) {
-                const formData = new FormData();
-                formData.append('id', id);
-                axios.post('/api/admin/appointment/status', formData).then((response) => {
-                    this.update();
-                });
+            //----------------------------------------------------------------------------------------------------------
+
+
+            //------------------Модальное окно----------------------------------
+            closeOrOpenModal: function () {
+                this.showModal = false;
             },
 
-            //Зассетить данные в селектор услуг
-            updateSelectService: function (type) {
-                const formData = new FormData();
-                formData.append('type', type);
-                axios.post('/api/services/findByType', formData).then((response) => {
-                    console.log(response);
-                    console.log(response.data);
-                    this.services = response.data;
-                });
+            //Форма добавление телеканала
+            openModalNewChannel: function () {
+                this.titleModal = "Добавление нового канала"
+                this.buttonModal = "Добавить"
+                this.showModal = true;
+                this.titleChannel = "";
+                this.logoChannel = "";
             },
 
-            //------------------Создание нового назначения----------------------------------
-            //Заполнить информацию в модальное окно
-            getModalSchedule(id) {
-                this.currentSelectAppointments = '';
-                this.currentSelectAppointments = id;
-                this.showModalShedules = true;
-                this.getWorkers()
-            },
 
-            getWorkers: function () {
-                axios.get('/api/workers').then((response) => {
-                    this.workers = response.data;
-                    console.log(response.data);
-                });
-            },
-
-            //------------------Создание нового назначения----------------------------------
-            storeSchedule: function () {
-                this.changeStatus(this.currentSelectAppointments);
-                const dataNewChedule = new FormData();
-                dataNewChedule.append('user_id', this.selectedWorker);
-                dataNewChedule.append('appointment_id', this.currentSelectAppointments);
-                axios.post('/api/admin/schedules', dataNewChedule).then((response) => {
-                    console.log(response.data);
-                }).catch(error => {
-                    alert(error.response.status)
-                });
-            },
-
+            //----------------------------------События-----------------------------------------------------------------
             onChangeType(e) {
                 this.selectedType = e.target.value;
             },
@@ -350,29 +281,9 @@
                 this.selectedTime = e.target.value;
             },
 
-            //------------------Работа с датами----------------------------------
+            //--------------------------------------Другое--------------------------------------------------------------
 
-            getFreeDate: function () {
-                for (let i = 0; i <= 7; i++) {
-                    let dayData = {
-                        //Y-m-d H:i:s
-                        day: moment().add(i, 'days').locale('ru').format('YYYY-MM-DD HH:mm:ss'),
-                        printValue: moment().add(i, 'days').format('LL')
-                    };
-                    this.freeDate.push(dayData);
-                }
-                console.log(this.freeDate);
-            },
-
-            getFreeTime: function (reqDate) {
-                const formData = new FormData();
-                formData.append('request_date', reqDate);
-                axios.post('/api/admin/appointment/getFreeTime', formData).then((response) => {
-                    this.freeTime = response.data;
-                });
-                console.log(this.freeTime);
-            },
-
+            //Экспорт в данных в эксель
             exportExcel: function () {
                 axios.get('/admin/appointment/export');
             },
@@ -383,6 +294,7 @@
         }
     }
 </script>
+
 <style>
     .table {
         border-collapse: collapse;
