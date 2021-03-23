@@ -73599,6 +73599,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -73613,6 +73619,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             categories: [],
             playlists: [],
             users: [],
+            selectFilterCategory: '',
             discriptionInput: '',
             selectedCategory: '',
             selectedLang: '',
@@ -73670,8 +73677,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
 
-        createChannel: function createChannel() {
+        filterByCategory: function filterByCategory(category) {
             var _this2 = this;
+
+            var formData = new FormData();
+            formData.append('category_name', category);
+
+            axios.post('/category/channels', formData).then(function (response) {
+                _this2.channels = response.data;
+                console.log(response.data);
+            });
+        },
+
+        createChannel: function createChannel() {
+            var _this3 = this;
 
             var formData = new FormData();
             formData.append('title', this.titleChannel);
@@ -73679,15 +73698,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('category_id', this.selectedCategory);
             formData.append('logo', this.logoChannel);
             axios.post('/channels', formData).then(function (response) {
-                _this2.appoint = response.data;
+                _this3.appoint = response.data;
                 console.log(response.data);
-                _this2.showModal = false;
-                _this2.update();
+                _this3.showModal = false;
+                _this3.update();
             });
         },
 
         updateChannel: function updateChannel() {
-            var _this3 = this;
+            var _this4 = this;
 
             axios.put('/channels/' + this.channel.id, {
                 title: this.titleChannel,
@@ -73696,30 +73715,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 category_id: this.selectedCategory
             }).then(function (response) {
                 console.log(response.data);
-                _this3.showModal = false;
-                _this3.update();
+                _this4.showModal = false;
+                _this4.update();
             });
         },
 
         removeChannels: function removeChannels(id) {
-            var _this4 = this;
+            var _this5 = this;
 
             axios.delete('/channels/' + id).then(function (response) {
-                _this4.update();
+                _this5.update();
                 console.log(response.data);
             });
         },
 
         clickChangeChannels: function clickChangeChannels(id) {
-            var _this5 = this;
+            var _this6 = this;
 
             this.showModal = true;
             this.titleModal = "Редактирование канала";
             this.buttonModal = "Изменить";
             axios.get('/channels/' + id).then(function (response) {
-                _this5.channel = response.data;
-                _this5.titleChannel = response.data.title;
-                _this5.logoChannel = response.data.logo;
+                _this6.channel = response.data;
+                _this6.titleChannel = response.data.title;
+                _this6.logoChannel = response.data.logo;
             });
         },
 
@@ -73729,46 +73748,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //------------------------------------Плейлисты-------------------------------------------------------------
         clickEditPlaylist: function clickEditPlaylist(id) {
-            var _this6 = this;
+            var _this7 = this;
 
             this.showModalPlaylist = true;
             axios.get('/channels/' + id).then(function (response) {
-                _this6.playlists = response.data.playlists;
-                _this6.currentChannelForPlaylist = id;
-                _this6.modal_title_playlist = 'Редактирование плейлиста телеканала ' + response.data.title;
+                _this7.playlists = response.data.playlists;
+                _this7.currentChannelForPlaylist = id;
+                _this7.modal_title_playlist = 'Редактирование плейлиста телеканала ' + response.data.title;
                 console.log(response.data);
             });
         },
 
         //Добавить плейлист к телеканалу
         addNewPlaylistChannel: function addNewPlaylistChannel() {
-            var _this7 = this;
+            var _this8 = this;
 
             var formData = new FormData();
             formData.append('url', this.playlistUrl);
             formData.append('channel_id', this.currentChannelForPlaylist);
             axios.post('/channels/source', formData).then(function (response) {
-                _this7.clickEditPlaylist(_this7.currentChannelForPlaylist);
-                _this7.playlistUrl = "";
-            });
-        },
-
-        //Добавить плейлист к телеканалу
-        deletePlaylistChannel: function deletePlaylistChannel($id) {
-            var _this8 = this;
-
-            axios.delete('/channels/source/' + $id).then(function (response) {
                 _this8.clickEditPlaylist(_this8.currentChannelForPlaylist);
                 _this8.playlistUrl = "";
             });
         },
 
-        //------------------------------------Категории-------------------------------------------------------------
-        getCategories: function getCategories() {
+        //Добавить плейлист к телеканалу
+        deletePlaylistChannel: function deletePlaylistChannel($id) {
             var _this9 = this;
 
+            axios.delete('/channels/source/' + $id).then(function (response) {
+                _this9.clickEditPlaylist(_this9.currentChannelForPlaylist);
+                _this9.playlistUrl = "";
+            });
+        },
+
+        //------------------------------------Категории-------------------------------------------------------------
+        getCategories: function getCategories() {
+            var _this10 = this;
+
             axios.get('/categories').then(function (response) {
-                _this9.categories = response.data;
+                _this10.categories = response.data;
                 console.log(response.data);
             });
         },
@@ -73790,6 +73809,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //----------------------------------События-----------------------------------------------------------------
         onChangeType: function onChangeType(e) {
             this.selectedCategory = e.target.value;
+        },
+        onSelectFilterCategory: function onSelectFilterCategory(e) {
+            this.filterByCategory(e.target.value);
         },
         onChangeLang: function onChangeLang(e) {
             this.selectedLang = e.target.value;
@@ -73878,7 +73900,35 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              on: {
+                "!change": function($event) {
+                  return _vm.onSelectFilterCategory($event)
+                }
+              }
+            },
+            [
+              _c(
+                "option",
+                { attrs: { value: "", disabled: "", selected: "" } },
+                [_vm._v("Фильтровать по категории...")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.categories, function(category) {
+                return _c(
+                  "option",
+                  { key: category.title, domProps: { value: category.title } },
+                  [_vm._v(_vm._s(category.title) + "\n                ")]
+                )
+              })
+            ],
+            2
+          )
         ]
       ),
       _vm._v(" "),

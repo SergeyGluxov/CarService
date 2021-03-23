@@ -11,6 +11,12 @@
                     <i class="fa fa-upload" aria-hidden="true"></i>
                 </button>
                 <button type="submit" class="btn btn-info"><i class="fa fa-download" aria-hidden="true"></i></button>
+                <select @change.capture="onSelectFilterCategory($event)" class="form-control">
+                    <option value="" disabled selected>Фильтровать по категории...</option>
+                    <option v-for="category in categories" :value="category.title"
+                            :key="category.title">{{category.title}}
+                    </option>
+                </select>
             </form>
 
             <table id="example2" class="table table-bordered table-hover">
@@ -31,7 +37,7 @@
                     <td @click="clickChangeChannels(col.id)">{{col.title}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.category.title}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.lang}}</td>
-                    <td><a v-bind:href="col.logo"  target="_blank" :value="col.logo">Ссылка</a></td>
+                    <td><a v-bind:href="col.logo" target="_blank" :value="col.logo">Ссылка</a></td>
                     <td @click="clickEditPlaylist(col.id)"><a>Список источников</a></td>
                     <td>
                         <div type="button" class="btn btn-danger" v-on:click="removeChannels(col.id)">
@@ -183,6 +189,7 @@
                 categories: [],
                 playlists: [],
                 users: [],
+                selectFilterCategory: '',
                 discriptionInput: '',
                 selectedCategory: '',
                 selectedLang: '',
@@ -242,6 +249,16 @@
 
             getAllTvChannels: function () {
                 axios.get('/channels').then((response) => {
+                    this.channels = response.data;
+                    console.log(response.data);
+                });
+            },
+
+            filterByCategory: function (category) {
+                const formData = new FormData();
+                formData.append('category_name', category);
+
+                axios.post('/category/channels', formData).then((response) => {
                     this.channels = response.data;
                     console.log(response.data);
                 });
@@ -353,6 +370,10 @@
             //----------------------------------События-----------------------------------------------------------------
             onChangeType(e) {
                 this.selectedCategory = e.target.value;
+            },
+
+            onSelectFilterCategory(e) {
+                this.filterByCategory(e.target.value);
             },
 
 

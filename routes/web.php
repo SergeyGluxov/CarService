@@ -73,6 +73,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Channels'], function () {
         Route::resource('/channels', 'ChannelController');
         Route::get('/filter/channels', 'ChannelController@getFilterChannels');
+        Route::post('/category/channels', 'ChannelController@getChannelsByCategory');
         Route::get('/updateGitHub/channels', 'ChannelController@getChannelFromGitHub');
     });
     Route::group(['namespace' => 'Sources'], function () {

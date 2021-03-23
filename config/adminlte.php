@@ -112,14 +112,6 @@ return [
                     'text' => 'Популярные',
                     'url' => 'admin/top/channels',
                 ],
-                [
-                    'text' => 'Новостные',
-                    'url' => 'admin/top/channels',
-                ],
-                [
-                    'text' => 'Музыкальные',
-                    'url' => 'admin/top/channels',
-                ],
             ]
         ],
 

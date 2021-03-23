@@ -6,21 +6,32 @@ namespace App\Http\Controllers\Api\Channels;
 use App\Filters\ChannelFilters;
 use App\Http\Controllers\Controller;
 use App\Repositories\ChannelRepository;
+use App\Repositories\ChannelSourceRepository;
+use App\Repositories\SourceRepository;
 use Illuminate\Http\Request;
 
 class ChannelController extends Controller
 {
     protected $channelRepository;
+    protected $channelSourceRepository;
+    protected $sourceRepository;
 
-    public function __construct(ChannelRepository $channelRepository)
+    public function __construct(ChannelRepository $channelRepository, ChannelSourceRepository $channelSourceRepository, SourceRepository $sourceRepository)
     {
         $this->channelRepository = $channelRepository;
+        $this->channelSourceRepository = $channelSourceRepository;
+        $this->sourceRepository = $sourceRepository;
     }
 
     //Показать все записи клиентов
     public function index()
     {
         return $this->channelRepository->all();
+    }
+
+    public function paginate()
+    {
+        return $this->channelRepository->paginate();
     }
 
     public function show($id)
@@ -50,9 +61,15 @@ class ChannelController extends Controller
         return $this->channelRepository->getFilterChannels($filters);
     }
 
+    public function getChannelsByCategory(Request $request)
+    {
+        return $this->channelRepository->getChannelsByCategory($request);
+    }
+
     //Синхронизировать со списком GitHub
     public function getChannelFromGitHub()
     {
         return $this->channelRepository->getChannelFromGitHub();
+
     }
 }
