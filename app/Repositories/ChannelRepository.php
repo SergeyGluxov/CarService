@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Filters\ChannelFilters;
 use App\Http\Resources\ChannelCollection;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -61,16 +62,19 @@ class ChannelRepository
 
 
 
-    public function getFilterChannels(Request $request)
+    public function getFilterChannels(ChannelFilters $filters)
     {
-        if($request->has('is_top') && $request->get('is_top') == true){
+        $channels = Channel::filter($filters)->get();
+        dd($channels);
+        ChannelCollection::withoutWrapping();
+        return new ChannelCollection($channels);
+
+/*        if($request->has('is_top') && $request->get('is_top') == true){
             $channels = Channel::where('is_top', '=', 1)->get();
-            ChannelCollection::withoutWrapping();
-            return new ChannelCollection($channels);
         }else{
             ChannelResource::withoutWrapping();
             return ChannelResource::collection(Channel::all());
-        }
+        }*/
     }
 
 

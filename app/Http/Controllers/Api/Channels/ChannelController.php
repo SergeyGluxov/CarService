@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Channels;
 
 
+use App\Filters\ChannelFilters;
 use App\Http\Controllers\Controller;
 use App\Repositories\ChannelRepository;
 use Illuminate\Http\Request;
@@ -44,9 +45,9 @@ class ChannelController extends Controller
         return $this->channelRepository->destroy($id);
     }
 
-    public function getFilterChannels(Request $request)
+    public function getFilterChannels(ChannelFilters  $filters)
     {
-        return $this->channelRepository->getFilterChannels($request);
+        return $this->channelRepository->getFilterChannels($filters);
     }
 
     //Синхронизировать со списком GitHub
