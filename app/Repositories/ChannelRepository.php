@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Repositories;
+
+use App\Http\Resources\ChannelCollection;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\ChannelResource;
 use App\Channel;
@@ -54,5 +57,56 @@ class ChannelRepository
         $channelDestroy = Channel::findOrFail($id);
         if ($channelDestroy->delete())
             return response('Телеканал успешно удален!', 200);
+    }
+
+
+
+    public function getFilterChannels(Request $request)
+    {
+        if($request->has('is_top') && $request->get('is_top') == true){
+            $channels = Channel::where('is_top', '=', 1)->get();
+            ChannelCollection::withoutWrapping();
+            return new ChannelCollection($channels);
+        }else{
+            ChannelResource::withoutWrapping();
+            return ChannelResource::collection(Channel::all());
+        }
+    }
+
+
+
+    public function getChannelFromGitHub()
+    {
+        $client = new Client();
+        $response = $client->get('https://vagonott.github.io/iptv/channels.json');
+        $jsonFormattedResult = json_decode($response->getBody()->getContents(), true);
+        foreach($jsonFormattedResult as $item){
+            $title = $item['name'];
+            $logo = $item['logo'];
+            //$category = $item['category'];
+            //Найти название категории name = id
+            $category_id = 1;
+            $lang = $item['languages'][0]['code'];
+            if($logo == null){
+                $logo = "Нет";
+            }
+            if($lang == null){
+                $lang = "Нет";
+            }
+
+            if($title == null){
+                $title = "Нет";
+            }
+            if($lang == 'rus'){
+                $channelItem = new Channel();
+                $channelItem->title = $title;
+                $channelItem->logo = $logo;
+                $channelItem->lang = $lang;
+                $channelItem->category_id = $category_id;
+                $channelItem->save();
+            }
+        }
+
+        return redirect('/home');
     }
 }

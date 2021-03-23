@@ -6542,6 +6542,7 @@ Vue.component('services-table-component', __webpack_require__(225));
 
 //-----------------------------------------ПОЛЬЗОВАТЕЛИ-----------------------------------------------------------------
 Vue.component('admin-table-component', __webpack_require__(228));
+Vue.component('top-channels-table-component', __webpack_require__(275));
 Vue.component('schedules-table-component', __webpack_require__(233));
 Vue.component('form-employee-component', __webpack_require__(238));
 Vue.component('delete-employee-component', __webpack_require__(241));
@@ -78885,6 +78886,928 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(276)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(278)
+/* template */
+var __vue_template__ = __webpack_require__(279)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/admin/channels/TopChannelsTableComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d0328f40", Component.options)
+  } else {
+    hotAPI.reload("data-v-d0328f40", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(277);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("dd2e20ca", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d0328f40\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TopChannelsTableComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d0328f40\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TopChannelsTableComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.table {\n    border-collapse: collapse;\n    border-spacing: 0;\n    cursor: pointer;\n    width: 100%;\n}\n.table th, .table td {\n    border: 1px solid #888;\n    padding: 10px;\n    text-align: center;\n    vertical-align: middle;\n    position: relative;\n}\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 278 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_plain_pagination__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_plain_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_plain_pagination__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_locale_ru__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_locale_ru___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment_locale_ru__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: { vPagination: __WEBPACK_IMPORTED_MODULE_0_vue_plain_pagination___default.a },
+    data: function data() {
+        return {
+            channels: [],
+            showModal: false,
+            showModalPlaylist: false,
+            currentPage: 1,
+            bootstrapPaginationClasses: {
+                ul: 'pagination',
+                li: 'page-item',
+                liActive: 'active',
+                liDisable: 'disabled',
+                button: 'page-link'
+            },
+            paginationAnchorTexts: {
+                first: 'Начало',
+                prev: 'Назад',
+                next: 'Вперед',
+                last: 'Конец'
+            }
+        };
+    },
+    mounted: function mounted() {
+        this.update();
+    },
+
+    methods: {
+        update: function update() {
+            this.getTopTvChannels();
+        },
+
+        //----------------------Управление телеканалами-------------------------------------------------------------
+
+        getTopTvChannels: function getTopTvChannels() {
+            var _this = this;
+
+            var formData = new FormData();
+            formData.append('is_top', 1);
+
+            axios.post('/filter/channels', formData).then(function (response) {
+                _this.channels = response.data;
+                console.log(response.data);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("h2", [_vm._v("Топ популярных каналов")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "form-inline",
+          attrs: { method: "GET", action: "/admin/appointment/export" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              attrs: { id: "show-modal", type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.openModalNewChannel()
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-plus" }, [_vm._v(" Добавить")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-info",
+              attrs: { id: "show-modal-import", type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.showModalImport = true
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-upload",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "table table-bordered table-hover",
+          attrs: { id: "example2" }
+        },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.channels, function(col) {
+            return _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v(_vm._s(col.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(col.title))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(col.category.title))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(col.lang))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: col.logo,
+                        target: "_blank",
+                        value: col.logo
+                      }
+                    },
+                    [_vm._v("Ссылка")]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(2, true),
+                _vm._v(" "),
+                _vm._m(3, true)
+              ])
+            ])
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _vm.showModal
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "modal fade-in", staticStyle: { display: "block" } },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            _vm.showModal = false
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "h4",
+                      {
+                        staticClass: "modal-title",
+                        domProps: { textContent: _vm._s(_vm.titleModal) }
+                      },
+                      [_vm._v("Добавление телеканала")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("form", { staticClass: "form-horizontal" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "control-label col-xs-3" }, [
+                          _vm._v("Название:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-xs-9" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.titleChannel,
+                                expression: "titleChannel"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "title",
+                              placeholder: "СТС/ТНТ/Россия 1"
+                            },
+                            domProps: { value: _vm.titleChannel },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.titleChannel = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "control-label col-xs-3" }, [
+                          _vm._v("Категория:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-xs-9" }, [
+                          _c(
+                            "select",
+                            {
+                              staticClass: "form-control",
+                              on: {
+                                "!change": function($event) {
+                                  return _vm.onChangeType($event)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                {
+                                  attrs: {
+                                    value: "",
+                                    disabled: "",
+                                    selected: ""
+                                  }
+                                },
+                                [_vm._v("Выбрать...")]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.categories, function(category) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: category.title,
+                                    domProps: { value: category.id }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(category.title) +
+                                        "\n                                        "
+                                    )
+                                  ]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "control-label col-xs-3" }, [
+                          _vm._v("Язык:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-xs-9" }, [
+                          _c(
+                            "select",
+                            {
+                              staticClass: "form-control",
+                              on: {
+                                "!change": function($event) {
+                                  return _vm.onChangeLang($event)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                {
+                                  attrs: {
+                                    value: "",
+                                    disabled: "",
+                                    selected: ""
+                                  }
+                                },
+                                [_vm._v("Выбрать...")]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.langChannels, function(type) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: type.lang,
+                                    domProps: { value: type.lang }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(type.lang) +
+                                        "\n                                        "
+                                    )
+                                  ]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "control-label col-xs-3" }, [
+                          _vm._v("Лого:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-xs-9" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.logoChannel,
+                                expression: "logoChannel"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "logo",
+                              placeholder: "http://logo.ru/logo.png"
+                            },
+                            domProps: { value: _vm.logoChannel },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.logoChannel = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm.titleModal === "Добавление нового канала"
+                        ? _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-xs-offset-6 col-xs-9" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "button" },
+                                    domProps: {
+                                      textContent: _vm._s(_vm.buttonModal)
+                                    },
+                                    on: { click: _vm.createChannel }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Добавить телеканал\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.titleModal === "Редактирование канала"
+                        ? _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-xs-offset-6 col-xs-9" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "button" },
+                                    domProps: {
+                                      textContent: _vm._s(_vm.buttonModal)
+                                    },
+                                    on: { click: _vm.updateChannel }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Изменить телеканал\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showModalPlaylist
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "modal fade-in", staticStyle: { display: "block" } },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            _vm.showModalPlaylist = false
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "h4",
+                      {
+                        staticClass: "modal-title",
+                        domProps: {
+                          textContent: _vm._s(_vm.modal_title_playlist)
+                        }
+                      },
+                      [_vm._v("Редактирование плейлистов")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "table",
+                      { staticClass: "table table-bordered table-hover" },
+                      [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _vm._l(_vm.playlists, function(col) {
+                          return _c("tbody", [
+                            _c("tr", [
+                              _c("td", [_vm._v(_vm._s(col.url))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "btn btn-danger",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deletePlaylistChannel(col.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-times ",
+                                      attrs: { "aria-hidden": "true" }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ])
+                          ])
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("form", { staticClass: "form-horizontal" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "control-label col-xs-3" }, [
+                          _vm._v("Новый плейлист:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-xs-9" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.playlistUrl,
+                                expression: "playlistUrl"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "url_playlist",
+                              placeholder:
+                                "http://a3569458063-s26881.cdn.ngenix.net/hls/russia_hd/playlist_4.m3u8"
+                            },
+                            domProps: { value: _vm.playlistUrl },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.playlistUrl = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-xs-offset-3 col-xs-12" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: { click: _vm.addNewPlaylistChannel }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Добавить источник\n                                    "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-info", attrs: { type: "submit" } },
+      [
+        _c("i", {
+          staticClass: "fa fa-download",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Наименование")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Категория")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Язык")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Лого")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Список источников")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("a", [_vm._v("Список источников")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("div", { staticClass: "btn btn-danger", attrs: { type: "button" } }, [
+        _c("i", {
+          staticClass: "fas fa-times ",
+          attrs: { "aria-hidden": "true" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("URL")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Действие")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d0328f40", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

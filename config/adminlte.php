@@ -103,6 +103,24 @@ return [
             'text' => 'Телеканалы',
             'url' => 'admin/channels',
             'icon' => 'search',
+            'submenu' => [
+                [
+                    'text' => 'Все телеканалы',
+                    'url' => 'admin/channels',
+                ],
+                [
+                    'text' => 'Популярные',
+                    'url' => 'admin/channels',
+                ],
+                [
+                    'text' => 'Новостные',
+                    'url' => 'admin/top/channels',
+                ],
+                [
+                    'text' => 'Музыкальные',
+                    'url' => 'admin/top/channels',
+                ],
+            ]
         ],
 
         'ПОЛЬЗОВАТЕЛИ',

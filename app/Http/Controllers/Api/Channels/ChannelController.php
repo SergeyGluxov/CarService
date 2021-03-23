@@ -43,4 +43,15 @@ class ChannelController extends Controller
     {
         return $this->channelRepository->destroy($id);
     }
+
+    public function getFilterChannels(Request $request)
+    {
+        return $this->channelRepository->getFilterChannels($request);
+    }
+
+    //Синхронизировать со списком GitHub
+    public function getChannelFromGitHub()
+    {
+        return $this->channelRepository->getChannelFromGitHub();
+    }
 }

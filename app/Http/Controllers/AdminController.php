@@ -81,6 +81,11 @@ class AdminController extends Controller
         return view('admin_layouts/channels');
     }
 
+    public function getTopChannels()
+    {
+        return view('admin_layouts/top_channels');
+    }
+
     public function getEmployee()
     {
         return view('admin_layouts/employee/all');

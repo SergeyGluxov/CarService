@@ -38,6 +38,7 @@ Vue.component('services-table-component', require('./components/admin/services/A
 
 //-----------------------------------------ПОЛЬЗОВАТЕЛИ-----------------------------------------------------------------
 Vue.component('admin-table-component', require('./components/admin/AdminTableComponent.vue'));
+Vue.component('top-channels-table-component', require('./components/admin/channels/TopChannelsTableComponent.vue'));
 Vue.component('schedules-table-component', require('./components/admin/SchedulesTableComponent.vue'));
 Vue.component('form-employee-component', require('./components/admin/FormEmployeeComponent.vue'));
 Vue.component('delete-employee-component', require('./components/admin/DeleteEmployeeComponent.vue'));

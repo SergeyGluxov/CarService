@@ -26,6 +26,7 @@ Route::get('admin/services/', 'AdminController@getServices');
 
 //Записи на осмотр
 Route::get('admin/channels', 'AdminController@getCheckup');
+Route::get('admin/top/channels', 'AdminController@getTopChannels');
 
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');
@@ -71,6 +72,8 @@ Route::group(['namespace' => 'Api'], function () {
 Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Channels'], function () {
         Route::resource('/channels', 'ChannelController');
+        Route::post('/filter/channels', 'ChannelController@getFilterChannels');
+        Route::get('/updateGitHub/channels', 'ChannelController@getChannelFromGitHub');
     });
     Route::group(['namespace' => 'Sources'], function () {
         Route::resource('/sources', 'SourceController');
