@@ -210,8 +210,8 @@
             getTopTvChannels: function () {
                 const formData = new FormData();
                 formData.append('is_top', 1);
-
-                axios.post('/filter/channels',formData).then((response) => {
+                var query = '?is_top=1'
+                axios.get('/filter/channels' + query).then((response) => {
                     this.channels = response.data;
                     console.log(response.data);
                 });

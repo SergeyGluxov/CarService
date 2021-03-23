@@ -79208,8 +79208,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var formData = new FormData();
             formData.append('is_top', 1);
-
-            axios.post('/filter/channels', formData).then(function (response) {
+            var query = '?is_top=1';
+            axios.get('/filter/channels' + query).then(function (response) {
                 _this.channels = response.data;
                 console.log(response.data);
             });

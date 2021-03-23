@@ -34,14 +34,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлен фильтр top channels">
-      <change afterPath="$PROJECT_DIR$/app/Filters/ChannelFilters.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Filters/QueryFilter.php" afterDir="false" />
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлена модель фильтрации телеканалов">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Channel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/channels/TopChannelsTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/channels/TopChannelsTableComponent.vue" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -452,7 +450,7 @@
       <workItem from="1605344551996" duration="2703000" />
       <workItem from="1616050882007" duration="7983000" />
       <workItem from="1616142241353" duration="8761000" />
-      <workItem from="1616382078985" duration="37608000" />
+      <workItem from="1616382078985" duration="41193000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -720,7 +718,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616483996886</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Добавлена модель фильтрации телеканалов">
+      <created>1616485388859</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1616485388859</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -774,7 +779,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Таблица записей на осмотр у админа" />
     <MESSAGE value="Таблица на осмотр*" />
     <MESSAGE value="Добавление карты yandex" />
     <MESSAGE value="Пример использования Ajax-запросов" />
@@ -799,7 +803,8 @@
     <MESSAGE value="Добавлена возможность редактировать плейлисты" />
     <MESSAGE value="after welcom" />
     <MESSAGE value="Добавлен фильтр top channels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен фильтр top channels" />
+    <MESSAGE value="Добавлена модель фильтрации телеканалов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена модель фильтрации телеканалов" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616405313097">
@@ -874,26 +879,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152542368" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616484000755">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616485409119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616484000755" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616485409119" />
     <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1616050961570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616050961570" />
-    <state x="194" y="126" width="627" height="795" key="find.popup" timestamp="1616483258167">
+    <state x="194" y="126" width="627" height="795" key="find.popup" timestamp="1616488186879">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="194" y="126" width="627" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616483258167" />
+    <state x="194" y="126" width="627" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616488186879" />
     <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1616386240447">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616386240447" />
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616484599065">
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616488441929">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616484599065" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616488441929" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

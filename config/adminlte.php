@@ -110,7 +110,7 @@ return [
                 ],
                 [
                     'text' => 'Популярные',
-                    'url' => 'admin/channels',
+                    'url' => 'admin/top/channels',
                 ],
                 [
                     'text' => 'Новостные',

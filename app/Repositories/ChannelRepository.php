@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Category;
 use App\Filters\ChannelFilters;
 use App\Http\Resources\ChannelCollection;
 use GuzzleHttp\Client;
@@ -61,22 +62,12 @@ class ChannelRepository
     }
 
 
-
     public function getFilterChannels(ChannelFilters $filters)
     {
         $channels = Channel::filter($filters)->get();
-        dd($channels);
         ChannelCollection::withoutWrapping();
         return new ChannelCollection($channels);
-
-/*        if($request->has('is_top') && $request->get('is_top') == true){
-            $channels = Channel::where('is_top', '=', 1)->get();
-        }else{
-            ChannelResource::withoutWrapping();
-            return ChannelResource::collection(Channel::all());
-        }*/
     }
-
 
 
     public function getChannelFromGitHub()
@@ -84,33 +75,39 @@ class ChannelRepository
         $client = new Client();
         $response = $client->get('https://vagonott.github.io/iptv/channels.json');
         $jsonFormattedResult = json_decode($response->getBody()->getContents(), true);
-        foreach($jsonFormattedResult as $item){
+        $categories = Category::all();
+        foreach ($jsonFormattedResult as $item) {
             $title = $item['name'];
             $logo = $item['logo'];
-            //$category = $item['category'];
-            //Найти название категории name = id
             $category_id = 1;
+
+            foreach ($categories as $category) {
+                if ($item['category'] == $category->getAttribute('title')) {
+                    $category_id = $category->getAttribute('id');
+                } else {
+                    $category_id = 666;
+                }
+            }
+
+
             $lang = $item['languages'][0]['code'];
-            if($logo == null){
+            if ($logo == null) {
                 $logo = "Нет";
             }
-            if($lang == null){
+            if ($lang == null) {
                 $lang = "Нет";
             }
 
-            if($title == null){
+            if ($title == null) {
                 $title = "Нет";
             }
-            if($lang == 'rus'){
-                $channelItem = new Channel();
-                $channelItem->title = $title;
-                $channelItem->logo = $logo;
-                $channelItem->lang = $lang;
-                $channelItem->category_id = $category_id;
-                $channelItem->save();
-            }
+            $channelItem = new Channel();
+            $channelItem->title = $title;
+            $channelItem->logo = $logo;
+            $channelItem->lang = $lang;
+            $channelItem->category_id = $category_id;
+            $channelItem->save();
         }
-
         return redirect('/home');
     }
 }
