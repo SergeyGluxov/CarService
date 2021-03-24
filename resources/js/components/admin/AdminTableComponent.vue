@@ -20,7 +20,7 @@
             <label class="control-label">Фильтровать по категории:</label>
             <select @change.capture="onSelectFilterCategory($event)" class="form-control">
                 <option value="" disabled selected>Выбрать...</option>
-                <option v-for="category in categories" :value="category.id"
+                <option v-for="category in categories" :value="category.title"
                         :key="category.title">{{category.title}}
                 </option>
             </select>
@@ -28,6 +28,8 @@
             <label class="control-label">Поиск по названию:</label>
             <input type="text" class="form-control" v-model="search" placeholder="Введите текст..."/>
             <br>
+
+            <label class="control-label">{{channelCount}}</label>
             <hr/>
 
             <table id="example2" class="table table-bordered table-hover">
@@ -210,6 +212,7 @@
                 playlists: [],
                 users: [],
                 selectFilterCategory: '',
+                channelCount: '',
                 selectElementLang: '',
                 selectElementCategory: '',
                 discriptionInput: '',
@@ -236,8 +239,8 @@
                 ],
                 langChannels: [
                     {index: '1', lang: 'rus'},
-                    {index: '2', lang: 'hin'},
-                    {index: '3', lang: 'UA'},
+                    {index: '2', lang: 'eng'},
+                    {index: '3', lang: 'hin'},
                     {index: '3', lang: 'AZ'},
                 ],
                 showModal: false,
@@ -281,6 +284,7 @@
             getAllTvChannels: function () {
                 axios.get('/channels').then((response) => {
                     this.channels = response.data;
+                    this.channelCount = "Полученно " + response.data.length + " телеканалов"
                     console.log(response.data);
                 });
             },
@@ -291,6 +295,7 @@
 
                 axios.post('/category/channels', formData).then((response) => {
                     this.channels = response.data;
+                    this.channelCount = "Полученно " + response.data.length + " телеканалов"
                     console.log(response.data);
                 });
             },

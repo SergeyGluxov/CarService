@@ -104,16 +104,9 @@ class ChannelRepository
         foreach ($jsonFormattedResult as $item) {
             $title = $item['name'];
             $logo = $item['logo'];
-            $category_id = 1;
 
             //Распределение по категориям(те которые у нас уже определены)
-            foreach ($categories as $category) {
-                if ($item['category'] == $category->getAttribute('title')) {
-                    $category_id = $category->getAttribute('id');
-                } else {
-                    $category_id = 666;
-                }
-            }
+            $category_id = $this->getCategoryId($item['category']);
 
             $lang = $item['languages'][0]['code'];
             if ($logo == null) {
@@ -149,5 +142,19 @@ class ChannelRepository
             $channelSource->save();
         }
         return redirect('/home');
+    }
+
+    private function getCategoryId($value){
+        $categoryId = 0;
+        $allCategories = Category::all();
+        foreach ($allCategories as $category) {
+            if ($value == $category->title) {
+                $categoryId = $category->getAttribute('id');
+                break;
+            } else {
+                $categoryId = 666;
+            }
+        }
+        return $categoryId;
     }
 }

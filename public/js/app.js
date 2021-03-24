@@ -73624,6 +73624,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -73640,6 +73642,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             playlists: [],
             users: [],
             selectFilterCategory: '',
+            channelCount: '',
             selectElementLang: '',
             selectElementCategory: '',
             discriptionInput: '',
@@ -73659,7 +73662,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             selectedTime: '',
             //todo Сделать загрузку категорий из API
             categoryChannel: [{ index: '1', category: 'Фильмы' }, { index: '2', category: 'Развлекательные' }, { index: '3', category: 'Новости' }, { index: '3', category: 'Спорт' }],
-            langChannels: [{ index: '1', lang: 'rus' }, { index: '2', lang: 'hin' }, { index: '3', lang: 'UA' }, { index: '3', lang: 'AZ' }],
+            langChannels: [{ index: '1', lang: 'rus' }, { index: '2', lang: 'eng' }, { index: '3', lang: 'hin' }, { index: '3', lang: 'AZ' }],
             showModal: false,
             showModalPlaylist: false,
             currentPage: 1,
@@ -73706,6 +73709,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/channels').then(function (response) {
                 _this2.channels = response.data;
+                _this2.channelCount = "Полученно " + response.data.length + " телеканалов";
                 console.log(response.data);
             });
         },
@@ -73718,6 +73722,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('/category/channels', formData).then(function (response) {
                 _this3.channels = response.data;
+                _this3.channelCount = "Полученно " + response.data.length + " телеканалов";
                 console.log(response.data);
             });
         },
@@ -73964,7 +73969,7 @@ var render = function() {
           _vm._l(_vm.categories, function(category) {
             return _c(
               "option",
-              { key: category.title, domProps: { value: category.id } },
+              { key: category.title, domProps: { value: category.title } },
               [_vm._v(_vm._s(category.title) + "\n            ")]
             )
           })
@@ -74001,6 +74006,10 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("br"),
+      _vm._v(" "),
+      _c("label", { staticClass: "control-label" }, [
+        _vm._v(_vm._s(_vm.channelCount))
+      ]),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
