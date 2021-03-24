@@ -3,6 +3,8 @@
         <div class="row">
             <h2>Управление телеканалами</h2>
 
+
+
             <form class="form-inline" method="GET" action="/admin/appointment/export">
                 <button id="show-modal" type="button" class="btn btn-success" v-on:click="openModalNewChannel()"><i
                     class="fa fa-plus"> Добавить</i>
@@ -11,13 +13,23 @@
                     <i class="fa fa-upload" aria-hidden="true"></i>
                 </button>
                 <button type="submit" class="btn btn-info"><i class="fa fa-download" aria-hidden="true"></i></button>
-                <select @change.capture="onSelectFilterCategory($event)" class="form-control">
-                    <option value="" disabled selected>Фильтровать по категории...</option>
-                    <option v-for="category in categories" :value="category.title"
-                            :key="category.title">{{category.title}}
-                    </option>
-                </select>
+
+
             </form>
+            <br>
+
+            <label class="control-label">Фильтровать по категории:</label>
+            <select @change.capture="onSelectFilterCategory($event)" class="form-control">
+                <option value="" disabled selected>Выбрать...</option>
+                <option v-for="category in categories" :value="category.title"
+                        :key="category.title">{{category.title}}
+                </option>
+            </select>
+            <br>
+            <label class="control-label">Поиск по названию:</label>
+            <input type="text" class="form-control" v-model="search" placeholder="Введите текст..."/>
+            <br>
+            <hr/>
 
             <table id="example2" class="table table-bordered table-hover">
                 <thead>
@@ -31,7 +43,7 @@
                     <!--TODO: Отображать не ID, а название-->
                 </tr>
                 </thead>
-                <tbody v-for="col in channels">
+                <tbody v-for="col in filteredList">
                 <tr>
                     <td @click="clickChangeChannels(col.id)">{{col.id}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.title}}</td>
@@ -70,9 +82,9 @@
                                 <div class="form-group">
                                     <label class="control-label col-xs-3">Категория:</label>
                                     <div class="col-xs-9">
-                                        <select @change.capture="onChangeType($event)" class="form-control">
+                                        <select v-model="selectElementCategory" @change.capture="onChangeType($event)" class="form-control">
                                             <option value="" disabled selected>Выбрать...</option>
-                                            <option v-for="category in categories" :value="category.id"
+                                            <option v-for="category in categories" :value="category.title"
                                                     :key="category.title">{{category.title}}
                                             </option>
                                         </select>
@@ -81,7 +93,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-xs-3">Язык:</label>
                                     <div class="col-xs-9">
-                                        <select @change.capture="onChangeLang($event)" class="form-control">
+                                        <select v-model="selectElementLang" @change.capture="onChangeLang($event)" class="form-control">
                                             <option value="" disabled selected>Выбрать...</option>
                                             <option v-for="type in langChannels" :value="type.lang"
                                                     :key="type.lang">{{type.lang}}
@@ -184,12 +196,15 @@
         components: {vPagination},
         data: function () {
             return {
+                search: '',
                 channel: {},
                 channels: [],
                 categories: [],
                 playlists: [],
                 users: [],
                 selectFilterCategory: '',
+                selectElementLang: '',
+                selectElementCategory: '',
                 discriptionInput: '',
                 selectedCategory: '',
                 selectedLang: '',
@@ -213,8 +228,8 @@
                     {index: '3', category: 'Спорт'},
                 ],
                 langChannels: [
-                    {index: '1', lang: 'RU'},
-                    {index: '2', lang: 'KZ'},
+                    {index: '1', lang: 'rus'},
+                    {index: '2', lang: 'hin'},
                     {index: '3', lang: 'UA'},
                     {index: '3', lang: 'AZ'},
                 ],
@@ -236,8 +251,17 @@
                 },
             }
         },
+
         mounted() {
             this.update();
+        },
+        computed: {
+            filteredList() {
+                console.log("filteredList()");
+                return this.channels.filter(filter => {
+                    return filter.title.toLowerCase().includes(this.search.toLowerCase())
+                })
+            }
         },
         methods: {
             update: function () {
@@ -304,9 +328,12 @@
                 this.titleModal = "Редактирование канала"
                 this.buttonModal = "Изменить"
                 axios.get('/channels/' + id).then((response) => {
+                    console.log(response.data);
                     this.channel = response.data;
                     this.titleChannel = response.data.title;
                     this.logoChannel = response.data.logo;
+                    this.selectElementLang = response.data.lang;
+                    this.selectElementCategory = response.data.category.title;
                 });
             },
 

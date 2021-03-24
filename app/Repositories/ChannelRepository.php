@@ -27,10 +27,14 @@ class ChannelRepository
         return ChannelResource::collection(Channel::all());
     }
 
-    public function paginate()
+    public function paginate(Request $request)
     {
-        ChannelResource::withoutWrapping();
-        return ChannelResource::collection(Channel::all());
+        $count = $request->get('count');
+        $cursor = $request->get('cursor');
+        $channel = Channel::where('id', '>=', $cursor)->paginate($count);
+        dd($channel);
+        ChannelCollection::withoutWrapping();
+        return new ChannelCollection($channel);
     }
 
 

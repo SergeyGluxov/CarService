@@ -23,7 +23,7 @@ class SourceRepository
 
     public function getLast()
     {
-        return Source::all()->count();
+        return Source::max('id');
     }
 
     public function find($id)

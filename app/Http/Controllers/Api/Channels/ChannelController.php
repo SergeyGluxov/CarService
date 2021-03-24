@@ -13,14 +13,10 @@ use Illuminate\Http\Request;
 class ChannelController extends Controller
 {
     protected $channelRepository;
-    protected $channelSourceRepository;
-    protected $sourceRepository;
 
-    public function __construct(ChannelRepository $channelRepository, ChannelSourceRepository $channelSourceRepository, SourceRepository $sourceRepository)
+    public function __construct(ChannelRepository $channelRepository)
     {
         $this->channelRepository = $channelRepository;
-        $this->channelSourceRepository = $channelSourceRepository;
-        $this->sourceRepository = $sourceRepository;
     }
 
     //Показать все записи клиентов
@@ -29,9 +25,9 @@ class ChannelController extends Controller
         return $this->channelRepository->all();
     }
 
-    public function paginate()
+    public function paginate(Request $request)
     {
-        return $this->channelRepository->paginate();
+        return $this->channelRepository->paginate($request);
     }
 
     public function show($id)

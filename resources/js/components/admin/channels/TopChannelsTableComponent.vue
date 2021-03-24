@@ -32,7 +32,7 @@
                     <td>{{col.category.title}}</td>
                     <td>{{col.lang}}</td>
                     <td><a v-bind:href="col.logo"  target="_blank" :value="col.logo">Ссылка</a></td>
-                    <td><a>Список источников</a></td>
+                    <td @click="clickEditPlaylist(col.id)"><a>Список источников</a></td>
                     <td>
                         <div type="button" class="btn btn-danger">
                             <i class="fas fa-times " aria-hidden="true"></i></div>
@@ -180,7 +180,11 @@
             return {
                 channels: [],
                 showModal: false,
+                playlists: [],
                 showModalPlaylist: false,
+                currentChannelForPlaylist: '',
+                modal_title_playlist: '',
+                playlistUrl: '',
                 currentPage: 1,
                 bootstrapPaginationClasses: {
                     ul: 'pagination',
@@ -205,7 +209,7 @@
                 this.getTopTvChannels();
             },
 
-            //----------------------Управление телеканалами-------------------------------------------------------------
+            //----------------------Топ телеканалов(владка популярное)--------------------------------------------------
 
             getTopTvChannels: function () {
                 const formData = new FormData();
@@ -215,7 +219,35 @@
                     this.channels = response.data;
                     console.log(response.data);
                 });
-            }
+            },
+
+            clickEditPlaylist: function (id) {
+                this.showModalPlaylist = true;
+                axios.get('/channels/' + id).then((response) => {
+                    this.playlists = response.data.playlists;
+                    this.currentChannelForPlaylist = id;
+                    this.modal_title_playlist = 'Редактирование плейлиста телеканала ' + response.data.title;
+                    console.log(response.data);
+                });
+            },
+            //Добавить плейлист к телеканалу
+            addNewPlaylistChannel: function () {
+                const formData = new FormData();
+                formData.append('url', this.playlistUrl);
+                formData.append('channel_id', this.currentChannelForPlaylist);
+                axios.post('/channels/source', formData).then((response) => {
+                    this.clickEditPlaylist(this.currentChannelForPlaylist);
+                    this.playlistUrl = "";
+                });
+            },
+
+            //Добавить плейлист к телеканалу
+            deletePlaylistChannel: function ($id) {
+                axios.delete('/channels/source/' + $id).then((response) => {
+                    this.clickEditPlaylist(this.currentChannelForPlaylist);
+                    this.playlistUrl = "";
+                });
+            },
         }
     }
 

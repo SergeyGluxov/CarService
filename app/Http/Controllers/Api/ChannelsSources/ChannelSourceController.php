@@ -48,6 +48,6 @@ class ChannelSourceController extends Controller
     //Удаление запись
     public function destroy($id)
     {
-        return $this->channelRepository->destroy($id);
+        return $this->sourceRepository->destroy($id);
     }
 }
