@@ -4,7 +4,6 @@
             <h2>Управление телеканалами</h2>
 
 
-
             <form class="form-inline" method="GET" action="/admin/appointment/export">
                 <button id="show-modal" type="button" class="btn btn-success" v-on:click="openModalNewChannel()"><i
                     class="fa fa-plus"> Добавить</i>
@@ -21,7 +20,7 @@
             <label class="control-label">Фильтровать по категории:</label>
             <select @change.capture="onSelectFilterCategory($event)" class="form-control">
                 <option value="" disabled selected>Выбрать...</option>
-                <option v-for="category in categories" :value="category.title"
+                <option v-for="category in categories" :value="category.id"
                         :key="category.title">{{category.title}}
                 </option>
             </select>
@@ -82,7 +81,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-xs-3">Категория:</label>
                                     <div class="col-xs-9">
-                                        <select v-model="selectElementCategory" @change.capture="onChangeType($event)" class="form-control">
+                                        <select v-model="selectElementCategory" @change.capture="onChangeType($event)"
+                                                class="form-control">
                                             <option value="" disabled selected>Выбрать...</option>
                                             <option v-for="category in categories" :value="category.title"
                                                     :key="category.title">{{category.title}}
@@ -93,7 +93,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-xs-3">Язык:</label>
                                     <div class="col-xs-9">
-                                        <select v-model="selectElementLang" @change.capture="onChangeLang($event)" class="form-control">
+                                        <select v-model="selectElementLang" @change.capture="onChangeLang($event)"
+                                                class="form-control">
                                             <option value="" disabled selected>Выбрать...</option>
                                             <option v-for="type in langChannels" :value="type.lang"
                                                     :key="type.lang">{{type.lang}}
@@ -117,6 +118,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group" v-if="titleModal==='Редактирование канала'">
+
+                                    <div class="col-xs-offset-3 col-xs-9">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="">Топовый?</label>
+                                        </div>
+                                    </div>
                                     <div class="col-xs-offset-6 col-xs-9">
                                         <button type="button" @click="updateChannel" v-text="buttonModal"
                                                 class="btn btn-success">

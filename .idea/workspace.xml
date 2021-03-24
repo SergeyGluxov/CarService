@@ -34,16 +34,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Начал делать пагинацию">
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлен поиск каналов">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ChannelsSources/ChannelSourceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ChannelsSources/ChannelSourceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/SourceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SourceRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/channels/TopChannelsTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/channels/TopChannelsTableComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -216,7 +211,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/vendor" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
@@ -224,19 +219,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
-      <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts" />
-      <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\channels" />
-      <recent name="C:\OpenServer\domains\CarService\app\Repositories" />
-      <recent name="C:\OpenServer\domains\CarService\app" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean" />
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Controllers\Api\Services" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\views\admin_layouts\users" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\js\components\admin\users" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\CarService\resources\views\vendor" />
+      <recent name="C:\OpenServer\domains\CarService\resources\views" />
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
+      <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts" />
+      <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\channels" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -455,6 +450,7 @@
       <workItem from="1616050882007" duration="7983000" />
       <workItem from="1616142241353" duration="8761000" />
       <workItem from="1616382078985" duration="54474000" />
+      <workItem from="1616565125523" duration="4224000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -743,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616495561544</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Добавлен поиск каналов">
+      <created>1616565233786</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1616565233786</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView">
@@ -797,7 +800,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Пример использования Ajax-запросов" />
     <MESSAGE value="Добавил passport из коробки" />
     <MESSAGE value="Токены сохраняются в бд" />
     <MESSAGE value="CRUD-контроллеры" />
@@ -822,7 +824,8 @@
     <MESSAGE value="Добавлена модель фильтрации телеканалов" />
     <MESSAGE value="Распределение по категориям каналов из GitHub" />
     <MESSAGE value="Начал делать пагинацию" />
-    <option name="LAST_COMMIT_MESSAGE" value="Начал делать пагинацию" />
+    <MESSAGE value="Добавлен поиск каналов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен поиск каналов" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616405313097">
@@ -897,10 +900,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152542368" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616495565856">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616565236031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616495565856" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616565236031" />
     <state x="1116" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1616495294919">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -913,10 +916,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616386240447" />
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616556730582">
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616568488435">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616556730582" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616568488435" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

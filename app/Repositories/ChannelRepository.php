@@ -61,7 +61,8 @@ class ChannelRepository
         $channelUpdate->title = $request->get('title');
         $channelUpdate->logo = $request->get('logo');
         $channelUpdate->lang = $request->get('lang');
-        $channelUpdate->category_id = $request->get('category_id');
+        $category_id = Category::where('title','=',$request->get('category_id'))->get();
+        $channelUpdate->category_id = $category_id[0]->id;
         $channelUpdate->save();
         return response('Телеканал обновлен', 200);
     }
