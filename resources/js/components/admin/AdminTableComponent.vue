@@ -21,7 +21,7 @@
             <select @change.capture="onSelectFilterCategory($event)" class="form-control">
                 <option value="" disabled selected>Выбрать...</option>
                 <option v-for="category in categories" :value="category.title"
-                        :key="category.title">{{category.title}}
+                        :key="category.title">{{category.display_name}}
                 </option>
             </select>
             <br>
@@ -29,7 +29,7 @@
             <input type="text" class="form-control" v-model="search" placeholder="Введите текст..."/>
             <br>
 
-            <label class="control-label">{{channelCount}}</label>
+            <label class="control-label">Найдено {{channelCount}} телеканалов</label>
             <hr/>
 
             <table id="example2" class="table table-bordered table-hover">
@@ -48,7 +48,7 @@
                 <tr>
                     <td @click="clickChangeChannels(col.id)">{{col.id}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.title}}</td>
-                    <td @click="clickChangeChannels(col.id)">{{col.category.title}}</td>
+                        <td @click="clickChangeChannels(col.id)">{{col.category.display_name}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.lang}}</td>
                     <td><a v-bind:href="col.logo" target="_blank" :value="col.logo">Ссылка</a></td>
                     <td @click="clickEditPlaylist(col.id)"><a>Список источников</a></td>
@@ -87,7 +87,7 @@
                                                 class="form-control">
                                             <option value="" disabled selected>Выбрать...</option>
                                             <option v-for="category in categories" :value="category.title"
-                                                    :key="category.title">{{category.title}}
+                                                    :key="category.title">{{category.display_name}}
                                             </option>
                                         </select>
                                     </div>
@@ -284,7 +284,7 @@
             getAllTvChannels: function () {
                 axios.get('/channels').then((response) => {
                     this.channels = response.data;
-                    this.channelCount = "Полученно " + response.data.length + " телеканалов"
+                    this.channelCount = response.data.length
                     console.log(response.data);
                 });
             },
@@ -295,7 +295,7 @@
 
                 axios.post('/category/channels', formData).then((response) => {
                     this.channels = response.data;
-                    this.channelCount = "Полученно " + response.data.length + " телеканалов"
+                    this.channelCount = response.data.length
                     console.log(response.data);
                 });
             },
@@ -318,13 +318,17 @@
                 axios.put('/channels/' + this.channel.id,
                     {
                         title: this.titleChannel,
-                        lang: this.selectedLang,
+                        lang: this.selectElementLang,
                         logo: this.logoChannel,
-                        category_id: this.selectedCategory
+                        category_id: this.selectElementCategory
                     }).then((response) => {
                     console.log(response.data);
                     this.showModal = false;
-                    this.update();
+                    if(this.currentCategory){
+                        this.filterByCategory(this.currentCategory);
+                    }else {
+                        this.update();
+                    }
                 });
             },
 
@@ -412,6 +416,7 @@
             },
 
             onSelectFilterCategory(e) {
+                this.currentCategory=e.target.value;
                 this.filterByCategory(e.target.value);
             },
 

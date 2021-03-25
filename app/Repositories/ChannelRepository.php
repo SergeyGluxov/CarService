@@ -23,8 +23,10 @@ class ChannelRepository
 
     public function all()
     {
+        $channel = Channel::orderBy('position', 'ASC')->get();
+
         ChannelResource::withoutWrapping();
-        return ChannelResource::collection(Channel::all());
+        return ChannelResource::collection($channel);
     }
 
     public function paginate(Request $request)
@@ -62,6 +64,7 @@ class ChannelRepository
         $channelUpdate->logo = $request->get('logo');
         $channelUpdate->lang = $request->get('lang');
         $category_id = Category::where('title','=',$request->get('category_id'))->get();
+        dump($request->get('category_id'));
         $channelUpdate->category_id = $category_id[0]->id;
         $channelUpdate->save();
         return response('Телеканал обновлен', 200);
@@ -87,7 +90,7 @@ class ChannelRepository
         $param = $request->get('category_name');
         $channels = Channel::whereHas('category', function ($query) use ($param) {
             $query->where('title', '=', $param);
-        })->get();
+        })->orderBy('position', 'ASC')->get();
         ChannelCollection::withoutWrapping();
         return new ChannelCollection($channels);
     }
@@ -101,6 +104,8 @@ class ChannelRepository
         $response = $client->get('https://vagonott.github.io/iptv/channels.json');
         $jsonFormattedResult = json_decode($response->getBody()->getContents(), true);
         $categories = Category::all();
+        $rusPosSort = 0;
+        $otherPosition = 0;
         foreach ($jsonFormattedResult as $item) {
             $title = $item['name'];
             $logo = $item['logo'];
@@ -119,9 +124,17 @@ class ChannelRepository
             if ($title == null) {
                 $title = "Нет";
             }
+
             $channelItem = new Channel();
             $channelItem->title = $title;
             $channelItem->logo = $logo;
+            if ($item['languages'][0]['code'] == 'rus') {
+                $channelItem->position = $rusPosSort;
+                $rusPosSort += 1;
+            } else {
+                $channelItem->position = $otherPosition + 1000;
+                $otherPosition += 1;
+            }
             $channelItem->lang = $lang;
             $channelItem->category_id = $category_id;
             $channelItem->save();
@@ -144,7 +157,8 @@ class ChannelRepository
         return redirect('/home');
     }
 
-    private function getCategoryId($value){
+    private function getCategoryId($value)
+    {
         $categoryId = 0;
         $allCategories = Category::all();
         foreach ($allCategories as $category) {

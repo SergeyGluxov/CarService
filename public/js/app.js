@@ -73709,7 +73709,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/channels').then(function (response) {
                 _this2.channels = response.data;
-                _this2.channelCount = "Полученно " + response.data.length + " телеканалов";
+                _this2.channelCount = response.data.length;
                 console.log(response.data);
             });
         },
@@ -73722,7 +73722,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('/category/channels', formData).then(function (response) {
                 _this3.channels = response.data;
-                _this3.channelCount = "Полученно " + response.data.length + " телеканалов";
+                _this3.channelCount = response.data.length;
                 console.log(response.data);
             });
         },
@@ -73748,13 +73748,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.put('/channels/' + this.channel.id, {
                 title: this.titleChannel,
-                lang: this.selectedLang,
+                lang: this.selectElementLang,
                 logo: this.logoChannel,
-                category_id: this.selectedCategory
+                category_id: this.selectElementCategory
             }).then(function (response) {
                 console.log(response.data);
                 _this5.showModal = false;
-                _this5.update();
+                if (_this5.currentCategory) {
+                    _this5.filterByCategory(_this5.currentCategory);
+                } else {
+                    _this5.update();
+                }
             });
         },
 
@@ -73852,6 +73856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selectedCategory = e.target.value;
         },
         onSelectFilterCategory: function onSelectFilterCategory(e) {
+            this.currentCategory = e.target.value;
             this.filterByCategory(e.target.value);
         },
         onChangeLang: function onChangeLang(e) {
@@ -73970,7 +73975,7 @@ var render = function() {
             return _c(
               "option",
               { key: category.title, domProps: { value: category.title } },
-              [_vm._v(_vm._s(category.title) + "\n            ")]
+              [_vm._v(_vm._s(category.display_name) + "\n            ")]
             )
           })
         ],
@@ -74008,7 +74013,7 @@ var render = function() {
       _c("br"),
       _vm._v(" "),
       _c("label", { staticClass: "control-label" }, [
-        _vm._v(_vm._s(_vm.channelCount))
+        _vm._v("Найдено " + _vm._s(_vm.channelCount) + " телеканалов")
       ]),
       _vm._v(" "),
       _c("hr"),
@@ -74058,7 +74063,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v(_vm._s(col.category.title))]
+                  [_vm._v(_vm._s(col.category.display_name))]
                 ),
                 _vm._v(" "),
                 _c(
@@ -74261,7 +74266,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      _vm._s(category.title) +
+                                      _vm._s(category.display_name) +
                                         "\n                                        "
                                     )
                                   ]
