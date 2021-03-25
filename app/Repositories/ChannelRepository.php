@@ -70,6 +70,20 @@ class ChannelRepository
         $channelUpdate->title = $request->get('title');
         $channelUpdate->logo = $request->get('logo');
         $channelUpdate->lang = $request->get('lang');
+
+        //Ищем текущую позицию телеканала
+        $currentPosition = Channel::where('title','=',$request->get('title'))->get()[0]->position;
+
+        //Обновить канал со схожей позицией(задать ему позицию текущего канала)
+        $channelForChange = Channel::where('position','=',$request->get('position'))->get();
+        if($channelForChange->count()>0){
+            $channelForChange[0]->position = $currentPosition;
+            $channelForChange[0]->save();
+        }
+
+        //Позиция свободна для канала, зададим ее
+        $channelUpdate->position = $request->get('position');
+
         $category_id = Category::where('title','=',$request->get('category_id'))->get();
         dump($request->get('category_id'));
         $channelUpdate->category_id = $category_id[0]->id;

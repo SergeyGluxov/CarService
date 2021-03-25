@@ -49,8 +49,10 @@
                     <td @click="clickChangeChannels(col.id)">{{col.title}}</td>
                         <td @click="clickChangeChannels(col.id)">{{col.category.display_name}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.lang}}</td>
-                    <td><a v-bind:href="col.logo" target="_blank" :value="col.logo">Ссылка</a></td>
-                    <td @click="clickEditPlaylist(col.id)"><a>Список источников</a></td>
+                    <td><a v-bind:href="col.logo" target="_blank" :value="col.logo"><img v-bind:src="col.logo"  class="img-rounded" width="70" height="60"></a></td>
+
+                    <td v-if="col.playlists.length>0" @click="clickEditPlaylist(col.id)"><a>Список источников</a></td>
+                    <td v-if="col.playlists.length==0" bgcolor="#d53d25" @click="clickEditPlaylist(col.id)">Пусто<br>Нажмите чтобы добавить</td>
                     <td>
                         <div type="button" class="btn btn-danger" v-on:click="removeChannels(col.id)">
                             <i class="fas fa-times " aria-hidden="true"></i></div>
@@ -118,6 +120,14 @@
                                         </button>
                                     </div>
                                 </div>
+
+                                <div class="form-group" v-if="titleModal==='Редактирование канала'">
+                                    <label class="control-label col-xs-3">Позиция:</label>
+                                    <div class="col-xs-3">
+                                        <input type="text" class="form-control" id="position" v-model="positionChannel">
+                                    </div>
+                                </div>
+
                                 <div class="form-group" v-if="titleModal==='Редактирование канала'">
 
                                     <div class="col-xs-offset-3 col-xs-9">
@@ -218,6 +228,7 @@
                 discriptionInput: '',
                 selectedCategory: '',
                 selectedLang: '',
+                positionChannel: '',
                 titleChannel: '',
                 titleModal: '',
                 playlistUrl: '',
@@ -341,7 +352,8 @@
                         title: this.titleChannel,
                         lang: this.selectElementLang,
                         logo: this.logoChannel,
-                        category_id: this.selectElementCategory
+                        category_id: this.selectElementCategory,
+                        position: this.positionChannel
                     }).then((response) => {
                     console.log(response.data);
                     this.showModal = false;
@@ -369,6 +381,7 @@
                     this.channel = response.data;
                     this.titleChannel = response.data.title;
                     this.logoChannel = response.data.logo;
+                    this.positionChannel = response.data.position;
                     this.selectElementLang = response.data.lang;
                     this.selectElementCategory = response.data.category.title;
                 });
@@ -396,6 +409,7 @@
                 axios.post('/channels/source', formData).then((response) => {
                     this.clickEditPlaylist(this.currentChannelForPlaylist);
                     this.playlistUrl = "";
+                    this.updateChannelList();
                 });
             },
 

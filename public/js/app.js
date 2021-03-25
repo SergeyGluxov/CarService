@@ -73625,6 +73625,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -73648,6 +73658,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             discriptionInput: '',
             selectedCategory: '',
             selectedLang: '',
+            positionChannel: '',
             titleChannel: '',
             titleModal: '',
             playlistUrl: '',
@@ -73773,7 +73784,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 title: this.titleChannel,
                 lang: this.selectElementLang,
                 logo: this.logoChannel,
-                category_id: this.selectElementCategory
+                category_id: this.selectElementCategory,
+                position: this.positionChannel
             }).then(function (response) {
                 console.log(response.data);
                 _this6.showModal = false;
@@ -73805,6 +73817,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this8.channel = response.data;
                 _this8.titleChannel = response.data.title;
                 _this8.logoChannel = response.data.logo;
+                _this8.positionChannel = response.data.position;
                 _this8.selectElementLang = response.data.lang;
                 _this8.selectElementCategory = response.data.category.title;
             });
@@ -73837,6 +73850,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/channels/source', formData).then(function (response) {
                 _this10.clickEditPlaylist(_this10.currentChannelForPlaylist);
                 _this10.playlistUrl = "";
+                _this10.updateChannelList();
             });
         },
 
@@ -74126,21 +74140,47 @@ var render = function() {
                         value: col.logo
                       }
                     },
-                    [_vm._v("Ссылка")]
+                    [
+                      _c("img", {
+                        staticClass: "img-rounded",
+                        attrs: { src: col.logo, width: "70", height: "60" }
+                      })
+                    ]
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.clickEditPlaylist(col.id)
-                      }
-                    }
-                  },
-                  [_c("a", [_vm._v("Список источников")])]
-                ),
+                col.playlists.length > 0
+                  ? _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.clickEditPlaylist(col.id)
+                          }
+                        }
+                      },
+                      [_c("a", [_vm._v("Список источников")])]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                col.playlists.length == 0
+                  ? _c(
+                      "td",
+                      {
+                        attrs: { bgcolor: "#d53d25" },
+                        on: {
+                          click: function($event) {
+                            return _vm.clickEditPlaylist(col.id)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v("Пусто"),
+                        _c("br"),
+                        _vm._v("Нажмите чтобы добавить")
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -74446,6 +74486,40 @@ var render = function() {
                                 )
                               ]
                             )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.titleModal === "Редактирование канала"
+                        ? _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { staticClass: "control-label col-xs-3" },
+                              [_vm._v("Позиция:")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-xs-3" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.positionChannel,
+                                    expression: "positionChannel"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", id: "position" },
+                                domProps: { value: _vm.positionChannel },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.positionChannel = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
                           ])
                         : _vm._e(),
                       _vm._v(" "),
