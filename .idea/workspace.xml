@@ -34,11 +34,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Исправил баг с категориями">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_061951_add_field_displayname_category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_070903_add_position_channels_and_categories.php" afterDir="false" />
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Исправил баг с обновлением телеканала">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ChannelCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ChannelCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ChannelResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ChannelResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" afterDir="false" />
@@ -457,7 +456,7 @@
       <workItem from="1616050882007" duration="7983000" />
       <workItem from="1616142241353" duration="8761000" />
       <workItem from="1616382078985" duration="54474000" />
-      <workItem from="1616565125523" duration="19398000" />
+      <workItem from="1616565125523" duration="23563000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -767,7 +766,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616576293720</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Исправил баг с обновлением телеканала">
+      <created>1616659245235</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1616659245235</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TodoView">
@@ -821,7 +827,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="CRUD-контроллеры" />
     <MESSAGE value="Добавил Repository и Service" />
     <MESSAGE value="Валидация формы записи на осмотр" />
     <MESSAGE value="Custom login(api token auth)" />
@@ -846,7 +851,8 @@
     <MESSAGE value="Добавлен поиск каналов" />
     <MESSAGE value="Починил update channel" />
     <MESSAGE value="Исправил баг с категориями" />
-    <option name="LAST_COMMIT_MESSAGE" value="Исправил баг с категориями" />
+    <MESSAGE value="Исправил баг с обновлением телеканала" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправил баг с обновлением телеканала" />
   </component>
   <component name="WindowStateProjectService">
     <state x="540" y="175" key="#Servers" timestamp="1616574407380">
@@ -929,10 +935,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152542368" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616576296362">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616659247621">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616576296362" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616659247621" />
     <state x="1116" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1616495294919">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -945,26 +951,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="194" y="126" width="627" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616657564976" />
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1616386240447">
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1616662610336">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616386240447" />
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616658264204">
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616662610336" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616662680577">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616658264204" />
+    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616662680577" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Repositories/ChannelRepository.php</url>
-          <line>102</line>
+          <line>109</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Repositories/ChannelRepository.php</url>
-          <line>89</line>
+          <line>96</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

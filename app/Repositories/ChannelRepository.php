@@ -34,7 +34,6 @@ class ChannelRepository
         $count = $request->get('count');
         $cursor = $request->get('cursor');
         $channel = Channel::where('id', '>=', $cursor)->paginate($count);
-        dd($channel);
         ChannelCollection::withoutWrapping();
         return new ChannelCollection($channel);
     }
@@ -52,7 +51,15 @@ class ChannelRepository
         $channelItem->title = $request->get('title');
         $channelItem->logo = $request->get('logo');
         $channelItem->lang = $request->get('lang');
-        $channelItem->category_id = $request->get('category_id');
+        $category_id = Category::where('title','=',$request->get('category_id'))->get();
+        $channelItem->category_id = $category_id[0]->id;
+        //Найти последний добавленный русский канал и задать position + 1
+        if($request->get('lang')=='rus'){
+            $channelItem->position = $this->getLastRussianChannel() + 1;
+        }else{
+            $channelItem->position = $this->getLastNoRussianChannel() + 1;
+        }
+
         $channelItem->save();
         return response('Телеканал успешно добавлен', 200);
     }
@@ -170,5 +177,19 @@ class ChannelRepository
             }
         }
         return $categoryId;
+    }
+
+    public function getLastRussianChannel(){
+        $maxId = Channel::whereHas('category', function ($query) {
+            $query->where('lang', '=', 'rus');
+        })->orderBy('position', 'ASC')->max('position');
+        return $maxId;
+    }
+
+    public function getLastNoRussianChannel(){
+        $maxId = Channel::whereHas('category', function ($query) {
+            $query->where('lang', '!=', 'rus');
+        })->orderBy('position', 'ASC')->max('position');
+        return $maxId;
     }
 }

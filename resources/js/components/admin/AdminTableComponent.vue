@@ -18,8 +18,7 @@
             <br>
 
             <label class="control-label">Фильтровать по категории:</label>
-            <select @change.capture="onSelectFilterCategory($event)" class="form-control">
-                <option value="" disabled selected>Выбрать...</option>
+            <select  v-model="defaultSelectCategory" @change.capture="onSelectFilterCategory($event)" class="form-control">
                 <option v-for="category in categories" :value="category.title"
                         :key="category.title">{{category.display_name}}
                 </option>
@@ -46,7 +45,7 @@
                 </thead>
                 <tbody v-for="col in filteredList">
                 <tr>
-                    <td @click="clickChangeChannels(col.id)">{{col.id}}</td>
+                    <td @click="clickChangeChannels(col.id)">{{col.position}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.title}}</td>
                         <td @click="clickChangeChannels(col.id)">{{col.category.display_name}}</td>
                     <td @click="clickChangeChannels(col.id)">{{col.lang}}</td>
@@ -212,6 +211,7 @@
                 playlists: [],
                 users: [],
                 selectFilterCategory: '',
+                defaultSelectCategory: '',
                 channelCount: '',
                 selectElementLang: '',
                 selectElementCategory: '',
@@ -275,8 +275,25 @@
         },
         methods: {
             update: function () {
-                this.getAllTvChannels();
                 this.getCategories();
+                this.defaultSelectCategory = 'All';
+                this.currentCategory = this.defaultSelectCategory;
+                this.filterByCategory(this.defaultSelectCategory);
+            },
+
+            updateChannelList: function(){
+                if(this.currentCategory !=='All'){
+                    const formData = new FormData();
+                    formData.append('category_name', this.currentCategory);
+
+                    axios.post('/category/channels', formData).then((response) => {
+                        this.channels = response.data;
+                        this.channelCount = response.data.length
+                        console.log(response.data);
+                    });
+                }else {
+                    this.getAllTvChannels();
+                }
             },
 
             //----------------------Управление телеканалами-------------------------------------------------------------
@@ -290,27 +307,31 @@
             },
 
             filterByCategory: function (category) {
-                const formData = new FormData();
-                formData.append('category_name', category);
+                if(category!=='All'){
+                    const formData = new FormData();
+                    formData.append('category_name', category);
 
-                axios.post('/category/channels', formData).then((response) => {
-                    this.channels = response.data;
-                    this.channelCount = response.data.length
-                    console.log(response.data);
-                });
+                    axios.post('/category/channels', formData).then((response) => {
+                        this.channels = response.data;
+                        this.channelCount = response.data.length
+                        console.log(response.data);
+                    });
+                }else {
+                    this.getAllTvChannels();
+                }
             },
 
             createChannel: function () {
                 const formData = new FormData();
                 formData.append('title', this.titleChannel);
-                formData.append('lang', this.selectedLang);
-                formData.append('category_id', this.selectedCategory);
+                formData.append('lang', this.selectElementLang);
+                formData.append('category_id', this.selectElementCategory);
                 formData.append('logo', this.logoChannel);
                 axios.post('/channels', formData).then((response) => {
                     this.appoint = response.data;
                     console.log(response.data);
                     this.showModal = false;
-                    this.update();
+                    this.updateChannel();
                 });
             },
 
@@ -334,7 +355,7 @@
 
             removeChannels: function (id) {
                 axios.delete('/channels/' + id).then((response) => {
-                    this.update();
+                    this.updateChannelList();
                     console.log(response.data);
                 });
             },

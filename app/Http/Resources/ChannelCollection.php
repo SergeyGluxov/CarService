@@ -12,6 +12,7 @@ class ChannelCollection extends ResourceCollection
         foreach ($this->resource as $grade) {
             $grades[] = array(
                 'id' => $grade->id,
+                'position' => $grade->position,
                 'category' => new CategoryResource($grade->category('category_id')->firstOrFail()),
                 'title' => $grade->title,
                 'logo' => $grade->logo,
