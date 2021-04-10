@@ -10420,7 +10420,7 @@ function createCache() {
 }
 
 /**
- * Mark a function for special use by Sizzle
+ * AvtoModel a function for special use by Sizzle
  * @param {Function} fn The function to mark
  */
 function markFunction( fn ) {
@@ -14304,7 +14304,7 @@ function getAll( context, tag ) {
 }
 
 
-// Mark scripts as having already been evaluated
+// AvtoModel scripts as having already been evaluated
 function setGlobalEval( elems, refElements ) {
 	var i = 0,
 		l = elems.length;
@@ -15090,7 +15090,7 @@ jQuery.Event = function( src, props ) {
 	// Create a timestamp if incoming event doesn't have one
 	this.timeStamp = src && src.timeStamp || Date.now();
 
-	// Mark it as fixed
+	// AvtoModel it as fixed
 	this[ jQuery.expando ] = true;
 };
 

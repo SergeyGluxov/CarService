@@ -35,11 +35,6 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('/roles/delete', 'RolesController@deleteRole');
     });
 
-    //Информация о СТО
-    Route::group(['namespace' => 'Sto'], function () {
-        Route::resource('/sto', 'StoController');
-    });
-
     //Услуги
     Route::group(['namespace' => 'Services'], function () {
         Route::resource('/services', 'ServiceController');

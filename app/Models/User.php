@@ -1,16 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Http\Resources\SchedulesResource;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-/**
- * @method static where(string $string, $id)
- */
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;

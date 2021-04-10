@@ -66,10 +66,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'News'], function () {
         Route::resource('/news', 'NewsController');
     });
-});
 
-//todo: Сделать нормальное API
-Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Channels'], function () {
         Route::resource('/channels', 'ChannelController');
         Route::get('/filter/channels', 'ChannelController@getFilterChannels');
@@ -77,9 +74,12 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('/paginate/channels', 'ChannelController@paginate');
         Route::get('/updateGitHub/channels', 'ChannelController@getChannelFromGitHub');
     });
-    Route::group(['namespace' => 'Sources'], function () {
-        Route::resource('/sources', 'SourceController');
+
+    Route::group(['namespace' => 'Cars'], function () {
+        Route::resource('/car/brands', 'BrandController');
+        Route::resource('/car/models', 'AvtoModelController');
     });
+
     Route::group(['namespace' => 'Categories'], function () {
         Route::resource('/categories', 'CategoryController');
     });
