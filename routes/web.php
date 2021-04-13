@@ -67,26 +67,33 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/news', 'NewsController');
     });
 
-    Route::group(['namespace' => 'Channels'], function () {
-        Route::resource('/channels', 'ChannelController');
-        Route::get('/filter/channels', 'ChannelController@getFilterChannels');
-        Route::post('/category/channels', 'ChannelController@getChannelsByCategory');
-        Route::post('/paginate/channels', 'ChannelController@paginate');
-        Route::get('/updateGitHub/channels', 'ChannelController@getChannelFromGitHub');
-    });
 
     Route::group(['namespace' => 'Cars'], function () {
         Route::resource('/car/brands', 'BrandController');
         Route::resource('/car/models', 'AvtoModelController');
     });
 
-    Route::group(['namespace' => 'Categories'], function () {
-        Route::resource('/categories', 'CategoryController');
+    Route::group(['namespace' => 'Details'], function () {
+        Route::resource('/details', 'DetailController');
     });
 
-    Route::group(['namespace' => 'ChannelsSources'], function () {
-        Route::resource('/channels/source', 'ChannelSourceController');
+    Route::group(['namespace' => 'Factory'], function () {
+        Route::resource('/factory', 'FactoryController');
     });
+
+    Route::group(['namespace' => 'Stack'], function () {
+        Route::resource('/stack', 'StackController');
+    });
+
+
+    Route::group(['namespace' => 'Stock'], function () {
+        Route::resource('/stock', 'StockController');
+    });
+
+    Route::group(['namespace' => 'TypeDetail'], function () {
+        Route::resource('/details/type', 'TypeDetailController');
+    });
+
 });
 
 //Эти маршруты для авторизации стороних приложений через carservice

@@ -30,7 +30,7 @@ class StockRepository
     public function store(Request $request)
     {
         $stockStore = new Stock();
-        $stockStore->title = $request->get('title');
+        $stockStore->address = $request->get('address');
         $stockStore->save();
         return response('Склад успешно добавлен', 200);
     }

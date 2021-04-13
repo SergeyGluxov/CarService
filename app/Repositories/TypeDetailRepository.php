@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 use App\Http\Resources\TypeDetailResource;
-use App\Models\Brand;
 use App\Models\TypeDetail;
 use Illuminate\Http\Request;
 
@@ -17,6 +16,8 @@ class TypeDetailRepository
 
     public function all()
     {
+        dump(TypeDetail::all());
+
         TypeDetailResource::withoutWrapping();
         return TypeDetailResource::collection(TypeDetail::all());
     }
@@ -24,6 +25,7 @@ class TypeDetailRepository
 
     public function find($id)
     {
+
         TypeDetailResource::withoutWrapping();
         return new TypeDetailResource(TypeDetail::find($id));
     }

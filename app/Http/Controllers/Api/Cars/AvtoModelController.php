@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api\Cars;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\AvtoModelRepository;
-use App\Repositories\BrandRepository;
-use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
 class AvtoModelController extends Controller

@@ -24,63 +24,49 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:kristina" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:develop" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:kristina" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/kristina/diplom" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/AvtoModelController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/BrandController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Details/DetailController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Factory/FactoryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Stock/StockController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/AvtoModelResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/BrandResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/DetailResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/FactoryResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/StockResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/TypeDetailResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/AvtoModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Factory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/FactoryDetail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Stock.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/TypeDetail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/AvtoModelRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/BrandRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/DetailRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/FactoryRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/StockRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/TypeDetailRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_factory_details_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Stack/StackController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/TypeDetail/TypeDetailController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/StackResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Displacement.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Reservation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Stack.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/StackRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_10_145627_create_details_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_10_145727_create_displacements_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/News/NewsController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Sto/StoController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/User/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NewsResource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Brand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Sto.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Detail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Token.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Token.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/UsersRoles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/UsersRoles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_071825_create_channel_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_071825_create_type_details_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_sources_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_082107_create_avto_models_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_072348_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_072348_create_brands_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_072440_add_fields_channels.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_082107_create_channels_sources_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_23_050021_add_field_top_channels.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_061951_add_field_displayname_category.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_070903_add_position_channels_and_categories.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/AvtoModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/AvtoModelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/BrandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/BrandController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Categories/CategoryController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Stock/StockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Stock/StockController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StockResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StockResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/TypeDetailResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TypeDetailResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Car.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/DetailRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/DetailRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/FactoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/FactoryRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/StockRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StockRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/TypeDetailRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/TypeDetailRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_factory_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_factories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_10_150026_add_stock_id_to_details_table.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
@@ -262,7 +248,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Repositories" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Api/TypeDetail" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
@@ -270,19 +256,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Repositories" />
-      <recent name="$PROJECT_DIR$/app/Http/Resources" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Api/Stock" />
-      <recent name="$PROJECT_DIR$/app/Models" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Api/Factory" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Models" />
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean" />
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Controllers\Api\Services" />
       <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\views\admin_layouts\users" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\TypeDetail" />
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
+      <recent name="C:\OpenServer\domains\CarService\app\Repositories" />
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\Stack" />
+      <recent name="C:\OpenServer\domains\CarService\app\Models" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -335,7 +321,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="StructuralSearchPlugin">
     <searchConfiguration name="user defined" created="1561939404451" text="web&#10;" recursive="true" caseInsensitive="true" type="PHP" scope_type="PROJECT" scope_descriptor="" history="1">
       <constraint name="__context__" within="" contains="" />
@@ -855,7 +841,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="develop" />
+                        <option value="origin/kristina/diplom" />
                       </list>
                     </value>
                   </entry>
@@ -909,6 +895,24 @@
     <MESSAGE value="Исправил баг с обновлением телеканала" />
     <MESSAGE value="Обновление телеканалов при изменении списка" />
     <option name="LAST_COMMIT_MESSAGE" value="Обновление телеканалов при изменении списка" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="285" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1618242093615">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="285" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618242093615" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1618241520138">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618241520138" />
+    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1618241865794">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="255" width="585" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618241865794" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618242312511">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618242312511" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

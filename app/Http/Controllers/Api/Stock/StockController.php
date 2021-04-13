@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Stock;
 
 
 use App\Http\Controllers\Controller;
-use App\Repositories\DetailRepository;
 use App\Repositories\StockRepository;
 use Illuminate\Http\Request;
 

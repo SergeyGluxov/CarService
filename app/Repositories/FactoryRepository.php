@@ -31,6 +31,9 @@ class FactoryRepository
     {
         $factoryStore = new Factory();
         $factoryStore->title = $request->get('title');
+        $factoryStore->country = $request->get('country');
+        $factoryStore->city = $request->get('city');
+        $factoryStore->address = $request->get('address');
         $factoryStore->save();
         return response('Завод успешно добавлен', 200);
     }
