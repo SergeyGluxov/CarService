@@ -30,6 +30,7 @@ class AvtoModelRepository
     public function store(Request $request)
     {
         $avtoModel = new AvtoModel();
+        $avtoModel->brand_id = $request->get('brand');
         $avtoModel->title = $request->get('title');
         $avtoModel->save();
         return response('Модель авто успешно добавлен', 200);

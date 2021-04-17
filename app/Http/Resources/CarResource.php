@@ -4,14 +4,13 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AvtoModelResource extends JsonResource
+class CarResource extends JsonResource
 {
     public function toArray($request)
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'brand' => new BrandResource($this->brand('title')->firstOrFail()),
+            'model' => new AvtoModelResource($this->avto_model('title')->firstOrFail()),
         ];
     }
 }

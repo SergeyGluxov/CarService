@@ -11,6 +11,8 @@ class CreateAvtoModelsTable extends Migration
         Schema::create('avto_models', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->integer('brand_id')->unsigned();
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->timestamps();
         });
     }

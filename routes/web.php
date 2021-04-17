@@ -66,14 +66,12 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('auth/login', 'LoginController');
         Route::post('auth/register', 'RegisterController');
     });
-    Route::group(['namespace' => 'News'], function () {
-        Route::resource('/news', 'NewsController');
-    });
 
 
     Route::group(['namespace' => 'Cars'], function () {
         Route::resource('/car/brands', 'BrandController');
         Route::resource('/car/models', 'AvtoModelController');
+        Route::resource('/cars', 'CarController');
     });
 
     Route::group(['namespace' => 'Details'], function () {

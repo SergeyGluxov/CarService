@@ -13,6 +13,8 @@ class CreateDetailsTable extends Migration
             $table->string('title');
             $table->integer('cost');
             $table->integer('weight');
+            $table->integer('type_detail_id')->unsigned();
+            $table->foreign('type_detail_id')->references('id')->on('type_details')->onDelete('cascade');
             $table->timestamps();
         });
     }
