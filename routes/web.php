@@ -26,6 +26,9 @@ Route::get('admin/services/', 'AdminController@getServices');
 
 //Записи на осмотр
 Route::get('admin/channels', 'AdminController@getCheckup');
+Route::get('admin/auto', 'AdminController@getAuto');
+Route::get('admin/auto/models', 'AdminController@getAutoModel');
+Route::get('admin/auto/brands', 'AdminController@getAutoBrand');
 Route::get('admin/top/channels', 'AdminController@getTopChannels');
 
 //Рассписание работ

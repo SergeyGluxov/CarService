@@ -7,7 +7,7 @@ use App\Appointment;
 use App\Exports\AppointmentsExport;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,7 +19,25 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
+    //----------------------------------АВТОМОБИЛИ----------------------------------------------------------------------
+    public function getAuto()
+    {
+        return view('admin_layouts/auto/all');
+    }
+
+    public function getAutoModel()
+    {
+        return view('admin_layouts/auto/model');
+    }
+
+    public function getAutoBrand()
+    {
+        return view('admin_layouts/auto/brand');
+    }
+
+
     //----------------------------------ПОЛЬЗОВАТЕЛИ--------------------------------------------------------------------
+
 
     public function getUsers()
     {

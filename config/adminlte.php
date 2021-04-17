@@ -98,20 +98,63 @@ return [
 
     'menu' => [
 
-        'ТЕЛЕКАНАЛЫ',
+        'УПРАВЛЕНИЕ АВТОМОБИЛЯМИ',
         [
-            'text' => 'Телеканалы',
+            'text' => 'Автомобили',
             'url' => 'admin/channels',
             'icon' => 'search',
             'submenu' => [
                 [
-                    'text' => 'Все телеканалы',
+                    'text' => 'Список автомобилей',
+                    'url' => 'admin/auto',
+                ],
+                [
+                    'text' => 'Модели',
+                    'url' => 'admin/auto/models',
+                ],
+                [
+                    'text' => 'Бренды',
+                    'url' => 'admin/auto/brands',
+                ],
+            ]
+        ],
+
+        'УПРАВЛЕНИЕ СКЛАДАМИ',
+        [
+            'text' => 'Склады',
+            'url' => 'admin/channels',
+            'icon' => 'search',
+            'submenu' => [
+                [
+                    'text' => 'Помещения',
                     'url' => 'admin/channels',
                 ],
                 [
-                    'text' => 'Популярные',
+                    'text' => 'Стеллажи',
                     'url' => 'admin/top/channels',
                 ],
+            ]
+        ],
+
+        'УПРАВЛЕНИЕ ЗАПЧАСТАМИ',
+        [
+            'text' => 'Перемещения',
+            'url' => 'admin/channels',
+            'icon' => 'search',
+        ],
+        [
+            'text' => 'Запчасти',
+            'url' => 'admin/channels',
+            'icon' => 'search',
+            'submenu' => [
+                [
+                    'text' => 'Ассортимент',
+                    'url' => 'admin/channels',
+                ],
+                [
+                    'text' => 'Типы запчастей',
+                    'url' => 'admin/channels',
+                ]
             ]
         ],
 

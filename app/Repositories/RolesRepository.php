@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Http\Resources\RolesResource;
-use App\Role;
-use App\UsersRoles;
+use App\Models\Role;
+use App\Models\UsersRoles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
