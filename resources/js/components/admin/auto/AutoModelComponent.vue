@@ -4,6 +4,21 @@
         <div class="row">
             <div class="col-12">
                 <h2>Модели автомобилей</h2>
+                <form class="form-inline" method="GET" action="/admin/appointment/export">
+
+                    <select v-model="vmBrand" @change.capture="onSelectBrand($event)"
+                            class="form-control">
+                        <option value="" disabled selected>Выбрать...</option>
+                        <option v-for="type in brands" :value="type.id"
+                                :key="type.id">{{type.title}}
+                        </option>
+                    </select>
+
+                    <input type="text" v-model="vmModel" class="form-control" placeholder="Введите наименование "/>
+                    <button id="show-modal" type="button" class="btn btn-success" v-on:click="storeModel()">
+                        Добавить
+                    </button>
+                </form>
 
                 <div class="card">
                     <div class="card-header">
@@ -19,10 +34,10 @@
                             </thead>
                             <tbody v-for="col in modelAuto">
                             <tr>
-                                <td>Бренд</td>
+                                <td>{{col.brand.title}}</td>
                                 <td>{{col.title}}</td>
                                 <td>
-                                    <div type="button" class="btn btn-danger" v-on:click="deleteUser(col.id)">
+                                    <div type="button" class="btn btn-danger" v-on:click="deleteModel(col.id)">
                                         <i class="fas fa-times " aria-hidden="true"></i></div>
                                 </td>
                             </tr>
@@ -152,8 +167,12 @@
         data: function () {
             return {
                 modelAuto: [],
+                brands: [],
                 showModal: false,
                 //UserData
+                vmBrand: '',
+                brandSelected: '',
+                vmModel: '',
                 createName: '',
                 createEmail: '',
                 createPassword: '',
@@ -167,6 +186,7 @@
         },
         mounted() {
             this.update();
+            this.getBrands();
         },
         methods: {
             newModal: function () {
@@ -179,17 +199,45 @@
                 });
             },
 
-
-            deleteUser: function (id) {
-                axios.delete('/api/users/' + id).then((response) => {
-                    this.users = response.data;
-                    this.update();
+            getBrands: function () {
+                axios.get('/car/brands').then((response) => {
+                    this.brands = response.data;
                     console.log(response.data);
+                });
+            },
+
+            storeModel: function () {
+                var formData = new FormData();
+                formData.append('brand', this.brandSelected);
+                formData.append('title', this.vmModel);
+                axios.post('/car/models', formData)
+                    .then(response => {
+                        console.log('Запрос успешен!')
+                        this.update();
+                        this.vmModel = ""
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            alert('Введите корректные данные!')
+                        }
+                    });
+            },
+
+
+            deleteModel: function (id) {
+                axios.delete('/car/models/' + id).then((response) => {
+                    console.log(response.data);
+                    this.update();
                 });
             },
             convertDat: function (date) {
                 return moment(date).format('DD.MM.YYYY')
-            }
+            },
+
+            //---------------------------Callbacks----------------------------------------------------------------------
+            onSelectBrand(e) {
+                this.brandSelected = e.target.value;
+            },
         }
     }
 </script>

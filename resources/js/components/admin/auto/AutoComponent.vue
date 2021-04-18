@@ -4,9 +4,31 @@
         <div class="row">
             <div class="col-12">
                 <h2>Автомобили</h2>
+                <form class="form-inline" method="GET" action="/admin/appointment/export">
+
+                    <select v-model="vmBrand" @change.capture="onSelectBrand($event)"
+                            class="form-control">
+                        <option value="" disabled selected>Выбрать...</option>
+                        <option v-for="type in brands" :value="type.id"
+                                :key="type.id">{{type.title}}
+                        </option>
+                    </select>
+
+                    <select v-model="vmModel" @change.capture="onSelectModel($event)"
+                            class="form-control">
+                        <option value="" disabled selected>Выбрать...</option>
+                        <option v-for="type in models" :value="type.id"
+                                :key="type.id">{{type.title}}
+                        </option>
+                    </select>
+
+                    <input type="text" v-model="vmModel" class="form-control" placeholder="Введите наименование "/>
+                    <button id="show-modal" type="button" class="btn btn-success" v-on:click="storeModel()">
+                        Добавить
+                    </button>
+                </form>
+
                 <div class="card">
-
-
                     <div class="card-header">
                     </div>
                     <!-- /.card-header -->
@@ -21,12 +43,12 @@
                                 <th>Удаление</th>
                             </tr>
                             </thead>
-                            <tbody v-for="col in users">
+                            <tbody v-for="col in cars">
                             <tr>
-                                <td>{{col.name}}</td>
-                                <td>{{col.phone}}</td>
-                                <td>{{col.email}}</td>
-                                <td>{{convertDat(col.created_at.date)}}</td>
+                                <td>{{col.model.brand.title}}</td>
+                                <td>{{col.model.title}}</td>
+                                <td>{{col.power}}</td>
+                                <td>{{col.engine_value}}</td>
                                 <td>
                                     <div type="button" class="btn btn-danger" v-on:click="deleteUser(col.id)">
                                         <i class="fas fa-times " aria-hidden="true"></i></div>
@@ -138,8 +160,8 @@
                         </div>
                         <div class="modal-body">
                             <form class="form" method="POST" enctype="multipart/form-data"
-                                  action="/admin/users/import">
-                                <input type="file" id="excelUploadUsers" name="excelUploadUsers">
+                                  action="/admin/cars/import">
+                                <input type="file" id="excelUploadcars" name="excelUploadcars">
                                 <br>
                                 <button type="submit" class="btn btn-primary">Импорт из файла</button>
                             </form>
@@ -157,7 +179,13 @@
     export default {
         data: function () {
             return {
-                users: [],
+                cars: [],
+                brands: [],
+                vmModel: '',
+                vmBrand: '',
+                modelSelected: '',
+                brandSelected: '',
+
                 showModal: false,
                 //UserData
                 createName: '',
@@ -173,27 +201,54 @@
         },
         mounted() {
             this.update();
+            this.getBrands();
         },
         methods: {
             newModal: function () {
                 $('#addNew').modal('show');
             },
+
+            getBrands: function () {
+                axios.get('/car/brands').then((response) => {
+                    this.brands = response.data;
+                    console.log(response.data);
+                });
+            },
+
+            getModels: function (brand_id) {
+                var formData = new FormData();
+                formData.append('brand_id', brand_id);
+                axios.post('/car/models', formData)
+                    .then(response => {
+                        this.models = response.data;
+                    });
+            },
+
+
             update: function () {
-                axios.get('/api/users').then((response) => {
-                    this.users = response.data;
+                axios.get('/cars').then((response) => {
+                    this.cars = response.data;
                     console.log(response.data);
                 });
             },
             deleteUser: function (id) {
-                axios.delete('/api/users/' + id).then((response) => {
-                    this.users = response.data;
+                axios.delete('/api/cars/' + id).then((response) => {
+                    this.cars = response.data;
                     this.update();
                     console.log(response.data);
                 });
             },
             convertDat: function (date) {
                 return moment(date).format('DD.MM.YYYY')
-            }
+            },
+            //---------------------------Callbacks----------------------------------------------------------------------
+            onSelectModel(e) {
+                this.modelSelected = e.target.value;
+            },
+
+            onSelectBrand(e) {
+                this.brandSelected = e.target.value;
+            },
         }
     }
 </script>

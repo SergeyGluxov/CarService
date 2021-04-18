@@ -27,6 +27,13 @@ class AvtoModelRepository
         return new AvtoModelResource(AvtoModel::find($id));
     }
 
+    public function getModelsByBrand(Request $request)
+    {
+        AvtoModelResource::withoutWrapping();
+        return new AvtoModelResource(AvtoModel::find($request->get('brand_id')));
+    }
+
+
     public function store(Request $request)
     {
         $avtoModel = new AvtoModel();

@@ -1,0 +1,1113 @@
+Index: config/adminlte.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nreturn [\r\n\r\n    /*\r\n    |--------------------------------------------------------------------------\r\n    | Title\r\n    |--------------------------------------------------------------------------\r\n    |\r\n    | The default title of your admin panel, this goes into the title tag\r\n    | of your page. You can override it per page with the title section.\r\n    | You can optionally also specify a title prefix and/or postfix.\r\n    |\r\n    */\r\n\r\n    'title' => 'CarService Admin',\r\n\r\n    'title_prefix' => '',\r\n\r\n    'title_postfix' => '',\r\n\r\n    /*\r\n    |--------------------------------------------------------------------------\r\n    | Logo\r\n    |--------------------------------------------------------------------------\r\n    |\r\n    | This logo is displayed at the upper left corner of your admin panel.\r\n    | You can use basic HTML here if you want. The logo has also a mini\r\n    | variant, used for the mini side bar. Make it 3 letters or so\r\n    |\r\n    */\r\n\r\n    'logo' => '<b>CarService [ADMIN]</b>',\r\n\r\n    'logo_mini' => '<b>A</b>DM',\r\n\r\n    /*\r\n    |--------------------------------------------------------------------------\r\n    | Skin Color\r\n    |--------------------------------------------------------------------------\r\n    |\r\n    | Choose a skin color for your admin panel. The available skin colors:\r\n    | blue, black, purple, yellow, red, and green. Each skin also has a\r\n    | ligth variant: blue-light, purple-light, purple-light, etc.\r\n    |\r\n    */\r\n\r\n    'skin' => 'blue',\r\n\r\n    /*\r\n    |--------------------------------------------------------------------------\r\n    | Layout\r\n    |--------------------------------------------------------------------------\r\n    |\r\n    | Choose a layout for your admin panel. The available layout options:\r\n    | null, 'boxed', 'fixed', 'top-nav'. null is the default, top-nav\r\n    | removes the sidebar and places your menu in the top navbar\r\n    |\r\n    */\r\n\r\n    'layout' => null,\r\n\r\n    /*\r\n    |--------------------------------------------------------------------------\r\n    | Collapse Sidebar\r\n    |--------------------------------------------------------------------------\r\n    |\r\n    | Here we choose and option to be able to start with a collapsed side\r\n    | bar. To adjust your sidebar layout simply set this  either true\r\n    | this is compatible with layouts except top-nav layout option\r\n    |\r\n    */\r\n\r\n    'collapse_sidebar' => false,\r\n\r\n    /*\r\n    |--------------------------------------------------------------------------\r\n    | URLs\r\n    |--------------------------------------------------------------------------\r\n    |\r\n    | Register here your dashboard, logout, login and register URLs. The\r\n    | logout URL automatically sends a POST request in Laravel 5.3 or higher.\r\n    | You can set the request to a GET or POST with logout_method.\r\n    | Set register_url to null if you don't want a register link.\r\n    |\r\n    */\r\n\r\n    'dashboard_url' => 'home',\r\n\r\n    'logout_url' => 'logout',\r\n\r\n    'logout_method' => null,\r\n\r\n    'login_url' => 'login',\r\n\r\n    'register_url' => 'register',\r\n\r\n\r\n    'menu' => [\r\n        'ПОЛЬЗОВАТЕЛИ',\r\n        [\r\n            'text' => 'Blog',\r\n            'url' => 'admin/blog',\r\n            'can' => 'manage-blog',\r\n        ],\r\n        [\r\n            'text' => 'Список пользователей',\r\n            'url' => 'admin/users/',\r\n            'icon' => 'user',\r\n        ],\r\n        [\r\n            'text' => 'Настройка OAuth',\r\n            'icon' => 'pencil',\r\n            'submenu' => [\r\n                [\r\n                    'text' => 'Клиенты',\r\n                    'url' => 'admin/oauth_clients',\r\n                ],\r\n                [\r\n                    'text' => 'Level One',\r\n                    'url' => '#',\r\n                ],\r\n                [\r\n                    'text' => 'Level One',\r\n                    'url' => '#',\r\n                ],\r\n            ],\r\n        ],\r\n\r\n        'ЗАЯВКИ',\r\n        [\r\n            'text' => 'Заявки',\r\n            'url' => 'admin/checkup_settings',\r\n            'icon' => 'search',\r\n        ],\r\n        'ПОИСК',\r\n        [\r\n            'text' => 'Найти свободных мастеров',\r\n            'url' => 'admin/search_master',\r\n            'icon' => 'search',\r\n        ],\r\n        'РАСПИСАНИЕ РАБОТ',\r\n        [\r\n            'text' => 'Расписание работ',\r\n            'url' => 'admin/schedules',\r\n            'icon' => 'car',\r\n        ],\r\n        'СОТРУДНИКИ',\r\n        [\r\n            'text' => 'Список сотрудников',\r\n            'url' => 'admin/employee',\r\n            'icon' => 'car',\r\n        ],\r\n        [\r\n            'text' => 'Должности',\r\n            'url' => 'admin/add_role',\r\n            'icon' => 'car',\r\n        ],\r\n\r\n        'Услуги',\r\n        [\r\n            'text' => 'Список услуг',\r\n            'url' => 'admin/services/',\r\n            'icon' => 'search',\r\n        ]\r\n    ],\r\n\r\n\r\n    'filters' => [\r\n        JeroenNoten\\LaravelAdminLte\\Menu\\Filters\\HrefFilter::class,\r\n        JeroenNoten\\LaravelAdminLte\\Menu\\Filters\\ActiveFilter::class,\r\n        JeroenNoten\\LaravelAdminLte\\Menu\\Filters\\SubmenuFilter::class,\r\n        JeroenNoten\\LaravelAdminLte\\Menu\\Filters\\ClassesFilter::class,\r\n        JeroenNoten\\LaravelAdminLte\\Menu\\Filters\\GateFilter::class,\r\n    ],\r\n\r\n    /*\r\n    |--------------------------------------------------------------------------\r\n    | Plugins Initialization\r\n    |--------------------------------------------------------------------------\r\n    |\r\n    | Choose which JavaScript plugins should be included. At this moment,\r\n    | only DataTables is supported as a plugin. Set the value to true\r\n    | to include the JavaScript file from a CDN via a script tag.\r\n    |\r\n    */\r\n\r\n    'plugins' => [\r\n        'datatables' => true,\r\n        'select2' => true,\r\n        'chartjs' => true,\r\n    ],\r\n];\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- config/adminlte.php	(revision 77d69f04c959ab76ce0a83955a050fa567b995eb)
++++ config/adminlte.php	(date 1616264239296)
+@@ -13,7 +13,7 @@
+     |
+     */
+ 
+-    'title' => 'CarService Admin',
++    'title' => 'Vagon TV',
+ 
+     'title_prefix' => '',
+ 
+@@ -30,7 +30,7 @@
+     |
+     */
+ 
+-    'logo' => '<b>CarService [ADMIN]</b>',
++    'logo' => '<b>Vagon TV [ADMIN]</b>',
+ 
+     'logo_mini' => '<b>A</b>DM',
+ 
+@@ -97,6 +97,12 @@
+ 
+ 
+     'menu' => [
++        'ТЕЛЕКАНАЛЫ',
++        [
++            'text' => 'Телеканалы',
++            'url' => 'admin/checkup_settings',
++            'icon' => 'search',
++        ],
+         'ПОЛЬЗОВАТЕЛИ',
+         [
+             'text' => 'Blog',
+@@ -116,24 +122,19 @@
+                     'text' => 'Клиенты',
+                     'url' => 'admin/oauth_clients',
+                 ],
+-                [
++              /*  [
+                     'text' => 'Level One',
+                     'url' => '#',
+                 ],
+                 [
+                     'text' => 'Level One',
+                     'url' => '#',
+-                ],
++                ],*/
+             ],
+         ],
+ 
+-        'ЗАЯВКИ',
+-        [
+-            'text' => 'Заявки',
+-            'url' => 'admin/checkup_settings',
+-            'icon' => 'search',
+-        ],
+-        'ПОИСК',
++
++        /*'ПОИСК',
+         [
+             'text' => 'Найти свободных мастеров',
+             'url' => 'admin/search_master',
+@@ -162,7 +163,7 @@
+             'text' => 'Список услуг',
+             'url' => 'admin/services/',
+             'icon' => 'search',
+-        ]
++        ]*/
+     ],
+ 
+ 
+Index: resources/js/components/admin/AdminTableComponent.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><template>\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <h2>Заявки пользователей</h2>\r\n\r\n            <form class=\"form-inline\" method=\"GET\" action=\"/admin/appointment/export\">\r\n                <button id=\"show-modal\" type=\"button\" class=\"btn btn-success\" @click=\"showModal = true\"><i\r\n                    class=\"fa fa-plus\" aria-hidden=\"true\"></i>\r\n                </button>\r\n                <button id=\"show-modal-import\" type=\"button\" class=\"btn btn-info\" @click=\"showModalImport = true\">\r\n                    <i class=\"fa fa-upload\" aria-hidden=\"true\"></i>\r\n                </button>\r\n                <button type=\"submit\" class=\"btn btn-info\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i></button>\r\n            </form>\r\n\r\n            <table id=\"example2\" class=\"table table-bordered table-hover\">\r\n                <thead>\r\n                <tr>\r\n                    <th>Статус</th>\r\n                    <th>Дата</th>\r\n                    <th>Имя пользователя</th>\r\n                    <th>Тип услуги</th>\r\n                    <th>Наименование услуги</th>\r\n                    <th>Описание</th>\r\n                    <th>Удаление</th>\r\n                    <!--TODO: Отображать не ID, а название-->\r\n                </tr>\r\n                </thead>\r\n                <tbody v-for=\"col in appoint\">\r\n                <tr v-if=\"col.status ==='Новая'\" style=\"background: rgba(0,166,90,0.49)\"\r\n                    v-on:click=\"getModalSchedule(col.id)\">\r\n                    <td>{{col.status}}</td>\r\n                    <td>{{convertDat(col.created_at.date)}}</td>\r\n                    <td>{{col.user.name}}</td>\r\n                    <td>{{col.type_service}}</td>\r\n                    <td>{{col.service.title}}</td>\r\n                    <td>{{col.description}}</td>\r\n                    <!--   <td>\r\n                           <button v-on:click=\"changeStatus(col.id)\">-</button>\r\n                       </td>-->\r\n                    <td>\r\n                        <div type=\"button\" class=\"btn btn-danger\" v-on:click=\"removeAppoint(col.id)\">\r\n                            <i class=\"fas fa-times \" aria-hidden=\"true\"></i></div>\r\n                    </td>\r\n                </tr>\r\n                <tr v-if=\"col.status ==='В работе'\" style=\"background: rgba(166,161,0,0.53)\">\r\n                    <td>{{col.status}}</td>\r\n                    <td>{{convertDat(col.created_at.date)}}</td>\r\n                    <td>{{col.user.name}}</td>\r\n                    <td>{{col.type_service}}</td>\r\n                    <td>{{col.service.title}}</td>\r\n                    <!--<td>\r\n                        <button v-on:click=\"changeStatus(col.id)\">-</button>\r\n                    </td>-->\r\n                    <td>{{col.description}}</td>\r\n                    <td>\r\n                        <div type=\"button\" class=\"btn btn-danger\" v-on:click=\"removeAppoint(col.id)\">\r\n                            <i class=\"fas fa-times \" aria-hidden=\"true\"></i></div>\r\n                    </td>\r\n                </tr>\r\n                <tr v-if=\"col.status ==='Выполнена'\" style=\"background: rgba(166,14,0,0.6)\">\r\n                    <td>{{col.status}}</td>\r\n                    <td>{{convertDat(col.created_at.date)}}</td>\r\n                    <td>{{col.user.name}}</td>\r\n                    <td>{{col.type_service}}</td>\r\n                    <td>{{col.service.title}}</td>\r\n                    <td>{{col.description}}</td>\r\n                    <!-- <td>\r\n                         <button v-on:click=\"changeStatus(col.id)\">-</button>\r\n                     </td>-->\r\n                    <td>\r\n                        <div type=\"button\" class=\"btn btn-danger\" v-on:click=\"removeAppoint(col.id)\">\r\n                            <i class=\"fas fa-times \" aria-hidden=\"true\"></i></div>\r\n                    </td>\r\n                </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n        </div>\r\n        <div v-if=\"showModal\">\r\n            <div class=\"modal fade-in\" style=\"display: block;\">\r\n                <div class=\"modal-dialog\">\r\n                    <div class=\"modal-content\">\r\n                        <div class=\"modal-header\">\r\n                            <button type=\"button\" class=\"close\" @click=\"showModal=false\">\r\n                                <span aria-hidden=\"true\">&times;</span>\r\n                            </button>\r\n                            <h4 class=\"modal-title\">Новая заявка</h4>\r\n                        </div>\r\n                        <div class=\"modal-body\">\r\n                            <form class=\"form-horizontal\">\r\n                                <div class=\"form-group\">\r\n                                    <label class=\"control-label col-xs-3\">Выберите пользователя:</label>\r\n                                    <div class=\"col-xs-6\">\r\n                                        <select class=\"form-control\" @change.capture=\"onChangeUser($event)\">\r\n                                            <option value=\"\" disabled selected>Выбрать...</option>\r\n                                            <option v-for=\"user in users\" :value=\"user.id\"\r\n                                                    :key=\"user.id\">{{user.name}}\r\n                                            </option>\r\n                                        </select>\r\n                                    </div>\r\n                                    <div class=\"col-xs-3\">\r\n                                        <button type=\"submit\" class=\"btn btn-primery\">Создать нового\r\n                                        </button>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <label class=\"control-label col-xs-3\">Выберите тип заявки:</label>\r\n                                    <div class=\"col-xs-9\">\r\n                                        <select @change.capture=\"onChangeType($event)\" class=\"form-control\">\r\n                                            <option value=\"\" disabled selected>Выбрать...</option>\r\n                                            <option v-for=\"type in type_service\" :value=\"type.category\"\r\n                                                    :key=\"type.category\">{{type.category}}\r\n                                            </option>\r\n                                        </select>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <label class=\"control-label col-xs-3\">Выберите\r\n                                        услугу:</label>\r\n                                    <div class=\"col-xs-9\">\r\n                                        <select @change.capture=\"onChangeServices($event)\" class=\"form-control\"\r\n                                                v-model=\"selectedService\">\r\n                                            <option value=\"\" disabled selected>Выбрать...</option>\r\n                                            <option v-for=\"service in services\" :value=\"service.id\"\r\n                                                    :key=\"service.id\">{{service.title}}\r\n                                            </option>\r\n                                        </select>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <label class=\"control-label col-xs-3\" for=\"discription\">Описание:</label>\r\n                                    <div class=\"col-xs-9\">\r\n                                                <textarea rows=\"3\" class=\"form-control\" v-model=\"discriptionInput\"\r\n                                                          id=\"discription\"\r\n                                                          placeholder=\"Введите описание\"></textarea>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <label class=\"control-label col-xs-3\" for=\"date\">Дата и время:</label>\r\n                                    <div class=\"col-xs-4\">\r\n                                        <select id=\"date\" class=\"form-control\" @change.capture=\"onChangeDay($event)\">\r\n                                            <option value=\"\" disabled selected>Выбрать дату...</option>\r\n                                            <option v-for=\"dat in freeDate\" :value=\"dat.day\"\r\n                                                    :key=\"dat.day\">{{dat.printValue}}\r\n                                            </option>\r\n                                        </select>\r\n                                    </div>\r\n                                    <div class=\"col-xs-4\">\r\n                                        <select id=\"time\" class=\"form-control\" @change.capture=\"onChangeTime($event)\">\r\n                                            <option value=\"\" disabled selected>Выбрать время...</option>\r\n                                            <option v-for=\"time in freeTime\" :value=\"time.time\"\r\n                                                    :key=\"time.time\">{{time.time}}\r\n                                            </option>\r\n                                        </select>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <div class=\"col-xs-offset-6 col-xs-9\">\r\n                                        <button type=\"submit\" @click=\"store\" class=\"btn btn-success\">Создать\r\n                                            заявку\r\n                                        </button>\r\n                                    </div>\r\n                                </div>\r\n                            </form>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"showModalShedules\">\r\n            <div class=\"modal fade-in\" style=\"display: block; padding-right: 17px;\">\r\n                <div class=\"modal-dialog\">\r\n                    <div class=\"modal-content\">\r\n                        <div class=\"modal-header\">\r\n                            <button type=\"button\" class=\"close\" @click=\"showModalShedules=false\">\r\n                                <span aria-hidden=\"true\">&times;</span>\r\n                            </button>\r\n                            <h4 class=\"modal-title\">Новое назначение</h4>\r\n                        </div>\r\n                        <div class=\"modal-body\">\r\n                            <form class=\"form-horizontal\" id=\"newChedule\">\r\n                                <div class=\"form-group\">\r\n                                    <label class=\"control-label col-xs-3\">Выберите исполнителя:</label>\r\n                                    <div class=\"col-xs-6\">\r\n                                        <select class=\"form-control\" @change.capture=\"onChangeWorkers($event)\">\r\n                                            <option value=\"\" disabled selected>Выбрать...</option>\r\n                                            <option v-for=\"worker in workers\" :value=\"worker.id\"\r\n                                                    :key=\"worker.id\">{{worker.name}}\r\n                                            </option>\r\n                                        </select>\r\n                                    </div>\r\n                                    <div class=\"col-xs-3\">\r\n                                        <button type=\"submit\" class=\"btn btn-primery\">Создать нового\r\n                                        </button>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <div class=\"col-xs-offset-3 col-xs-9\">\r\n                                        <button type=\"submit\" @click=\"storeSchedule\" class=\"btn btn-success\">\r\n                                            Создать\r\n                                            заявку\r\n                                        </button>\r\n                                    </div>\r\n                                </div>\r\n                            </form>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"showModalImport\">\r\n            <div class=\"modal fade-in\" style=\"display: block; padding-right: 17px;\">\r\n                <div class=\"modal-dialog\">\r\n                    <div class=\"modal-content\">\r\n                        <div class=\"modal-header\">\r\n                            <button type=\"button\" class=\"close\" @click=\"showModalImport=false\">\r\n                                <span aria-hidden=\"true\">&times;</span>\r\n                            </button>\r\n                            <h4 class=\"modal-title\">Новое назначение</h4>\r\n                        </div>\r\n                        <div class=\"modal-body\">\r\n                            <form class=\"form\" method=\"POST\" enctype=\"multipart/form-data\"\r\n                                  action=\"/admin/appointment/import\">\r\n                                <input type=\"file\" id=\"excelUpload\" name=\"excelUpload\">\r\n                                <br>\r\n                                <button type=\"submit\" class=\"btn btn-primary\">Импорт из файла</button>\r\n                            </form>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import vPagination from 'vue-plain-pagination'\r\n    import moment from 'moment'\r\n    import 'moment/locale/ru'\r\n\r\n    export default {\r\n        components: {vPagination},\r\n        data: function () {\r\n            return {\r\n                appoint: [],\r\n                users: [],\r\n                discriptionInput: '',\r\n                selectedType: '',\r\n                selectedUser: '',\r\n                selectedService: '',\r\n                selectedWorker: '',\r\n                selectedDay: '',\r\n                selectedTime: '',\r\n                type_service: [\r\n                    {index: '1', category: 'Осмотр'},\r\n                    {index: '2', category: 'Ремонт'},\r\n                    {index: '3', category: 'Топливная система'},\r\n                ],\r\n                services: [],\r\n                freeTime: [],\r\n                showModal: false,\r\n                showModalShedules: false,\r\n                showModalImport: false,\r\n                currentPage: 1,\r\n                bootstrapPaginationClasses: {\r\n                    ul: 'pagination',\r\n                    li: 'page-item',\r\n                    liActive: 'active',\r\n                    liDisable: 'disabled',\r\n                    button: 'page-link'\r\n                },\r\n                paginationAnchorTexts: {\r\n                    first: 'Начало',\r\n                    prev: 'Назад',\r\n                    next: 'Вперед',\r\n                    last: 'Конец'\r\n                },\r\n                //Создание нового назначения\r\n                currentSelectAppointments: 1,\r\n                workers: [],\r\n                freeDate: []\r\n            }\r\n        },\r\n        mounted() {\r\n            this.update();\r\n        },\r\n        methods: {\r\n            //--------------------Получить все заявки----------------------------------\r\n            update: function () {\r\n                this.getAppointments();\r\n                this.getUsers();\r\n                this.getFreeDate();\r\n            },\r\n\r\n            getAppointments: function () {\r\n                axios.get('/api/appointment').then((response) => {\r\n                    this.appoint = response.data;\r\n                    console.log(response.data);\r\n                });\r\n            },\r\n\r\n            //--------------------Получить всех пользователей--------------------------\r\n\r\n            getUsers: function () {\r\n                axios.get('/api/users').then((response) => {\r\n                    this.users = response.data;\r\n                    console.log(response.data);\r\n                });\r\n            },\r\n            //--------------------Получить всех пользователей--------------------------\r\n\r\n            //--------------------Получить все заявки----------------------------------\r\n            getAppointments: function () {\r\n                axios.get('/api/appointment').then((response) => {\r\n                    this.appoint = response.data;\r\n                    console.log(response.data);\r\n                });\r\n            },\r\n\r\n            //--------------------Удалить заявку---------------------------------------\r\n            removeAppoint: function (id) {\r\n                axios.delete('/api/appointment/' + id).then((response) => {\r\n                    this.users = response.data;\r\n                    this.update();\r\n                    console.log(response.data);\r\n                });\r\n            },\r\n\r\n            //----------------------Сохранить заявку----------------------------------\r\n            store: function () {\r\n                let formDate = moment(this.selectedDay).format('YYYY-MM-DD');\r\n                console.log(this.selectedTime);\r\n                let dd = formDate + \" \" + this.selectedTime;\r\n                let formTime = moment(new Date(dd)).format('YYYY-MM-DD HH:mm:ss');\r\n                console.log(formTime);\r\n                const formData = new FormData();\r\n                formData.append('user_id', this.selectedUser);\r\n                formData.append('service_id', this.selectedService);\r\n                formData.append('type_service', this.selectedType);\r\n                formData.append('description', this.discriptionInput);\r\n                formData.append('created_at', formTime);\r\n                axios.post('/api/admin/appointment', formData).then((response) => {\r\n                    this.appoint = response.data;\r\n                    console.log(response.data);\r\n                });\r\n            },\r\n\r\n            //------------------Изменить статус заявки----------------------------------\r\n            changeStatus: function (id) {\r\n                const formData = new FormData();\r\n                formData.append('id', id);\r\n                axios.post('/api/admin/appointment/status', formData).then((response) => {\r\n                    this.update();\r\n                });\r\n            },\r\n\r\n            //Зассетить данные в селектор услуг\r\n            updateSelectService: function (type) {\r\n                const formData = new FormData();\r\n                formData.append('type', type);\r\n                axios.post('/api/services/findByType', formData).then((response) => {\r\n                    console.log(response);\r\n                    console.log(response.data);\r\n                    this.services = response.data;\r\n                });\r\n            },\r\n\r\n            //------------------Создание нового назначения----------------------------------\r\n            //Заполнить информацию в модальное окно\r\n            getModalSchedule(id) {\r\n                this.currentSelectAppointments = '';\r\n                this.currentSelectAppointments = id;\r\n                this.showModalShedules = true;\r\n                this.getWorkers()\r\n            },\r\n\r\n            getWorkers: function () {\r\n                axios.get('/api/workers').then((response) => {\r\n                    this.workers = response.data;\r\n                    console.log(response.data);\r\n                });\r\n            },\r\n\r\n            //------------------Создание нового назначения----------------------------------\r\n            storeSchedule: function () {\r\n                this.changeStatus(this.currentSelectAppointments);\r\n                const dataNewChedule = new FormData();\r\n                dataNewChedule.append('user_id', this.selectedWorker);\r\n                dataNewChedule.append('appointment_id', this.currentSelectAppointments);\r\n                axios.post('/api/admin/schedules', dataNewChedule).then((response) => {\r\n                    console.log(response.data);\r\n                }).catch(error => {\r\n                    alert(error.response.status)\r\n                });\r\n            },\r\n\r\n            onChangeType(e) {\r\n                this.selectedType = e.target.value;\r\n                this.updateSelectService(e.target.value);\r\n\r\n            },\r\n\r\n            onChangeUser(e) {\r\n                this.selectedUser = e.target.value;\r\n            },\r\n\r\n            onChangeServices(e) {\r\n                this.selectedService = e.target.value;\r\n            },\r\n            onChangeWorkers(e) {\r\n                this.selectedWorker = e.target.value;\r\n            },\r\n            onChangeDay(e) {\r\n                this.selectedDay = e.target.value;\r\n                console.log(this.selectedDay);\r\n                this.getFreeTime(this.selectedDay);\r\n            },\r\n            onChangeTime(e) {\r\n                this.selectedTime = e.target.value;\r\n            },\r\n\r\n            //------------------Работа с датами----------------------------------\r\n\r\n            getFreeDate: function () {\r\n                for (let i = 0; i <= 7; i++) {\r\n                    let dayData = {\r\n                        //Y-m-d H:i:s\r\n                        day: moment().add(i, 'days').locale('ru').format('YYYY-MM-DD HH:mm:ss'),\r\n                        printValue: moment().add(i, 'days').format('LL')\r\n                    };\r\n                    this.freeDate.push(dayData);\r\n                }\r\n                console.log(this.freeDate);\r\n            },\r\n\r\n            getFreeTime: function (reqDate) {\r\n                const formData = new FormData();\r\n                formData.append('request_date', reqDate);\r\n                axios.post('/api/admin/appointment/getFreeTime', formData).then((response) => {\r\n                    this.freeTime = response.data;\r\n                });\r\n                console.log(this.freeTime);\r\n            },\r\n\r\n            exportExcel: function () {\r\n                axios.get('/admin/appointment/export');\r\n            },\r\n\r\n            convertDat: function (date) {\r\n                return moment(date).format('YYYY-MM-DD HH:ss')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n<style>\r\n    .table {\r\n        border-collapse: collapse;\r\n        border-spacing: 0;\r\n        cursor: pointer;\r\n        width: 100%;\r\n    }\r\n\r\n    .table th, .table td {\r\n        border: 1px solid #888;\r\n        padding: 10px;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        position: relative;\r\n    }\r\n\r\n    .table tr:hover td {\r\n        background: #6d6b52;\r\n    }\r\n\r\n\r\n</style>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/js/components/admin/AdminTableComponent.vue	(revision 77d69f04c959ab76ce0a83955a050fa567b995eb)
++++ resources/js/components/admin/AdminTableComponent.vue	(date 1616264278092)
+@@ -1,7 +1,7 @@
+ <template>
+     <div class="container">
+         <div class="row">
+-            <h2>Заявки пользователей</h2>
++            <h2>Управление телеканалами</h2>
+ 
+             <form class="form-inline" method="GET" action="/admin/appointment/export">
+                 <button id="show-modal" type="button" class="btn btn-success" @click="showModal = true"><i
+@@ -16,63 +16,23 @@
+             <table id="example2" class="table table-bordered table-hover">
+                 <thead>
+                 <tr>
+-                    <th>Статус</th>
+-                    <th>Дата</th>
+-                    <th>Имя пользователя</th>
+-                    <th>Тип услуги</th>
+-                    <th>Наименование услуги</th>
+-                    <th>Описание</th>
+-                    <th>Удаление</th>
+-                    <!--TODO: Отображать не ID, а название-->
++                    <th>ID</th>
++                    <th>Наименование</th>
++                    <th>Язык</th>
++                    <th>Удалить</th>
+                 </tr>
+                 </thead>
+-                <tbody v-for="col in appoint">
+-                <tr v-if="col.status ==='Новая'" style="background: rgba(0,166,90,0.49)"
+-                    v-on:click="getModalSchedule(col.id)">
+-                    <td>{{col.status}}</td>
+-                    <td>{{convertDat(col.created_at.date)}}</td>
+-                    <td>{{col.user.name}}</td>
+-                    <td>{{col.type_service}}</td>
+-                    <td>{{col.service.title}}</td>
+-                    <td>{{col.description}}</td>
+-                    <!--   <td>
+-                           <button v-on:click="changeStatus(col.id)">-</button>
+-                       </td>-->
++                <tbody v-for="col in channels">
++                <tr>
++                    <td>{{col.id}}</td>
++                    <td>{{col.title}}</td>
++                    <td>{{col.lang}}</td>
+                     <td>
+                         <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
+                             <i class="fas fa-times " aria-hidden="true"></i></div>
+                     </td>
+                 </tr>
+-                <tr v-if="col.status ==='В работе'" style="background: rgba(166,161,0,0.53)">
+-                    <td>{{col.status}}</td>
+-                    <td>{{convertDat(col.created_at.date)}}</td>
+-                    <td>{{col.user.name}}</td>
+-                    <td>{{col.type_service}}</td>
+-                    <td>{{col.service.title}}</td>
+-                    <!--<td>
+-                        <button v-on:click="changeStatus(col.id)">-</button>
+-                    </td>-->
+-                    <td>{{col.description}}</td>
+-                    <td>
+-                        <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
+-                            <i class="fas fa-times " aria-hidden="true"></i></div>
+-                    </td>
+-                </tr>
+-                <tr v-if="col.status ==='Выполнена'" style="background: rgba(166,14,0,0.6)">
+-                    <td>{{col.status}}</td>
+-                    <td>{{convertDat(col.created_at.date)}}</td>
+-                    <td>{{col.user.name}}</td>
+-                    <td>{{col.type_service}}</td>
+-                    <td>{{col.service.title}}</td>
+-                    <td>{{col.description}}</td>
+-                    <!-- <td>
+-                         <button v-on:click="changeStatus(col.id)">-</button>
+-                     </td>-->
+-                    <td>
+-                        <div type="button" class="btn btn-danger" v-on:click="removeAppoint(col.id)">
+-                            <i class="fas fa-times " aria-hidden="true"></i></div>
+-                    </td>
+-                </tr>
++
+                 </tbody>
+             </table>
+ 
+@@ -243,7 +203,7 @@
+         components: {vPagination},
+         data: function () {
+             return {
+-                appoint: [],
++                channels: [],
+                 users: [],
+                 discriptionInput: '',
+                 selectedType: '',
+@@ -289,16 +249,8 @@
+             //--------------------Получить все заявки----------------------------------
+             update: function () {
+                 this.getAppointments();
+-                this.getUsers();
+-                this.getFreeDate();
+             },
+ 
+-            getAppointments: function () {
+-                axios.get('/api/appointment').then((response) => {
+-                    this.appoint = response.data;
+-                    console.log(response.data);
+-                });
+-            },
+ 
+             //--------------------Получить всех пользователей--------------------------
+ 
+@@ -312,8 +264,8 @@
+ 
+             //--------------------Получить все заявки----------------------------------
+             getAppointments: function () {
+-                axios.get('/api/appointment').then((response) => {
+-                    this.appoint = response.data;
++                axios.get('/channels').then((response) => {
++                    this.channels = response.data;
+                     console.log(response.data);
+                 });
+             },
+@@ -468,10 +420,12 @@
+         vertical-align: middle;
+         position: relative;
+     }
++/*
+ 
+     .table tr:hover td {
+         background: #6d6b52;
+     }
++*/
+ 
+ 
+ </style>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:feature\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"BRANCH:develop\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </select>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf\" name=\"Default Changelist\" comment=\"Добавлены секции для уроков\">\r\n      <change afterPath=\"$PROJECT_DIR$/.htaccess\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Http/Controllers/Api/Sources/SourceController.php\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Http/Resources/ChannelResource.php\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Http/Resources/SourcesResource.php\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Repositories/ChannelRepository.php\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Repositories/SourceRepository.php\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Services/ChannelService.php\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Services/SourcesService.php\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/Source.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/php.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/php.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/proj.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/proj.iml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/Http/Resources/UserResource.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/Http/Resources/UserResource.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/Lesson.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/Channel.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/Repositories/LessonRepository.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/Repositories/LessonRepository.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/composer.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/composer.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/database/migrations/2019_10_21_104520_create_news_table.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_sources_table.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/database/migrations/2020_05_05_085916_add_phone_users.php\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/database/migrations/2020_11_08_165643_create_section_table.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/database/migrations/2021_03_18_071825_create_channel_table.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/database/migrations/2020_11_14_161422_create_lesson_table.php\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/public/js/app.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/public/js/app.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/resources/views/home.blade.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/resources/views/home.blade.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/routes/web.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/routes/web.php\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"250a8aa7-fa6e-4b79-8d84-f50771e5de93\" name=\"Добавил adminLTE\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\" doNotAsk=\"true\" synchronizationState=\"SYNCHRONIZE\">\r\n    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>\r\n    <execution>\r\n      <executable path=\"composer\" />\r\n    </execution>\r\n  </component>\r\n  <component name=\"DatabaseView\">\r\n    <option name=\"SHOW_INTERMEDIATE\" value=\"true\" />\r\n    <option name=\"GROUP_DATA_SOURCES\" value=\"true\" />\r\n    <option name=\"GROUP_SCHEMA\" value=\"true\" />\r\n    <option name=\"GROUP_CONTENTS\" value=\"false\" />\r\n    <option name=\"SORT_POSITIONED\" value=\"false\" />\r\n    <option name=\"SHOW_EMPTY_GROUPS\" value=\"false\" />\r\n    <option name=\"AUTO_SCROLL_FROM_SOURCE\" value=\"false\" />\r\n    <option name=\"HIDDEN_KINDS\">\r\n      <set />\r\n    </option>\r\n    <expand>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"bizdev@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"bizdev@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n        <item name=\"schemas\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"bizdev@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n        <item name=\"schemas\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n        <item name=\"bizdev: schema\" type=\"ebfa3cd1:MariaImplModel$Schema\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"develop\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"JsFlowSettings\">\r\n    <service-enabled>true</service-enabled>\r\n    <exe-path />\r\n    <other-services-enabled>true</other-services-enabled>\r\n    <auto-save>true</auto-save>\r\n  </component>\r\n  <component name=\"PhpDebugGeneral\" xdebug_debug_port=\"9123\" listening_started=\"true\" xdebug_force_break_when_no_path_mapping=\"false\" xdebug_force_break_when_outside_project=\"false\" />\r\n  <component name=\"PhpServers\">\r\n    <servers>\r\n      <server host=\"127.0.0.1\" id=\"aaeb801b-0b6b-4f09-b55e-ebf87a511ea6\" name=\"127.0.0.1\" port=\"8000\" />\r\n      <server host=\"127.0.0.1\" id=\"6cb0f49f-0b5a-4804-b511-d13e0dc7093d\" name=\"127.0.0.1 (1)\" />\r\n      <server host=\"carservice.com\" id=\"44a29f41-865d-4ae3-8e63-32eada09d915\" name=\"carservice.com\" />\r\n      <server host=\"localhost\" id=\"c86900ea-661e-41fb-97da-cb2ef1dbcaf1\" name=\"localhost\" port=\"8000\" />\r\n    </servers>\r\n  </component>\r\n  <component name=\"PhpWebServerValidation\" deployment_server_id=\"c9f72c45-dd5e-4be9-83cd-78f00e39ce21\" path_to_validation_script=\"C:\\OSPanel\\domains\\CarService\\public\" selected_validation_type=\"LOCAL\" web_path_to_validation_script=\"http://localhost:8000\" />\r\n  <component name=\"PhpWorkspaceProjectConfiguration\" interpreter_name=\"PHP 7.2\">\r\n    <include_path>\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/container\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/http-message\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/log\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/simple-cache\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psy/psysh\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/filp/whoops\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/opis/closure\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nexmo/client\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nikic/php-parser\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/erusev/parsedown\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/league/flysystem\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nesbot/carbon\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/ramsey/uuid\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vlucas/phpdotenv\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/egulias/email-validator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/tinker\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/framework\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/nexmo-notification-channel\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/slack-notification-channel\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/mockery/mockery\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/monolog/monolog\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/myclabs/deep-copy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phar-io/manifest\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phar-io/version\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpspec/prophecy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-file-iterator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-timer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-text-template\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-token-stream\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-code-coverage\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/phpunit\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/console\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/process\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/debug\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-iconv\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/var-dumper\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-php72\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/http-kernel\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/finder\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/routing\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/css-selector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/event-dispatcher\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-ctype\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/translation\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-mbstring\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/http-foundation\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/theseer/tokenizer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/instantiator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/inflector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/lexer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/hamcrest/hamcrest-php\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/lcobucci/jwt\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/php-http/guzzle6-adapter\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/php-http/httplug\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/php-http/promise\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/fideloper/proxy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/paragonie/random_compat\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/ralouphie/getallheaders\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/global-state\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/comparator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/environment\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/exporter\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/recursion-context\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/object-enumerator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/object-reflector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/resource-operations\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/diff\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/version\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/webmozart/assert\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/fzaninotto/faker\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/guzzle\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/psr7\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/promises\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nunomaduro/collision\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/swiftmailer/swiftmailer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/dragonmantank/cron-expression\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/jakub-onderka/php-console-color\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/type-resolver\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/reflection-common\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/zendframework/zend-diactoros\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/composer\" />\r\n      <path value=\"\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpseclib/phpseclib\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/firebase/php-jwt\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/defuse/php-encryption\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/passport\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/league/event\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/league/oauth2-server\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/kylekatarnls/update-helper\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/translation-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-php73\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/mime\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/service-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/http-factory\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/yaml\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/homestead\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/error-handler\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nexmo/client-core\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/jeroennoten/laravel-adminlte\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/markbaker/matrix\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/markbaker/complex\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/maatwebsite/excel\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-php80\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-php70\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/http-client-contracts\" />\r\n    </include_path>\r\n  </component>\r\n  <component name=\"PhpXdebugProxy\" ide_key=\"PHPSTORM\" host=\"127.0.0.1\" port=\"9123\" />\r\n  <component name=\"ProjectId\" id=\"1ZydeDzCzkYj9zaPojgc43IfZkR\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"Constants\" value=\"false\" />\r\n    <property name=\"DatabaseDriversLRU\" value=\"mysql\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"TODO_SCOPE\" value=\"All Places\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/app/Http/Controllers/Api/Sources\" />\r\n    <property name=\"nodejs_interpreter_path\" value=\"node\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"vcs.Perforce\" />\r\n    <property name=\"ts.external.directory.path\" value=\"C:\\Program Files\\JetBrains\\PhpStorm 2019.3.4\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\OpenServer\\domains\\business\\app\\Http\\Controllers\\Api\\Lean\" />\r\n      <recent name=\"C:\\OpenServer\\domains\\business\\app\\Http\\Controllers\\Api\" />\r\n      <recent name=\"C:\\Users\\Sergey\\Downloads\\OSPanel\\domains\\CarService\\app\\Http\\Controllers\\Api\\Services\" />\r\n      <recent name=\"C:\\Users\\Sergey\\Downloads\\OSPanel\\domains\\CarService\\resources\\views\\admin_layouts\\users\" />\r\n      <recent name=\"C:\\Users\\Sergey\\Downloads\\OSPanel\\domains\\CarService\\resources\\js\\components\\admin\\users\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\OpenServer\\domains\\CarService\\app\\Http\\Controllers\\Api\\Sources\" />\r\n      <recent name=\"C:\\OpenServer\\domains\\CarService\\app\\Http\\Resources\" />\r\n      <recent name=\"C:\\OpenServer\\domains\\CarService\\app\\Repositories\" />\r\n      <recent name=\"C:\\OpenServer\\domains\\CarService\\app\\Services\" />\r\n      <recent name=\"C:\\OpenServer\\domains\\CarService\\app\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunAnythingCache\">\r\n    <option name=\"myCommands\">\r\n      <command value=\"z\" />\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"PHP Web Page.Unnamed\">\r\n    <configuration name=\"phpunit.xml\" type=\"PHPUnitRunConfigurationType\" factoryName=\"PHPUnit\">\r\n      <TestRunner scope=\"XML\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"Unnamed\" type=\"PhpWebAppRunConfigurationType\" factoryName=\"PHP Web Application\" nameIsGenerated=\"true\" server_name=\"carservice.com\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"build\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"build\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"hot\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"hot\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"npm.build\" />\r\n      <item itemvalue=\"npm.hot\" />\r\n      <item itemvalue=\"PHP Web Page.Unnamed\" />\r\n      <item itemvalue=\"PHPUnit.phpunit.xml\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.hot\" />\r\n        <item itemvalue=\"npm.build\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" BundledDictionaries=\"0\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" Dictionaries=\"0\" CorrectionsLimit=\"5\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" />\r\n  <component name=\"StructuralSearchPlugin\">\r\n    <searchConfiguration name=\"user defined\" created=\"1561939404451\" text=\"web&#10;\" recursive=\"true\" caseInsensitive=\"true\" type=\"PHP\" scope_type=\"PROJECT\" scope_descriptor=\"\" history=\"1\">\r\n      <constraint name=\"__context__\" within=\"\" contains=\"\" />\r\n    </searchConfiguration>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1555802933459</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1555802933459</updated>\r\n      <workItem from=\"1555802936130\" duration=\"1261000\" />\r\n      <workItem from=\"1555858361509\" duration=\"1024000\" />\r\n      <workItem from=\"1557338149743\" duration=\"4705000\" />\r\n      <workItem from=\"1557526505067\" duration=\"257000\" />\r\n      <workItem from=\"1557526858306\" duration=\"245000\" />\r\n      <workItem from=\"1557527117190\" duration=\"62000\" />\r\n      <workItem from=\"1557527193027\" duration=\"165000\" />\r\n      <workItem from=\"1557666061796\" duration=\"3821000\" />\r\n      <workItem from=\"1557700137635\" duration=\"2149000\" />\r\n      <workItem from=\"1557737674231\" duration=\"3078000\" />\r\n      <workItem from=\"1560018655711\" duration=\"5529000\" />\r\n      <workItem from=\"1560031383598\" duration=\"4485000\" />\r\n      <workItem from=\"1560186591461\" duration=\"1017000\" />\r\n      <workItem from=\"1560357952208\" duration=\"7073000\" />\r\n      <workItem from=\"1560459961860\" duration=\"1833000\" />\r\n      <workItem from=\"1560547741777\" duration=\"2284000\" />\r\n      <workItem from=\"1560636493348\" duration=\"2346000\" />\r\n      <workItem from=\"1560783480626\" duration=\"5124000\" />\r\n      <workItem from=\"1560805164490\" duration=\"13180000\" />\r\n      <workItem from=\"1560882671717\" duration=\"2528000\" />\r\n      <workItem from=\"1560897937055\" duration=\"1558000\" />\r\n      <workItem from=\"1560941421204\" duration=\"1199000\" />\r\n      <workItem from=\"1560951808878\" duration=\"1771000\" />\r\n      <workItem from=\"1560977632462\" duration=\"614000\" />\r\n      <workItem from=\"1560985906451\" duration=\"12652000\" />\r\n      <workItem from=\"1561048814621\" duration=\"8544000\" />\r\n      <workItem from=\"1561124400539\" duration=\"6243000\" />\r\n      <workItem from=\"1561160327555\" duration=\"3680000\" />\r\n      <workItem from=\"1561246688239\" duration=\"14909000\" />\r\n      <workItem from=\"1561303805703\" duration=\"2000000\" />\r\n      <workItem from=\"1561309883686\" duration=\"3868000\" />\r\n      <workItem from=\"1561327103887\" duration=\"4147000\" />\r\n      <workItem from=\"1561500254458\" duration=\"676000\" />\r\n      <workItem from=\"1561503072573\" duration=\"612000\" />\r\n      <workItem from=\"1561505314360\" duration=\"238000\" />\r\n      <workItem from=\"1561583791261\" duration=\"1580000\" />\r\n      <workItem from=\"1561590472297\" duration=\"20000\" />\r\n      <workItem from=\"1561668278498\" duration=\"610000\" />\r\n      <workItem from=\"1561706392803\" duration=\"7393000\" />\r\n      <workItem from=\"1561897732880\" duration=\"7718000\" />\r\n      <workItem from=\"1561920200523\" duration=\"1855000\" />\r\n      <workItem from=\"1561922574481\" duration=\"1734000\" />\r\n      <workItem from=\"1561939262857\" duration=\"1888000\" />\r\n      <workItem from=\"1561969394338\" duration=\"3930000\" />\r\n      <workItem from=\"1561983643714\" duration=\"10218000\" />\r\n      <workItem from=\"1562500066353\" duration=\"513000\" />\r\n      <workItem from=\"1562704859436\" duration=\"4828000\" />\r\n      <workItem from=\"1562753056902\" duration=\"2655000\" />\r\n      <workItem from=\"1562860079749\" duration=\"155000\" />\r\n      <workItem from=\"1562860288295\" duration=\"2461000\" />\r\n      <workItem from=\"1562927824482\" duration=\"318000\" />\r\n      <workItem from=\"1562934165038\" duration=\"5024000\" />\r\n      <workItem from=\"1563094717877\" duration=\"5554000\" />\r\n      <workItem from=\"1563135069010\" duration=\"4621000\" />\r\n      <workItem from=\"1563185470462\" duration=\"5360000\" />\r\n      <workItem from=\"1563264697481\" duration=\"11916000\" />\r\n      <workItem from=\"1563355794419\" duration=\"14895000\" />\r\n      <workItem from=\"1563448637390\" duration=\"22755000\" />\r\n      <workItem from=\"1563569598592\" duration=\"7669000\" />\r\n      <workItem from=\"1563914078921\" duration=\"23852000\" />\r\n      <workItem from=\"1564086984342\" duration=\"4759000\" />\r\n      <workItem from=\"1564131252554\" duration=\"6787000\" />\r\n      <workItem from=\"1564240843977\" duration=\"3413000\" />\r\n      <workItem from=\"1564389854314\" duration=\"4779000\" />\r\n      <workItem from=\"1564395430051\" duration=\"547000\" />\r\n      <workItem from=\"1564404641483\" duration=\"6798000\" />\r\n      <workItem from=\"1564481483400\" duration=\"4292000\" />\r\n      <workItem from=\"1564586686064\" duration=\"4466000\" />\r\n      <workItem from=\"1564696982854\" duration=\"733000\" />\r\n      <workItem from=\"1565011035647\" duration=\"18395000\" />\r\n      <workItem from=\"1565172341733\" duration=\"6039000\" />\r\n      <workItem from=\"1565210328823\" duration=\"4016000\" />\r\n      <workItem from=\"1565248965576\" duration=\"4694000\" />\r\n      <workItem from=\"1565264712216\" duration=\"5414000\" />\r\n      <workItem from=\"1565270187468\" duration=\"6057000\" />\r\n      <workItem from=\"1565508967029\" duration=\"9369000\" />\r\n      <workItem from=\"1565523198394\" duration=\"7708000\" />\r\n      <workItem from=\"1565604928381\" duration=\"6466000\" />\r\n      <workItem from=\"1565687668860\" duration=\"5199000\" />\r\n      <workItem from=\"1565733202304\" duration=\"365000\" />\r\n      <workItem from=\"1565790689048\" duration=\"6451000\" />\r\n      <workItem from=\"1565857470719\" duration=\"1077000\" />\r\n      <workItem from=\"1565864768267\" duration=\"10483000\" />\r\n      <workItem from=\"1565945501428\" duration=\"3664000\" />\r\n      <workItem from=\"1565951211868\" duration=\"2533000\" />\r\n      <workItem from=\"1565986799371\" duration=\"2648000\" />\r\n      <workItem from=\"1566073202836\" duration=\"3732000\" />\r\n      <workItem from=\"1566119683222\" duration=\"57000\" />\r\n      <workItem from=\"1566120686583\" duration=\"5364000\" />\r\n      <workItem from=\"1566162652602\" duration=\"1910000\" />\r\n      <workItem from=\"1566236127316\" duration=\"264000\" />\r\n      <workItem from=\"1566247378831\" duration=\"527000\" />\r\n      <workItem from=\"1566288915999\" duration=\"11887000\" />\r\n      <workItem from=\"1566379230168\" duration=\"4487000\" />\r\n      <workItem from=\"1566392307131\" duration=\"7023000\" />\r\n      <workItem from=\"1566659071740\" duration=\"6587000\" />\r\n      <workItem from=\"1568065420361\" duration=\"1645000\" />\r\n      <workItem from=\"1568136947104\" duration=\"8320000\" />\r\n      <workItem from=\"1569240221247\" duration=\"824000\" />\r\n      <workItem from=\"1569527567681\" duration=\"788000\" />\r\n      <workItem from=\"1569612970169\" duration=\"7000\" />\r\n      <workItem from=\"1570476681062\" duration=\"1494000\" />\r\n      <workItem from=\"1570557523756\" duration=\"301000\" />\r\n      <workItem from=\"1570559172704\" duration=\"850000\" />\r\n      <workItem from=\"1570636756787\" duration=\"178000\" />\r\n      <workItem from=\"1570640795370\" duration=\"105000\" />\r\n      <workItem from=\"1570705326450\" duration=\"2877000\" />\r\n      <workItem from=\"1570738631748\" duration=\"646000\" />\r\n      <workItem from=\"1571610102864\" duration=\"149000\" />\r\n      <workItem from=\"1571653629825\" duration=\"2879000\" />\r\n      <workItem from=\"1571679009891\" duration=\"489000\" />\r\n      <workItem from=\"1585815365395\" duration=\"3437000\" />\r\n      <workItem from=\"1585878348156\" duration=\"6441000\" />\r\n      <workItem from=\"1585888454722\" duration=\"9155000\" />\r\n      <workItem from=\"1585977310881\" duration=\"10164000\" />\r\n      <workItem from=\"1586060985061\" duration=\"4256000\" />\r\n      <workItem from=\"1586071463488\" duration=\"645000\" />\r\n      <workItem from=\"1586246850755\" duration=\"1400000\" />\r\n      <workItem from=\"1587286684441\" duration=\"2659000\" />\r\n      <workItem from=\"1587432745373\" duration=\"4270000\" />\r\n      <workItem from=\"1588455820605\" duration=\"3471000\" />\r\n      <workItem from=\"1588559859697\" duration=\"1327000\" />\r\n      <workItem from=\"1588561762030\" duration=\"990000\" />\r\n      <workItem from=\"1588562766457\" duration=\"530000\" />\r\n      <workItem from=\"1588563331513\" duration=\"147000\" />\r\n      <workItem from=\"1588563517677\" duration=\"602000\" />\r\n      <workItem from=\"1588564950105\" duration=\"494000\" />\r\n      <workItem from=\"1588565469304\" duration=\"497000\" />\r\n      <workItem from=\"1588565978597\" duration=\"428000\" />\r\n      <workItem from=\"1588566536548\" duration=\"33756000\" />\r\n      <workItem from=\"1588644653012\" duration=\"22253000\" />\r\n      <workItem from=\"1588976020324\" duration=\"45792000\" />\r\n      <workItem from=\"1589178869648\" duration=\"4729000\" />\r\n      <workItem from=\"1589186614456\" duration=\"4503000\" />\r\n      <workItem from=\"1589599450465\" duration=\"16597000\" />\r\n      <workItem from=\"1589682674253\" duration=\"19074000\" />\r\n      <workItem from=\"1591986237141\" duration=\"68000\" />\r\n      <workItem from=\"1591986395601\" duration=\"98000\" />\r\n      <workItem from=\"1591986528724\" duration=\"36000\" />\r\n      <workItem from=\"1591986612855\" duration=\"509000\" />\r\n      <workItem from=\"1591987142818\" duration=\"97000\" />\r\n      <workItem from=\"1599724538900\" duration=\"1825000\" />\r\n      <workItem from=\"1599753227490\" duration=\"235000\" />\r\n      <workItem from=\"1599919299834\" duration=\"3648000\" />\r\n      <workItem from=\"1599973424449\" duration=\"4686000\" />\r\n      <workItem from=\"1603033170351\" duration=\"683000\" />\r\n      <workItem from=\"1604850614275\" duration=\"957000\" />\r\n      <workItem from=\"1604851675156\" duration=\"82000\" />\r\n      <workItem from=\"1604851805853\" duration=\"93000\" />\r\n      <workItem from=\"1604852995689\" duration=\"2507000\" />\r\n      <workItem from=\"1605344551996\" duration=\"2703000\" />\r\n      <workItem from=\"1616050882007\" duration=\"7983000\" />\r\n      <workItem from=\"1616142241353\" duration=\"8761000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Добавлена авторизация\">\r\n      <created>1555802986276</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1555802986276</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Вся херня, которую делал тут)\">\r\n      <created>1561330973961</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1561330973961</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Наполнил страницу home\">\r\n      <created>1561987251657</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1561987251657</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Наполнил страницу home\">\r\n      <created>1561989333264</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1561989333264</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Добавил adminLTE\">\r\n      <created>1562365164581</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1562365164582</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Страница настройки пользователей\">\r\n      <created>1562663688886</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1562663688886</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Добавил пункты в меню админки\">\r\n      <created>1562664278594</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1562664278594</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Защита роутов админки\">\r\n      <created>1562750121528</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1562750121529</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"работа с компонентом vue\">\r\n      <created>1562860491685</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1562860491685</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Изменил PassportComponent\">\r\n      <created>1562862737417</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1562862737417</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Добавил таблицу записи на осмотр\">\r\n      <created>1563185718075</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1563185718075</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Таблица записей на осмотр у админа\">\r\n      <created>1563268991251</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1563268991251</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Таблица на осмотр*\">\r\n      <created>1563269162377</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1563269162377</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Добавление карты yandex\">\r\n      <created>1563279775736</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1563279775736</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Пример использования Ajax-запросов\">\r\n      <created>1563445066546</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1563445066547</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Добавил passport из коробки\">\r\n      <created>1563545490514</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1563545490514</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"Токены сохраняются в бд\">\r\n      <created>1564697660787</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1564697660787</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"Токены сохраняются в бд\">\r\n      <created>1564697679764</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1564697679764</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"CRUD-контроллеры\">\r\n      <created>1565270330056</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565270330056</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"Добавил Repository и Service\">\r\n      <created>1565907350239</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565907350239</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Валидация формы записи на осмотр\">\r\n      <created>1565949510955</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565949510955</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Custom login(api token auth)\">\r\n      <created>1566383112664</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566383112665</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Пагинаци(админка)\">\r\n      <created>1568364598540</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1568364598540</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"21.10.2019\">\r\n      <created>1571679143153</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1571679143153</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"04.04.2020\">\r\n      <created>1585981717445</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1585981717445</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"04.04.2020\">\r\n      <created>1585981738324</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1585981738324</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"05.05.2020\">\r\n      <created>1588615423873</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1588615423873</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"10.05.2020\">\r\n      <created>1589086022463</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1589086022463</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"17.05.2020\">\r\n      <created>1589698935035</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1589698935035</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"added set user role\">\r\n      <created>1589702829174</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1589702829174</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00031\" summary=\"Продолжаем заниматься хуйней))\">\r\n      <created>1604854291289</created>\r\n      <option name=\"number\" value=\"00031\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1604854291289</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00032\" summary=\"Добавлены секции для уроков\">\r\n      <created>1605370280238</created>\r\n      <option name=\"number\" value=\"00032\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605370280238</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"33\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TodoView\">\r\n    <todo-panel id=\"selected-file\">\r\n      <is-autoscroll-to-source value=\"true\" />\r\n    </todo-panel>\r\n    <todo-panel id=\"all\">\r\n      <are-packages-shown value=\"true\" />\r\n      <is-autoscroll-to-source value=\"true\" />\r\n    </todo-panel>\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"develop\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_FILTERS\">\r\n      <map>\r\n        <entry key=\"Branch\">\r\n          <value>\r\n            <list />\r\n          </value>\r\n        </entry>\r\n        <entry key=\"User\">\r\n          <value>\r\n            <list />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Страница настройки пользователей\" />\r\n    <MESSAGE value=\"Добавил пункты в меню админки\" />\r\n    <MESSAGE value=\"Защита роутов админки\" />\r\n    <MESSAGE value=\"работа с компонентом vue\" />\r\n    <MESSAGE value=\"Изменил PassportComponent\" />\r\n    <MESSAGE value=\"Добавил таблицу записи на осмотр\" />\r\n    <MESSAGE value=\"Таблица записей на осмотр у админа\" />\r\n    <MESSAGE value=\"Таблица на осмотр*\" />\r\n    <MESSAGE value=\"Добавление карты yandex\" />\r\n    <MESSAGE value=\"Пример использования Ajax-запросов\" />\r\n    <MESSAGE value=\"Добавил passport из коробки\" />\r\n    <MESSAGE value=\"Токены сохраняются в бд\" />\r\n    <MESSAGE value=\"CRUD-контроллеры\" />\r\n    <MESSAGE value=\"Добавил Repository и Service\" />\r\n    <MESSAGE value=\"Валидация формы записи на осмотр\" />\r\n    <MESSAGE value=\"Custom login(api token auth)\" />\r\n    <MESSAGE value=\"Пагинаци(админка)\" />\r\n    <MESSAGE value=\"21.10.2019\" />\r\n    <MESSAGE value=\"04.04.2020\" />\r\n    <MESSAGE value=\"05.05.2020\" />\r\n    <MESSAGE value=\"10.05.2020\" />\r\n    <MESSAGE value=\"17.05.2020\" />\r\n    <MESSAGE value=\"added set user role\" />\r\n    <MESSAGE value=\"Продолжаем заниматься хуйней))\" />\r\n    <MESSAGE value=\"Добавлены секции для уроков\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Добавлены секции для уроков\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"1090\" y=\"310\" key=\"#com.intellij.refactoring.rename.AutomaticRenamingDialog\" timestamp=\"1616054480820\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"1090\" y=\"310\" key=\"#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616054480820\" />\r\n    <state x=\"1015\" y=\"278\" key=\"#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog\" timestamp=\"1616054727991\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"1015\" y=\"278\" key=\"#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616054727991\" />\r\n    <state x=\"92\" y=\"92\" width=\"1736\" height=\"856\" key=\"DiffContextDialog\" timestamp=\"1616152544786\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"92\" y=\"92\" width=\"1736\" height=\"856\" key=\"DiffContextDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616152544786\" />\r\n    <state x=\"799\" y=\"217\" key=\"VCS.ChangeListViewerDialog\" timestamp=\"1616152542368\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"799\" y=\"217\" key=\"VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616152542368\" />\r\n    <state x=\"1171\" y=\"254\" key=\"VcsDiffUtil.ChangesDialog\" timestamp=\"1616050961570\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"1171\" y=\"254\" key=\"VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616050961570\" />\r\n    <state x=\"194\" y=\"126\" width=\"585\" height=\"795\" key=\"find.popup\" timestamp=\"1616166513696\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"194\" y=\"126\" width=\"585\" height=\"795\" key=\"find.popup/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616166513696\" />\r\n    <state x=\"948\" y=\"230\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1616154300968\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"948\" y=\"230\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616154300968\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints-dialog>\r\n        <breakpoints-dialog>\r\n          <selected-grouping-rules>\r\n            <grouping-rule id=\"by-file\" />\r\n          </selected-grouping-rules>\r\n        </breakpoints-dialog>\r\n      </breakpoints-dialog>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/proj$phpunit_xml.xml\" NAME=\"phpunit.xml Coverage Results\" MODIFIED=\"1557338769907\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"PhpCoverage\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 77d69f04c959ab76ce0a83955a050fa567b995eb)
++++ .idea/workspace.xml	(date 1618237016935)
+@@ -34,31 +34,13 @@
+     </select>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Добавлены секции для уроков">
+-      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Sources/SourceController.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ChannelResource.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/SourcesResource.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Repositories/SourceRepository.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Services/ChannelService.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Services/SourcesService.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/Source.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/proj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proj.iml" afterDir="false" />
++    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="API Vagon TV">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/Lesson.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Channel.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/Repositories/LessonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/LessonRepository.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_21_104520_create_news_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_075550_create_sources_table.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_05_085916_add_phone_users.php" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_08_165643_create_section_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_071825_create_channel_table.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_14_161422_create_lesson_table.php" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" afterDir="false" />
+     </list>
+     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+@@ -289,7 +271,7 @@
+       <command value="z" />
+     </option>
+   </component>
+-  <component name="RunManager" selected="PHP Web Page.Unnamed">
++  <component name="RunManager" selected="npm.watch">
+     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+       <TestRunner scope="XML" />
+       <method v="2" />
+@@ -312,6 +294,16 @@
+       <command value="run" />
+       <scripts>
+         <script value="hot" />
++      </scripts>
++      <node-interpreter value="project" />
++      <envs />
++      <method v="2" />
++    </configuration>
++    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
++      <package-json value="$PROJECT_DIR$/package.json" />
++      <command value="run" />
++      <scripts>
++        <script value="watch" />
+       </scripts>
+       <node-interpreter value="project" />
+       <envs />
+@@ -320,11 +312,13 @@
+     <list>
+       <item itemvalue="npm.build" />
+       <item itemvalue="npm.hot" />
++      <item itemvalue="npm.watch" />
+       <item itemvalue="PHP Web Page.Unnamed" />
+       <item itemvalue="PHPUnit.phpunit.xml" />
+     </list>
+     <recent_temporary>
+       <list>
++        <item itemvalue="npm.watch" />
+         <item itemvalue="npm.hot" />
+         <item itemvalue="npm.build" />
+       </list>
+@@ -499,6 +493,7 @@
+       <workItem from="1605344551996" duration="2703000" />
+       <workItem from="1616050882007" duration="7983000" />
+       <workItem from="1616142241353" duration="8761000" />
++      <workItem from="1616261268398" duration="3747000" />
+     </task>
+     <task id="LOCAL-00001" summary="Добавлена авторизация">
+       <created>1555802986276</created>
+@@ -724,7 +719,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1605370280238</updated>
+     </task>
+-    <option name="localTasksCounter" value="33" />
++    <task id="LOCAL-00033" summary="API Vagon TV">
++      <created>1616261432741</created>
++      <option name="number" value="00033" />
++      <option name="presentableId" value="LOCAL-00033" />
++      <option name="project" value="LOCAL" />
++      <updated>1616261432741</updated>
++    </task>
++    <option name="localTasksCounter" value="34" />
+     <servers />
+   </component>
+   <component name="TodoView">
+@@ -778,7 +780,6 @@
+     <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="Страница настройки пользователей" />
+     <MESSAGE value="Добавил пункты в меню админки" />
+     <MESSAGE value="Защита роутов админки" />
+     <MESSAGE value="работа с компонентом vue" />
+@@ -803,7 +804,8 @@
+     <MESSAGE value="added set user role" />
+     <MESSAGE value="Продолжаем заниматься хуйней))" />
+     <MESSAGE value="Добавлены секции для уроков" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены секции для уроков" />
++    <MESSAGE value="API Vagon TV" />
++    <option name="LAST_COMMIT_MESSAGE" value="API Vagon TV" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616054480820">
+@@ -814,26 +816,46 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616054727991" />
+-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1616152544786">
++    <state x="47" y="135" width="1736" height="856" key="DiffContextDialog" timestamp="1616265077097">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state x="47" y="135" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616265077097" />
++    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1616262370537">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616262370537" />
++    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1616262370537">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616262370537" />
++    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1616262370537">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152544786" />
++    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616262370537" />
++    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1616262370537">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616262370537" />
+     <state x="799" y="217" key="VCS.ChangeListViewerDialog" timestamp="1616152542368">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152542368" />
++    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616261464393">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616261464393" />
+     <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1616050961570">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="1171" y="254" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616050961570" />
+-    <state x="194" y="126" width="585" height="795" key="find.popup" timestamp="1616166513696">
++    <state x="194" y="126" width="585" height="795" key="find.popup" timestamp="1616264316164">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="194" y="126" width="585" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616166513696" />
+-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616154300968">
++    <state x="194" y="126" width="585" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616264316164" />
++    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616264594737">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616154300968" />
++    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616264594737" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: public/js/app.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- public/js/app.js	(revision 77d69f04c959ab76ce0a83955a050fa567b995eb)
++++ public/js/app.js	(date 1616264278811)
+@@ -49527,7 +49527,7 @@
+      * // Use the `sourceURL` option to specify a custom sourceURL for the template.
+      * var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
+      * compiled(data);
+-     * // => Find the source of "greeting.jst" under the Source tab or Resources panel of the web inspector.
++     * // => Find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector.
+      *
+      * // Use the `variable` option to ensure a with-statement isn't used in the compiled template.
+      * var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
+@@ -71654,8 +71654,6 @@
+ //
+ //
+ //
+-//
+-//
+ 
+ 
+ 
+@@ -71669,13 +71667,9 @@
+             createEmail: '',
+             createPassword: '',
+             createPhone: '',
+-            createCarsId: '',
+-
+-            //CarsData
+             createMarkCar: '',
+             createModelCar: '',
+             createGosNumberCar: '',
+-            car: 1,
+ 
+             showModalImport: false
+         };
+@@ -71705,47 +71699,6 @@
+                 console.log(response.data);
+             });
+         },
+-        store: function store() {
+-            this.storeCar();
+-        },
+-
+-        storeCar: function storeCar() {
+-            var _this3 = this;
+-
+-            var formData = new FormData();
+-            formData.append('brand', this.createMarkCar);
+-            formData.append('model', this.createModelCar);
+-            formData.append('state_number', this.createGosNumberCar);
+-            formData.append('type_car_id', '1');
+-            axios.post('/api/cars', formData).then(function (response) {
+-                var modelData = new FormData();
+-                modelData.append('model', _this3.createModelCar);
+-                axios.post('/api/cars/findByModel', modelData).then(function (response) {
+-                    var formData = new FormData();
+-                    formData.append('name', _this3.createName);
+-                    formData.append('email', _this3.createEmail);
+-                    formData.append('phone', _this3.createPhone);
+-                    formData.append('password', _this3.createPassword);
+-                    formData.append('password_confirmation', _this3.createPassword);
+-                    formData.append('cars_id', response.data.id);
+-                    axios.post('/api/users', formData).then(function (response) {
+-                        _this3.update();
+-                        console.log(response.data);
+-                    });
+-                });
+-            });
+-        },
+-
+-        findIdCar: function findIdCar() {
+-            var _this4 = this;
+-
+-            axios.get('/api/cars/' + 1).then(function (response) {
+-                _this4.car = response.data.id;
+-                console.log(response.data.id);
+-            });
+-            return this.car;
+-        },
+-
+         convertDat: function convertDat(date) {
+             return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).format('DD.MM.YYYY');
+         }
+@@ -72127,12 +72080,6 @@
+                       ]),
+                       _vm._v(" "),
+                       _c("td", [
+-                        _vm._v(_vm._s(col.cars.brand + " " + col.cars.model))
+-                      ]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.cars.state_number))]),
+-                      _vm._v(" "),
+-                      _c("td", [
+                         _c(
+                           "div",
+                           {
+@@ -73545,7 +73492,7 @@
+ 
+ 
+ // module
+-exports.push([module.i, "\n.table {\n    border-collapse: collapse;\n    border-spacing: 0;\n    cursor: pointer;\n    width: 100%;\n}\n.table th, .table td {\n    border: 1px solid #888;\n    padding: 10px;\n    text-align: center;\n    vertical-align: middle;\n    position: relative;\n}\n.table tr:hover td {\n    background: #6d6b52;\n}\n\n\n", ""]);
++exports.push([module.i, "\n.table {\n        border-collapse: collapse;\n        border-spacing: 0;\n        cursor: pointer;\n        width: 100%;\n}\n.table th, .table td {\n        border: 1px solid #888;\n        padding: 10px;\n        text-align: center;\n        vertical-align: middle;\n        position: relative;\n}\n/*\n\n    .table tr:hover td {\n        background: #6d6b52;\n    }\n*/\n\n\n", ""]);
+ 
+ // exports
+ 
+@@ -73562,50 +73509,6 @@
+ /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
+ /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_locale_ru__ = __webpack_require__(8);
+ /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_locale_ru___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment_locale_ru__);
+-var _methods;
+-
+-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+-
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+-//
+ //
+ //
+ //
+@@ -73811,7 +73714,7 @@
+     components: { vPagination: __WEBPACK_IMPORTED_MODULE_0_vue_plain_pagination___default.a },
+     data: function data() {
+         return {
+-            appoint: [],
++            channels: [],
+             users: [],
+             discriptionInput: '',
+             selectedType: '',
+@@ -73850,145 +73753,178 @@
+         this.update();
+     },
+ 
+-    methods: (_methods = {
++    methods: {
+         //--------------------Получить все заявки----------------------------------
+         update: function update() {
+             this.getAppointments();
+-            this.getUsers();
+-            this.getFreeDate();
+         },
+ 
+-        getAppointments: function getAppointments() {
++        //--------------------Получить всех пользователей--------------------------
++
++        getUsers: function getUsers() {
+             var _this = this;
+ 
+-            axios.get('/api/appointment').then(function (response) {
+-                _this.appoint = response.data;
++            axios.get('/api/users').then(function (response) {
++                _this.users = response.data;
+                 console.log(response.data);
+             });
+         },
+-
+         //--------------------Получить всех пользователей--------------------------
+ 
+-        getUsers: function getUsers() {
++        //--------------------Получить все заявки----------------------------------
++        getAppointments: function getAppointments() {
+             var _this2 = this;
+ 
+-            axios.get('/api/users').then(function (response) {
+-                _this2.users = response.data;
++            axios.get('/channels').then(function (response) {
++                _this2.channels = response.data;
+                 console.log(response.data);
+             });
+-        }
+-    }, _defineProperty(_methods, 'getAppointments', function getAppointments() {
+-        var _this3 = this;
++        },
++
++        //--------------------Удалить заявку---------------------------------------
++        removeAppoint: function removeAppoint(id) {
++            var _this3 = this;
+ 
+-        axios.get('/api/appointment').then(function (response) {
+-            _this3.appoint = response.data;
+-            console.log(response.data);
+-        });
+-    }), _defineProperty(_methods, 'removeAppoint', function removeAppoint(id) {
+-        var _this4 = this;
++            axios.delete('/api/appointment/' + id).then(function (response) {
++                _this3.users = response.data;
++                _this3.update();
++                console.log(response.data);
++            });
++        },
++
++        //----------------------Сохранить заявку----------------------------------
++        store: function store() {
++            var _this4 = this;
+ 
+-        axios.delete('/api/appointment/' + id).then(function (response) {
+-            _this4.users = response.data;
+-            _this4.update();
+-            console.log(response.data);
+-        });
+-    }), _defineProperty(_methods, 'store', function store() {
+-        var _this5 = this;
+-
+-        var formDate = __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.selectedDay).format('YYYY-MM-DD');
+-        console.log(this.selectedTime);
+-        var dd = formDate + " " + this.selectedTime;
+-        var formTime = __WEBPACK_IMPORTED_MODULE_1_moment___default()(new Date(dd)).format('YYYY-MM-DD HH:mm:ss');
+-        console.log(formTime);
+-        var formData = new FormData();
+-        formData.append('user_id', this.selectedUser);
+-        formData.append('service_id', this.selectedService);
+-        formData.append('type_service', this.selectedType);
+-        formData.append('description', this.discriptionInput);
+-        formData.append('created_at', formTime);
+-        axios.post('/api/admin/appointment', formData).then(function (response) {
+-            _this5.appoint = response.data;
+-            console.log(response.data);
+-        });
+-    }), _defineProperty(_methods, 'changeStatus', function changeStatus(id) {
+-        var _this6 = this;
++            var formDate = __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.selectedDay).format('YYYY-MM-DD');
++            console.log(this.selectedTime);
++            var dd = formDate + " " + this.selectedTime;
++            var formTime = __WEBPACK_IMPORTED_MODULE_1_moment___default()(new Date(dd)).format('YYYY-MM-DD HH:mm:ss');
++            console.log(formTime);
++            var formData = new FormData();
++            formData.append('user_id', this.selectedUser);
++            formData.append('service_id', this.selectedService);
++            formData.append('type_service', this.selectedType);
++            formData.append('description', this.discriptionInput);
++            formData.append('created_at', formTime);
++            axios.post('/api/admin/appointment', formData).then(function (response) {
++                _this4.appoint = response.data;
++                console.log(response.data);
++            });
++        },
++
++        //------------------Изменить статус заявки----------------------------------
++        changeStatus: function changeStatus(id) {
++            var _this5 = this;
+ 
+-        var formData = new FormData();
+-        formData.append('id', id);
+-        axios.post('/api/admin/appointment/status', formData).then(function (response) {
+-            _this6.update();
+-        });
+-    }), _defineProperty(_methods, 'updateSelectService', function updateSelectService(type) {
+-        var _this7 = this;
++            var formData = new FormData();
++            formData.append('id', id);
++            axios.post('/api/admin/appointment/status', formData).then(function (response) {
++                _this5.update();
++            });
++        },
++
++        //Зассетить данные в селектор услуг
++        updateSelectService: function updateSelectService(type) {
++            var _this6 = this;
+ 
+-        var formData = new FormData();
+-        formData.append('type', type);
+-        axios.post('/api/services/findByType', formData).then(function (response) {
+-            console.log(response);
+-            console.log(response.data);
+-            _this7.services = response.data;
+-        });
+-    }), _defineProperty(_methods, 'getModalSchedule', function getModalSchedule(id) {
+-        this.currentSelectAppointments = '';
+-        this.currentSelectAppointments = id;
+-        this.showModalShedules = true;
+-        this.getWorkers();
+-    }), _defineProperty(_methods, 'getWorkers', function getWorkers() {
+-        var _this8 = this;
++            var formData = new FormData();
++            formData.append('type', type);
++            axios.post('/api/services/findByType', formData).then(function (response) {
++                console.log(response);
++                console.log(response.data);
++                _this6.services = response.data;
++            });
++        },
++
++        //------------------Создание нового назначения----------------------------------
++        //Заполнить информацию в модальное окно
++        getModalSchedule: function getModalSchedule(id) {
++            this.currentSelectAppointments = '';
++            this.currentSelectAppointments = id;
++            this.showModalShedules = true;
++            this.getWorkers();
++        },
++
++
++        getWorkers: function getWorkers() {
++            var _this7 = this;
+ 
+-        axios.get('/api/workers').then(function (response) {
+-            _this8.workers = response.data;
+-            console.log(response.data);
+-        });
+-    }), _defineProperty(_methods, 'storeSchedule', function storeSchedule() {
+-        this.changeStatus(this.currentSelectAppointments);
+-        var dataNewChedule = new FormData();
+-        dataNewChedule.append('user_id', this.selectedWorker);
+-        dataNewChedule.append('appointment_id', this.currentSelectAppointments);
+-        axios.post('/api/admin/schedules', dataNewChedule).then(function (response) {
+-            console.log(response.data);
+-        }).catch(function (error) {
+-            alert(error.response.status);
+-        });
+-    }), _defineProperty(_methods, 'onChangeType', function onChangeType(e) {
+-        this.selectedType = e.target.value;
+-        this.updateSelectService(e.target.value);
+-    }), _defineProperty(_methods, 'onChangeUser', function onChangeUser(e) {
+-        this.selectedUser = e.target.value;
+-    }), _defineProperty(_methods, 'onChangeServices', function onChangeServices(e) {
+-        this.selectedService = e.target.value;
+-    }), _defineProperty(_methods, 'onChangeWorkers', function onChangeWorkers(e) {
+-        this.selectedWorker = e.target.value;
+-    }), _defineProperty(_methods, 'onChangeDay', function onChangeDay(e) {
+-        this.selectedDay = e.target.value;
+-        console.log(this.selectedDay);
+-        this.getFreeTime(this.selectedDay);
+-    }), _defineProperty(_methods, 'onChangeTime', function onChangeTime(e) {
+-        this.selectedTime = e.target.value;
+-    }), _defineProperty(_methods, 'getFreeDate', function getFreeDate() {
+-        for (var i = 0; i <= 7; i++) {
+-            var dayData = {
+-                //Y-m-d H:i:s
+-                day: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').locale('ru').format('YYYY-MM-DD HH:mm:ss'),
+-                printValue: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').format('LL')
+-            };
+-            this.freeDate.push(dayData);
+-        }
+-        console.log(this.freeDate);
+-    }), _defineProperty(_methods, 'getFreeTime', function getFreeTime(reqDate) {
+-        var _this9 = this;
++            axios.get('/api/workers').then(function (response) {
++                _this7.workers = response.data;
++                console.log(response.data);
++            });
++        },
++
++        //------------------Создание нового назначения----------------------------------
++        storeSchedule: function storeSchedule() {
++            this.changeStatus(this.currentSelectAppointments);
++            var dataNewChedule = new FormData();
++            dataNewChedule.append('user_id', this.selectedWorker);
++            dataNewChedule.append('appointment_id', this.currentSelectAppointments);
++            axios.post('/api/admin/schedules', dataNewChedule).then(function (response) {
++                console.log(response.data);
++            }).catch(function (error) {
++                alert(error.response.status);
++            });
++        },
++
++        onChangeType: function onChangeType(e) {
++            this.selectedType = e.target.value;
++            this.updateSelectService(e.target.value);
++        },
++        onChangeUser: function onChangeUser(e) {
++            this.selectedUser = e.target.value;
++        },
++        onChangeServices: function onChangeServices(e) {
++            this.selectedService = e.target.value;
++        },
++        onChangeWorkers: function onChangeWorkers(e) {
++            this.selectedWorker = e.target.value;
++        },
++        onChangeDay: function onChangeDay(e) {
++            this.selectedDay = e.target.value;
++            console.log(this.selectedDay);
++            this.getFreeTime(this.selectedDay);
++        },
++        onChangeTime: function onChangeTime(e) {
++            this.selectedTime = e.target.value;
++        },
++
++
++        //------------------Работа с датами----------------------------------
++
++        getFreeDate: function getFreeDate() {
++            for (var i = 0; i <= 7; i++) {
++                var dayData = {
++                    //Y-m-d H:i:s
++                    day: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').locale('ru').format('YYYY-MM-DD HH:mm:ss'),
++                    printValue: __WEBPACK_IMPORTED_MODULE_1_moment___default()().add(i, 'days').format('LL')
++                };
++                this.freeDate.push(dayData);
++            }
++            console.log(this.freeDate);
++        },
++
++        getFreeTime: function getFreeTime(reqDate) {
++            var _this8 = this;
+ 
+-        var formData = new FormData();
+-        formData.append('request_date', reqDate);
+-        axios.post('/api/admin/appointment/getFreeTime', formData).then(function (response) {
+-            _this9.freeTime = response.data;
+-        });
+-        console.log(this.freeTime);
+-    }), _defineProperty(_methods, 'exportExcel', function exportExcel() {
+-        axios.get('/admin/appointment/export');
+-    }), _defineProperty(_methods, 'convertDat', function convertDat(date) {
+-        return __WEBPACK_IMPORTED_MODULE_1_moment___default()(date).format('YYYY-MM-DD HH:ss');
+-    }), _methods)
++            var formData = new FormData();
++            formData.append('request_date', reqDate);
++            axios.post('/api/admin/appointment/getFreeTime', formData).then(function (response) {
++                _this8.freeTime = response.data;
++            });
++            console.log(this.freeTime);
++        },
++
++        exportExcel: function exportExcel() {
++            axios.get('/admin/appointment/export');
++        },
++
++        convertDat: function convertDat(date) {
++            return __WEBPACK_IMPORTED_MODULE_1_moment___default()(date).format('YYYY-MM-DD HH:ss');
++        }
++    }
+ });
+ 
+ /***/ }),
+@@ -74001,7 +73937,7 @@
+   var _c = _vm._self._c || _h
+   return _c("div", { staticClass: "container" }, [
+     _c("div", { staticClass: "row" }, [
+-      _c("h2", [_vm._v("Заявки пользователей")]),
++      _c("h2", [_vm._v("Управление телеканалами")]),
+       _vm._v(" "),
+       _c(
+         "form",
+@@ -74061,143 +73997,36 @@
+         [
+           _vm._m(1),
+           _vm._v(" "),
+-          _vm._l(_vm.appoint, function(col) {
++          _vm._l(_vm.channels, function(col) {
+             return _c("tbody", [
+-              col.status === "Новая"
+-                ? _c(
+-                    "tr",
+-                    {
+-                      staticStyle: { background: "rgba(0,166,90,0.49)" },
+-                      on: {
+-                        click: function($event) {
+-                          return _vm.getModalSchedule(col.id)
+-                        }
+-                      }
+-                    },
+-                    [
+-                      _c("td", [_vm._v(_vm._s(col.status))]),
+-                      _vm._v(" "),
+-                      _c("td", [
+-                        _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
+-                      ]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.user.name))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.type_service))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.service.title))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.description))]),
+-                      _vm._v(" "),
+-                      _c("td", [
+-                        _c(
+-                          "div",
+-                          {
+-                            staticClass: "btn btn-danger",
+-                            attrs: { type: "button" },
+-                            on: {
+-                              click: function($event) {
+-                                return _vm.removeAppoint(col.id)
+-                              }
+-                            }
+-                          },
+-                          [
+-                            _c("i", {
+-                              staticClass: "fas fa-times ",
+-                              attrs: { "aria-hidden": "true" }
+-                            })
+-                          ]
+-                        )
+-                      ])
+-                    ]
+-                  )
+-                : _vm._e(),
+-              _vm._v(" "),
+-              col.status === "В работе"
+-                ? _c(
+-                    "tr",
+-                    { staticStyle: { background: "rgba(166,161,0,0.53)" } },
+-                    [
+-                      _c("td", [_vm._v(_vm._s(col.status))]),
+-                      _vm._v(" "),
+-                      _c("td", [
+-                        _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
+-                      ]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.user.name))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.type_service))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.service.title))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.description))]),
+-                      _vm._v(" "),
+-                      _c("td", [
+-                        _c(
+-                          "div",
+-                          {
+-                            staticClass: "btn btn-danger",
+-                            attrs: { type: "button" },
+-                            on: {
+-                              click: function($event) {
+-                                return _vm.removeAppoint(col.id)
+-                              }
+-                            }
+-                          },
+-                          [
+-                            _c("i", {
+-                              staticClass: "fas fa-times ",
+-                              attrs: { "aria-hidden": "true" }
+-                            })
+-                          ]
+-                        )
+-                      ])
+-                    ]
+-                  )
+-                : _vm._e(),
+-              _vm._v(" "),
+-              col.status === "Выполнена"
+-                ? _c(
+-                    "tr",
+-                    { staticStyle: { background: "rgba(166,14,0,0.6)" } },
+-                    [
+-                      _c("td", [_vm._v(_vm._s(col.status))]),
+-                      _vm._v(" "),
+-                      _c("td", [
+-                        _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
+-                      ]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.user.name))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.type_service))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.service.title))]),
+-                      _vm._v(" "),
+-                      _c("td", [_vm._v(_vm._s(col.description))]),
+-                      _vm._v(" "),
+-                      _c("td", [
+-                        _c(
+-                          "div",
+-                          {
+-                            staticClass: "btn btn-danger",
+-                            attrs: { type: "button" },
+-                            on: {
+-                              click: function($event) {
+-                                return _vm.removeAppoint(col.id)
+-                              }
+-                            }
+-                          },
+-                          [
+-                            _c("i", {
+-                              staticClass: "fas fa-times ",
+-                              attrs: { "aria-hidden": "true" }
+-                            })
+-                          ]
+-                        )
+-                      ])
+-                    ]
+-                  )
+-                : _vm._e()
++              _c("tr", [
++                _c("td", [_vm._v(_vm._s(col.id))]),
++                _vm._v(" "),
++                _c("td", [_vm._v(_vm._s(col.title))]),
++                _vm._v(" "),
++                _c("td", [_vm._v(_vm._s(col.lang))]),
++                _vm._v(" "),
++                _c("td", [
++                  _c(
++                    "div",
++                    {
++                      staticClass: "btn btn-danger",
++                      attrs: { type: "button" },
++                      on: {
++                        click: function($event) {
++                          return _vm.removeAppoint(col.id)
++                        }
++                      }
++                    },
++                    [
++                      _c("i", {
++                        staticClass: "fas fa-times ",
++                        attrs: { "aria-hidden": "true" }
++                      })
++                    ]
++                  )
++                ])
++              ])
+             ])
+           })
+         ],
+@@ -74775,19 +74604,13 @@
+     var _c = _vm._self._c || _h
+     return _c("thead", [
+       _c("tr", [
+-        _c("th", [_vm._v("Статус")]),
++        _c("th", [_vm._v("ID")]),
+         _vm._v(" "),
+-        _c("th", [_vm._v("Дата")]),
+-        _vm._v(" "),
+-        _c("th", [_vm._v("Имя пользователя")]),
+-        _vm._v(" "),
+-        _c("th", [_vm._v("Тип услуги")]),
+-        _vm._v(" "),
+-        _c("th", [_vm._v("Наименование услуги")]),
++        _c("th", [_vm._v("Наименование")]),
+         _vm._v(" "),
+-        _c("th", [_vm._v("Описание")]),
++        _c("th", [_vm._v("Язык")]),
+         _vm._v(" "),
+-        _c("th", [_vm._v("Удаление")])
++        _c("th", [_vm._v("Удалить")])
+       ])
+     ])
+   },
+@@ -75058,10 +74881,6 @@
+ //
+ //
+ //
+-//
+-//
+-//
+-//
+ 
+ 
+ 
+@@ -75303,20 +75122,6 @@
+                               _vm._v(_vm._s(_vm.schedule.appointment.user.name))
+                             ])
+                           ]),
+-                          _vm._v(" "),
+-                          _c("tr", [
+-                            _c("td", [_vm._v("Автомобиль")]),
+-                            _vm._v(" "),
+-                            _c("td", [
+-                              _vm._v(
+-                                _vm._s(
+-                                  _vm.schedule.appointment.user.cars.brand +
+-                                    " " +
+-                                    _vm.schedule.appointment.user.cars.model
+-                                )
+-                              )
+-                            ])
+-                          ]),
+                           _vm._v(" "),
+                           _c("tr", [
+                             _c("td", [_vm._v("Гос. номер")]),
+@@ -79294,4 +79099,4 @@
+ // removed by extract-text-webpack-plugin
+ 
+ /***/ })
+-/******/ ]);
++/******/ ]);
+\ No newline at end of file
+diff --git public/css/app.css public/css/app.css
+diff --git public/mix-manifest.json public/mix-manifest.json

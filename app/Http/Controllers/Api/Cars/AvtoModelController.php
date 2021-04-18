@@ -21,6 +21,11 @@ class AvtoModelController extends Controller
         return $this->avtoModelRepository->all();
     }
 
+    public function getModelsByBrand(Request $request)
+    {
+        return $this->avtoModelRepository->getModelsByBrand($request);
+    }
+
     public function show($id)
     {
         return $this->avtoModelRepository->find($id);

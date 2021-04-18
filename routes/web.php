@@ -71,6 +71,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Cars'], function () {
         Route::resource('/car/brands', 'BrandController');
         Route::resource('/car/models', 'AvtoModelController');
+        Route::post('/car/models/getModelsByBrand', 'AvtoModelController@getModelsByBrand');
         Route::resource('/cars', 'CarController');
     });
 

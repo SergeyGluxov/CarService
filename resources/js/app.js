@@ -30,6 +30,9 @@ Vue.component('form-checkup-component', require('./components/service/FormChecku
 /**Компоненты для /admin**/
 //-----------------------------------------ПОЛЬЗОВАТЕЛИ-----------------------------------------------------------------
 
+Vue.component('auto-table-component', require('./components/admin/auto/AutoComponent.vue'));
+Vue.component('auto-model-table-component', require('./components/admin/auto/AutoModelComponent.vue'));
+Vue.component('auto-brand-table-component', require('./components/admin/auto/AutoBrandsComponent.vue'));
 Vue.component('users-table-component', require('./components/admin/users/AllUserComponent.vue'));
 Vue.component('employee-table-component', require('./components/admin/employee/EmployeeTableComponent.vue'));
 
