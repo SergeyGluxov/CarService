@@ -71615,57 +71615,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -71674,8 +71623,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             cars: [],
             brands: [],
+            models: [],
             vmModel: '',
             vmBrand: '',
+            inputPower: '',
+            inputEngineValue: '',
+            inputYear: '',
             modelSelected: '',
             brandSelected: '',
 
@@ -71721,20 +71674,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
 
-        update: function update() {
+        getModelsByBrand: function getModelsByBrand(brand_id) {
             var _this3 = this;
 
+            var formData = new FormData();
+            formData.append('brand_id', brand_id);
+            axios.post('/car/models/getModelsByBrand', formData).then(function (response) {
+                _this3.models = response.data;
+            });
+        },
+
+        storeCar: function storeCar() {
+            var _this4 = this;
+
+            var formData = new FormData();
+            formData.append('model', this.modelSelected);
+            formData.append('engine_value', this.inputEngineValue);
+            formData.append('power', this.inputPower);
+
+            axios.post('/cars', formData).then(function (response) {
+                console.log('Запрос успешен!');
+                _this4.update();
+                _this4.vmBrand = "";
+                _this4.vmModel = "";
+                _this4.inputEngineValue = "";
+                _this4.inputPower = "";
+                _this4.inputYear = "";
+            }).catch(function (error) {
+                if (error.response.status == 422) {
+                    alert('Введите корректные данные!');
+                }
+            });
+        },
+
+        update: function update() {
+            var _this5 = this;
+
             axios.get('/cars').then(function (response) {
-                _this3.cars = response.data;
+                _this5.cars = response.data;
                 console.log(response.data);
             });
         },
-        deleteUser: function deleteUser(id) {
-            var _this4 = this;
+        deleteCar: function deleteCar(id) {
+            var _this6 = this;
 
-            axios.delete('/api/cars/' + id).then(function (response) {
-                _this4.cars = response.data;
-                _this4.update();
+            axios.delete('/cars/' + id).then(function (response) {
+                _this6.update();
                 console.log(response.data);
             });
         },
@@ -71747,6 +71732,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onSelectBrand: function onSelectBrand(e) {
             this.brandSelected = e.target.value;
+            this.getModelsByBrand(this.brandSelected);
         }
     }
 });
@@ -72050,148 +72036,265 @@ var render = function() {
       _c("div", { staticClass: "col-12" }, [
         _c("h2", [_vm._v("Автомобили")]),
         _vm._v(" "),
-        _c(
-          "form",
-          {
-            staticClass: "form-inline",
-            attrs: { method: "GET", action: "/admin/appointment/export" }
-          },
-          [
+        _c("form", { staticClass: "form-horizontal" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
             _c(
-              "select",
+              "label",
               {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.vmBrand,
-                    expression: "vmBrand"
-                  }
-                ],
-                staticClass: "form-control",
-                on: {
-                  "!change": function($event) {
-                    return _vm.onSelectBrand($event)
-                  },
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.vmBrand = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
+                staticClass: "control-label",
+                attrs: { for: "exampleSelectBrand" }
               },
-              [
-                _c(
-                  "option",
-                  { attrs: { value: "", disabled: "", selected: "" } },
-                  [_vm._v("Выбрать...")]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.brands, function(type) {
-                  return _c(
-                    "option",
-                    { key: type.id, domProps: { value: type.id } },
-                    [_vm._v(_vm._s(type.title) + "\n                    ")]
-                  )
-                })
-              ],
-              2
+              [_vm._v("Выберите марку:")]
             ),
             _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.vmModel,
-                    expression: "vmModel"
-                  }
-                ],
-                staticClass: "form-control",
-                on: {
-                  "!change": function($event) {
-                    return _vm.onSelectModel($event)
-                  },
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.vmModel = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c(
-                  "option",
-                  { attrs: { value: "", disabled: "", selected: "" } },
-                  [_vm._v("Выбрать...")]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.models, function(type) {
-                  return _c(
-                    "option",
-                    { key: type.id, domProps: { value: type.id } },
-                    [_vm._v(_vm._s(type.title) + "\n                    ")]
-                  )
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
+            _c("div", [
+              _c(
+                "select",
                 {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.vmModel,
-                  expression: "vmModel"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Введите наименование " },
-              domProps: { value: _vm.vmModel },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.vmBrand,
+                      expression: "vmBrand"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "exampleSelectBrand" },
+                  on: {
+                    "!change": function($event) {
+                      return _vm.onSelectBrand($event)
+                    },
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.vmBrand = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
                   }
-                  _vm.vmModel = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
+                },
+                [
+                  _c(
+                    "option",
+                    { attrs: { value: "", disabled: "", selected: "" } },
+                    [_vm._v("Выбрать...")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.brands, function(type) {
+                    return _c(
+                      "option",
+                      { key: type.id, domProps: { value: type.id } },
+                      [
+                        _vm._v(
+                          _vm._s(type.title) + "\n                            "
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-7" }, [
             _c(
-              "button",
+              "label",
               {
-                staticClass: "btn btn-success",
-                attrs: { id: "show-modal", type: "button" },
+                staticClass: "control-label",
+                attrs: { for: "exampleSelectModel" }
+              },
+              [_vm._v("Выберите модель:")]
+            ),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.vmModel,
+                      expression: "vmModel"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "exampleSelectModel" },
+                  on: {
+                    "!change": function($event) {
+                      return _vm.onSelectModel($event)
+                    },
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.vmModel = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "option",
+                    { attrs: { value: "", disabled: "", selected: "" } },
+                    [_vm._v("Выбрать...")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.models, function(type) {
+                    return _c(
+                      "option",
+                      { key: type.id, domProps: { value: type.id } },
+                      [
+                        _vm._v(
+                          _vm._s(type.title) + "\n                            "
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-2" }, [
+            _c(
+              "label",
+              {
+                staticClass: "control-label col-md-offset-3",
+                attrs: { for: "inputYear" }
+              },
+              [_vm._v("Введите год:")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-offset-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inputYear,
+                    expression: "inputYear"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "inputYear", placeholder: "1999" },
+                domProps: { value: _vm.inputYear },
                 on: {
-                  click: function($event) {
-                    return _vm.storeModel()
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.inputYear = $event.target.value
                   }
                 }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group  col-md-4" }, [
+            _c(
+              "label",
+              { staticClass: "control-label", attrs: { for: "engineValue" } },
+              [_vm._v("Объем двигателя и мощность(л.c):")]
+            ),
+            _vm._v(" "),
+            _c("div", {}, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inputEngineValue,
+                    expression: "inputEngineValue"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "engineValue", placeholder: "2.0" },
+                domProps: { value: _vm.inputEngineValue },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.inputEngineValue = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group  col-md-4" }, [
+            _c(
+              "label",
+              {
+                staticClass: "control-label col-md-offset-3",
+                attrs: { for: "power" }
               },
-              [_vm._v("\n                    Добавить\n                ")]
-            )
-          ]
-        ),
+              [_vm._v("Объем двигателя и мощность(л.c):")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-offset-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inputPower,
+                    expression: "inputPower"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "power", placeholder: "155" },
+                domProps: { value: _vm.inputPower },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.inputPower = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "col-md-9" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.storeCar()
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                            Добавить автомобиль\n                        "
+                  )
+                ]
+              )
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }),
@@ -72225,7 +72328,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.deleteUser(col.id)
+                                return _vm.deleteCar(col.id)
                               }
                             }
                           },
@@ -72245,356 +72348,7 @@ var render = function() {
             )
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _vm.showModal
-        ? _c("div", [
-            _c(
-              "div",
-              {
-                staticClass: "modal fade-in",
-                staticStyle: { display: "block" }
-              },
-              [
-                _c("div", { staticClass: "modal-dialog" }, [
-                  _c("div", { staticClass: "modal-content" }, [
-                    _c("div", { staticClass: "modal-header" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "close",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              _vm.showModal = false
-                            }
-                          }
-                        },
-                        [
-                          _c("span", { attrs: { "aria-hidden": "true" } }, [
-                            _vm._v("×")
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "modal-title" }, [
-                        _vm._v("Новая пользователь")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-body" }, [
-                      _c("form", { staticClass: "form-horizontal" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "control-label col-xs-3",
-                              attrs: { for: "createName" }
-                            },
-                            [_vm._v("Введите имя:")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-xs-9" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.createName,
-                                  expression: "createName"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "createName",
-                                placeholder: "Иванов Иван Иванович"
-                              },
-                              domProps: { value: _vm.createName },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.createName = $event.target.value
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "control-label col-xs-3",
-                              attrs: { for: "createName" }
-                            },
-                            [
-                              _vm._v(
-                                "Введите номер\n                                        телефона:"
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-xs-9" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.createPhone,
-                                  expression: "createPhone"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "createPhone",
-                                placeholder: "+79505728020"
-                              },
-                              domProps: { value: _vm.createPhone },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.createPhone = $event.target.value
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "control-label col-xs-3",
-                              attrs: { for: "createEmail" }
-                            },
-                            [
-                              _vm._v(
-                                "Введите\n                                        эл.почту:"
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-xs-9" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.createEmail,
-                                  expression: "createEmail"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "createEmail",
-                                placeholder: "ivanov.ii@gmail.com"
-                              },
-                              domProps: { value: _vm.createEmail },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.createEmail = $event.target.value
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "control-label col-xs-3",
-                              attrs: { for: "createPassword" }
-                            },
-                            [
-                              _vm._v(
-                                "Введите\n                                        пароль:"
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-xs-9" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.createPassword,
-                                  expression: "createPassword"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "createPassword",
-                                placeholder: "*****"
-                              },
-                              domProps: { value: _vm.createPassword },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.createPassword = $event.target.value
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "control-label col-xs-3",
-                              attrs: { for: "createMarkCar" }
-                            },
-                            [
-                              _vm._v(
-                                "Марка и модель\n                                        авто:"
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-xs-4" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.createMarkCar,
-                                  expression: "createMarkCar"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "createMarkCar",
-                                placeholder: "Nissan"
-                              },
-                              domProps: { value: _vm.createMarkCar },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.createMarkCar = $event.target.value
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-xs-4" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.createModelCar,
-                                  expression: "createModelCar"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "createModelCar",
-                                placeholder: "Patrol"
-                              },
-                              domProps: { value: _vm.createModelCar },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.createModelCar = $event.target.value
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "control-label col-xs-3",
-                              attrs: { for: "createGosNumberCar" }
-                            },
-                            [
-                              _vm._v(
-                                "Введите гос.\n                                        номер:"
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-xs-9" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.createGosNumberCar,
-                                  expression: "createGosNumberCar"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "createGosNumberCar",
-                                placeholder: "X001A142"
-                              },
-                              domProps: { value: _vm.createGosNumberCar },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.createGosNumberCar = $event.target.value
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-xs-offset-6 col-xs-9" },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-success",
-                                  attrs: { type: "button" },
-                                  on: { click: _vm.store }
-                                },
-                                [
-                                  _vm._v(
-                                    "Создать\n                                            пользователя\n                                        "
-                                  )
-                                ]
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ])
-        : _vm._e()
+      ])
     ]),
     _vm._v(" "),
     _vm.showModalImport

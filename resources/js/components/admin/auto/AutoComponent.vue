@@ -4,29 +4,64 @@
         <div class="row">
             <div class="col-12">
                 <h2>Автомобили</h2>
-                <form class="form-inline" method="GET" action="/admin/appointment/export">
 
-                    <select v-model="vmBrand" @change.capture="onSelectBrand($event)"
-                            class="form-control">
-                        <option value="" disabled selected>Выбрать...</option>
-                        <option v-for="type in brands" :value="type.id"
-                                :key="type.id">{{type.title}}
-                        </option>
-                    </select>
+                <form class="form-horizontal">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="exampleSelectBrand">Выберите марку:</label>
+                        <div>
+                            <select v-model="vmBrand" @change.capture="onSelectBrand($event)" class="form-control" id="exampleSelectBrand">
+                                <option value="" disabled selected>Выбрать...</option>
+                                <option v-for="type in brands" :value="type.id"
+                                        :key="type.id">{{type.title}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <label class="control-label" for="exampleSelectModel">Выберите модель:</label>
+                        <div>
+                            <select v-model="vmModel" @change.capture="onSelectModel($event)" class="form-control" id="exampleSelectModel" >
+                                <option value="" disabled selected>Выбрать...</option>
+                                <option v-for="type in models" :value="type.id"
+                                        :key="type.id">{{type.title}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="control-label col-md-offset-3" for="inputYear">Введите год:</label>
+                        <div class="col-md-offset-3">
+                            <input type="text" class="form-control" id="inputYear" v-model="inputYear"
+                                   placeholder="1999"/>
+                        </div>
+                    </div>
 
-                    <select v-model="vmModel" @change.capture="onSelectModel($event)"
-                            class="form-control">
-                        <option value="" disabled selected>Выбрать...</option>
-                        <option v-for="type in models" :value="type.id"
-                                :key="type.id">{{type.title}}
-                        </option>
-                    </select>
+                    <div class="form-group  col-md-4">
+                        <label class="control-label" for="engineValue">Объем двигателя и мощность(л.c):</label>
+                        <div class="">
+                            <input type="text"  id="engineValue" class="form-control" v-model="inputEngineValue"
+                            placeholder="2.0"/>
+                        </div>
+                    </div>
 
-                    <input type="text" v-model="vmModel" class="form-control" placeholder="Введите наименование "/>
-                    <button id="show-modal" type="button" class="btn btn-success" v-on:click="storeModel()">
-                        Добавить
-                    </button>
+                    <div class="form-group  col-md-4">
+                        <label class="control-label col-md-offset-3" for="power">Объем двигателя и мощность(л.c):</label>
+                        <div class="col-md-offset-3">
+                            <input type="text" id="power" class="form-control" v-model="inputPower"
+                                   placeholder="155"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-9">
+                            <button type="button" @click="storeCar()" class="btn btn-success">
+                                Добавить автомобиль
+                            </button>
+                        </div>
+                    </div>
                 </form>
+
 
                 <div class="card">
                     <div class="card-header">
@@ -50,7 +85,7 @@
                                 <td>{{col.power}}</td>
                                 <td>{{col.engine_value}}</td>
                                 <td>
-                                    <div type="button" class="btn btn-danger" v-on:click="deleteUser(col.id)">
+                                    <div type="button" class="btn btn-danger" v-on:click="deleteCar(col.id)">
                                         <i class="fas fa-times " aria-hidden="true"></i></div>
                                 </td>
                             </tr>
@@ -60,92 +95,6 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-            </div>
-
-            <div v-if="showModal">
-                <div class="modal fade-in" style="display: block;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" @click="showModal=false">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title">Новая пользователь</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createName">Введите имя:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createName"
-                                                   id="createName"
-                                                   placeholder="Иванов Иван Иванович"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createName">Введите номер
-                                            телефона:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createPhone"
-                                                   id="createPhone"
-                                                   placeholder="+79505728020"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createEmail">Введите
-                                            эл.почту:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createEmail"
-                                                   id="createEmail"
-                                                   placeholder="ivanov.ii@gmail.com"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createPassword">Введите
-                                            пароль:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createPassword"
-                                                   id="createPassword"
-                                                   placeholder="*****"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createMarkCar">Марка и модель
-                                            авто:</label>
-                                        <div class="col-xs-4">
-                                            <input type="text" class="form-control" v-model="createMarkCar"
-                                                   id="createMarkCar"
-                                                   placeholder="Nissan"/>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input type="text" class="form-control" v-model="createModelCar"
-                                                   id="createModelCar"
-                                                   placeholder="Patrol"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createGosNumberCar">Введите гос.
-                                            номер:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createGosNumberCar"
-                                                   id="createGosNumberCar"
-                                                   placeholder="X001A142"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-xs-offset-6 col-xs-9">
-                                            <button type="button" @click="store" class="btn btn-success">Создать
-                                                пользователя
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div v-if="showModalImport">
@@ -181,8 +130,12 @@
             return {
                 cars: [],
                 brands: [],
+                models: [],
                 vmModel: '',
                 vmBrand: '',
+                inputPower: '',
+                inputEngineValue: '',
+                inputYear: '',
                 modelSelected: '',
                 brandSelected: '',
 
@@ -224,6 +177,37 @@
                     });
             },
 
+            getModelsByBrand: function (brand_id) {
+                var formData = new FormData();
+                formData.append('brand_id', brand_id);
+                axios.post('/car/models/getModelsByBrand', formData)
+                    .then(response => {
+                        this.models = response.data;
+                    });
+            },
+
+            storeCar: function () {
+                var formData = new FormData();
+                formData.append('model', this.modelSelected);
+                formData.append('engine_value', this.inputEngineValue);
+                formData.append('power', this.inputPower);
+
+                axios.post('/cars', formData)
+                    .then(response => {
+                        console.log('Запрос успешен!')
+                        this.update();
+                        this.vmBrand = ""
+                        this.vmModel = ""
+                        this.inputEngineValue = ""
+                        this.inputPower = ""
+                        this.inputYear = ""
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            alert('Введите корректные данные!')
+                        }
+                    });
+            },
 
             update: function () {
                 axios.get('/cars').then((response) => {
@@ -231,9 +215,8 @@
                     console.log(response.data);
                 });
             },
-            deleteUser: function (id) {
-                axios.delete('/api/cars/' + id).then((response) => {
-                    this.cars = response.data;
+            deleteCar: function (id) {
+                axios.delete('/cars/' + id).then((response) => {
                     this.update();
                     console.log(response.data);
                 });
@@ -248,6 +231,7 @@
 
             onSelectBrand(e) {
                 this.brandSelected = e.target.value;
+                this.getModelsByBrand(this.brandSelected)
             },
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 use App\Http\Resources\AvtoModelResource;
+use App\Http\Resources\AvtoModelsCollection;
 use App\Models\AvtoModel;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,12 @@ class AvtoModelRepository
 
     public function getModelsByBrand(Request $request)
     {
-        AvtoModelResource::withoutWrapping();
-        return new AvtoModelResource(AvtoModel::find($request->get('brand_id')));
+        $param = $request->get('brand_id');
+        $models = AvtoModel::whereHas('brand', function ($query) use ($param) {
+            $query->where('brand_id', '=', $param);
+        })->get();
+        AvtoModelsCollection::withoutWrapping();
+        return new AvtoModelsCollection($models);
     }
 
 

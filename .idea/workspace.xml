@@ -43,15 +43,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Update">
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/AvtoModelsCollection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/AvtoModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/AvtoModelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CarResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CarResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AvtoModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AvtoModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/AvtoModelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/AvtoModelRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/admin/auto/AutoComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/auto/AutoComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/auto/AutoModelComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/auto/AutoModelComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +65,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="diplom_dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -247,7 +244,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin_layouts/auto" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Resources" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
@@ -255,19 +252,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts\auto" />
-      <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\auto" />
-      <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts\auto\model" />
-      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\TypeDetail" />
-      <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts\auto" />
       <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\auto" />
       <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\auto\model" />
       <recent name="$PROJECT_DIR$/app/Models" />
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
+      <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts\auto" />
+      <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\auto" />
+      <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts\auto\model" />
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\TypeDetail" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -497,6 +494,7 @@
       <workItem from="1618679741547" duration="7000" />
       <workItem from="1618679763802" duration="3905000" />
       <workItem from="1618726731627" duration="1341000" />
+      <workItem from="1618744675752" duration="2493000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -920,10 +918,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="285" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618242093615" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1618241520138">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1618730012542">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618241520138" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618730012542" />
     <state x="274" y="246" key="NewPhpClassDialog" timestamp="1618331773339">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -936,18 +934,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618680504795" />
-    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1618335790148">
+    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1618730126120">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="255" width="585" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618335790148" />
+    <state x="667" y="255" width="585" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618730126120" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1618681531549">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618681531549" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618683623066">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618745798446">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618683623066" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618745798446" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
