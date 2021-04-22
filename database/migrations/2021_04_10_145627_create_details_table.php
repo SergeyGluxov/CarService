@@ -11,7 +11,6 @@ class CreateDetailsTable extends Migration
         Schema::create('details', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->integer('cost');
             $table->integer('weight');
             $table->integer('type_detail_id')->unsigned();
             $table->foreign('type_detail_id')->references('id')->on('type_details')->onDelete('cascade');

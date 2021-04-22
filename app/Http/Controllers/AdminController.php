@@ -35,6 +35,11 @@ class AdminController extends Controller
         return view('admin_layouts/auto/brand');
     }
 
+    public function getNomenclature()
+    {
+        return view('admin_layouts/details/nomenclature');
+    }
+
     public function getTypeDetail()
     {
         return view('admin_layouts/details/type_details');

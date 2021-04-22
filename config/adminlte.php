@@ -152,6 +152,10 @@ return [
                     'url' => 'admin/channels',
                 ],
                 [
+                    'text' => 'Номенклатура',
+                    'url' => 'admin/details/nomenclature',
+                ],
+                [
                     'text' => 'Типы запчастей',
                     'url' => 'admin/details/type',
                 ]

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\TypeDetails;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DetailResource extends JsonResource
@@ -10,7 +11,9 @@ class DetailResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title
+            'title' => $this->title,
+            'weight' => $this->weight,
+            'type_detail' => new TypeDetailResource($this->type_detail()->firstOrFail())
         ];
     }
 }

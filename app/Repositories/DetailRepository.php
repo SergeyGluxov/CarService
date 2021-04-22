@@ -31,7 +31,6 @@ class DetailRepository
     {
         $detailStore = new Detail();
         $detailStore->title = $request->get('title');
-        $detailStore->cost = $request->get('cost');
         $detailStore->weight = $request->get('weight');
         $detailStore->type_detail_id = $request->get('type_detail');
         $detailStore->save();
