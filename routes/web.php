@@ -30,6 +30,7 @@ Route::get('admin/auto', 'AdminController@getAuto');
 Route::get('admin/auto/models', 'AdminController@getAutoModel');
 Route::get('admin/auto/brands', 'AdminController@getAutoBrand');
 Route::get('admin/top/channels', 'AdminController@getTopChannels');
+Route::get('admin/details/type', 'AdminController@getTypeDetail');
 
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');
@@ -93,7 +94,7 @@ Route::group(['namespace' => 'Api'], function () {
     });
 
     Route::group(['namespace' => 'TypeDetail'], function () {
-        Route::resource('/details/type', 'TypeDetailController');
+        Route::resource('/type/details', 'TypeDetailController');
     });
 
 });

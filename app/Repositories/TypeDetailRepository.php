@@ -2,24 +2,22 @@
 
 namespace App\Repositories;
 use App\Http\Resources\TypeDetailResource;
-use App\Models\TypeDetail;
+use App\Models\TypeDetails;
 use Illuminate\Http\Request;
 
 class TypeDetailRepository
 {
     protected $typeDetail;
 
-    public function __construct(TypeDetail $typeDetail)
+    public function __construct(TypeDetails $typeDetail)
     {
         $this->typeDetail = $typeDetail;
     }
 
     public function all()
     {
-        dump(TypeDetail::all());
-
         TypeDetailResource::withoutWrapping();
-        return TypeDetailResource::collection(TypeDetail::all());
+        return TypeDetailResource::collection(TypeDetails::all());
     }
 
 
@@ -27,12 +25,12 @@ class TypeDetailRepository
     {
 
         TypeDetailResource::withoutWrapping();
-        return new TypeDetailResource(TypeDetail::find($id));
+        return new TypeDetailResource(TypeDetails::find($id));
     }
 
     public function store(Request $request)
     {
-        $typeDetailStore = new TypeDetail();
+        $typeDetailStore = new TypeDetails();
         $typeDetailStore->title = $request->get('title');
         $typeDetailStore->save();
         return response('Тип детали успешно добавлен', 200);
@@ -45,7 +43,7 @@ class TypeDetailRepository
 
     public function destroy($id)
     {
-        $typeDetailDestroy = TypeDetail::findOrFail($id);
+        $typeDetailDestroy = TypeDetails::findOrFail($id);
         if ($typeDetailDestroy->delete())
             return response('Тип детали успешно удалена!', 200);
     }

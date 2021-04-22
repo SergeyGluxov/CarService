@@ -153,7 +153,7 @@ return [
                 ],
                 [
                     'text' => 'Типы запчастей',
-                    'url' => 'admin/channels',
+                    'url' => 'admin/details/type',
                 ]
             ]
         ],

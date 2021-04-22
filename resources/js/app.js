@@ -36,6 +36,11 @@ Vue.component('auto-brand-table-component', require('./components/admin/auto/Aut
 Vue.component('users-table-component', require('./components/admin/users/AllUserComponent.vue'));
 Vue.component('employee-table-component', require('./components/admin/employee/EmployeeTableComponent.vue'));
 
+//-----------------------------------------Авто запчасти----------------------------------------------------------------
+
+Vue.component('detail-type-table-component', require('./components/admin/detail/TypeDetailComponent.vue'));
+
+
 //-----------------------------------------УСЛУГИ-----------------------------------------------------------------------
 Vue.component('services-table-component', require('./components/admin/services/AllServicesComponent.vue'));
 
