@@ -79,6 +79,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::group(['namespace' => 'Details'], function () {
         Route::resource('/details', 'DetailController');
+        Route::resource('/assortment/details', 'AutoModelDetailController');
     });
 
     Route::group(['namespace' => 'Factory'], function () {
