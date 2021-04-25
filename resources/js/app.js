@@ -40,6 +40,7 @@ Vue.component('employee-table-component', require('./components/admin/employee/E
 
 Vue.component('detail-type-table-component', require('./components/admin/detail/TypeDetailComponent.vue'));
 Vue.component('detail-nomenclature-table-component', require('./components/admin/detail/NomenclatureComponent.vue'));
+Vue.component('detail-assortment-table-component', require('./components/admin/detail/AssortmentComponent.vue'));
 
 
 //-----------------------------------------УСЛУГИ-----------------------------------------------------------------------

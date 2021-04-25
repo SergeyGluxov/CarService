@@ -149,7 +149,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Ассортимент',
-                    'url' => 'admin/channels',
+                    'url' => 'admin/details/assortment',
                 ],
                 [
                     'text' => 'Номенклатура',

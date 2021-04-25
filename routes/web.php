@@ -32,6 +32,7 @@ Route::get('admin/auto/brands', 'AdminController@getAutoBrand');
 Route::get('admin/top/channels', 'AdminController@getTopChannels');
 Route::get('admin/details/type', 'AdminController@getTypeDetail');
 Route::get('admin/details/nomenclature', 'AdminController@getNomenclature');
+Route::get('admin/details/assortment', 'AdminController@getAssortment');
 
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');

@@ -40,6 +40,11 @@ class AdminController extends Controller
         return view('admin_layouts/details/nomenclature');
     }
 
+    public function getAssortment()
+    {
+        return view('admin_layouts/details/assortment');
+    }
+
     public function getTypeDetail()
     {
         return view('admin_layouts/details/type_details');
