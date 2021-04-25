@@ -27,6 +27,11 @@ class CarController extends Controller
         return $this->carRepository->find($id);
     }
 
+    public function getCarsByModels(Request $request)
+    {
+        return $this->carRepository->getCarsByModels($request);
+    }
+
     public function store(Request $request)
     {
         return $this->carRepository->store($request);

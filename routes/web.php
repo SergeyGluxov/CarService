@@ -33,6 +33,7 @@ Route::get('admin/top/channels', 'AdminController@getTopChannels');
 Route::get('admin/details/type', 'AdminController@getTypeDetail');
 Route::get('admin/details/nomenclature', 'AdminController@getNomenclature');
 Route::get('admin/details/assortment', 'AdminController@getAssortment');
+Route::get('admin/suppliers', 'AdminController@getSuppliers');
 
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');
@@ -75,12 +76,13 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/car/brands', 'BrandController');
         Route::resource('/car/models', 'AvtoModelController');
         Route::post('/car/models/getModelsByBrand', 'AvtoModelController@getModelsByBrand');
+        Route::post('/car/getCarsByModels', 'CarController@getCarsByModels');
         Route::resource('/cars', 'CarController');
     });
 
     Route::group(['namespace' => 'Details'], function () {
         Route::resource('/details', 'DetailController');
-        Route::resource('/assortment/details', 'AutoModelDetailController');
+        Route::resource('/assortment/details', 'DetailCarController');
     });
 
     Route::group(['namespace' => 'Factory'], function () {
@@ -100,6 +102,10 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/type/details', 'TypeDetailController');
     });
 
+
+    Route::group(['namespace' => 'Supplier'], function () {
+        Route::resource('/suppliers', 'SupplierController');
+    });
 });
 
 //Эти маршруты для авторизации стороних приложений через carservice

@@ -42,6 +42,10 @@ Vue.component('detail-type-table-component', require('./components/admin/detail/
 Vue.component('detail-nomenclature-table-component', require('./components/admin/detail/NomenclatureComponent.vue'));
 Vue.component('detail-assortment-table-component', require('./components/admin/detail/AssortmentComponent.vue'));
 
+//-----------------------------------------Поставщики-------------------------------------------------------------------
+
+Vue.component('suppliers-table-component', require('./components/admin/suppliers/SuppliersComponent.vue'));
+
 
 //-----------------------------------------УСЛУГИ-----------------------------------------------------------------------
 Vue.component('services-table-component', require('./components/admin/services/AllServicesComponent.vue'));

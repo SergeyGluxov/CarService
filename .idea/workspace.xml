@@ -42,14 +42,28 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="added detail avto model controlle,model">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/detail/AssortmentComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin_layouts/details/assortment.blade.php" afterDir="false" />
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="added assortment details">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Supplier/SupplierController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CarModelCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/SupplierResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Supplier.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/SupplierRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_25_101120_create_suppliers_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/suppliers/SuppliersComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin_layouts/suppliers/suppliers.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Cars/CarController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Details/AutoModelDetailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Details/DetailCarController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DetailAvtoModelResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DetailCarResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/DetailsAvtoModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/DetailsCar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/AutoModelDetailRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/DetailCarRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/CarRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CarRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_22_140728_create_details_avto_models_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_22_140728_create_details_cars_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/detail/AssortmentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/detail/AssortmentComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
@@ -246,7 +260,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/admin/detail" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Resources" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
@@ -254,19 +268,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
+      <recent name="C:\OpenServer\domains\CarService\app\Models" />
+      <recent name="C:\OpenServer\domains\CarService\app\Repositories" />
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\Suppliers" />
+      <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\suppliers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts\auto" />
       <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\auto" />
       <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\auto\model" />
       <recent name="$PROJECT_DIR$/app/Models" />
       <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\detail" />
-      <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts\details" />
-      <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
-      <recent name="C:\OpenServer\domains\CarService\app\Models" />
-      <recent name="C:\OpenServer\domains\CarService\app\Repositories" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -498,14 +512,7 @@
       <workItem from="1618726731627" duration="1341000" />
       <workItem from="1618744675752" duration="5624000" />
       <workItem from="1619099366258" duration="5805000" />
-      <workItem from="1619325140407" duration="2088000" />
-    </task>
-    <task id="LOCAL-00004" summary="Наполнил страницу home">
-      <created>1561989333264</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1561989333264</updated>
+      <workItem from="1619325140407" duration="8551000" />
     </task>
     <task id="LOCAL-00005" summary="Добавил adminLTE">
       <created>1562365164581</created>
@@ -843,7 +850,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619104210883</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="added assortment details">
+      <created>1619328491586</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1619328491587</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TodoView">
@@ -897,7 +911,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="05.05.2020" />
     <MESSAGE value="10.05.2020" />
     <MESSAGE value="17.05.2020" />
     <MESSAGE value="added set user role" />
@@ -922,17 +935,18 @@
     <MESSAGE value="Add type detail to DetailsTable" />
     <MESSAGE value="add view nomenclature detail" />
     <MESSAGE value="added detail avto model controlle,model" />
-    <option name="LAST_COMMIT_MESSAGE" value="added detail avto model controlle,model" />
+    <MESSAGE value="added assortment details" />
+    <option name="LAST_COMMIT_MESSAGE" value="added assortment details" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="285" y="3" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1619103863002">
+    <state x="285" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1619341573363">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="285" y="3" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619103863002" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1618752539346">
+    <state x="285" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619341573363" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1619342878859">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618752539346" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619342878859" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1619103162304">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -941,10 +955,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="274" y="246" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618331773339" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1619104213766">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1619328495593">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1619104213766" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1619328495593" />
     <state x="599" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1619103017007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -953,18 +967,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618680504795" />
-    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1619104394769">
+    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1619345499513">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="255" width="585" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1619104394769" />
+    <state x="667" y="255" width="585" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1619345499513" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1618681531549">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618681531549" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1619327831619">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1619346425785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1619327831619" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1619346425785" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

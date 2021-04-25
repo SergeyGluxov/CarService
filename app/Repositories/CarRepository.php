@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use App\Http\Resources\CarModelCollection;
 use App\Http\Resources\CarResource;
 use App\Models\Car;
 use Illuminate\Http\Request;
@@ -35,6 +36,18 @@ class CarRepository
         $carStore->power = $request->get('power');
         $carStore->save();
         return response('Автомобиль успешно добавлен', 200);
+    }
+
+
+    public function getCarsByModels(Request $request)
+    {
+        $param = $request->get('model_id');
+        $models = Car::whereHas('avto_model', function ($query) use ($param) {
+            $query->where('avto_model_id', '=', $param);
+        })->get();
+
+        CarModelCollection::withoutWrapping();
+        return new CarModelCollection($models);
     }
 
     public function update(Request $request, $id)

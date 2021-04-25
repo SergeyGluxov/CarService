@@ -133,15 +133,35 @@ return [
                     'text' => 'Стеллажи',
                     'url' => 'admin/top/channels',
                 ],
+                [
+                    'text' => 'Остатки',
+                    'url' => 'admin/top/channels',
+                ],
+            ]
+        ],
+
+        'УПРАВЛЕНИЕ ПОСТАВЩИКАМИ',
+
+        [
+            'text' => 'Управление поставщиками',
+            'icon' => 'search',
+            'submenu' => [
+                [
+                    'text' => 'Поставщики',
+                    'url' => 'admin/suppliers',
+                ],
+                [
+                    'text' => 'Заявки на поставку',
+                    'url' => 'admin/details/nomenclature',
+                ],
+                [
+                    'text' => 'Типы запчастей',
+                    'url' => 'admin/details/type',
+                ]
             ]
         ],
 
         'УПРАВЛЕНИЕ ЗАПЧАСТАМИ',
-        [
-            'text' => 'Перемещения',
-            'url' => 'admin/channels',
-            'icon' => 'search',
-        ],
         [
             'text' => 'Запчасти',
             'url' => 'admin/channels',
