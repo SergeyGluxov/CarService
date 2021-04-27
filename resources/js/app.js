@@ -45,6 +45,7 @@ Vue.component('detail-assortment-table-component', require('./components/admin/d
 //-----------------------------------------Поставщики-------------------------------------------------------------------
 
 Vue.component('suppliers-table-component', require('./components/admin/suppliers/SuppliersComponent.vue'));
+Vue.component('orders-table-component', require('./components/admin/orders/OrdersComponent.vue'));
 
 
 //-----------------------------------------УСЛУГИ-----------------------------------------------------------------------

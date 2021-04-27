@@ -34,6 +34,7 @@ Route::get('admin/details/type', 'AdminController@getTypeDetail');
 Route::get('admin/details/nomenclature', 'AdminController@getNomenclature');
 Route::get('admin/details/assortment', 'AdminController@getAssortment');
 Route::get('admin/suppliers', 'AdminController@getSuppliers');
+Route::get('admin/suppliers/orders', 'AdminController@getOrders');
 
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');
@@ -83,6 +84,10 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Details'], function () {
         Route::resource('/details', 'DetailController');
         Route::resource('/assortment/details', 'DetailCarController');
+    });
+
+    Route::group(['namespace' => 'Orders'], function () {
+        Route::resource('/orders', 'OrderController');
     });
 
     Route::group(['namespace' => 'Factory'], function () {

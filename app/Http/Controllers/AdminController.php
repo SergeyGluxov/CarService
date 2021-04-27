@@ -51,6 +51,11 @@ class AdminController extends Controller
         return view('admin_layouts/suppliers/suppliers');
     }
 
+    public function getOrders()
+    {
+        return view('admin_layouts/orders/orders');
+    }
+
     public function getTypeDetail()
     {
         return view('admin_layouts/details/type_details');

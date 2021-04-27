@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'VagonTV Admin',
+    'title' => 'Admin',
 
     'title_prefix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>VagonTV [ADMIN]</b>',
+    'logo' => '<b>ADMIN</b>',
 
     'logo_mini' => '<b>A</b>DM',
 
@@ -119,26 +119,6 @@ return [
             ]
         ],
 
-        'УПРАВЛЕНИЕ СКЛАДАМИ',
-        [
-            'text' => 'Склады',
-            'url' => 'admin/channels',
-            'icon' => 'search',
-            'submenu' => [
-                [
-                    'text' => 'Помещения',
-                    'url' => 'admin/channels',
-                ],
-                [
-                    'text' => 'Стеллажи',
-                    'url' => 'admin/top/channels',
-                ],
-                [
-                    'text' => 'Остатки',
-                    'url' => 'admin/top/channels',
-                ],
-            ]
-        ],
 
         'УПРАВЛЕНИЕ ПОСТАВЩИКАМИ',
 
@@ -151,8 +131,8 @@ return [
                     'url' => 'admin/suppliers',
                 ],
                 [
-                    'text' => 'Заявки на поставку',
-                    'url' => 'admin/details/nomenclature',
+                    'text' => 'Заявки',
+                    'url' => 'admin/suppliers/orders',
                 ],
                 [
                     'text' => 'Типы запчастей',
