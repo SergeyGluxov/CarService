@@ -3,10 +3,55 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Поставщики</h2>
+                <h2>Форма добавления нового поставщика</h2>
                 <div class="card">
 
 
+                    <form class="form-horizontal">
+
+                        <div class="form-group  col-md-7">
+                            <label class="control-label" for="companyName">Наименование компании:</label>
+                            <div>
+                                <input type="text" id="companyName" class="form-control" v-model="vmCompanyName"
+                                       placeholder="Введите наименование"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group  col-md-7">
+                            <label class="control-label" for="address">Адрес:</label>
+                            <div>
+                                <input type="text" id="address" class="form-control" v-model="vmAddress"
+                                       placeholder="ул. Ленина, 143/3"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group  col-md-7">
+                            <label class="control-label" for="phoneCompany">Номер телефона:</label>
+                            <div>
+                                <input type="text" id="phoneCompany" class="form-control" v-model="vmPhoneCompany"
+                                       placeholder="79999999999"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group  col-md-7">
+                            <label class="control-label" for="emailCompany">Почтовый адрес:</label>
+                            <div>
+                                <input type="text" id="emailCompany" class="form-control" v-model="vmEmailCompany"
+                                       placeholder="example@mail.ru"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <button type="button" @click="storeSupplier()" class="btn btn-success">
+                                    Добавить
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <hr/>
+                    <h2>Список поставщиков</h2>
                     <div class="card-header">
                     </div>
                     <!-- /.card-header -->
@@ -28,7 +73,7 @@
                                 <td>{{col.email}}</td>
                                 <td>{{col.address}}</td>
                                 <td>
-                                    <div type="button" class="btn btn-danger" v-on:click="deleteUser(col.id)">
+                                    <div type="button" class="btn btn-danger" v-on:click="deleteSupplier(col.id)">
                                         <i class="fas fa-times " aria-hidden="true"></i></div>
                                 </td>
                             </tr>
@@ -167,7 +212,10 @@
                 createMarkCar: '',
                 createModelCar: '',
                 createGosNumberCar: '',
-
+                vmCompanyName:'',
+                vmAddress:'',
+                vmPhoneCompany:'',
+                vmEmailCompany:'',
                 showModalImport: false,
             }
         },
@@ -184,8 +232,29 @@
                     console.log(response.data);
                 });
             },
-            deleteUser: function (id) {
-                axios.delete('/api/users/' + id).then((response) => {
+            storeSupplier: function () {
+                var formData = new FormData();
+                formData.append('company', this.vmCompanyName);
+                formData.append('address', this.vmAddress);
+                formData.append('phone', this.vmPhoneCompany);
+                formData.append('email', this.vmEmailCompany);
+                axios.post('/suppliers', formData)
+                    .then(response => {
+                        console.log('Запрос успешен!')
+                        this.update();
+                        this.vmCompanyName = ""
+                        this.vmAddress = ""
+                        this.vmPhoneCompany = ""
+                        this.vmEmailCompany = ""
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            alert('Введите корректные данные!')
+                        }
+                    });
+            },
+            deleteSupplier: function (id) {
+                axios.delete('/suppliers/' + id).then((response) => {
                     this.users = response.data;
                     this.update();
                     console.log(response.data);

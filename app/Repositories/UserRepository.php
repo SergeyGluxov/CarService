@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserRepository
 {
@@ -29,30 +29,8 @@ class UserRepository
             $q->where('name', '!=', null);
         }
         )->get();
-        UserResource::withoutWrapping();
-        return UserResource::collection($workers);
-    }
-
-    public function getWorkersFree(Request $request)
-    {
-        //TODO: Выборка по полям
-        $workers = DB::table('users')
-            ->select('users.*')
-            ->join('schedules', 'schedules.user_id', '<>', 'users.id')
-            ->where('schedules.created_at', '<', $request->get('search_date'))
-            ->join('users_roles', 'users_roles.user_id', '=', 'users.id')
-            ->get()->unique('id');
-
-        /*  $workers = User::whereHas(
-              'roles', function ($q) {
-              $q->where('name', '!=', null);
-          })->whereHas(function ($a) {
-              $a->join('appointments','appointments.user_id', '!=', '1');
-          }
-          )->get();*/
-
-        UserResource::withoutWrapping();
-        return UserResource::collection($workers);
+        EmployeeResource::withoutWrapping();
+        return EmployeeResource::collection($workers);
     }
 
     public function find($id)

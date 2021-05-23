@@ -15,7 +15,6 @@
                             <thead>
                             <tr>
                                 <th>Имя</th>
-                                <th>Телефон</th>
                                 <th>Эл. почта</th>
                                 <th>Дата регистрации</th>
                                 <th>Удаление</th>
@@ -24,7 +23,6 @@
                             <tbody v-for="col in users">
                             <tr>
                                 <td>{{col.name}}</td>
-                                <td>{{col.phone}}</td>
                                 <td>{{col.email}}</td>
                                 <td>{{convertDat(col.created_at.date)}}</td>
                                 <td>

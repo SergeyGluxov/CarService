@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Заявки поставщикам</h2>
+                <h2>Форма создания новой заявки поставщику</h2>
 
 
                 <form class="form-horizontal">
@@ -49,6 +49,9 @@
                         </div>
                     </div>
                 </form>
+
+                <hr/>
+                <h2>Заявки поставщикам</h2>
 
                 <div class="card">
                     <div class="card-header">

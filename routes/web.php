@@ -50,11 +50,11 @@ Route::post('admin/appointment/import', 'AdminController@importAppointments');
 //--------------------------------------------------------------------------------------
 
 //Назначить сотрудника
-Route::get('admin/add_employee', 'AdminController@stroreEmployee');
+Route::get('admin/employees', 'AdminController@stroreEmployee');
 Route::get('admin/remove_employee', 'AdminController@removeEmployee');
 
 //Должности
-Route::get('admin/add_role', 'AdminController@addRole');
+Route::get('admin/roles', 'AdminController@addRole');
 Route::get('admin/remove_role', 'AdminController@removeRole');
 
 //Поиск мастеров
@@ -111,6 +111,17 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Supplier'], function () {
         Route::resource('/suppliers', 'SupplierController');
     });
+
+
+    Route::group(['namespace' => 'Roles'], function () {
+        Route::resource('/roles', 'RolesController');
+        Route::post('/roles/setUser', 'RolesController@storeUserRole');
+        Route::post('/roles/delete', 'RolesController@deleteRole');
+    });
+    Route::group(['namespace' => 'User'], function () {
+        Route::resource('/users', 'UserController');
+        Route::get('/workers', 'UserController@getWorkers');
+    });
 });
 
 //Эти маршруты для авторизации стороних приложений через carservice
@@ -134,3 +145,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/mail', 'MailController@sendMessage');

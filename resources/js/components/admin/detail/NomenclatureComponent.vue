@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Перечень деталей</h2>
+                <h2>Создать новую номенклатуру</h2>
 
                 <form class="form-horizontal">
 
@@ -43,6 +43,8 @@
                         </div>
                     </div>
                 </form>
+                <hr/>
+                <h2>НоОбъем двигатменклатура деталей</h2>
 
                 <div class="card">
 

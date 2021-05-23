@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Автомобили</h2>
+                <h2>Форма добавления нового автомобиля</h2>
 
                 <form class="form-horizontal">
                     <div class="form-group col-md-6">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="form-group  col-md-4">
-                        <label class="control-label" for="engineValue">Объем двигателя и мощность(л.c):</label>
+                        <label class="control-label" for="engineValue">Объем двигателя:</label>
                         <div class="">
                             <input type="text"  id="engineValue" class="form-control" v-model="inputEngineValue"
                             placeholder="2.0"/>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="form-group  col-md-4">
-                        <label class="control-label col-md-offset-3" for="power">Объем двигателя и мощность(л.c):</label>
+                        <label class="control-label col-md-offset-3" for="power">Мощность(л.c):</label>
                         <div class="col-md-offset-3">
                             <input type="text" id="power" class="form-control" v-model="inputPower"
                                    placeholder="155"/>
@@ -61,7 +61,8 @@
                         </div>
                     </div>
                 </form>
-
+                <hr/>
+                <h2>Список автомобилей</h2>
 
                 <div class="card">
                     <div class="card-header">

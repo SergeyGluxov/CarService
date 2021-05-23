@@ -121,7 +121,6 @@ return [
 
 
         'УПРАВЛЕНИЕ ПОСТАВЩИКАМИ',
-
         [
             'text' => 'Управление поставщиками',
             'icon' => 'search',
@@ -133,12 +132,15 @@ return [
                 [
                     'text' => 'Заявки',
                     'url' => 'admin/suppliers/orders',
-                ],
-                [
-                    'text' => 'Типы запчастей',
-                    'url' => 'admin/details/type',
                 ]
             ]
+        ],
+
+        'УПРАВЛЕНИЕ БРОНИРОВАНИЯМИ',
+        [
+            'text' => 'Управление бронированиями',
+            'url' => 'admin/reservation',
+            'icon' => 'search',
         ],
 
         'УПРАВЛЕНИЕ ЗАПЧАСТАМИ',
@@ -172,6 +174,20 @@ return [
             'text' => 'Список пользователей',
             'url' => 'admin/users/',
             'icon' => 'user',
+        ],
+        [
+            'text' => 'Управление сотрудниками',
+            'icon' => 'user',
+            'submenu' => [
+                [
+                    'text' => 'Должности',
+                    'url' => 'admin/roles/',
+                ],
+                [
+                    'text' => 'Сотрудники',
+                    'url' => 'admin/employees/',
+                ]
+            ]
         ],
         [
             'text' => 'Настройка OAuth',

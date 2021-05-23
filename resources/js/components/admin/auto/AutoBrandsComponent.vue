@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Бренды автомобилей</h2>
+                <h2>Форма добаления нового бренда</h2>
                 <form class="form-inline" method="GET" action="/admin/appointment/export">
                     <input type="text" v-model="vmBrand" class="form-control" placeholder="Введите наименование "/>
                     <button id="show-modal" type="button" class="btn btn-success" v-on:click="storeBrand()">
@@ -11,6 +11,9 @@
                     </button>
 
                 </form>
+                <hr/>
+                <h2>Бренды автомобилей</h2>
+
                 <div class="card">
 
                     <div class="card-header">

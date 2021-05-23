@@ -26,10 +26,6 @@ class UserController extends Controller
         return $this->user->getWorkers();
     }
 
-    public function getWorkersFree(Request $request)
-    {
-        return $this->user->getWorkersFree($request);
-    }
 
     public function create()
     {

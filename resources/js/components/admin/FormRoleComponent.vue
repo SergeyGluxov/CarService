@@ -1,11 +1,26 @@
 //Тут есть пример как использовать api в запросе денных через axios
 <template>
     <div class="container">
-        <h2>Перечень должностей</h2>
+        <h2>Форма добавления новой должности:</h2>
         <div class="card">
-            <button id="show-modal" type="button" class="btn btn-success" @click="showModal = true"><i
-                class="fa fa-plus" aria-hidden="true"></i>
-            </button>
+            <form class="form-horizontal">
+
+                <div class="form-group col-md-10">
+                    <label class="control-label" for="createNameRole">Наименование:</label>
+                    <div>
+                        <input type="text" class="form-control" v-model="createNameRole"
+                               id="createNameRole"
+                               placeholder="Маляр"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9">
+                        <button type="button" @click="store" class="btn btn-success">
+                            Добавить
+                        </button>
+                    </div>
+                </div>
+            </form>
 
             <div class="card-header">
             </div>
@@ -34,45 +49,6 @@
                 </table>
             </div>
             <!-- /.card-body -->
-        </div>
-
-        <div v-if="showModal">
-            <div class="modal fade-in" style="display: block;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" @click="showModal=false">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">Новая должность</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-3" for="createNameRole">Наименование
-                                        должности:</label>
-                                    <div class="col-xs-5">
-                                        <input type="text" class="form-control" v-model="createNameRole"
-                                               id="createNameRole"
-                                               placeholder="уборщик"/>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <button type="button" @click="store" class="btn btn-success">
-                                            Добавить роль
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-xs-offset-6 col-xs-9">
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -123,7 +99,6 @@
                 const formData = new FormData();
                 formData.append('id', id);
                 axios.post('/api/roles/delete',formData).then((response) => {
-                    this.roles = response.data;
                     this.update();
                     console.log(response.data);
                 });

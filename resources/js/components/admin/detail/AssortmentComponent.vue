@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Товары</h2>
+                <h2>Форма добавления нового товара</h2>
 
                 <form class="form-horizontal">
 
@@ -71,6 +71,8 @@
                         </div>
                     </div>
                 </form>
+                <hr/>
+                <h2>Перечень товаров</h2>
 
                 <div class="card">
 
@@ -103,114 +105,6 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-            </div>
-
-            <div v-if="showModal">
-                <div class="modal fade-in" style="display: block;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" @click="showModal=false">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title">Новая пользователь</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createName">Введите имя:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createName"
-                                                   id="createName"
-                                                   placeholder="Иванов Иван Иванович"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createName">Введите номер
-                                            телефона:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createPhone"
-                                                   id="createPhone"
-                                                   placeholder="+79505728020"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createEmail">Введите
-                                            эл.почту:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createEmail"
-                                                   id="createEmail"
-                                                   placeholder="ivanov.ii@gmail.com"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createPassword">Введите
-                                            пароль:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createPassword"
-                                                   id="createPassword"
-                                                   placeholder="*****"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createMarkCar">Марка и модель
-                                            авто:</label>
-                                        <div class="col-xs-4">
-                                            <input type="text" class="form-control" v-model="createMarkCar"
-                                                   id="createMarkCar"
-                                                   placeholder="Nissan"/>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input type="text" class="form-control" v-model="createModelCar"
-                                                   id="createModelCar"
-                                                   placeholder="Patrol"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-3" for="createGosNumberCar">Введите гос.
-                                            номер:</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" v-model="createGosNumberCar"
-                                                   id="createGosNumberCar"
-                                                   placeholder="X001A142"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-xs-offset-6 col-xs-9">
-                                            <button type="button" @click="store" class="btn btn-success">Создать
-                                                пользователя
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div v-if="showModalImport">
-            <div class="modal fade-in" style="display: block; padding-right: 17px;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" @click="showModalImport=false">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">Импорт пользователей из Excel</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form" method="POST" enctype="multipart/form-data"
-                                  action="/admin/users/import">
-                                <input type="file" id="excelUploadUsers" name="excelUploadUsers">
-                                <br>
-                                <button type="submit" class="btn btn-primary">Импорт из файла</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

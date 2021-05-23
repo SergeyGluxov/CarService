@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Модели автомобилей</h2>
+                <h2>Форма добавления новой модели автомобиля</h2>
                 <form class="form-inline" method="GET" action="/admin/appointment/export">
 
                     <select v-model="vmBrand" @change.capture="onSelectBrand($event)"
@@ -19,7 +19,8 @@
                         Добавить
                     </button>
                 </form>
-
+                <hr/>
+                <h2>Список моделей автомобилей</h2>
                 <div class="card">
                     <div class="card-header">
                     </div>

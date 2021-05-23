@@ -11,7 +11,7 @@ class User extends Authenticatable
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'phone',
+        'name', 'email', 'password',
     ];
 
 
@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role', 'users_roles', 'user_id', 'role_id');
+        return $this->belongsToMany('App\Models\Role', 'users_roles', 'user_id', 'role_id');
     }
 
     public function role()
