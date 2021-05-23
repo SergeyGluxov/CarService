@@ -139,7 +139,7 @@ return [
         'УПРАВЛЕНИЕ БРОНИРОВАНИЯМИ',
         [
             'text' => 'Управление бронированиями',
-            'url' => 'admin/reservation',
+            'url' => 'admin/reservations',
             'icon' => 'search',
         ],
 
@@ -189,24 +189,16 @@ return [
                 ]
             ]
         ],
-        [
+        /*[
             'text' => 'Настройка OAuth',
             'icon' => 'pencil',
             'submenu' => [
                 [
                     'text' => 'Клиенты',
                     'url' => 'admin/oauth_clients',
-                ],
-           /*     [
-                    'text' => 'Level One',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Level One',
-                    'url' => '#',
-                ],*/
+                ]
             ],
-        ],
+        ],*/
 
         /*
         'ПОИСК',

@@ -6769,6 +6769,7 @@ Vue.component('detail-assortment-table-component', __webpack_require__(240));
 
 Vue.component('suppliers-table-component', __webpack_require__(243));
 Vue.component('orders-table-component', __webpack_require__(246));
+Vue.component('reservations-table-component', __webpack_require__(304));
 
 //-----------------------------------------УСЛУГИ-----------------------------------------------------------------------
 Vue.component('services-table-component', __webpack_require__(249));
@@ -87264,6 +87265,371 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(305)
+/* template */
+var __vue_template__ = __webpack_require__(306)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/admin/reservations/ReservationsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-63013999", Component.options)
+  } else {
+    hotAPI.reload("data-v-63013999", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 305 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            reservations: [],
+            showModal: false,
+            //UserData
+            createName: '',
+            createEmail: '',
+            createPassword: '',
+            createPhone: '',
+            createMarkCar: '',
+            createModelCar: '',
+            createGosNumberCar: '',
+            vmDetail: '',
+            vmSupplier: '',
+            vmCount: '',
+            details: [],
+            suppliers: [],
+            detailSelected: '',
+            supplierSelected: '',
+
+            showModalImport: false
+        };
+    },
+    mounted: function mounted() {
+        this.update();
+    },
+
+    methods: {
+        newModal: function newModal() {
+            $('#addNew').modal('show');
+        },
+        update: function update() {
+            var _this = this;
+
+            axios.get('/reservations').then(function (response) {
+                _this.reservations = response.data;
+                console.log(response.data);
+            });
+        },
+
+        storeOrder: function storeOrder() {
+            var _this2 = this;
+
+            var formData = new FormData();
+            formData.append('status', 'create');
+            formData.append('detail_id', this.detailSelected);
+            formData.append('supplier_id', this.supplierSelected);
+            formData.append('count', this.vmCount);
+            axios.post('/orders', formData).then(function (response) {
+                console.log('Запрос успешен!');
+                _this2.update();
+                _this2.vmDetail = "";
+                _this2.vmSupplier = "";
+                _this2.vmCount = "";
+            }).catch(function (error) {
+                if (error.response.status == 422) {
+                    alert('Введите корректные данные!');
+                }
+            });
+        },
+        acceptReservation: function acceptReservation(id) {
+            var _this3 = this;
+
+            axios.put('/reservations/' + id, {
+                status: 'accept'
+            }).then(function (response) {
+                _this3.update();
+            });
+        },
+        deleteReservation: function deleteReservation(id) {
+            var _this4 = this;
+
+            axios.delete('/reservations/' + id).then(function (response) {
+                _this4.update();
+            });
+        },
+        convertDat: function convertDat(date) {
+            return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).format('DD.MM.YYYY');
+        }
+    }
+});
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("h2", [_vm._v("Бронирования автозапчастей от клиентов")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-bordered table-hover",
+                attrs: { id: "example2" }
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._l(_vm.reservations, function(col) {
+                  return _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(col.id))]),
+                      _vm._v(" "),
+                      col.status === "received"
+                        ? _c("td", [_vm._v("Получена")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      col.status === "accept"
+                        ? _c("td", [_vm._v("Подтвеждена")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(col.detail.title))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(col.user.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(col.count))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
+                      ]),
+                      _vm._v(" "),
+                      col.status === "received"
+                        ? _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "btn btn-warning",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.acceptReservation(col.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fas fa-exclamation-triangle",
+                                  attrs: { "aria-hidden": "true" }
+                                })
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      col.status === "accept"
+                        ? _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.acceptReservation(col.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fas fa-check",
+                                  attrs: { "aria-hidden": "true" }
+                                })
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteReservation(col.id)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fas fa-times ",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Статус")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Деталь")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Клиент")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Количество")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Дата создания")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Подтверждение")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Удаление")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-63013999", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

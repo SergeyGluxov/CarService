@@ -61,6 +61,11 @@ class AdminController extends Controller
         return view('admin_layouts/details/type_details');
     }
 
+    public function getReservation()
+    {
+        return view('admin_layouts/reservations/reservations');
+    }
+
 
     //----------------------------------ПОЛЬЗОВАТЕЛИ--------------------------------------------------------------------
 

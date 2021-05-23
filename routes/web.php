@@ -35,6 +35,7 @@ Route::get('admin/details/nomenclature', 'AdminController@getNomenclature');
 Route::get('admin/details/assortment', 'AdminController@getAssortment');
 Route::get('admin/suppliers', 'AdminController@getSuppliers');
 Route::get('admin/suppliers/orders', 'AdminController@getOrders');
+Route::get('admin/reservations', 'AdminController@getReservation');
 
 //Рассписание работ
 Route::get('admin/schedules', 'AdminController@getSchedules');
@@ -88,6 +89,10 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::group(['namespace' => 'Orders'], function () {
         Route::resource('/orders', 'OrderController');
+    });
+
+    Route::group(['namespace' => 'Reservations'], function () {
+        Route::resource('/reservations', 'ReservationController');
     });
 
     Route::group(['namespace' => 'Factory'], function () {
