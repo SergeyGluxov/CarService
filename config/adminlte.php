@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Admin',
+    'title' => 'Панель администратора',
 
     'title_prefix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>ADMIN</b>',
+    'logo' => '<b>ИП Шипилов | Admin</b>',
 
     'logo_mini' => '<b>A</b>DM',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'yellow',
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'admin/channels',
+    'dashboard_url' => 'admin/reservations',
 
     'logout_url' => 'logout',
 

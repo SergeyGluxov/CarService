@@ -1,11 +1,4 @@
-@extends('adminlte::page')
-
-@section('title', 'AdminLTE')
-
-@section('content_header')
-    <h1>Dashboard</h1>
-@stop
-
+@extends('layouts.clientApp')
 @section('content')
-    <p>You are logged in!</p>
-@stop
+    <client-component></client-component>
+@endsection

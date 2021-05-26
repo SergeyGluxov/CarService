@@ -41,6 +41,10 @@ Route::get('admin/reservations', 'AdminController@getReservation');
 Route::get('admin/schedules', 'AdminController@getSchedules');
 
 //---------------------Экспорт и импорт-------------------------------------------------
+//Пользователи
+Route::get('admin/assortment/export', 'Api\Details\DetailCarController@export');
+Route::post('admin/assortment/import', 'Api\Details\DetailCarController@import');
+
 //Завявки
 Route::get('admin/users/export', 'AdminController@getExportUser');
 Route::post('admin/users/import', 'AdminController@importUsers');
@@ -84,6 +88,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::group(['namespace' => 'Details'], function () {
         Route::resource('/details', 'DetailController');
+        Route::resource('/assortment/details', 'DetailCarController');
         Route::resource('/assortment/details', 'DetailCarController');
     });
 

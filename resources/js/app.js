@@ -25,6 +25,7 @@ Vue.component('character-car-component', require('./components/home/Characterist
 
 /**Компоненты для home/service/checkup**/
 Vue.component('form-checkup-component', require('./components/service/FormCheckupComponent.vue'));
+Vue.component('client-component', require('./components/client/ClientComponent.vue'));
 
 
 /**Компоненты для /admin**/

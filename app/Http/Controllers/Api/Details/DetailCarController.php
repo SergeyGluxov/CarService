@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Api\Details;
 
 
+use App\Exports\AppointmentsExport;
+use App\Exports\AssortmentExport;
 use App\Http\Controllers\Controller;
+use App\Imports\AssortmentImport;
 use App\Repositories\DetailCarRepository;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DetailCarController extends Controller
 {
@@ -34,5 +38,18 @@ class DetailCarController extends Controller
     public function destroy($id)
     {
         return $this->detailCarRepository->destroy($id);
+    }
+    public function export()
+    {
+        return Excel::download(new AssortmentExport(), 'Ассортимент_автозапчастей.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $path1 = $request->file('excelUploadAssortment')->store('/');
+        $file = storage_path('app') . '/' . $path1;
+
+        Excel::import(new AssortmentImport(), $file);
+        return back();
     }
 }

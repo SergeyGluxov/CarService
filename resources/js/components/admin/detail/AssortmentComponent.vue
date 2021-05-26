@@ -5,6 +5,23 @@
             <div class="col-12">
                 <h2>Форма добавления нового товара</h2>
 
+
+                <form class="form-inline" method="GET" action="/admin/assortment/export">
+
+                    <button type="submit" class="btn btn-primary" @click="exportExcel">
+                        <i class="fa fa-download" aria-hidden="true"></i> Экспортировать | Excel
+                    </button>
+                    <button id="show-modal-import" type="button" class="btn btn-primary" @click="showModalImport = true">
+                        <i class="fa fa-upload" aria-hidden="true"></i> Импортировать | Excel
+                    </button>
+
+
+                </form>
+
+
+
+
+
                 <form class="form-horizontal">
 
                     <div class="form-group col-md-10">
@@ -95,7 +112,7 @@
                                 <td>{{col.car.model.title}}</td>
                                 <td>{{col.cost}}</td>
                                 <td>
-                                    <div type="button" class="btn btn-danger" v-on:click="deleteUser(col.id)">
+                                    <div type="button" class="btn btn-danger" v-on:click="deleteAssortment(col.id)">
                                         <i class="fas fa-times " aria-hidden="true"></i></div>
                                 </td>
                             </tr>
@@ -105,6 +122,28 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
+            </div>
+        </div>
+        <div v-if="showModalImport">
+            <div class="modal fade-in" style="display: block; padding-right: 17px;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" @click="showModalImport=false">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Импорт ассортимент из Excel</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" method="POST" enctype="multipart/form-data"
+                                  action="/admin/assortment/import">
+                                <input type="file" id="excelUploadAssortment" name="excelUploadAssortment">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Импорт из файла</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -203,6 +242,14 @@
                     console.log(response.data);
                 });
             },
+            //Экспорт в данных в эксель
+            exportExcel: function () {
+                axios.get('/admin/assortment/export');
+            },
+            importFromExcel: function () {
+                axios.get('admin/assortment/import');
+            },
+
 
             storeDetail: function () {
                 var formData = new FormData();
@@ -226,6 +273,12 @@
                     });
             },
 
+
+            deleteAssortment: function (id) {
+                axios.delete('/assortment/details/' + id).then((response) => {
+                    this.update();
+                });
+            },
             convertDat: function (date) {
                 return moment(date).format('DD.MM.YYYY')
             },
