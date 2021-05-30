@@ -6,20 +6,22 @@
                 <h2>Форма добавления нового товара</h2>
 
 
-                <form class="form-inline" method="GET" action="/admin/assortment/export">
+                <form class="form-horizontal" method="GET" action="/admin/assortment/export">
+                    <div class="form-group col-md-3">
 
-                    <button type="submit" class="btn btn-primary" @click="exportExcel">
-                        <i class="fa fa-download" aria-hidden="true"></i> Экспортировать | Excel
-                    </button>
-                    <button id="show-modal-import" type="button" class="btn btn-primary" @click="showModalImport = true">
-                        <i class="fa fa-upload" aria-hidden="true"></i> Импортировать | Excel
-                    </button>
-
+                        <button type="submit" class="btn btn-primary form-control" @click="exportExcel">
+                            <i class="fa fa-download" aria-hidden="true"></i> Экспортировать | Excel
+                        </button>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-3">
+                        <button id="show-modal-import" type="button" class="btn btn-primary form-control"
+                                @click="showModalImport = true">
+                            <i class="fa fa-upload" aria-hidden="true"></i> Импортировать | Excel
+                        </button>
+                    </div>
 
                 </form>
-
-
-
 
 
                 <form class="form-horizontal">
@@ -27,7 +29,8 @@
                     <div class="form-group col-md-10">
                         <label class="control-label" for="exampleSelectBrand">Выберите деталь:</label>
                         <div>
-                            <select v-model="vmDetail" @change.capture="onSelectDetail($event)" class="form-control" id="exampleSelectBrand">
+                            <select v-model="vmDetail" @change.capture="onSelectDetail($event)" class="form-control"
+                                    id="exampleSelectBrand">
                                 <option value="" disabled selected>Выбрать...</option>
                                 <option v-for="type in details" :value="type.id"
                                         :key="type.id">{{type.title}}
@@ -49,8 +52,8 @@
 
 
                     <div class="form-group col-md-3">
-                        <label class="control-label col-md-offset-2 "  >Выберите модель:</label>
-                        <select  v-model="vmModel" @change.capture="onSelectModel($event)"
+                        <label class="control-label col-md-offset-2 ">Выберите модель:</label>
+                        <select v-model="vmModel" @change.capture="onSelectModel($event)"
                                 class="form-control col-md-offset-2 ">
                             <option value="" disabled selected>Выбрать...</option>
                             <option v-for="type in models" :value="type.id"
@@ -61,8 +64,8 @@
                     <div class="col-md-1"></div>
                     <div class="form-group col-md-3">
                         <label class="control-label">Выберите модификацию:</label>
-                        <select  v-model="vmCar" @change.capture="onSelectCar($event)"
-                                 class="form-control">
+                        <select v-model="vmCar" @change.capture="onSelectCar($event)"
+                                class="form-control">
                             <option value="" disabled selected>Выбрать...</option>
                             <option v-for="type in car" :value="type.id"
                                     :key="type.id">{{type.power}} л/c | {{type.engine_value}} л
@@ -90,7 +93,9 @@
                 </form>
                 <hr/>
                 <h2>Перечень товаров</h2>
-
+                <label class="control-label">Поиск по названию:</label>
+                <input type="text" class="form-control" v-model="search" placeholder="Введите текст..."/>
+                <br>
                 <div class="card">
 
                     <div class="card-header">
@@ -106,7 +111,7 @@
                                 <th>Удаление</th>
                             </tr>
                             </thead>
-                            <tbody v-for="col in assortment">
+                            <tbody v-for="col in filteredList">
                             <tr>
                                 <td>{{col.detail.title}}</td>
                                 <td>{{col.car.model.title}}</td>
@@ -139,7 +144,7 @@
                                   action="/admin/assortment/import">
                                 <input type="file" id="excelUploadAssortment" name="excelUploadAssortment">
                                 <br>
-                                <button type="submit" class="btn btn-primary">Импорт из файла</button>
+                                <button type="submit" class="btn btn-primary">Импортировать</button>
                             </form>
                         </div>
                     </div>
@@ -155,6 +160,7 @@
     export default {
         data: function () {
             return {
+                search: '',
                 assortment: [],
                 details: [],
                 brands: [],
@@ -165,14 +171,14 @@
                 vmCar: '',
                 vmDetail: '',
                 inputCost: '',
-                modelSelected:'',
-                carSelected:'',
+                modelSelected: '',
+                carSelected: '',
                 showModal: false,
                 //UserData
                 vmTypeDetail: '',
-                detailSelected:'',
-                inputTitleDetail:'',
-                inputWeight:'',
+                detailSelected: '',
+                inputTitleDetail: '',
+                inputWeight: '',
 
                 createName: '',
                 createEmail: '',
@@ -190,6 +196,14 @@
             this.getTypeDetails();
             this.getBrands();
             this.getDetails();
+        },
+        computed: {
+            filteredList() {
+                console.log("filteredList()");
+                return this.assortment.filter(filter => {
+                    return filter.detail.title.toLowerCase().includes(this.search.toLowerCase())
+                })
+            }
         },
         methods: {
             newModal: function () {

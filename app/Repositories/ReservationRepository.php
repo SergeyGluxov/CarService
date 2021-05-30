@@ -1,9 +1,14 @@
 <?php
 
 namespace App\Repositories;
+
+use App\Http\Resources\AvtoModelsCollection;
 use App\Http\Resources\ReservationResource;
+use App\Http\Resources\ReservationsCollection;
+use App\Models\AvtoModel;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationRepository
 {
@@ -27,23 +32,45 @@ class ReservationRepository
         return new ReservationResource(Reservation::find($id));
     }
 
+    public function getReservationUser(Request $request)
+    {
+        $param = $request->get('user_id');
+        $reservationUser = Reservation::whereHas('user', function ($q) use ($param) {
+            $q->where('id', '=', $param);
+        }
+        )->get();
+        ReservationResource::withoutWrapping();
+        return ReservationResource::collection($reservationUser);
+
+        /*
+
+
+        $reservationUser = DB::table('reservations')
+            ->join('users', 'users.id', '=', 'reservations.user_id')
+            ->where('users.id', '=', $param)
+            ->get();
+
+        ReservationsCollection::withoutWrapping();
+        return new ReservationsCollection($reservationUser);*/
+    }
+
     public function store(Request $request)
     {
         $reservationStore = new Reservation();
         $reservationStore->status = $request->get('status');
-        $reservationStore->detail_id = $request->get('detail_id');
+        $reservationStore->details_car_id = $request->get('detail_car_id');
         $reservationStore->user_id = $request->get('user_id');
         $reservationStore->count = $request->get('count');
         $reservationStore->save();
-        return response('Бронирование успешно создано', 200);
+        return response()->json(['is_success' => true], 200);
     }
 
     public function update(Request $request, $id)
     {
         $channelUpdate = Reservation::find($id);
-        if($channelUpdate->status=="received"){
+        if ($channelUpdate->status == "received") {
             $channelUpdate->status = "accept";
-        }else{
+        } else {
             $channelUpdate->status = "received";
         }
         $channelUpdate->save();

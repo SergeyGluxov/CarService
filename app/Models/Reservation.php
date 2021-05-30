@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     public function detail() {
-        return $this->belongsTo('App\Models\Detail', 'detail_id', 'id');
+        return $this->belongsTo('App\Models\DetailsCar', 'details_car_id', 'id');
     }
 
     public function user() {

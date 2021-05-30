@@ -35,10 +35,18 @@ class DetailCarController extends Controller
         return $this->detailCarRepository->store($request);
     }
 
+
+    public function getDetailCarByType(Request $request)
+    {
+        return $this->detailCarRepository->getDetailCarByType($request);
+    }
+
     public function destroy($id)
     {
         return $this->detailCarRepository->destroy($id);
     }
+
+
     public function export()
     {
         return Excel::download(new AssortmentExport(), 'Ассортимент_автозапчастей.xlsx');

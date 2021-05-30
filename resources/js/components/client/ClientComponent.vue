@@ -191,7 +191,7 @@
             getCarByModels: function (model_id) {
                 var formData = new FormData();
                 formData.append('model_id', model_id);
-                axios.post('/car/getCarsByModels', formData)
+                axios.post('/car/As', formData)
                     .then(response => {
                         this.cars = response.data;
                         console.log(response.data);

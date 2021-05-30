@@ -71704,7 +71704,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var formData = new FormData();
             formData.append('model_id', model_id);
-            axios.post('/car/getCarsByModels', formData).then(function (response) {
+            axios.post('/car/As', formData).then(function (response) {
                 _this4.cars = response.data;
                 console.log(response.data);
             });
@@ -77658,7 +77658,7 @@ var render = function() {
         _vm._v(" "),
         _c("hr"),
         _vm._v(" "),
-        _c("h2", [_vm._v("НоОбъем двигатменклатура деталей")]),
+        _c("h2", [_vm._v("Номенклатура деталей")]),
         _vm._v(" "),
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }),
@@ -78374,12 +78374,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            search: '',
             assortment: [],
             details: [],
             brands: [],
@@ -78417,62 +78423,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getDetails();
     },
 
+    computed: {
+        filteredList: function filteredList() {
+            var _this = this;
+
+            console.log("filteredList()");
+            return this.assortment.filter(function (filter) {
+                return filter.detail.title.toLowerCase().includes(_this.search.toLowerCase());
+            });
+        }
+    },
     methods: {
         newModal: function newModal() {
             $('#addNew').modal('show');
         },
         update: function update() {
-            var _this = this;
+            var _this2 = this;
 
             axios.get('/assortment/details').then(function (response) {
-                _this.assortment = response.data;
+                _this2.assortment = response.data;
                 console.log(response.data);
             });
         },
 
         getBrands: function getBrands() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.get('/car/brands').then(function (response) {
-                _this2.brands = response.data;
+                _this3.brands = response.data;
                 console.log(response.data);
             });
         },
 
         getDetails: function getDetails() {
-            var _this3 = this;
+            var _this4 = this;
 
             axios.get('/details').then(function (response) {
-                _this3.details = response.data;
+                _this4.details = response.data;
                 console.log(response.data);
             });
         },
 
         getModelsByBrand: function getModelsByBrand(brand_id) {
-            var _this4 = this;
+            var _this5 = this;
 
             var formData = new FormData();
             formData.append('brand_id', brand_id);
             axios.post('/car/models/getModelsByBrand', formData).then(function (response) {
-                _this4.models = response.data;
+                _this5.models = response.data;
             });
         },
 
         getCarByModels: function getCarByModels(model_id) {
-            var _this5 = this;
+            var _this6 = this;
 
             var formData = new FormData();
             formData.append('model_id', model_id);
             axios.post('/car/getCarsByModels', formData).then(function (response) {
-                _this5.car = response.data;
+                _this6.car = response.data;
             });
         },
 
         getTypeDetails: function getTypeDetails() {
-            var _this6 = this;
+            var _this7 = this;
 
             axios.get('/type/details').then(function (response) {
-                _this6.typeDetails = response.data;
+                _this7.typeDetails = response.data;
                 console.log(response.data);
             });
         },
@@ -78485,7 +78501,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         storeDetail: function storeDetail() {
-            var _this7 = this;
+            var _this8 = this;
 
             var formData = new FormData();
             formData.append('detail_id', this.detailSelected);
@@ -78493,12 +78509,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('cost', this.inputCost);
             axios.post('/assortment/details', formData).then(function (response) {
                 console.log('Запрос успешен!');
-                _this7.update();
-                _this7.vmDetail = "";
-                _this7.vmModel = "";
-                _this7.vmBrand = "";
-                _this7.vmCar = "";
-                _this7.inputCost = "";
+                _this8.update();
+                _this8.vmDetail = "";
+                _this8.vmModel = "";
+                _this8.vmBrand = "";
+                _this8.vmCar = "";
+                _this8.inputCost = "";
             }).catch(function (error) {
                 if (error.response.status == 422) {
                     alert('Введите корректные данные!');
@@ -78507,10 +78523,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         deleteAssortment: function deleteAssortment(id) {
-            var _this8 = this;
+            var _this9 = this;
 
             axios.delete('/assortment/details/' + id).then(function (response) {
-                _this8.update();
+                _this9.update();
             });
         },
         convertDat: function convertDat(date) {
@@ -78550,45 +78566,51 @@ var render = function() {
         _c(
           "form",
           {
-            staticClass: "form-inline",
+            staticClass: "form-horizontal",
             attrs: { method: "GET", action: "/admin/assortment/export" }
           },
           [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "submit" },
-                on: { click: _vm.exportExcel }
-              },
-              [
-                _c("i", {
-                  staticClass: "fa fa-download",
-                  attrs: { "aria-hidden": "true" }
-                }),
-                _vm._v(" Экспортировать | Excel\n                ")
-              ]
-            ),
+            _c("div", { staticClass: "form-group col-md-3" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary form-control",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.exportExcel }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-download",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(" Экспортировать | Excel\n                    ")
+                ]
+              )
+            ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { id: "show-modal-import", type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.showModalImport = true
+            _c("div", { staticClass: "col-md-1" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group col-md-3" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary form-control",
+                  attrs: { id: "show-modal-import", type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.showModalImport = true
+                    }
                   }
-                }
-              },
-              [
-                _c("i", {
-                  staticClass: "fa fa-upload",
-                  attrs: { "aria-hidden": "true" }
-                }),
-                _vm._v(" Импортировать | Excel\n                ")
-              ]
-            )
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-upload",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(" Импортировать | Excel\n                    ")
+                ]
+              )
+            ])
           ]
         ),
         _vm._v(" "),
@@ -78893,6 +78915,34 @@ var render = function() {
         _vm._v(" "),
         _c("h2", [_vm._v("Перечень товаров")]),
         _vm._v(" "),
+        _c("label", { staticClass: "control-label" }, [
+          _vm._v("Поиск по названию:")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Введите текст..." },
+          domProps: { value: _vm.search },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }),
           _vm._v(" "),
@@ -78906,7 +78956,7 @@ var render = function() {
               [
                 _vm._m(0),
                 _vm._v(" "),
-                _vm._l(_vm.assortment, function(col) {
+                _vm._l(_vm.filteredList, function(col) {
                   return _c("tbody", [
                     _c("tr", [
                       _c("td", [_vm._v(_vm._s(col.detail.title))]),
@@ -79036,7 +79086,7 @@ var staticRenderFns = [
           _c(
             "button",
             { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v("Импорт из файла")]
+            [_vm._v("Импортировать")]
           )
         ]
       )
@@ -81411,7 +81461,7 @@ var render = function() {
                         ? _c("td", [_vm._v("Подтвеждена")])
                         : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.detail.title))]),
+                      _c("td", [_vm._v(_vm._s(col.goods.title))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(col.user.name))]),
                       _vm._v(" "),

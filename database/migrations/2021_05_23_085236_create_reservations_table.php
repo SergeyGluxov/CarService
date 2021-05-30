@@ -16,8 +16,8 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status')->default("received");
-            $table->integer('detail_id')->unsigned();
-            $table->foreign('detail_id')->references('id')->on('details')->onDelete('cascade');
+            $table->integer('details_car_id')->unsigned();
+            $table->foreign('details_car_id')->references('id')->on('details_cars')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('count');

@@ -90,6 +90,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('/details', 'DetailController');
         Route::resource('/assortment/details', 'DetailCarController');
         Route::resource('/assortment/details', 'DetailCarController');
+        Route::post('/assortment/type/details', 'DetailCarController@getDetailCarByType');
     });
 
     Route::group(['namespace' => 'Orders'], function () {
@@ -98,6 +99,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::group(['namespace' => 'Reservations'], function () {
         Route::resource('/reservations', 'ReservationController');
+        Route::post('/user/reservations', 'ReservationController@getReservationUser');
     });
 
     Route::group(['namespace' => 'Factory'], function () {

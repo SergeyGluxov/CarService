@@ -26,6 +26,11 @@ class ReservationController extends Controller
         return $this->reservationRepository->find($id);
     }
 
+    public function getReservationUser(Request $request)
+    {
+        return $this->reservationRepository->getReservationUser($request);
+    }
+
     public function update(Request $request, $id)
     {
         return $this->reservationRepository->update($request, $id);

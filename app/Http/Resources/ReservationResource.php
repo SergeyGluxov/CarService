@@ -11,7 +11,7 @@ class ReservationResource extends JsonResource
         return [
             'id' => $this->id,
             'status' => $this->status,
-            'detail' => new DetailResource($this->detail()->firstOrFail()),
+            'goods' => new DetailCarResource($this->detail()->firstOrFail()),
             'user' => new UserResource($this->user()->firstOrFail()),
             'count' => $this->count,
             'created_at' => $this->created_at,
