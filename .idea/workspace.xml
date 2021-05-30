@@ -44,6 +44,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="upd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/orders/OrdersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/orders/OrdersComponent.vue" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -507,14 +508,7 @@
       <workItem from="1622045423195" duration="14772000" />
       <workItem from="1622182160765" duration="6859000" />
       <workItem from="1622271323263" duration="11223000" />
-      <workItem from="1622355084769" duration="4023000" />
-    </task>
-    <task id="LOCAL-00011" summary="Добавил таблицу записи на осмотр">
-      <created>1563185718075</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1563185718075</updated>
+      <workItem from="1622355084769" duration="6776000" />
     </task>
     <task id="LOCAL-00012" summary="Таблица записей на осмотр у админа">
       <created>1563268991251</created>
@@ -852,7 +846,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622361370217</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="upd">
+      <created>1622362065516</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1622362065516</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TodoView">
@@ -958,10 +959,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1622048781961" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1622361375938">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1622362070485">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1622361375938" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1622362070485" />
     <state x="599" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1622047238862">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -970,18 +971,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618680504795" />
-    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1622285563569">
+    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1622362823962">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="255" width="585" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622285563569" />
+    <state x="667" y="255" width="585" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622362823962" />
     <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1622360982040">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622360982040" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1622361520430">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1622368079672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622361520430" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622368079672" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
