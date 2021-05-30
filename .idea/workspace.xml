@@ -43,24 +43,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="upd">
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/AssortmentFilterCollection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ReservationsCollection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Details/DetailCarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Details/DetailCarController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Reservations/ReservationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Reservations/ReservationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CarModelCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CarModelCollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ReservationResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ReservationResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Reservation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reservation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/DetailCarRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/DetailCarRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ReservationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ReservationRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_23_085233_create_reservations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_23_085236_create_reservations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/detail/AssortmentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/detail/AssortmentComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/detail/NomenclatureComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/detail/NomenclatureComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/reservations/ReservationsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/reservations/ReservationsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/client/ClientComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/client/ClientComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -524,14 +507,7 @@
       <workItem from="1622045423195" duration="14772000" />
       <workItem from="1622182160765" duration="6859000" />
       <workItem from="1622271323263" duration="11223000" />
-      <workItem from="1622355084769" duration="3348000" />
-    </task>
-    <task id="LOCAL-00010" summary="Изменил PassportComponent">
-      <created>1562862737417</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1562862737417</updated>
+      <workItem from="1622355084769" duration="4023000" />
     </task>
     <task id="LOCAL-00011" summary="Добавил таблицу записи на осмотр">
       <created>1563185718075</created>
@@ -869,7 +845,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622051558631</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="upd">
+      <created>1622361370216</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1622361370217</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TodoView">
@@ -975,10 +958,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1622048781961" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1622051561445">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1622361375938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1622051561445" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1622361375938" />
     <state x="599" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1622047238862">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -995,10 +978,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622360982040" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1622359708997">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1622361520430">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622359708997" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622361520430" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
