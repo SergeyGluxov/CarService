@@ -75,6 +75,7 @@
                                 <th>Бренд</th>
                                 <th>Модель</th>
                                 <th>Мощность</th>
+                                <th>Год</th>
                                 <th>Объем двигателя</th>
                                 <th>Удаление</th>
                             </tr>
@@ -84,6 +85,7 @@
                                 <td>{{col.model.brand.title}}</td>
                                 <td>{{col.model.title}}</td>
                                 <td>{{col.power}}</td>
+                                <td>{{col.year}}</td>
                                 <td>{{col.engine_value}}</td>
                                 <td>
                                     <div type="button" class="btn btn-danger" v-on:click="deleteCar(col.id)">
@@ -192,6 +194,7 @@
                 formData.append('model', this.modelSelected);
                 formData.append('engine_value', this.inputEngineValue);
                 formData.append('power', this.inputPower);
+                formData.append('year', this.inputYear);
 
                 axios.post('/cars', formData)
                     .then(response => {

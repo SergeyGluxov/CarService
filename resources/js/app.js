@@ -50,9 +50,6 @@ Vue.component('orders-table-component', require('./components/admin/orders/Order
 Vue.component('reservations-table-component', require('./components/admin/reservations/ReservationsComponent.vue'));
 
 
-//-----------------------------------------УСЛУГИ-----------------------------------------------------------------------
-Vue.component('services-table-component', require('./components/admin/services/AllServicesComponent.vue'));
-
 //-----------------------------------------ПОЛЬЗОВАТЕЛИ-----------------------------------------------------------------
 Vue.component('admin-table-component', require('./components/admin/AdminTableComponent.vue'));
 Vue.component('top-channels-table-component', require('./components/admin/channels/TopChannelsTableComponent.vue'));
@@ -69,6 +66,9 @@ Vue.component('passport-clients', require('./components/passport/Clients.vue'));
 Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
 Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
 
+
+//-----------------------------------------УСЛУГИ-----------------------------------------------------------------------
+Vue.component('services-table-component', require('./components/admin/services/AllServicesComponent.vue'));
 
 const app = new Vue({
     el: '#app'

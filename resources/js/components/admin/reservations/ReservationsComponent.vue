@@ -28,7 +28,7 @@
                                 <td>{{col.id}}</td>
                                 <td v-if="col.status==='received'">Получена</td>
                                 <td v-if="col.status==='accept'">Подтвеждена</td>
-                                <td>{{col.goods.title}}</td>
+                                <td>{{col.goods.detail.title}}</td>
                                 <td>{{col.user.name}}</td>
                                 <td>{{col.count}}</td>
                                 <td>{{convertDat(col.created_at.date)}}</td>

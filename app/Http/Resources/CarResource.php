@@ -12,6 +12,7 @@ class CarResource extends JsonResource
             'id' => $this->id,
             'power' => $this->power,
             'engine_value' => $this->engine_value,
+            'year' => $this->year,
             'model' => new AvtoModelResource($this->avto_model('title')->firstOrFail()),
         ];
     }

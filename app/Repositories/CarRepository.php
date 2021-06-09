@@ -34,6 +34,7 @@ class CarRepository
         $carStore->avto_model_id = $request->get('model');
         $carStore->engine_value = $request->get('engine_value');
         $carStore->power = $request->get('power');
+        $carStore->year = $request->get('year');
         $carStore->save();
         return response('Автомобиль успешно добавлен', 200);
     }
