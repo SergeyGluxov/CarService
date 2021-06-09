@@ -78,6 +78,7 @@ class DetailCarRepository
 
     }
 
+
     public function search(Request $request){
         return DetailsCar::where('title', $request->get('email'))
             ->orWhere('name', 'like', '%' . $request->get('email') . '%')->get();
