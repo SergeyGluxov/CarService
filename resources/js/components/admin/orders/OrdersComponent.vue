@@ -7,7 +7,8 @@
                     <div class="form-group col-md-10">
                         <label class="control-label" for="exampleSelectDetail">Выберите деталь:</label>
                         <div>
-                            <select v-model="vmDetail" @change.capture="onSelectDetail($event)" class="form-control" id="exampleSelectDetail">
+                            <select v-model="vmDetail" @change.capture="onSelectDetail($event)"
+                            class="form-control" id="exampleSelectDetail">
                                 <option value="" disabled selected>Выбрать...</option>
                                 <option v-for="type in details" :value="type.id"
                                         :key="type.id">{{type.title}}
@@ -18,7 +19,8 @@
                     <div class="form-group col-md-10">
                         <label class="control-label" for="exampleSelectBrand">Выберите поставщика:</label>
                         <div>
-                            <select v-model="vmSupplier" @change.capture="onSelectSupplier($event)" class="form-control" id="exampleSelectBrand">
+                            <select v-model="vmSupplier" @change.capture="onSelectSupplier($event)"
+                            class="form-control" id="exampleSelectBrand">
                                 <option value="" disabled selected>Выбрать...</option>
                                 <option v-for="supplier in suppliers" :value="supplier.id"
                                         :key="supplier.id">{{supplier.company}}
