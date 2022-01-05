@@ -18,9 +18,9 @@
                     </div>
 
                     <div class="form-group col-md-10">
-                        <label class="control-label col-md-offset-2 "  >Выберите модель:</label>
-                        <select  v-model="vmModel" @change.capture="onSelectModel($event)"
-                                 class="form-control col-md-offset-2 ">
+                        <label class="control-label col-md-offset-2 ">Выберите модель:</label>
+                        <select v-model="vmModel" @change.capture="onSelectModel($event)"
+                                class="form-control col-md-offset-2 ">
                             <option value="" disabled selected>Выбрать...</option>
                             <option v-for="type in models" :value="type.id"
                                     :key="type.id">{{type.title}}
@@ -30,8 +30,8 @@
 
                     <div class="form-group col-md-10">
                         <label class="control-label">Выберите модификацию:</label>
-                        <select  v-model="vmCar" @change.capture="onSelectCar($event)"
-                                 class="form-control">
+                        <select v-model="vmCar" @change.capture="onSelectCar($event)"
+                                class="form-control">
                             <option value="" disabled selected>Выбрать...</option>
                             <option v-for="type in cars" :value="type.id"
                                     :key="type.id">{{type.power}} л/c | {{type.engine_value}} л
@@ -42,7 +42,8 @@
                     <div class="form-group col-md-10">
                         <label class="control-label" for="exampleSelectBrand">Тип детали:</label>
                         <div>
-                            <select v-model="vmTypeDetail" @change.capture="onSelectTypeDetail($event)" class="form-control" id="exampleSelectBrand">
+                            <select v-model="vmTypeDetail" @change.capture="onSelectTypeDetail($event)"
+                                    class="form-control" id="exampleSelectBrand">
                                 <option value="" disabled selected>Выбрать...</option>
                                 <option v-for="type in typeDetails" :value="type.id"
                                         :key="type.id">{{type.title}}
@@ -54,11 +55,11 @@
                     <div class="form-group col-md-10">
                         <label class="control-label" for="exampleSelectDetail">Выберите деталь:</label>
                         <div>
-                            <select v-model="vmDetail" @change.capture="onSelectDetail($event)" class="form-control" id="exampleSelectDetail">
+                            <select v-model="vmDetail" @change.capture="onSelectDetailCar($event)" class="form-control"
+                                    id="exampleSelectDetail">
                                 <option value="" disabled selected>Выбрать...</option>
-                                <option value="">SHD3300LX</option>
-                                <option v-for="type in details" :value="type.id"
-                                        :key="type.id">{{type.title}}
+                                <option v-for="item in detailsCars" :value="item.id"
+                                        :key="item.id">{{item.detail.title}}
                                 </option>
                             </select>
                         </div>
@@ -101,9 +102,9 @@
                             <tbody v-for="col in reservations">
                             <tr>
                                 <td>{{col.id}}</td>
-                                <td v-if="col.status==='received'">Получена</td>
+                                <td v-if="col.status==='create'">В рассмотрении</td>
                                 <td v-if="col.status==='accept'">Подтвеждена</td>
-                                <td>{{col.detail.title}}</td>
+                                <td>{{col.goods.detail.title}}</td>
                                 <td>{{col.count}}</td>
                             </tr>
                             </tbody>
@@ -128,11 +129,13 @@
                 brands: [],
                 models: [],
                 cars: [],
+                detailsCars: [],
                 typeDetails: [],
-                carSelected:'',
-                modelSelected:'',
+                carSelected: '',
+                modelSelected: '',
                 vmCar: '',
                 vmTypeDetail: '',
+                detailCarSelected: '',
                 showModal: false,
                 //UserData
                 createName: '',
@@ -166,7 +169,9 @@
                 $('#addNew').modal('show');
             },
             update: function () {
-                axios.get('/reservations').then((response) => {
+                var formData = new FormData();
+                formData.append('isAuth', true);
+                axios.post('/user/reservations', formData).then((response) => {
                     this.reservations = response.data;
                     console.log(response.data);
                 });
@@ -191,7 +196,7 @@
             getCarByModels: function (model_id) {
                 var formData = new FormData();
                 formData.append('model_id', model_id);
-                axios.post('/car/As', formData)
+                axios.post('/car/getCarsByModels', formData)
                     .then(response => {
                         this.cars = response.data;
                         console.log(response.data);
@@ -204,19 +209,29 @@
                     console.log(response.data);
                 });
             },
+
+            getDetailCarByType: function (type_detail_id, car_id) {
+                var formData = new FormData();
+                formData.append('type_detail_id', type_detail_id);
+                formData.append('car_id', car_id);
+
+                axios.post('/assortment/type/details', formData)
+                    .then(response => {
+                        this.detailsCars = response.data;
+                        console.log(response.data);
+                    });
+            },
+
             storeOrder: function () {
                 var formData = new FormData();
                 formData.append('status', 'create');
-                formData.append('detail_id', this.detailSelected);
-                formData.append('supplier_id', this.supplierSelected);
+                formData.append('isAuth', true);
+                formData.append('detail_car_id', this.detailCarSelected);
                 formData.append('count', this.vmCount);
-                axios.post('/orders', formData)
+                axios.post('/reservations', formData)
                     .then(response => {
                         console.log('Запрос успешен!')
                         this.update();
-                        this.vmDetail = ""
-                        this.vmSupplier = ""
-                        this.vmCount = ""
                     })
                     .catch(error => {
                         if (error.response.status == 422) {
@@ -249,9 +264,13 @@
             },
             onSelectTypeDetail(e) {
                 this.typeDetailSelected = e.target.value;
+                this.getDetailCarByType(this.typeDetailSelected, this.carSelected)
             },
             onSelectDetail(e) {
                 this.detailSelected = e.target.value;
+            },
+            onSelectDetailCar(e) {
+                this.detailCarSelected = e.target.value;
             },
         }
     }

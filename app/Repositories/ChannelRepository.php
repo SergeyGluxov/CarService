@@ -122,7 +122,7 @@ class ChannelRepository
         $urlPlayListArray = null;
 
         $client = new Client();
-        $response = $client->get('https://vagonott.github.io/iptv/channels.json');
+        $response = $client->get('https://vagonott.github.io/iptv/channelsRusSchedule.json');
         $jsonFormattedResult = json_decode($response->getBody()->getContents(), true);
         $categories = Category::all();
         $rusPosSort = 0;

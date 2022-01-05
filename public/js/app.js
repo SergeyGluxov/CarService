@@ -71624,6 +71624,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -71634,11 +71635,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             brands: [],
             models: [],
             cars: [],
+            detailsCars: [],
             typeDetails: [],
             carSelected: '',
             modelSelected: '',
             vmCar: '',
             vmTypeDetail: '',
+            detailCarSelected: '',
             showModal: false,
             //UserData
             createName: '',
@@ -71674,7 +71677,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         update: function update() {
             var _this = this;
 
-            axios.get('/reservations').then(function (response) {
+            var formData = new FormData();
+            formData.append('isAuth', true);
+            axios.post('/user/reservations', formData).then(function (response) {
                 _this.reservations = response.data;
                 console.log(response.data);
             });
@@ -71704,7 +71709,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var formData = new FormData();
             formData.append('model_id', model_id);
-            axios.post('/car/As', formData).then(function (response) {
+            axios.post('/car/getCarsByModels', formData).then(function (response) {
                 _this4.cars = response.data;
                 console.log(response.data);
             });
@@ -71718,20 +71723,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
             });
         },
-        storeOrder: function storeOrder() {
+
+        getDetailCarByType: function getDetailCarByType(type_detail_id, car_id) {
             var _this6 = this;
 
             var formData = new FormData();
+            formData.append('type_detail_id', type_detail_id);
+            formData.append('car_id', car_id);
+
+            axios.post('/assortment/type/details', formData).then(function (response) {
+                _this6.detailsCars = response.data;
+                console.log(response.data);
+            });
+        },
+
+        storeOrder: function storeOrder() {
+            var _this7 = this;
+
+            var formData = new FormData();
             formData.append('status', 'create');
-            formData.append('detail_id', this.detailSelected);
-            formData.append('supplier_id', this.supplierSelected);
+            formData.append('isAuth', true);
+            formData.append('detail_car_id', this.detailCarSelected);
             formData.append('count', this.vmCount);
-            axios.post('/orders', formData).then(function (response) {
+            axios.post('/reservations', formData).then(function (response) {
                 console.log('Запрос успешен!');
-                _this6.update();
-                _this6.vmDetail = "";
-                _this6.vmSupplier = "";
-                _this6.vmCount = "";
+                _this7.update();
             }).catch(function (error) {
                 if (error.response.status == 422) {
                     alert('Введите корректные данные!');
@@ -71739,19 +71755,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         acceptReservation: function acceptReservation(id) {
-            var _this7 = this;
+            var _this8 = this;
 
             axios.put('/reservations/' + id, {
                 status: 'accept'
             }).then(function (response) {
-                _this7.update();
+                _this8.update();
             });
         },
         deleteReservation: function deleteReservation(id) {
-            var _this8 = this;
+            var _this9 = this;
 
             axios.delete('/reservations/' + id).then(function (response) {
-                _this8.update();
+                _this9.update();
             });
         },
         onSelectBrand: function onSelectBrand(e) {
@@ -71767,9 +71783,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onSelectTypeDetail: function onSelectTypeDetail(e) {
             this.typeDetailSelected = e.target.value;
+            this.getDetailCarByType(this.typeDetailSelected, this.carSelected);
         },
         onSelectDetail: function onSelectDetail(e) {
             this.detailSelected = e.target.value;
+        },
+        onSelectDetailCar: function onSelectDetailCar(e) {
+            this.detailCarSelected = e.target.value;
         }
     }
 });
@@ -72343,7 +72363,7 @@ var render = function() {
                   attrs: { id: "exampleSelectDetail" },
                   on: {
                     "!change": function($event) {
-                      return _vm.onSelectDetail($event)
+                      return _vm.onSelectDetailCar($event)
                     },
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -72367,15 +72387,14 @@ var render = function() {
                     [_vm._v("Выбрать...")]
                   ),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [_vm._v("SHD3300LX")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.details, function(type) {
+                  _vm._l(_vm.detailsCars, function(item) {
                     return _c(
                       "option",
-                      { key: type.id, domProps: { value: type.id } },
+                      { key: item.id, domProps: { value: item.id } },
                       [
                         _vm._v(
-                          _vm._s(type.title) + "\n                            "
+                          _vm._s(item.detail.title) +
+                            "\n                            "
                         )
                       ]
                     )
@@ -72463,15 +72482,15 @@ var render = function() {
                     _c("tr", [
                       _c("td", [_vm._v(_vm._s(col.id))]),
                       _vm._v(" "),
-                      col.status === "received"
-                        ? _c("td", [_vm._v("Получена")])
+                      col.status === "create"
+                        ? _c("td", [_vm._v("В рассмотрении")])
                         : _vm._e(),
                       _vm._v(" "),
                       col.status === "accept"
                         ? _c("td", [_vm._v("Подтвеждена")])
                         : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(col.detail.title))]),
+                      _c("td", [_vm._v(_vm._s(col.goods.detail.title))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(col.count))])
                     ])
@@ -80275,6 +80294,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -80897,7 +80918,7 @@ var render = function() {
                     _c("tr", [
                       _c("td", [_vm._v(_vm._s(col.id))]),
                       _vm._v(" "),
-                      col.status === "received"
+                      col.status === "create"
                         ? _c("td", [_vm._v("Получена")])
                         : _vm._e(),
                       _vm._v(" "),
@@ -80915,7 +80936,7 @@ var render = function() {
                         _vm._v(_vm._s(_vm.convertDat(col.created_at.date)))
                       ]),
                       _vm._v(" "),
-                      col.status === "received"
+                      col.status === "create"
                         ? _c("td", { staticClass: "text-center" }, [
                             _c(
                               "div",

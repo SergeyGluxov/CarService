@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 //Веб-маршруты(сайта), в итоге нужно убрать и оставить только API маршруты
 Auth::routes();
@@ -15,55 +15,68 @@ Route::get('/admin', function () {
 })->middleware('auth')->middleware('role:admin')->name('admin');
 
 //Пользователи системы
-Route::get('admin/users/', 'AdminController@getUsers');
-Route::get('admin/users/create', 'AdminController@createUser');
-Route::get('admin/users/delete', 'AdminController@deleteUser');
+Route::get('/', 'HomeController@index');
+Route::get('/admin', 'AdminController@getUsers')->middleware('auth')->middleware('role:admin');
+
+Route::get('admin/users/', 'AdminController@getUsers')->middleware('auth')->middleware('role:admin');
+Route::get('admin/users/create', 'AdminController@createUser')->middleware('auth')->middleware('role:admin');
+Route::get('admin/users/delete', 'AdminController@deleteUser')->middleware('auth')->middleware('role:admin');
 //Сотрудники
-Route::get('admin/employee', 'AdminController@getEmployee');
+Route::get('admin/employee', 'AdminController@getEmployee')->middleware('auth')->middleware('role:admin');
 
 //Услуги
-Route::get('admin/services/', 'AdminController@getServices');
+Route::get('admin/services/', 'AdminController@getServices')->middleware('auth')->middleware('role:admin');
 
 //Записи на осмотр
-Route::get('admin/channels', 'AdminController@getCheckup');
-Route::get('admin/auto', 'AdminController@getAuto');
-Route::get('admin/auto/models', 'AdminController@getAutoModel');
-Route::get('admin/auto/brands', 'AdminController@getAutoBrand');
-Route::get('admin/top/channels', 'AdminController@getTopChannels');
-Route::get('admin/details/type', 'AdminController@getTypeDetail');
-Route::get('admin/details/nomenclature', 'AdminController@getNomenclature');
-Route::get('admin/details/assortment', 'AdminController@getAssortment');
-Route::get('admin/suppliers', 'AdminController@getSuppliers');
-Route::get('admin/suppliers/orders', 'AdminController@getOrders');
-Route::get('admin/reservations', 'AdminController@getReservation');
+Route::get('admin/auto', 'AdminController@getAuto')->middleware('auth')->middleware('role:admin');
+Route::get('admin/auto/models', 'AdminController@getAutoModel')->middleware('auth')->middleware('role:admin');
+Route::get('admin/auto/brands', 'AdminController@getAutoBrand')->middleware('auth')->middleware('role:admin');
+Route::get('admin/top/channels', 'AdminController@getTopChannels')->middleware('auth')->middleware('role:admin');
+Route::get('admin/details/type', 'AdminController@getTypeDetail')->middleware('auth')->middleware('role:admin');
+Route::get('admin/details/nomenclature', 'AdminController@getNomenclature')->middleware('auth')->middleware('role:admin');
+Route::get('admin/details/assortment', 'AdminController@getAssortment')->middleware('auth')->middleware('role:admin');
+Route::get('admin/suppliers', 'AdminController@getSuppliers')->middleware('auth')->middleware('role:admin');
+Route::get('admin/suppliers/orders', 'AdminController@getOrders')->middleware('auth')->middleware('role:admin');
+Route::get('admin/reservations', 'AdminController@getReservation')->middleware('auth')->middleware('role:admin');
 
-//Рассписание работ
-Route::get('admin/schedules', 'AdminController@getSchedules');
+//todo: Сделать нормальное API
+Route::group(['namespace' => 'Api'], function () {
+    Route::group(['namespace' => 'Channels'], function () {
+        Route::resource('/channels', 'ChannelController');
+        Route::get('/filter/channels', 'ChannelController@getFilterChannels');
+        Route::post('/category/channels', 'ChannelController@getChannelsByCategory');
+        Route::post('/paginate/channels', 'ChannelController@paginate');
+        Route::get('/updateGitHub/channels', 'ChannelController@getChannelFromGitHub');
+    });
+    Route::group(['namespace' => 'Sources'], function () {
+        Route::resource('/sources', 'SourceController');
+    });
+    Route::group(['namespace' => 'Categories'], function () {
+        Route::resource('/categories', 'CategoryController');
+    });
 
+    Route::group(['namespace' => 'ChannelsSources'], function () {
+        Route::resource('/channels/source', 'ChannelSourceController');
+    });
+});
 //---------------------Экспорт и импорт-------------------------------------------------
 //Пользователи
-Route::get('admin/assortment/export', 'Api\Details\DetailCarController@export');
-Route::post('admin/assortment/import', 'Api\Details\DetailCarController@import');
+Route::get('admin/assortment/export', 'Api\Details\DetailCarController@export')->middleware('auth')->middleware('role:admin');
+Route::post('admin/assortment/import', 'Api\Details\DetailCarController@import')->middleware('auth')->middleware('role:admin');
 
 //Завявки
-Route::get('admin/users/export', 'AdminController@getExportUser');
-Route::post('admin/users/import', 'AdminController@importUsers');
+Route::get('admin/users/export', 'AdminController@getExportUser')->middleware('auth')->middleware('role:admin');
+Route::post('admin/users/import', 'AdminController@importUsers')->middleware('auth')->middleware('role:admin');
 
-//Пользователи
-Route::get('admin/appointment/export', 'AdminController@getExport');
-Route::post('admin/appointment/import', 'AdminController@importAppointments');
 //--------------------------------------------------------------------------------------
 
 //Назначить сотрудника
-Route::get('admin/employees', 'AdminController@stroreEmployee');
-Route::get('admin/remove_employee', 'AdminController@removeEmployee');
+Route::get('admin/employees', 'AdminController@stroreEmployee')->middleware('auth')->middleware('role:admin');
+Route::get('admin/remove_employee', 'AdminController@removeEmployee')->middleware('auth')->middleware('role:admin');
 
 //Должности
-Route::get('admin/roles', 'AdminController@addRole');
-Route::get('admin/remove_role', 'AdminController@removeRole');
-
-//Поиск мастеров
-Route::get('admin/search_master', 'AdminController@searchMaster');
+Route::get('admin/roles', 'AdminController@addRole')->middleware('auth')->middleware('role:admin');
+Route::get('admin/remove_role', 'AdminController@removeRole')->middleware('auth')->middleware('role:admin');
 
 Route::get('admin/oauth_clients', function () {
     return view('admin_layouts/oauth_clients');

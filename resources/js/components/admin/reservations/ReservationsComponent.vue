@@ -26,13 +26,13 @@
                             <tbody v-for="col in reservations">
                             <tr>
                                 <td>{{col.id}}</td>
-                                <td v-if="col.status==='received'">Получена</td>
+                                <td v-if="col.status==='create'">Получена</td>
                                 <td v-if="col.status==='accept'">Подтвеждена</td>
                                 <td>{{col.goods.detail.title}}</td>
                                 <td>{{col.user.name}}</td>
                                 <td>{{col.count}}</td>
                                 <td>{{convertDat(col.created_at.date)}}</td>
-                                <td class="text-center" v-if="col.status==='received'">
+                                <td class="text-center" v-if="col.status==='create'">
                                     <div type="button" class="btn btn-warning" v-on:click="acceptReservation(col.id)">
                                         <i class="fas fa-exclamation-triangle" aria-hidden="true"></i></div>
                                 </td>
