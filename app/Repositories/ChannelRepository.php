@@ -51,15 +51,9 @@ class ChannelRepository
         $channelItem->title = $request->get('title');
         $channelItem->logo = $request->get('logo');
         $channelItem->lang = $request->get('lang');
-        $category_id = Category::where('title','=',$request->get('category_id'))->get();
+        $category_id = Category::where('title', '=', $request->get('category_id'))->get();
         $channelItem->category_id = $category_id[0]->id;
-        //Найти последний добавленный русский канал и задать position + 1
-        if($request->get('lang')=='rus'){
-            $channelItem->position = $this->getLastRussianChannel() + 1;
-        }else{
-            $channelItem->position = $this->getLastNoRussianChannel() + 1;
-        }
-
+        $channelItem->position = $this->getLastRussianChannel() + 1;
         $channelItem->save();
         return response('Телеканал успешно добавлен', 200);
     }
@@ -72,11 +66,11 @@ class ChannelRepository
         $channelUpdate->lang = $request->get('lang');
 
         //Ищем текущую позицию телеканала
-        $currentPosition = Channel::where('title','=',$request->get('title'))->get()[0]->position;
+        $currentPosition = Channel::where('title', '=', $request->get('title'))->get()[0]->position;
 
         //Обновить канал со схожей позицией(задать ему позицию текущего канала)
-        $channelForChange = Channel::where('position','=',$request->get('position'))->get();
-        if($channelForChange->count()>0){
+        $channelForChange = Channel::where('position', '=', $request->get('position'))->get();
+        if ($channelForChange->count() > 0) {
             $channelForChange[0]->position = $currentPosition;
             $channelForChange[0]->save();
         }
@@ -84,7 +78,7 @@ class ChannelRepository
         //Позиция свободна для канала, зададим ее
         $channelUpdate->position = $request->get('position');
 
-        $category_id = Category::where('title','=',$request->get('category_id'))->get();
+        $category_id = Category::where('title', '=', $request->get('category_id'))->get();
         dump($request->get('category_id'));
         $channelUpdate->category_id = $category_id[0]->id;
         $channelUpdate->save();
@@ -117,23 +111,40 @@ class ChannelRepository
     }
 
 
+    public function filterByArrayName(Request $request)
+    {
+        $param = $request->get('titles');
+        $response = array();
+
+        foreach (Channel::all() as $channel) {
+            if (in_array($channel['title'], $param)) {
+                array_push($response, $channel);
+            }
+        }
+
+        ChannelCollection::withoutWrapping();
+        return new ChannelCollection(collect($response));
+
+
+    }
+
+
     public function getChannelFromGitHub()
     {
         $urlPlayListArray = null;
 
         $client = new Client();
-        $response = $client->get('https://vagonott.github.io/iptv/channels.json');
+        $response = $client->get('https://vagonott.github.io/iptv/channelsRusSchedule.json');
         $jsonFormattedResult = json_decode($response->getBody()->getContents(), true);
         $categories = Category::all();
         $rusPosSort = 0;
-        $otherPosition = 0;
         foreach ($jsonFormattedResult as $item) {
             $title = $item['name'];
             $logo = $item['logo'];
 
             //Распределение по категориям(те которые у нас уже определены)
             $category_id = $this->getCategoryId($item['category']);
-
+            $category_id = 1;
             $lang = $item['languages'][0]['code'];
             if ($logo == null) {
                 $logo = "Нет";
@@ -149,25 +160,21 @@ class ChannelRepository
             $channelItem = new Channel();
             $channelItem->title = $title;
             $channelItem->logo = $logo;
-            if ($item['languages'][0]['code'] == 'rus') {
-                $channelItem->position = $rusPosSort;
-                $rusPosSort += 1;
-            } else {
-                $channelItem->position = $otherPosition + 1000;
-                $otherPosition += 1;
-            }
+            $channelItem->position = $rusPosSort;
+            $rusPosSort += 1;
+
             $channelItem->lang = $lang;
             $channelItem->category_id = $category_id;
             $channelItem->save();
 
             //Сохранить ресурс
             $sourcesItem = new Source();
-            $sourcesItem->url = $item['url'];
+            $sourcesItem->url = $item['playlist'][0];
             $sourcesItem->save();
 
             //Найти ID текущего канала
             $searchChannelID = Channel::where('title', '=', $title)->get();
-            $searchSourceID = Source::where('url', '=', $item['url'])->get();
+            $searchSourceID = Source::where('url', '=', $item['playlist'][0])->get();
 
             //Сохранить каналу ресурс
             $channelSource = new ChannelsSource();
@@ -193,17 +200,10 @@ class ChannelRepository
         return $categoryId;
     }
 
-    public function getLastRussianChannel(){
-        $maxId = Channel::whereHas('category', function ($query) {
-            $query->where('lang', '=', 'rus');
-        })->orderBy('position', 'ASC')->max('position');
+    public function getLastRussianChannel()
+    {
+        $maxId = Channel::max('position');
         return $maxId;
     }
 
-    public function getLastNoRussianChannel(){
-        $maxId = Channel::whereHas('category', function ($query) {
-            $query->where('lang', '!=', 'rus');
-        })->orderBy('position', 'ASC')->max('position');
-        return $maxId;
-    }
 }

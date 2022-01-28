@@ -43,4 +43,9 @@ class UserService
     {
         return $this->userRepository->destroy($id);
     }
+
+    public function myself(Request $request)
+    {
+        return $this->userRepository->myself($request);
+    }
 }

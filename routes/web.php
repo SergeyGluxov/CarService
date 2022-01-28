@@ -93,7 +93,7 @@ Route::group(['namespace' => 'Api'], function () {
 Route::get('/redirect', 'Api\AuthController@redirect');
 Route::get('/callback', 'Api\AuthController@callback');
 
-
+Route::post('/auth','Api\AuthPassportController');
 
 Auth::routes();
 

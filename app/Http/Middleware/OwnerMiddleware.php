@@ -9,7 +9,11 @@ class OwnerMiddleware
     public function handle($request, Closure $next, $role)
     {
         if (!$request->user()->hasRole($role)) {
-            return redirect('/home')->with('status','Вы не администратор!');
+            return response()->json( [
+                'status' => 'false',
+                'message' => 'you don’t have permission to access',
+                'code' => 403,
+            ], 403);
         }
         return $next($request);
     }

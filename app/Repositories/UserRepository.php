@@ -79,4 +79,11 @@ class UserRepository
         if ($userDestroy->delete())
             return response('Пользователь удален!', 200);
     }
+
+    public function myself(Request $request)
+    {
+        dd($request->user());
+    }
+
+
 }

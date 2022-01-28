@@ -61,4 +61,11 @@ class UserController extends Controller
     {
         return $this->user->destroy($id);
     }
+
+
+    public function myself(Request $request)
+    {
+        return $this->user->myself($request);
+    }
+
 }

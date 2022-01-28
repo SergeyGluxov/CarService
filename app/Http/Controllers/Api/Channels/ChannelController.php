@@ -62,6 +62,12 @@ class ChannelController extends Controller
         return $this->channelRepository->getChannelsByCategory($request);
     }
 
+    public function filterByArrayName(Request $request)
+    {
+        return $this->channelRepository->filterByArrayName($request);
+    }
+
+
     //Синхронизировать со списком GitHub
     public function getChannelFromGitHub()
     {

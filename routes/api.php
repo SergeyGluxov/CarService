@@ -12,6 +12,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::get('/workers', 'UserController@getWorkers');
         Route::post('/workersFree', 'UserController@getWorkersFree');
         Route::get('/users/paginate', 'PaginateController');
+        Route::post('/users/myself', 'UserController@myself');
     });
 
     //Записи
@@ -27,6 +28,24 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Schedules'], function () {
         Route::resource('/admin/schedules', 'SchedulesController');
     });
+
+    Route::group(['namespace' => 'Categories'], function () {
+        Route::resource('/categories', 'CategoryController');
+    });
+
+
+    Route::group(['namespace' => 'Channels', 'middleware' => 'auth:api'], function () {
+        Route::group(['middleware' => 'role:admin'], function () {
+            Route::apiResource('/channels', 'ChannelController')->middleware('role:admin');
+        });
+
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::apiResource('/channels', 'ChannelController')->only(['index', 'show']);
+        });
+
+        Route::post('/channels/filterByArrayName', 'ChannelController@filterByArrayName');
+    });
+
 
     //Должности
     Route::group(['namespace' => 'Roles'], function () {

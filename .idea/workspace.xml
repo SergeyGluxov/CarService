@@ -24,6 +24,12 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:kristina" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
     <select>
       <path>
@@ -34,11 +40,24 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="Обновление телеканалов при изменении списка">
+    <list default="true" id="e11eedd3-7ff0-4a30-910e-fe5ebb9b7adf" name="Default Changelist" comment="upd">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthPassportController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Channels/ChannelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/User/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/OwnerMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/OwnerMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ChannelRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/AdminTableComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="250a8aa7-fa6e-4b79-8d84-f50771e5de93" name="Добавил adminLTE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -211,7 +230,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/vendor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Api/Auth" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
@@ -219,19 +238,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean" />
-      <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api" />
-      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Controllers\Api\Services" />
-      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\views\admin_layouts\users" />
-      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\js\components\admin\users" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api\Auth" />
       <recent name="C:\OpenServer\domains\CarService\resources\views\vendor" />
       <recent name="C:\OpenServer\domains\CarService\resources\views" />
       <recent name="C:\OpenServer\domains\CarService\app\Http\Resources" />
       <recent name="C:\OpenServer\domains\CarService\resources\views\admin_layouts" />
-      <recent name="C:\OpenServer\domains\CarService\resources\js\components\admin\channels" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\CarService\app\Http\Controllers\Api" />
+      <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api\Lean" />
+      <recent name="C:\OpenServer\domains\business\app\Http\Controllers\Api" />
+      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\app\Http\Controllers\Api\Services" />
+      <recent name="C:\Users\Sergey\Downloads\OSPanel\domains\CarService\resources\views\admin_layouts\users" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -455,6 +474,8 @@
       <workItem from="1616142241353" duration="8761000" />
       <workItem from="1616382078985" duration="54474000" />
       <workItem from="1616565125523" duration="27628000" />
+      <workItem from="1641448328754" duration="7521000" />
+      <workItem from="1641543348965" duration="6715000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена авторизация">
       <created>1555802986276</created>
@@ -860,122 +881,50 @@
     <option name="LAST_COMMIT_MESSAGE" value="Обновление телеканалов при изменении списка" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="540" y="175" key="#Servers" timestamp="1616574407380">
+    <state x="553" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1641400036121">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="540" y="175" key="#Servers/0.0.1920.1040@0.0.1920.1040" timestamp="1616574407380" />
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616574468246">
+    <state x="553" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1641400036121" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1641452093470">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616574468246" />
-    <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616405313097">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1641452093470" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1641546686416">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1090" y="310" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616405313097" />
-    <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616492754039">
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1641546686416" />
+    <state x="799" y="217" key="VCS.ChangeListViewerDialog" timestamp="1641546573478">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1015" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616492754039" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1616495331967">
+    <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1641546573478" />
+    <state x="599" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1641546677277">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616495331967" />
-    <state width="1877" height="373" key="GridCell.Tab.0.bottom" timestamp="1616657808824">
+    <state x="599" y="254" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1641546677277" />
+    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1641547653982">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="373" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.0.center" timestamp="1616657808824">
+    <state x="667" y="255" width="585" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1641547653982" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1641395561636">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="373" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.0.left" timestamp="1616657808824">
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1641395561636" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup" timestamp="1641547389245">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="373" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.0.right" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.1.bottom" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.1.center" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.1.left" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.1.right" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.2.bottom" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.2.center" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.2.left" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state width="1877" height="373" key="GridCell.Tab.2.right" timestamp="1616657808824">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="373" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616657808824" />
-    <state x="260" y="246" key="NewPhpClassDialog" timestamp="1616484091112">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="260" y="246" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616484091112" />
-    <state x="319" y="195" key="SettingsEditor" timestamp="1616574122201">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="319" y="195" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1616574122201" />
-    <state x="799" y="217" key="VCS.ChangeListViewerDialog" timestamp="1616152542368">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="799" y="217" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616152542368" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616663470941">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616663470941" />
-    <state x="1116" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1616495294919">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1116" y="254" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616495294919" />
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616573579501">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616573579501" />
-    <state x="194" y="126" width="627" height="795" key="find.popup" timestamp="1616657564976">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="194" y="126" width="627" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616657564976" />
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1616665909956">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616665909956" />
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1616663716649">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="948" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616663716649" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1641547389245" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Repositories/ChannelRepository.php</url>
-          <line>123</line>
+          <line>135</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Repositories/ChannelRepository.php</url>
-          <line>110</line>
+          <line>104</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
